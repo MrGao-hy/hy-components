@@ -57,6 +57,7 @@
 
 <script setup lang="ts">
 import HyCountDown from "@/package/components/hy-count-down/hy-count-down.vue";
+import HyButton from "@/package/components/hy-button/hy-button.vue";
 
 import { ref } from "vue";
 const countDownRef = ref<InstanceType<typeof HyCountDown>>();

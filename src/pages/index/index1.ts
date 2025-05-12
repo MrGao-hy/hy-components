@@ -247,3 +247,18 @@ export const list_6 = [
     url: "/pages/components/qrcode/qrcode",
   },
 ];
+
+export const list_7 = [
+  {
+    title: "SubmitBar 提交订单栏",
+    url: "/pages/components/submitBar/submitBar",
+  },
+  {
+    title: "Login 登录",
+    url: "/pages/components/login/login",
+  },
+  {
+    title: "Price 金额",
+    url: "/pages/components/price/price",
+  }
+];

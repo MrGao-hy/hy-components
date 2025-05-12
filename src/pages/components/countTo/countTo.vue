@@ -37,6 +37,7 @@
 
 <script setup lang="ts">
 import HyCountTo from "@/package/components/hy-count-to/hy-count-to.vue";
+import HyButton from "@/package/components/hy-button/hy-button.vue";
 import { ref } from "vue";
 
 const countToRef = ref<InstanceType<typeof HyCountTo>>();

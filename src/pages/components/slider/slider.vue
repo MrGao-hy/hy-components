@@ -11,6 +11,9 @@
   <view class="hy-title">自定义大小</view>
   <hy-slider v-model="value" blockSize="30" height="8"></hy-slider>
 
+  <view class="hy-title">小数点</view>
+  <hy-slider v-model="value_3" :min="0" :max="1" :step="0.1" show-value></hy-slider>
+
   <view class="hy-title">区间选择</view>
   <hy-slider isRange showValue v-model:rangeValue="value_2"></hy-slider>
 
@@ -64,6 +67,7 @@ import HySlider from "@/package/components/hy-slider/hy-slider.vue";
 import { ref } from "vue";
 
 const value = ref(20);
+const value_3 = ref(0);
 const value_2 = ref([20, 80]);
 </script>
 

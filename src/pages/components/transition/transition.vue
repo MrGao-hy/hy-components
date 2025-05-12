@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type CSSProperties, reactive, ref } from "vue";
+import {computed, type CSSProperties, reactive, ref} from "vue";
 import type { CellContentVo } from "hy-app/components/hy-cell/typing";
 import { getWindowInfo } from "@/package";
 
@@ -22,8 +22,8 @@ const mode = ref<HyApp.TransitionMode>("fade");
 const style = computed((): CSSProperties => {
   return {
     position: "fixed",
-    top: `${getWindowInfo().windowHeight / 2 - 50}px`,
-    left: `${getWindowInfo().windowWidth / 2 - 50}px`,
+    top: `${getWindowInfo().windowHeight / 2 - 60}px`,
+    left: `${getWindowInfo().windowWidth / 2 - 60}px`,
     width: "120px",
     height: "120px",
     backgroundColor: "#1989fa",

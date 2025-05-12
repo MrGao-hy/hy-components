@@ -63,7 +63,7 @@ const list_1 = reactive([
 const list_2 = reactive([
   { name: "主要", value: "primary" },
   { name: "信息", value: "success" },
-  { name: "微信", value: "error" },
+  { name: "危险", value: "error" },
   { name: "提示", value: "warning" },
   { name: "默认", value: "info" },
 ]);

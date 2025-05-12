@@ -10,21 +10,25 @@ export default interface IProps {
    * */
   symbol?: string;
   /**
+   * @description 比例大小（默认：1.4）
+   * */
+  ratio?: number;
+  /**
    * @description 保留小数点后几位数（默认：2）
    * */
   num?: number;
   /**
    * @description 字体颜色（默认：#FE3232）
    * */
-  textColor?: string;
+  color?: string;
   /**
-   * @description 字体大小（默认：22）
+   * @description 字体大小（默认：12）
    * */
-  fontSize?: string | number;
+  size?: string | number;
   /**
    * @description 字体粗细（默认：500）
    * */
-  weight?: string | number;
+  weight?: number;
   /**
    * @description 是否倾斜（默认：false）
    * */

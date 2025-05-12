@@ -7,9 +7,7 @@
     <text class="hy-price__prefix">{{ symbol }}</text>
     <text
       class="hy-price__text"
-      :style="[
-        { 'font-size': `${Number(fontSize) + Number(fontSize) * 0.8}rpx` },
-      ]"
+      :style="[{ 'font-size': addUnit(getPx(size) * ratio) }]"
       >{{ priceOne[0] }}
     </text>
     <text class="hy-price__decimal">
@@ -22,10 +20,10 @@
 import { computed, type CSSProperties, toRefs } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
-import { addUnit } from "../../utils";
+import { addUnit, getPx } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { text, textColor, weight, fontSize, slant, customStyle } = toRefs(props);
+const { text, color, weight, size, slant, customStyle } = toRefs(props);
 const emit = defineEmits(["click"]);
 
 /**
@@ -33,13 +31,13 @@ const emit = defineEmits(["click"]);
  * */
 const priceStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
-    color: textColor.value,
+    color: color.value,
     fontWeight: weight.value,
     fontStyle: slant.value ? "oblique" : "",
-    fontSize: addUnit(fontSize.value),
+    fontSize: addUnit(size.value),
   };
 
-  return Object.assign(style, customStyle);
+  return Object.assign(style, customStyle.value);
 });
 
 /**

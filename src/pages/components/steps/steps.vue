@@ -28,7 +28,7 @@ import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import { ref } from "vue";
 
-const direction = ref<HyApp.DirectionType>("row");
+const direction = ref<HyApp.DirectionType>("column");
 const dot = ref(false);
 
 const current = ref(0);

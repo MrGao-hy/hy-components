@@ -20,7 +20,7 @@ import { ref } from "vue";
 import { config } from "@/config/config";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
-// import HyGrid from "@/package/components/hy-grid/hy-grid.vue";
+import HyGrid from "@/package/components/hy-grid/hy-grid.vue";
 
 const list = [
   {

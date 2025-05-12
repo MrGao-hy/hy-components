@@ -5,7 +5,7 @@
   <hy-cell title="反馈组件" :list="list_4"></hy-cell>
   <hy-cell title="导航组件" :list="list_5"></hy-cell>
   <hy-cell title="其他组件" :list="list_6"></hy-cell>
-  <hy-cell title="业务组件" :list="list_7"></hy-cell>
+    <hy-cell title="业务组件" :list="list_7"></hy-cell>
 </template>
 
 <script setup lang="ts">

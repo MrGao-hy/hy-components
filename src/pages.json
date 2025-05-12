@@ -4,7 +4,13 @@
     {
       "path": "pages/index/Index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "华玥组件库"
+      }
+    },
+    {
+      "path": "pages/mine/Index",
+      "style": {
+        "navigationBarTitleText": "我的"
       }
     }
   ],
@@ -389,6 +395,34 @@
             "navigationBarTitleText": "文本",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "parse/parse",
+          "style": {
+            "navigationBarTitleText": "富文本",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "submitBar/submitBar",
+          "style": {
+            "navigationBarTitleText": "提交订单栏",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "price/price",
+          "style": {
+            "navigationBarTitleText": "金额",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "login/login",
+          "style": {
+            "navigationBarTitleText": "登录页面",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }
@@ -398,6 +432,25 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#FFFFFF",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#B7B7B7",
+    "selectedColor": "#57A997",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/Index"
+        //        "iconPath": "./static/images/icon/home.png",
+        //        "selectedIconPath": "./static/images/icon/home_1.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/mine/Index"
+        //        "iconPath": "./static/images/icon/mine.png",
+        //        "selectedIconPath": "./static/images/icon/mine_1.png"
+      }
+    ]
   },
   "easycom": {
     "custom": {

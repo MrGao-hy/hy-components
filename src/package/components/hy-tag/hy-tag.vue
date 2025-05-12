@@ -11,7 +11,7 @@
             :customStyle="{ marginRight: '3px' }"
           ></HyIcon>
         </slot>
-        <text :class="textClass" :style="{ color: color }">
+        <text :class="textClass" :style="textStyle">
           <slot>
             {{ text }}
           </slot>
@@ -40,6 +40,7 @@ import type IProps from "./typing";
 import HyTransition from "../hy-transition/hy-transition.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
 import { IconConfig } from "../../config";
+import {colorGradient} from "@/package";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
@@ -84,16 +85,33 @@ const tagStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
     marginRight: closable.value ? "10px" : 0,
     marginTop: closable.value ? "10px" : 0,
+    background: bgColor.value,
+    borderColor: borderColor.value
   };
-  if (bgColor.value) {
-    style.background = bgColor.value;
+
+  if(color.value) {
+    if (plain.value) {
+      style.borderColor = color.value;
+      if(plainFill.value) {
+        style.background = colorGradient(color.value, "#FFFFFF", 100)[90];
+      }
+    } else {
+      style.background = color.value;
+      style.borderColor = color.value;
+    }
   }
-  if (borderColor.value) {
-    style.borderColor = borderColor.value;
-  }
+
   return Object.assign(style, customStyle.value);
 });
 
+/**
+ * @description 文本样式
+ * */
+const textStyle = computed(() => {
+  const style: CSSProperties = {}
+  if(color.value && plain.value) style.color = color.value;
+  return style;
+})
 /**
  * @description 文本类名
  * */

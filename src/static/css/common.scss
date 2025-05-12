@@ -1,7 +1,21 @@
 @import "~@/package/theme.scss";
+@import "~@/package/libs/css/mixin.scss";
 .hy-title {
   padding: $hy-border-margin-padding-base;
   color: $hy-info;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 18px;
+    background: $hy-primary;
+    border-radius: $hy-border-radius-semicircle;
+  }
 }
 .hy-flex {
   display: flex;
@@ -27,4 +41,5 @@
 .hy-grid {
   display: grid;
   gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
 }

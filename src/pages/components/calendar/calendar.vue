@@ -71,6 +71,7 @@
 
 <script setup lang="ts">
 import HyCalendar from "@/package/components/hy-calendar/hy-calendar.vue";
+import HyCell from "@/package/components/hy-cell/hy-cell.vue";
 import { reactive, ref } from "vue";
 
 const index = ref(0);

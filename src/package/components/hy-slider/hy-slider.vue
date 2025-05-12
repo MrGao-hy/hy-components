@@ -364,7 +364,7 @@ const updateValue = (value: number, drag: boolean, index: number = 1) => {
     width: width + "px",
   };
   // 移动期间无需过渡动画
-  if (drag == true) {
+  if (drag) {
     barStyle_1.transition = "none";
   } else {
     // 非移动期间，删掉对过渡为空的声明，让css中的声明起效
@@ -421,9 +421,10 @@ const format = (value: number, index = 1): number => {
         return 0;
     }
   } else {
+    // 解决精度丢失
     return (
-      Math.round(Math.max(min.value, Math.min(value, max.value)) / step.value) *
-      step.value
+      Math.round(Math.max(min.value, Math.min(value, max.value)) / step.value) * 1000 *
+      step.value / 1000
     );
   }
 };

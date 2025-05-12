@@ -13,11 +13,11 @@ export default defineConfig({
       open: false,
       filename: "visualizer.html", //分析图生成的文件名
     }),
-    Components({
-      resolvers: [
-        myComponentsResolver, // 添加自定义解析器
-      ],
-    }),
+    // Components({
+    //   resolvers: [
+    //     myComponentsResolver, // 添加自定义解析器
+    //   ],
+    // }),
   ],
   server: {
     port: 8888,

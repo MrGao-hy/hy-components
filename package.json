@@ -55,7 +55,9 @@
     "@tuniao/tnui-vue3-uniapp": "^1.0.22",
     "dayjs": "^1.11.13",
     "hy-app": "^0.1.2",
-    "uview-plus": "^3.4.20",
+    "pinia": "^3.0.2",
+    "signature_pad": "^5.0.7",
+    "uview-plus": "^3.4.27",
     "vue": "^3.4.21",
     "vue-i18n": "^9.1.9"
   },

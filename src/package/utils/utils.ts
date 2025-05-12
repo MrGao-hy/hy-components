@@ -246,7 +246,7 @@ const imageToBase64 = (path: string) => {
  * @returns {void}
  * @constructor
  */
-function debounce(fn: () => void, t?: number) {
+function debounce(fn: Function, t?: number) {
   const delay = t || 500;
   let timer: any;
   let that = this;

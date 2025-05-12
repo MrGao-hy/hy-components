@@ -2,7 +2,9 @@
   <view class="hy-page">
     <view class="hy-title">基础使用</view>
     <hy-read-more>
-      {{ text }}
+      <template #default>
+        {{ text }}
+      </template>
     </hy-read-more>
   </view>
 </template>

@@ -1,11 +1,12 @@
 import type IProps from "./typing";
 
 const defaultProps: IProps = {
-  text: "0.00",
+  text: "",
   symbol: "￥",
+  ratio: 1.4,
   num: 2,
-  textColor: "#FE3232",
-  fontSize: 22,
+  color: "#FE3232",
+  size: 12,
   weight: 500,
   slant: false,
 };

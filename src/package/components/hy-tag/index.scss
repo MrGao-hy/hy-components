@@ -2,12 +2,13 @@
 @use "../../libs/css/mixin.scss" as *;
 
 .hy-tag {
+  border-style: solid;
   @include flex;
   align-items: center;
-  border-style: solid;
-
   &__wrapper {
+    @include flex;
     position: relative;
+    box-sizing: border-box;
   }
 
   /*禁用*/

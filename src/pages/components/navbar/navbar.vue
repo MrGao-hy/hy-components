@@ -1,5 +1,12 @@
 <template>
   <view class="hy-page">
+    <hy-navbar
+        title="悬浮"
+        bg-color="#F8F8F8"
+        autoBack
+        placeholder
+    ></hy-navbar>
+
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-navbar
@@ -9,13 +16,14 @@
         left-text="返回"
         border
         autoBack
+        :safeAreaInsetTop="false"
         :right-icon="IconConfig.DELETE"
       ></hy-navbar>
     </view>
 
     <view class="hy-title">自定义插槽</view>
     <view class="hy-container">
-      <hy-navbar title="标题" :fixed="false" bg-color="#F8F8F8">
+      <hy-navbar title="标题" :fixed="false" :safeAreaInsetTop="false" bg-color="#F8F8F8">
         <template #left>
           <view class="u-nav-slot">
             <hy-icon :name="IconConfig.LEFT" size="16"></hy-icon>

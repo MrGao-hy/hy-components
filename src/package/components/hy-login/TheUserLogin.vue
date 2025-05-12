@@ -47,6 +47,8 @@
           :clearable="true"
           border="bottom"
           :password-icon="false"
+          @change="handleChange($event, record)"
+          @blur="handleBlur($event, record)"
         >
           <!-- #ifndef APP-PLUS-NVUE -->
           <template #prefix>
@@ -64,84 +66,13 @@
         </HyInput>
       </template>
     </HyForm>
-    <!--    <u-form-->
-    <!--      :model="userForm"-->
-    <!--      ref="form_1Ref"-->
-    <!--      :rules="userRules"-->
-    <!--      labelWidth="30"-->
-    <!--    >-->
-    <!--      &lt;!&ndash;账户输入&ndash;&gt;-->
-    <!--      <u-form-item prop="name">-->
-    <!--        <u-input-->
-    <!--          v-model="userForm.name"-->
-    <!--          :placeholder="userPlaceholder"-->
-    <!--          :clearable="true"-->
-    <!--          border="bottom"-->
-    <!--        >-->
-    <!--          &lt;!&ndash; #ifndef APP-PLUS-NVUE &ndash;&gt;-->
-    <!--          <template #prefix>-->
-    <!--            <u-icon name="account" :color="themeColor"></u-icon>-->
-    <!--          </template>-->
-    <!--          <template #suffix>-->
-    <!--            <u-icon-->
-    <!--              :name="!showChoice ? 'arrow-down-fill' : 'arrow-up-fill'"-->
-    <!--              @tap="showChoice = !showChoice"-->
-    <!--              :color="themeColor"-->
-    <!--            ></u-icon>-->
-    <!--            <view class="dialog-view" v-if="showChoice && choiceList.length">-->
-    <!--              <view-->
-    <!--                class="dialog-title"-->
-    <!--                v-for="(item, index) in choiceList"-->
-    <!--                :key="index"-->
-    <!--                @click="btnChoiceClick(index)"-->
-    <!--              >-->
-    <!--                {{ item.user }}-->
-    <!--              </view>-->
-    <!--            </view>-->
-    <!--          </template>-->
-    <!--          &lt;!&ndash; #endif &ndash;&gt;-->
-    <!--        </u-input>-->
-    <!--      </u-form-item>-->
 
-    <!--      &lt;!&ndash;密码输入&ndash;&gt;-->
-    <!--      <u-form-item prop="pwd">-->
-    <!--        <u-input-->
-    <!--          :type="showPwd ? 'input' : 'password'"-->
-    <!--          v-model="userForm.pwd"-->
-    <!--          :placeholder="pwdPlaceholder"-->
-    <!--          :clearable="true"-->
-    <!--          border="bottom"-->
-    <!--          :password-icon="false"-->
-    <!--        >-->
-    <!--          &lt;!&ndash; #ifndef APP-PLUS-NVUE &ndash;&gt;-->
-    <!--          <template #prefix>-->
-    <!--            <u-icon name="lock" :color="themeColor"></u-icon>-->
-    <!--          </template>-->
-    <!--          <template v-if="isShowPwd" #suffix>-->
-    <!--            <u-icon-->
-    <!--              size="16"-->
-    <!--              @click="showPasswordFn"-->
-    <!--              color="#c8c9cc"-->
-    <!--              :name="showPwd ? 'eye-fill' : 'eye-off'"-->
-    <!--            ></u-icon>-->
-    <!--          </template>-->
-    <!--          &lt;!&ndash; #endif &ndash;&gt;-->
-    <!--        </u-input>-->
-    <!--      </u-form-item>-->
-    <!--    </u-form>-->
     <!-- 记住密码 -->
     <view class="mui-input-row mui-checkbox">
-      <!--      <u-checkbox-group v-model="rememberPassword" @change="checkboxChange">-->
-      <!--        <u-checkbox-->
-      <!--          label="记住密码"-->
-      <!--          name="1"-->
-      <!--          :active-color="themeColor"-->
-      <!--        ></u-checkbox>-->
-      <!--      </u-checkbox-group>-->
-
       <HyCheckbox
         :columns="rememberList"
         shape="square"
+        :active-color="themeColor"
         v-model="rememberPassword"
         @change="checkboxChange"
       ></HyCheckbox>
@@ -155,7 +86,8 @@ import { onHide } from "@dcloudio/uni-app";
 import { storeToRefs } from "pinia";
 import { useUserInfo } from "../../store";
 import { decryptData, encryptData } from "../../utils";
-import type { FormColumnsType, FormTypeEnum } from "../../typing";
+import type { FormColumnsType } from "../../typing";
+import { FormTypeEnum } from "../../typing";
 import { IconConfig } from "../../config";
 
 // 组件
