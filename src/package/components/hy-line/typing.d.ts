@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyLineProps {
   /**
    * @description 线条的颜色 ( 默认 '#d6d7d9' )
    * */

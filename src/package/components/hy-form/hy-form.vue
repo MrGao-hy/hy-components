@@ -26,12 +26,44 @@
             <HyInput
               v-model="formData[item.field]"
               :type="item.type"
-              :placeholder="item.placeholder"
-              :disabled="disabled || item.disabled"
-              :clearable="item.clearable"
-              :readonly="item.readonly"
-              :shape="shape || item.shape"
-              :border="border || item.border"
+              :disabled="item?.input?.disabled || input?.disabled"
+              :disabledColor="
+                item?.input?.disabledColor || input?.disabledColor
+              "
+              :maxlength="item?.input?.maxlength || input?.maxlength"
+              :password="item?.input?.password"
+              :clearable="item?.input?.clearable || input?.clearable"
+              :readonly="item?.input?.readonly || input?.readonly"
+              :placeholder="item?.input?.placeholder"
+              :placeholderClass="
+                item?.input?.placeholderClass || input?.placeholderClass
+              "
+              :placeholderStyle="
+                item?.input?.placeholderStyle || input?.placeholderStyle
+              "
+              :showWordLimit="
+                item?.input?.showWordLimit || input?.showWordLimit
+              "
+              :confirmType="item?.input?.confirmType || input?.confirmType"
+              :confirmHold="item?.input?.confirmHold || input?.confirmHold"
+              :holdKeyboard="item?.input?.holdKeyboard || input?.holdKeyboard"
+              :focus="item?.input?.focus || input?.focus"
+              :autoBlur="item?.input?.autoBlur || input?.autoBlur"
+              :selectionStart="
+                item?.input?.selectionStart || input?.selectionStart
+              "
+              :selectionEnd="item?.input?.selectionEnd || input?.selectionEnd"
+              :adjustPosition="
+                item?.input?.adjustPosition || input?.adjustPosition
+              "
+              :inputAlign="item?.input?.inputAlign || input?.inputAlign"
+              :fontSize="item?.input?.fontSize || input?.fontSize"
+              :color="item?.input?.color || input?.color"
+              :prefixIcon="item?.input?.prefixIcon || input?.prefixIcon"
+              :suffixIcon="item?.input?.suffixIcon || input?.suffixIcon"
+              :formatter="item?.input?.formatter || input?.formatter"
+              :shape="item?.input?.shape || input?.shape"
+              :border="item?.input?.border || input?.border"
               :customStyle="errorStyle(!!errors[item.field])"
               @change="handleChange($event, item)"
               @blur="handleBlur($event, item)"
@@ -61,25 +93,76 @@
           <view class="flex" v-if="item.type === FormTypeEnum.TEXTAREA">
             <HyTextarea
               v-model="formData[item.field]"
-              :disabled="disabled || item.disabled"
-              :placeholder="item.placeholder"
-              :clearable="item.clearable"
-              :readonly="item.readonly"
-              :shape="shape || item.shape"
-              :border="border || item.border"
+              :disabled="item?.textarea?.disabled || textarea?.disabled"
+              :maxlength="item?.textarea?.maxlength || textarea?.maxlength"
+              :placeholder="item?.textarea?.placeholder"
+              :placeholderClass="
+                item?.textarea?.placeholderClass || textarea?.placeholderClass
+              "
+              :placeholderStyle="
+                item?.textarea?.placeholderStyle || textarea?.placeholderStyle
+              "
+              :holdKeyboard="
+                item?.textarea?.holdKeyboard || textarea?.holdKeyboard
+              "
+              :focus="item?.textarea?.focus || textarea?.focus"
+              :selectionStart="
+                item?.textarea?.selectionStart || textarea?.selectionStart
+              "
+              :selectionEnd="
+                item?.textarea?.selectionEnd || textarea?.selectionEnd
+              "
+              :adjustPosition="
+                item?.textarea?.adjustPosition || textarea?.adjustPosition
+              "
+              :formatter="item?.textarea?.formatter || textarea?.formatter"
+              :border="item?.textarea?.border || textarea?.border"
               :customStyle="errorStyle(!!errors[item.field])"
+              :height="textarea?.height || item?.textarea?.height"
               @change="handleChange($event, item)"
               @blur="handleBlur($event, item)"
             ></HyTextarea>
           </view>
           <!--	文本域	-->
 
+          <!--	复选框/单选框	-->
+          <template v-if="item.type === FormTypeEnum.CHECK_BUTTON">
+            <hy-check-button
+              v-model="formData[item.field]"
+              :columns="item.actions"
+              :type="item?.checkButton?.type || checkButton?.type"
+              :shape="item?.checkButton?.shape || checkButton?.shape"
+              :size="item?.checkButton?.size || checkButton?.size"
+              :col="item?.checkButton?.col || checkButton?.col"
+              :gap="item?.checkButton?.gap || checkButton?.gap"
+              :fieldNames="
+                item?.checkButton?.fieldNames || checkButton?.fieldNames
+              "
+              :disabled="item?.checkButton?.size || checkButton?.disabled"
+              :selectType="
+                item?.checkButton?.selectType || checkButton?.selectType
+              "
+            ></hy-check-button>
+          </template>
+          <!--	复选框/单选框	-->
+
           <!--	单选框	-->
-          <template v-if="item.type === 'radio'">
+          <template v-if="item.type === FormTypeEnum.RADIO">
             <HyRadio
               v-model="formData[item.field]"
-              :disabled="disabled || item.disabled"
               :columns="item.actions"
+              :fieldNames="item?.radio?.fieldNames || radio?.fieldNames"
+              :shape="item?.radio?.shape || radio?.shape"
+              :disabled="item?.radio?.disabled || radio?.disabled"
+              :size="item?.radio?.size || radio?.size"
+              :activeColor="item?.radio?.activeColor || radio?.activeColor"
+              :inactiveColor="
+                item?.radio?.inactiveColor || radio?.inactiveColor
+              "
+              :iconSize="item?.radio?.iconSize || radio?.iconSize"
+              :iconColor="item?.radio?.iconColor || radio?.iconColor"
+              :labelDisabled="item?.radio?.disabled || radio?.labelDisabled"
+              :placement="item?.radio?.placement || radio?.placement"
             ></HyRadio>
           </template>
           <!--	单选框	-->
@@ -88,7 +171,28 @@
           <template v-if="item.type === FormTypeEnum.SWITCH">
             <HySwitch
               v-model="formData[item.field]"
-              :disabled="disabled || item.disabled"
+              :loading="item?.switchItem?.loading || switchItem?.loading"
+              :disabled="item?.switchItem?.disabled || switchItem?.disabled"
+              :size="item?.switchItem?.size || switchItem?.size"
+              :activeColor="
+                item?.switchItem?.activeColor || switchItem?.activeColor
+              "
+              :inactiveColor="
+                item?.switchItem?.inactiveColor || switchItem?.inactiveColor
+              "
+              :activeValue="
+                item?.switchItem?.activeValue || switchItem?.activeValue
+              "
+              :inactiveValue="
+                item?.switchItem?.inactiveValue || switchItem?.inactiveValue
+              "
+              :activeIcon="
+                item?.switchItem?.activeIcon || switchItem?.activeIcon
+              "
+              :inactiveIcon="
+                item?.switchItem?.inactiveIcon || switchItem?.inactiveIcon
+              "
+              :space="item?.switchItem?.space || switchItem?.space"
             ></HySwitch>
           </template>
           <!--	开关	-->
@@ -99,11 +203,29 @@
               v-model="formData[item.field]"
               :columns="item.select"
               has-input
-              :disabled="disabled || item.disabled"
-              :placeholder="item.placeholder"
-              :shape="shape || item.shape"
-              :border="border || item.border"
+              :separator="item?.picker?.separator || picker?.separator"
+              :itemHeight="item?.picker?.itemHeight || picker?.itemHeight"
+              :cancelText="item?.picker?.cancelText || picker?.cancelText"
+              :confirmText="item?.picker?.confirmText || picker?.confirmText"
+              :cancelColor="item?.picker?.cancelColor || picker?.cancelColor"
+              :confirmColor="item?.picker?.confirmColor || picker?.confirmColor"
+              :visibleItemCount="
+                item?.picker?.visibleItemCount || picker?.visibleItemCount
+              "
+              :closeOnClickOverlay="
+                item?.picker?.closeOnClickOverlay || picker?.closeOnClickOverlay
+              "
+              :title="item?.picker?.title || picker?.title"
+              :showToolbar="item?.picker?.showToolbar || picker?.showToolbar"
               :customStyle="errorStyle(!!errors[item.field])"
+              :input="{
+                disabled:
+                  item?.picker?.input?.disabled || picker?.input?.disabled,
+                placeholder: item.picker?.input?.placeholder,
+                shape: item?.picker?.input?.shape || picker?.input?.shape,
+                border: item?.picker?.input?.border || picker?.input?.border,
+                customStyle: errorStyle(!!errors[item.field]),
+              }"
             ></HyPicker>
           </template>
           <!--	自定义选择器	-->
@@ -114,11 +236,29 @@
               v-model="formData[item.field]"
               has-input
               :mode="item.mode"
-              :disabled="disabled || item.disabled"
-              :placeholder="item.placeholder"
-              :shape="shape || item.shape"
-              :border="border || item.border"
+              :separator="item?.picker?.separator || picker?.separator"
+              :itemHeight="item?.picker?.itemHeight || picker?.itemHeight"
+              :cancelText="item?.picker?.cancelText || picker?.cancelText"
+              :confirmText="item?.picker?.confirmText || picker?.confirmText"
+              :cancelColor="item?.picker?.cancelColor || picker?.cancelColor"
+              :confirmColor="item?.picker?.confirmColor || picker?.confirmColor"
+              :visibleItemCount="
+                item?.picker?.visibleItemCount || picker?.visibleItemCount
+              "
+              :closeOnClickOverlay="
+                item?.picker?.closeOnClickOverlay || picker?.closeOnClickOverlay
+              "
+              :title="item?.picker?.title || picker?.title"
+              :showToolbar="item?.picker?.showToolbar || picker?.showToolbar"
               :customStyle="errorStyle(!!errors[item.field])"
+              :input="{
+                disabled:
+                  item?.picker?.input?.disabled || picker?.input?.disabled,
+                placeholder: item.picker?.input?.placeholder,
+                shape: item?.picker?.input?.shape || picker?.input?.shape,
+                border: item?.picker?.input?.border || picker?.input?.border,
+                customStyle: errorStyle(!!errors[item.field]),
+              }"
             ></HyDatetimePicker>
           </template>
           <!--	时间选择器	-->
@@ -128,11 +268,29 @@
             <HyAddressPicker
               v-model="formData[item.field]"
               has-input
-              :disabled="disabled || item.disabled"
-              :placeholder="item.placeholder"
-              :shape="shape || item.shape"
-              :border="border || item.border"
+              :separator="item?.picker?.separator || picker?.separator"
+              :itemHeight="item?.picker?.itemHeight || picker?.itemHeight"
+              :cancelText="item?.picker?.cancelText || picker?.cancelText"
+              :confirmText="item?.picker?.confirmText || picker?.confirmText"
+              :cancelColor="item?.picker?.cancelColor || picker?.cancelColor"
+              :confirmColor="item?.picker?.confirmColor || picker?.confirmColor"
+              :visibleItemCount="
+                item?.picker?.visibleItemCount || picker?.visibleItemCount
+              "
+              :closeOnClickOverlay="
+                item?.picker?.closeOnClickOverlay || picker?.closeOnClickOverlay
+              "
+              :title="item?.picker?.title || picker?.title"
+              :showToolbar="item?.picker?.showToolbar || picker?.showToolbar"
               :customStyle="errorStyle(!!errors[item.field])"
+              :input="{
+                disabled:
+                  item?.picker?.input?.disabled || picker?.input?.disabled,
+                placeholder: item.picker?.input?.placeholder,
+                shape: item?.picker?.input?.shape || picker?.input?.shape,
+                border: item?.picker?.input?.border || picker?.input?.border,
+                customStyle: errorStyle(!!errors[item.field]),
+              }"
             ></HyAddressPicker>
           </template>
           <!--	地址选择器	-->
@@ -178,6 +336,7 @@ import HyRadio from "../hy-radio/hy-radio.vue";
 import HyDatetimePicker from "../hy-datetime-picker/hy-datetime-picker.vue";
 import HyAddressPicker from "../hy-address-picker/hy-address-picker.vue";
 import HyTransition from "../hy-transition/hy-transition.vue";
+import HyCheckButton from "../hy-check-button/hy-check-button.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
@@ -352,4 +511,7 @@ defineExpose({
 
 <style lang="scss" scoped>
 @import "./index.scss";
+.hy-form--item {
+  flex-direction: v-bind(labelPos);
+}
 </style>

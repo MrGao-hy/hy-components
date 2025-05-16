@@ -1,6 +1,7 @@
 import type { CSSProperties } from "vue";
+import type HyIconProps from "../hy-icon/typing";
 
-export default interface IProps {
+export default interface HyButtonProps {
   /**
    * @description 是否显示按钮的细边框 (默认 true )
    * */
@@ -36,7 +37,7 @@ export default interface IProps {
   /**
    * @description 加载状态图标类型 （默认 'spinner' ）
    * */
-  loadingMode?: "spinner" | "text";
+  loadingMode?: HyApp.LoadingMode;
   /**
    * @description 加载图标大小 （默认 13 ）
    * */
@@ -102,13 +103,9 @@ export default interface IProps {
    * */
   text?: string;
   /**
-   * @description 按钮图标
+   * @description 按钮图标api集合
    * */
-  icon?: string | HyIconConfig;
-  /**
-   * @description 按钮图标颜色
-   * */
-  iconColor?: string;
+  icon?: Partial<HyIconProps>;
   /**
    * @description 按钮颜色，支持传入linear-gradient渐变色
    * */

@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyStatusBarProps {
   /**
    * @description 背景色 (默认 'transparent' )
    * */

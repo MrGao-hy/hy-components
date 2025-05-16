@@ -5,8 +5,11 @@
       :columns="columns"
       :form-data="formData"
       labelWidth="90"
-      border="none"
+      :input="{
+        border: 'none',
+      }"
       border-bottom
+      label-position="top"
     >
       <template #custom="{ record, errorStyle }">
         <HyInput
@@ -56,6 +59,44 @@ const columns: FormColumnsType[] = reactive([
     rules: {
       required: true,
       message: "没有填内容",
+      trigger: ["blur", "change"],
+    },
+  },
+  {
+    field: "label",
+    label: "标签",
+    type: "checkButton",
+    actions: [
+      { label: "i人", value: 0 },
+      { label: "e人", value: 1 },
+      { label: "天才", value: 2 },
+      { label: "疯子", value: 3 },
+    ],
+    checkButton: {
+      selectType: "checkbox",
+      type: "error",
+    },
+    rules: {
+      required: true,
+      message: "选择你的标签",
+      trigger: ["blur", "change"],
+    },
+  },
+  {
+    field: "interest",
+    label: "爱好",
+    type: "checkButton",
+    actions: [
+      { label: "苹果", value: "0" },
+      { label: "西瓜", value: "1" },
+      { label: "香蕉", value: "2" },
+    ],
+    checkButton: {
+      selectType: "radio",
+    },
+    rules: {
+      required: true,
+      message: "选择你最喜欢的水果",
       trigger: ["blur", "change"],
     },
   },

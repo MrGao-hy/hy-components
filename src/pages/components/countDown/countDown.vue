@@ -1,6 +1,6 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <hy-count-down :time="30 * 60 * 60 * 1000"></hy-count-down>
 
     <view class="hy-title">自定义格式</view>
@@ -83,7 +83,7 @@ const reset = () => {
 </script>
 
 <style scoped lang="scss">
-@import "hy-app/index.scss";
+@import "hy-app/theme.scss";
 .time {
   display: flex;
   align-items: center;

@@ -21,7 +21,7 @@ const defaultProps: IProps = {
   label: "",
   labelSize: "",
   labelColor: "",
-  labelDisabled: "",
+  labelDisabled: false,
   placement: "row",
 };
 

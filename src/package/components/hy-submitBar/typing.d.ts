@@ -16,7 +16,7 @@ interface IconMenus {
   badge?: BadgeProps["badge"];
 }
 
-export default interface IProps {
+export default interface HySubmitBarProps {
   /**
    * @description 左边菜单栏
    * */

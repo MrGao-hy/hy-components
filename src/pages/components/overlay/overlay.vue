@@ -1,12 +1,18 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-button type="primary" @click="show = !show">打开遮罩框</hy-button>
       <hy-overlay :show="show" @click="show = false" :opacity="opacity">
         <view @click.stop="onClick" class="hy-setting__box">
           <view class="hy-title">透明度</view>
-          <hy-slider v-if="show" v-model="opacity" :min="0" :max="1" :step="0.1" />
+          <hy-slider
+            v-if="show"
+            v-model="opacity"
+            :min="0"
+            :max="1"
+            :step="0.1"
+          />
         </view>
       </hy-overlay>
     </view>

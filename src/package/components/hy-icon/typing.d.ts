@@ -1,6 +1,6 @@
 import { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyIconProps {
   /**
    * @description 图标名称，见示例图标集
    * */

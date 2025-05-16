@@ -81,6 +81,7 @@ const {
   borderBottom,
   placement,
   iconColor,
+  labelDisabled,
 } = toRefs(props);
 const emit = defineEmits(["change", "update:modelValue"]);
 
@@ -190,9 +191,12 @@ const iconClickHandler = (e: Event, temp: CheckboxColumnsVo) => {
     setRadioCheckedStatus(temp);
   }
 };
+/**
+ * @description 点击整体
+ * */
 const wrapperClickHandler = (e: Event, temp: CheckboxColumnsVo) => {
   e.stopPropagation();
-  if (!isDisabled(temp?.disabled)) {
+  if (!isDisabled(temp?.disabled) || !labelDisabled.value) {
     setRadioCheckedStatus(temp);
   }
 };
@@ -201,7 +205,7 @@ const wrapperClickHandler = (e: Event, temp: CheckboxColumnsVo) => {
  * */
 const labelClickHandler = (e: Event, temp: CheckboxColumnsVo) => {
   e.stopPropagation();
-  if (!isDisabled(temp?.disabled)) {
+  if (!isDisabled(temp?.disabled) || !labelDisabled.value) {
     setRadioCheckedStatus(temp);
   }
 };

@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyDividerProps {
   /**
    * @description 是否虚线 （默认 false ）
    * */

@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="hy-page">
     <view class="hy-title">基础使用</view>
     <hy-switch v-model="value"></hy-switch>
 

@@ -54,7 +54,7 @@
 
     <view class="hy-title">带图标</view>
     <view class="hy-flex">
-      <hy-tag text="地址" :icon="IconConfig.MAP"></hy-tag>
+      <hy-tag text="地址" :icon="{ name: IconConfig.MAP }"></hy-tag>
     </view>
 
     <view class="hy-title">可关闭</view>

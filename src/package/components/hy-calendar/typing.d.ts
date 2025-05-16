@@ -1,4 +1,4 @@
-export default interface IProps {
+export default interface HyCalendarProps {
   /**
    * @description 是否显示日历弹窗 (默认 false )
    * */

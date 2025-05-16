@@ -201,9 +201,9 @@ const confirmClickFn = debounce((i: number) => {
   &__right {
     display: flex;
     justify-content: flex-end;
-    font-size: 28rpx;
+    font-size: 26rpx;
     align-items: center;
-    width: 220px;
+    width: 400rpx;
     &--button {
       padding: $hy-border-margin-padding-base $hy-border-margin-padding-lg;
       color: #ffffff;

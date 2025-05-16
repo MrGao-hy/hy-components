@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyDropdownProps {
   /**
    * @description 标题和选项卡选中的颜色（默认#2979ff）
    * */

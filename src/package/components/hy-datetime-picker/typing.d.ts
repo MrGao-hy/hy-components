@@ -1,7 +1,8 @@
 import { DateModeEnum } from "../../typing";
 import type { CSSProperties } from "vue";
+import type HyInputProps from "../hy-input/typing";
 
-export default interface IProps {
+export default interface HyDatetimeProps {
   /**
    * @description 用于控制选择器的弹出和收起 ( 默认 false )
    * */
@@ -97,25 +98,17 @@ export default interface IProps {
    * */
   defaultIndex?: Array<any>;
   /**
-   * @description 是否禁用输入框 ( 默认 false )
-   * */
-  disabled?: boolean;
-  /**
    * @description 输入框是否显示边框 ( 默认 false )
    * */
   hasInput?: boolean;
   /**
+   * @description 输入框集合属性
+   * */
+  input?: Partial<HyInputProps>;
+  /**
    * @description 自定义时间格式
    * */
   format?: string;
-  /**
-   * @description 输入框提示信息
-   * */
-  placeholder?: string;
-  /**
-   * @description 禁用时候输入框颜色
-   * */
-  disabledColor?: string;
   /**
    * @description 右边插槽
    * */

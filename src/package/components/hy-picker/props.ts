@@ -2,7 +2,6 @@ import type IProps from "./typing";
 
 const defaultProps: IProps = {
   modelValue: "",
-  disabled: false,
   show: false,
   popupMode: "bottom",
   separator: "/",
@@ -22,10 +21,8 @@ const defaultProps: IProps = {
   immediateChange: true,
   zIndex: 10076,
   hasInput: false,
-  placeholder: "请选择",
+  input: {},
   toolbarRightSlot: false,
-  shape: "square",
-  border: "surround",
 };
 
 export default defaultProps;

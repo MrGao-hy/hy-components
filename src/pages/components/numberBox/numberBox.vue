@@ -1,10 +1,13 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <hy-number-step v-model="value"></hy-number-step>
 
     <view class="hy-title">步长设置</view>
     <hy-number-step v-model="value" :step="3"></hy-number-step>
+
+    <view class="hy-title">禁用</view>
+    <hy-number-step v-model="value" disabled></hy-number-step>
 
     <view class="hy-title">现在范围</view>
     <hy-number-step v-model="value" :min="10" :max="20"></hy-number-step>

@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyScrollListProps {
   /**
    * @description 指示器的整体宽度 (默认 50 )
    * */

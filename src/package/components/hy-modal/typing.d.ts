@@ -1,4 +1,4 @@
-export default interface IProps {
+export default interface HyModalProps {
   /**
    * @description 是否显示模态框，请赋值给show （默认 false ）
    * */

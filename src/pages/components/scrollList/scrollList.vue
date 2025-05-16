@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-scroll-list indicatorColor="#fff0f0" indicatorActiveColor="#f56c6c">
         <view class="scroll-list" style="flex-direction: row">

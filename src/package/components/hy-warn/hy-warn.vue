@@ -7,7 +7,7 @@
       :style="[customStyle]"
     >
       <view class="hy-alert__icon" v-if="showIcon">
-        <HyIcon :name="iconName" size="21" :color="iconColor"></HyIcon>
+        <HyIcon :name="iconName(type)" size="21" :color="iconColor"></HyIcon>
       </view>
       <view
         class="hy-alert__content"
@@ -62,7 +62,7 @@ import { computed, ref, toRefs } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import { addUnit } from "../../utils";
-import { IconConfig } from "../../config";
+import { IconConfig, iconName } from "../../config";
 
 // 组件
 import HyTransition from "../hy-transition/hy-transition.vue";
@@ -79,25 +79,6 @@ const show = ref<boolean>(true);
  * */
 const iconColor = computed(() => {
   return theme.value === "light" ? type.value : "#fff";
-});
-/**
- * @description 不同主题对应不同的图标
- * */
-const iconName = computed(() => {
-  switch (type.value) {
-    case "success":
-      return IconConfig.SUCCESS_FILL;
-    case "error":
-      return IconConfig.CLOSE_CIRCLE_FILL;
-    case "warning":
-      return IconConfig.NOTICE_FILL;
-    case "info":
-      return IconConfig.HELP_FILL;
-    case "primary":
-      return IconConfig.MESSAGE_FILL;
-    default:
-      return IconConfig.CLOSE_CIRCLE_FILL;
-  }
 });
 
 /**

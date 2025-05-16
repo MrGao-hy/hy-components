@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyBadgeProps {
   /**
    * @description 是否显示圆点 （默认 false ）
    * */

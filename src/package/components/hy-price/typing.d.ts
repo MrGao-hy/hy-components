@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyPriceProps {
   /**
    * @description 传入金额值
    * */

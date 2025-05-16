@@ -65,8 +65,12 @@ import {
 } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
-import HyTransition from "../hy-transition/hy-transition.vue";
 import { addUnit, getPx } from "../../utils";
+
+// 组件
+
+import HyTransition from "../hy-transition/hy-transition.vue";
+import HyIcon from "../hy-icon/hy-icon.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {

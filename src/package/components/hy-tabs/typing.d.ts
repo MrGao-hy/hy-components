@@ -18,7 +18,7 @@ export interface TabsItemVo extends AnyObject {
    * */
   content?: any;
 }
-export default interface IProps {
+export default interface HyTabsProps {
   /**
    * @description 标签数组，元素为对象，如[{name: '推荐'}]
    * */

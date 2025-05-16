@@ -24,10 +24,19 @@
       </template>
       <view class="hy-search__content__icon">
         <HyIcon
+          :name="searchIcon?.name || IconConfig.SEARCH"
+          :size="searchIcon?.size"
+          :color="searchIcon?.color || color"
+          :bold="searchIcon?.bold"
+          :customPrefix="searchIcon?.customPrefix"
+          :imgMode="searchIcon?.imgMode"
+          :width="searchIcon?.width"
+          :height="searchIcon?.height"
+          :top="searchIcon?.top"
+          :stop="searchIcon?.stop"
+          :round="searchIcon?.round"
+          :customStyle="searchIcon?.customStyle"
           @tap="clickIcon"
-          :size="searchIconSize"
-          :name="IconConfig.SEARCH"
-          :color="searchIconColor ? searchIconColor : color"
         ></HyIcon>
       </view>
       <input

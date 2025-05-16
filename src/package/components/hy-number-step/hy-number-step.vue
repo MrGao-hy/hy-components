@@ -25,11 +25,18 @@
       :style="buttonStyle('minus')"
     >
       <HyICon
-        :name="IconConfig.MINUS"
-        :color="isDisabled('minus') ? '#c8c9cc' : '#323233'"
-        size="15"
-        bold
-        :customStyle="iconStyle"
+        :name="minusIcon?.name || IconConfig.MINUS"
+        :color="isDisabled('minus') ? '#c8c9cc' : minusIcon?.color"
+        :size="minusIcon?.size"
+        :bold="minusIcon?.bold"
+        :customPrefix="minusIcon?.customPrefix"
+        :imgMode="minusIcon?.imgMode"
+        :width="minusIcon?.width"
+        :height="minusIcon?.height"
+        :top="minusIcon?.top"
+        :stop="minusIcon?.stop"
+        :round="minusIcon?.round"
+        :customStyle="minusIcon?.customStyle"
       ></HyICon>
     </view>
     <!-- 减号 -->
@@ -100,11 +107,18 @@
       :style="[buttonStyle('plus')]"
     >
       <HyICon
-        :name="IconConfig.PLUS"
-        :color="isDisabled('plus') ? '#c8c9cc' : '#323233'"
-        size="15"
-        bold
-        :customStyle="iconStyle"
+        :name="plusIcon?.name || IconConfig.PLUS"
+        :color="isDisabled('plus') ? '#c8c9cc' : plusIcon?.color"
+        :size="plusIcon?.size"
+        :bold="plusIcon?.bold"
+        :customPrefix="plusIcon?.customPrefix"
+        :imgMode="plusIcon?.imgMode"
+        :width="plusIcon?.width"
+        :height="plusIcon?.height"
+        :top="plusIcon?.top"
+        :stop="plusIcon?.stop"
+        :round="plusIcon?.round"
+        :customStyle="plusIcon?.customStyle"
       ></HyICon>
     </view>
     <!-- 加号 -->
@@ -126,6 +140,7 @@ import type IProps from "./typing";
 import { addUnit } from "../../utils";
 import { IconConfig } from "../../config";
 import HyICon from "../hy-icon/hy-icon.vue";
+import HyIcon from "../hy-icon/hy-icon.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {

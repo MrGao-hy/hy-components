@@ -1,6 +1,7 @@
 import type { CSSProperties } from "vue";
+import type HyIconProps from "../hy-icon/typing";
 
-export default interface IProps {
+export default interface HySearchProps {
   /**
    * @description 输入框初始值
    * */
@@ -40,11 +41,11 @@ export default interface IProps {
   /**
    * @description 输入框内容水平对齐方式 （默认 'left' ）
    * */
-  inputAlign?: "center" | HyApp.LeftRightType;
+  inputAlign?: HyApp.RowCenterType;
   /**
    * @description 自定义输入框样式，对象形式
    * */
-  inputStyle?: Record<string, any>;
+  inputStyle?: CSSProperties;
   /**
    * @description 是否启用输入框（默认 false ）
    * */
@@ -54,14 +55,6 @@ export default interface IProps {
    * */
   borderColor?: string;
   /**
-   * @description 搜索图标的颜色，默认同输入框字体颜色 (默认 '#909399' )
-   * */
-  searchIconColor?: string;
-  /**
-   * @description 搜索图标的字体，默认18
-   * */
-  searchIconSize?: number;
-  /**
    * @description 输入框字体颜色（默认 '#606266' ）
    * */
   color?: string;
@@ -70,9 +63,9 @@ export default interface IProps {
    * */
   placeholderColor?: string;
   /**
-   * @description 输入框左边的图标，可以为图标名称或图片路径  (默认 'search' )
+   * @description 输入框左边的图标属性集合，可以为图标名称或图片路径  (默认 'search' )
    * */
-  searchIcon?: string;
+  searchIcon?: Partial<HyIconProps>;
   /**
    * @description 组件与其他上下左右之间的距离，带单位的字符串形式，如"30px"   (默认 '0' )
    * */

@@ -53,10 +53,11 @@ const {
 const emit = defineEmits(["click"]);
 
 const uClasses = computed(() => {
-  let classes = [];
-  classes.push(`${customPrefix.value}-${name.value}`);
-  classes.push("iconfont");
-  classes.push(customPrefix.value);
+  let classes: string | string[] = [
+    "iconfont",
+    `${customPrefix.value}-${name.value}`,
+    customPrefix.value,
+  ];
   if (isRotate.value) classes.push("hy-rotate");
   if (color.value)
     // 主题色，通过类配置
@@ -77,11 +78,7 @@ const iconStyle = computed<CSSProperties>(() => {
     // 某些特殊情况需要设置一个到顶部的距离，才能更好的垂直居中
     top: addUnit(top.value),
     borderRadius: addUnit(round.value),
-    color: color.value
-      ? color.value
-      : name.value === IconConfig.LOADING
-        ? ColorConfig.primary
-        : "#606266",
+    color: color.value ? color.value : "#606266",
   };
 
   return style;

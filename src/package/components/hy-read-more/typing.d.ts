@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyReadMoreProps {
   /**
    * @description 内容超出此高度才会显示展开全文按钮，单位px（默认 400 ）
    * */

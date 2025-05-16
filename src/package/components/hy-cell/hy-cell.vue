@@ -31,8 +31,19 @@
                 <slot name="icon" :icon="item?.icon">
                   <HyIcon
                     :size="iconSize"
-                    :name="item?.icon"
-                    :color="disabled || item?.disabled ? '#c0c0c0' : ''"
+                    :name="item?.icon?.name"
+                    :color="
+                      disabled || item?.disabled ? '#c0c0c0' : item?.icon?.color
+                    "
+                    :bold="item?.icon?.bold"
+                    :customPrefix="item?.icon?.customPrefix"
+                    :imgMode="item?.icon?.imgMode"
+                    :width="item?.icon?.width"
+                    :height="item?.icon?.height"
+                    :top="item?.icon?.top"
+                    :stop="item?.icon?.stop"
+                    :round="item?.icon?.round"
+                    :customStyle="item?.icon?.customStyle"
                   ></HyIcon>
                 </slot>
               </view>
@@ -86,10 +97,27 @@
             >
               <slot name="right-icon" :icon="item?.rightIcon || rightIcon">
                 <HyIcon
-                  :name="item?.rightIcon || rightIcon"
-                  :custom-style="rightIconStyle"
-                  :color="disabled || item?.disabled ? '#c0c0c0' : 'info'"
-                  :size="iconSize"
+                  :name="
+                    item?.rightIcon?.name || rightIcon?.name || IconConfig.RIGHT
+                  "
+                  :color="
+                    disabled || item?.disabled
+                      ? '#c0c0c0'
+                      : item?.rightIcon?.color || rightIcon?.color
+                  "
+                  :bold="item?.rightIcon?.bold || rightIcon?.bold"
+                  :customPrefix="
+                    item?.rightIcon?.customPrefix || rightIcon?.customPrefix
+                  "
+                  :imgMode="item?.rightIcon?.imgMode || rightIcon?.imgMode"
+                  :width="item?.rightIcon?.width || rightIcon?.width"
+                  :height="item?.rightIcon?.height || rightIcon?.height"
+                  :top="item?.rightIcon?.top || rightIcon?.name"
+                  :stop="item?.rightIcon?.stop || rightIcon?.stop"
+                  :round="item?.rightIcon?.round || rightIcon?.round"
+                  :customStyle="
+                    item?.rightIcon?.customStyle || rightIcon?.customStyle
+                  "
                 ></HyIcon>
               </slot>
             </view>
@@ -106,6 +134,7 @@
 import defaultProps from "./props";
 import type IProps from "./typing";
 import type { CellContentVo } from "./typing";
+import { IconConfig } from "../../config";
 
 import HyIcon from "../hy-icon/hy-icon.vue";
 import { computed, toRefs } from "vue";

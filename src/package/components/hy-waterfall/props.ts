@@ -1,10 +1,9 @@
-import IProps from "./typing";
+import type IProps from "./typing";
 
 const defaultProps: IProps = {
-  list: [],
-  containerHeight: "100vh",
-  itemHeight: 300,
-  opacity: 0.5
+  modelValue: [],
+  addTime: 200,
+  idKey: "id",
 };
 
 export default defaultProps;

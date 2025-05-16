@@ -1,11 +1,12 @@
 import type { CSSProperties } from "vue";
 import { HyApp } from "@/package/typing/modules/common";
+import type HyIconProps from "../hy-icon/typing";
 
 export interface CellContentVo extends AnyObject {
   /**
    * @description 单元格左图标
    * */
-  icon?: string;
+  icon?: Partial<HyIconProps>;
   /**
    * @description 单元格标题
    * */
@@ -19,9 +20,9 @@ export interface CellContentVo extends AnyObject {
    * */
   disabled?: boolean;
   /**
-   * @description 单元格右图标
+   * @description 单元格右图标集合
    * */
-  rightIcon?: string;
+  rightIcon?: Partial<HyIconProps>;
   /**
    * @description 单元格值
    * */
@@ -31,11 +32,11 @@ export interface CellContentVo extends AnyObject {
    * */
   url?: string;
   /**
-   * @description 单元格右侧箭头的方向，可选值为：left，up，down
+   * @description 单元格右侧箭头的方向，可选值为：left，up，down,right
    * */
   arrowDirection?: HyApp.RotateType;
 }
-export default interface IProps {
+export default interface HyCellProps {
   /**
    * @description cell列表数据
    * */
@@ -81,17 +82,13 @@ export default interface IProps {
    * */
   arrange?: HyApp.LeftRightType | "center";
   /**
-   * @description 右侧的图标箭头 （默认 'right'）
+   * @description 右侧的图标箭头icon集合
    * */
-  rightIcon?: string;
+  rightIcon?: Partial<HyIconProps>;
   /**
    * @description 右侧箭头的方向，可选值为：left，up，down
    * */
   arrowDirection?: "left" | "up" | "down" | "right";
-  /**
-   * @description 自定义右侧icon样式
-   * */
-  rightIconStyle?: CSSProperties;
   /**
    * @description 定义需要用到的外部样式
    * */

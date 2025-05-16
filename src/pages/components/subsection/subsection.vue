@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <hy-subsection :list="list" v-model="value"></hy-subsection>
 
     <view class="hy-title">模式</view>

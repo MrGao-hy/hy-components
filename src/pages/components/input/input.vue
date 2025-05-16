@@ -1,6 +1,6 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <hy-input
       v-model="value"
       :shape="shape"
@@ -11,16 +11,31 @@
     <view class="hy-title">icon</view>
     <hy-input
       v-model="value"
-      :prefixIcon="IconConfig.LOCK"
-      :suffix-icon="IconConfig.DOWN"
+      :prefixIcon="{
+        name: IconConfig.LOCK,
+      }"
+      :suffix-icon="{
+        name: IconConfig.DOWN,
+      }"
+      border="bottom"
+    ></hy-input>
+
+    <view class="hy-title">自定义icon</view>
+    <hy-input
+      v-model="value"
+      :prefixIcon="{
+        name: 'feishu-gray',
+        customPrefix: 'icon',
+        color: 'red',
+      }"
       border="bottom"
     ></hy-input>
 
     <view class="hy-setting__box">
-      <view class="hy-title">形状</view>
+      <view class="hy-title">输入框形状</view>
       <hy-subsection :list="list_1" v-model="shape"></hy-subsection>
 
-      <view class="hy-title">大小</view>
+      <view class="hy-title">输入框类型</view>
       <hy-subsection :list="list_2" v-model="type"></hy-subsection>
 
       <view class="hy-title">边框</view>
@@ -35,6 +50,7 @@ import { reactive, ref } from "vue";
 import HyInput from "@/package/components/hy-input/hy-input.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import { IconConfig } from "hy-app";
+import type { HyApp } from "hy-app/typing/modules/common";
 
 const value = ref("");
 const shape = ref<HyApp.ShapeType>("square");

@@ -11,7 +11,7 @@ export interface PanelVo extends CellContentVo {
    * */
   content?: string;
 }
-export default interface IProps {
+export default interface HyFoldingPanelProps {
   /**
    * @description 数据集
    * */

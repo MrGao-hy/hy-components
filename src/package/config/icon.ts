@@ -362,5 +362,25 @@ export const IconConfig = {
   /**
    * @description 分享-实心
    * */
-  SHARE_FILL: "share-fill"
+  SHARE_FILL: "share-fill",
+};
+
+/**
+ * @description 不同主题对应不同的图标
+ * */
+export const iconName = (type: string) => {
+  switch (type) {
+    case "success":
+      return IconConfig.SUCCESS_FILL;
+    case "error":
+      return IconConfig.CLOSE_CIRCLE_FILL;
+    case "warning":
+      return IconConfig.NOTICE_FILL;
+    case "info":
+      return IconConfig.HELP_FILL;
+    case "primary":
+      return IconConfig.MESSAGE_FILL;
+    default:
+      return IconConfig.CLOSE_CIRCLE_FILL;
+  }
 };

@@ -58,7 +58,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, type CSSProperties, onMounted, ref, toRefs } from "vue";
+import {
+  computed,
+  type CSSProperties,
+  getCurrentInstance,
+  onMounted,
+  ref,
+  toRefs,
+} from "vue";
 import type IProps from "./typing";
 import type { MenusType } from "./typing";
 import defaultProps from "./props";
@@ -81,10 +88,10 @@ const {
   size,
   fixed,
   direction,
-  opacity,
 } = toRefs(props);
 const emit = defineEmits(["click", "clickItem"]);
 
+const instance = getCurrentInstance();
 const btnSize: AnyObject = {
   small: "50px",
   medium: "60px",
@@ -168,7 +175,7 @@ const menusStyle = computed(() => {
 
 onMounted(() => {
   const { windowWidth } = getWindowInfo();
-  getRect(`#${soleId}`).then((rect) => {
+  getRect(`#${soleId}`, false, instance).then((rect) => {
     const { left } = rect as UniApp.NodeInfo;
     if (left && left > windowWidth / 2) showLeft.value = true;
   });
@@ -198,4 +205,13 @@ const handleMenuItemClick = (temp: MenusType, index: number) => {
 
 <style scoped lang="scss">
 @import "./index.scss";
+.hy-float-button {
+  &__container {
+    rotate: v-bind(rotate);
+  }
+  &__menus {
+    display: flex;
+    flex-direction: v-bind(direction);
+  }
+}
 </style>

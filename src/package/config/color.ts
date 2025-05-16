@@ -1,4 +1,4 @@
-export const ColorConfig = {
+export const ColorConfig: AnyObject = {
   success: "#5ac725",
   primary: "#3c9cff",
   warning: "#f9ae3d",

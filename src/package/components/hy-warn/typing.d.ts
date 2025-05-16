@@ -1,7 +1,7 @@
 import type { CSSProperties } from "vue";
 import { HyApp, type ThemeVo } from "@/package/typing/modules/common";
 
-export default interface IProps {
+export default interface HyWarnProps {
   /**
    * @description 显示的文字
    * */

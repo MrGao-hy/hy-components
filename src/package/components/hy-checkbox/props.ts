@@ -20,7 +20,7 @@ const defaultProps: IProps = {
   borderBottom: false,
   labelSize: "",
   labelColor: "",
-  labelDisabled: "",
+  labelDisabled: false,
   placement: "row",
 };
 

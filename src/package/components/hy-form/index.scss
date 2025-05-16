@@ -3,9 +3,9 @@
 .hy-form {
   &--item {
     display: flex;
-    flex-direction: v-bind(labelPos);
     //align-items: center;
     margin-bottom: $hy-border-margin-padding-lg;
+    padding-bottom: $hy-border-margin-padding-sm;
     &__label {
       padding: $hy-border-margin-padding-base 0;
     }

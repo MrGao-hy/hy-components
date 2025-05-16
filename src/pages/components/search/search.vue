@@ -1,6 +1,6 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">出现动画</view>
+    <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-search
         v-model="value"
@@ -37,6 +37,8 @@ import { reactive, ref } from "vue";
 import HySearch from "@/package/components/hy-search/hy-search.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
+import HyInput from "@/package/components/hy-input/hy-input.vue";
+import type { HyApp } from "hy-app/typing/modules/common";
 
 const value = ref("");
 const label = ref("搜索");

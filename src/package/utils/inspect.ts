@@ -14,7 +14,27 @@ export const isNumericString = (text: string | number): boolean => {
  * */
 export const isNumber = (text: string | number): boolean => {
   return typeof text === "number" || isNumericString(text);
-  // return !isNaN(Number(text)) && isFinite(Number(text));
+};
+
+/**
+ * @description 判断是否数组
+ * @param arr 传入数组值
+ * @return {boolean}
+ */
+export const isArray = (arr: any): boolean => {
+  if (typeof Array.isArray === "function") {
+    return Array.isArray(arr);
+  }
+  return Object.prototype.toString.call(arr) === "[object Array]";
+};
+
+/**
+ * @description 判断是否对象
+ * @param obj 传入对象值
+ * @return {boolean}
+ */
+export const isObject = (obj: any): boolean => {
+  return Object.prototype.toString.call(obj) === "[object Object]";
 };
 
 /**
@@ -63,4 +83,33 @@ export const isDate = (value: string | number) => {
   }
   // 非number和string类型，不做校验
   return false;
+};
+
+/**
+ * @description 验证是否是手机号格式
+ * @param phone {string} 手机号
+ */
+export const isPhone = (phone: string): boolean => {
+  return /^1[23456789]\d{9}$/.test(phone);
+};
+
+/**
+ * @description 验证身份证号码
+ * @param idCard {string} 身份证号
+ * @return {boolean}
+ */
+export const isIdCard = (idCard: string): boolean => {
+  return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(
+    idCard,
+  );
+};
+
+/**
+ * @description 验证是否是中文
+ * @param {string} zh 校验值
+ * @return {boolean}
+ */
+export const isChinese = (zh: string): boolean => {
+  const reg = /^[\u4e00-\u9fa5]+$/gi;
+  return reg.test(zh);
 };

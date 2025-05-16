@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyRateProps {
   /**
    * @description v-model绑定的值
    * */

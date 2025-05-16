@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyTooltipProps {
   /**
    * @description 需要显示的提示文字
    * */

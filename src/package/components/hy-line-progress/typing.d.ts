@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyLineProgressProps {
   /**
    * @description 激活部分的颜色 ( 默认 '#19be6b' )
    * */

@@ -16,10 +16,8 @@ const defaultProps: IProps = {
   visibleItemCount: 5,
   closeOnClickOverlay: false,
   defaultIndex: [],
-  disabled: false,
   hasInput: false,
-  placeholder: "请选择地址",
-  disabledColor: "#F5F5F5",
+  input: {},
   toolbarRightSlot: false,
 };
 

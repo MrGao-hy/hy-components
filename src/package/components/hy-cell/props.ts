@@ -1,5 +1,5 @@
 import type IProps from "./typing";
-import { ColorConfig, IconConfig } from "../../config";
+import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
   list: [],
@@ -13,7 +13,7 @@ const defaultProps: IProps = {
   size: "medium",
   value: "",
   arrange: "right",
-  rightIcon: IconConfig.RIGHT,
+  rightIcon: {},
   arrowDirection: "right",
 };
 

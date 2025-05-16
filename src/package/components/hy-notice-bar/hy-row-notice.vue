@@ -41,7 +41,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, toRefs, computed, type CSSProperties } from "vue";
+import {
+  ref,
+  watch,
+  toRefs,
+  computed,
+  type CSSProperties,
+  getCurrentInstance,
+} from "vue";
 import type IProps from "./typing";
 import defaultProps from "./props";
 import { addUnit, getRect, sleep } from "../../utils";
@@ -53,6 +60,7 @@ const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { text, speed, fontSize, color } = toRefs(props);
 const emit = defineEmits(["click", "close"]);
 
+const instance = getCurrentInstance();
 const animationDuration = ref<string>("0"); // 动画执行时间
 const animationPlayState = ref<string>("paused"); // 动画的开始和结束执行
 const initValue = ref<string>("");
@@ -66,8 +74,9 @@ watch(
     // 进行一定的延时
     await sleep();
     // 查询盒子和文字的宽度
-    textWidth = (await getRect(".hy-notice__content__text")).width;
-    boxWidth = (await getRect(".hy-notice__content")).width;
+    textWidth = (await getRect(".hy-notice__content__text", false, instance))
+      .width;
+    boxWidth = (await getRect(".hy-notice__content", false, instance)).width;
     // 根据t=s/v(时间=路程/速度)，这里为何不需要加上#u-notice-box的宽度，因为中设置了.u-notice-content样式中设置了padding-left: 100%
     // 恰巧计算出来的结果中已经包含了#u-notice-box的宽度
     animationDuration.value = `${textWidth / speed.value}s`;

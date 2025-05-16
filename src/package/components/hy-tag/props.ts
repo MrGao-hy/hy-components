@@ -15,8 +15,7 @@ const defaultProps: IProps = {
   plain: false,
   closable: false,
   show: true,
-  icon: "",
-  iconColor: "",
+  icon: {},
 };
 
 export default defaultProps;

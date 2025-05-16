@@ -1,6 +1,6 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-divider text="月落"></hy-divider>
       <hy-divider text="loadMore"></hy-divider>

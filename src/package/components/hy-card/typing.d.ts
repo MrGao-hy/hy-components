@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyCardProps {
   /**
    * @description 卡片与屏幕两侧是否留空隙（默认false）
    * */

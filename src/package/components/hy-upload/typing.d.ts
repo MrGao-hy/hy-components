@@ -43,7 +43,7 @@ export interface FileVo {
   schedule?: string | number;
 }
 
-export default interface IProps {
+export default interface HyUploadProps {
   /**
    * @description 接受的文件类型, 可选值为all media image file video （默认 'image' ）
    * */

@@ -25,11 +25,9 @@ const defaultProps: IProps = {
   visibleItemCount: 5,
   closeOnClickOverlay: false,
   defaultIndex: [],
-  disabled: false,
   hasInput: false,
+  input: {},
   format: "",
-  placeholder: "请选择日期",
-  disabledColor: "#F5F5F5",
   toolbarRightSlot: false,
 };
 

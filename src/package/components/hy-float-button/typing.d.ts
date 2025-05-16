@@ -13,7 +13,7 @@ interface MenusVo {
 
 export type MenusType = MenusVo | string;
 
-export default interface IProps {
+export default interface HyFloatButtonProps {
   /**
    * @description 菜单栏集合
    * */

@@ -92,7 +92,7 @@ const install = (Vue: any) => {
   Vue.component("HyLineProgress", HyLineProgress);
   Vue.component("HyList", HyList);
   Vue.component("HyLoading", HyLoading);
-  Vue.component("YkLogin", YkLogin);
+  // Vue.component("YkLogin", YkLogin);
   Vue.component("HyModal", HyModal);
   Vue.component("HyNavbar", HyNavbar);
   Vue.component("HyNoticeBar", HyNoticeBar);
@@ -155,7 +155,7 @@ export {
   HyLineProgress,
   HyList,
   HyLoading,
-  YkLogin,
+  // YkLogin,
   HyModal,
   HyNavbar,
   HyNoticeBar,

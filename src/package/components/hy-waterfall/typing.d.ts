@@ -1,20 +1,14 @@
-import { CSSProperties } from "vue";
-
-export default interface IProps {
+export default interface HyWaterfallProps {
   /**
    * @description 数据列表
    * */
-  list: (AnyObject | string)[];
+  modelValue: Array<any>;
   /**
-   * @description 容器高度，必须给个高度，否则加载全部数据
+   * @description 每次向结构插入数据的时间间隔，间隔越长，越能保证两列高度相近，但是对用户体验越不好
    * */
-  containerHeight: string;
+  addTime?: number;
   /**
-   * @description 子容器的高度，必须和内容一致，否则计算有问题
+   * @description id值
    * */
-  itemHeight?: number | string;
-  /**
-   * @description 定义需要用到的外部样式
-   * */
-  customStyle?: CSSProperties;
+  idKey?: string;
 }

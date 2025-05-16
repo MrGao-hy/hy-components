@@ -1,7 +1,7 @@
 import type { CSSProperties } from "vue";
 import { CheckboxColumnsVo, IFieldNames } from "../hy-check-button/typing";
 
-export default interface IProps {
+export default interface HyRadioProps {
   /**
    * @description 双向绑定值，数组类型
    * */
@@ -73,7 +73,7 @@ export default interface IProps {
   /**
    * @description 是否禁止点击提示语选中复选框
    * */
-  labelDisabled?: string;
+  labelDisabled?: boolean;
   /**
    * @description 定义需要用到的外部样式
    * */

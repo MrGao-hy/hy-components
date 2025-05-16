@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyPopupProps {
   /**
    * @description 是否展示弹窗 (默认 false )
    * */

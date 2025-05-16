@@ -1,6 +1,6 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-line></hy-line>
     </view>

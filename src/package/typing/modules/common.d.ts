@@ -36,11 +36,21 @@ declare namespace HyApp {
    * @description 布局方式：left-左，right-右
    * */
   type LeftRightType = "left" | "right";
-  type CenterType = "left" | "right" | "center";
+  /**
+   * @description 布局方式：left-左，right-右，center-中间
+   * */
+  type RowCenterType = LeftRightType | "center";
+  /**
+   * @description 布局方式：top-上，bottom-下，center-中间
+   * */
+  type ColumnCenterType = TopBottomType | "center";
   /**
    * @description 布局方式：top-上，bottom-下
    * */
   type TopBottomType = "top" | "bottom";
+  /**
+   * @description 主题亮度：light-亮色，dark-暗色
+   * */
   type ThemeVo = "light" | "dark";
   /**
    * @description 边框：surround-四周有边框，bottom-底部有边框，none-无边框
@@ -84,8 +94,18 @@ declare namespace HyApp {
   /**
    * @description 旋转方向
    * */
-  type RotateType = "left" | "up" | "down";
+  type RotateType = "left" | "up" | "down" | "right";
+  /**
+   * @description 上传类型
+   * */
   type FileType = "video" | "media" | "all" | "file" | "image";
+  /**
+   * @description 加载模式：circle-圆圈，spinner-经典花，semicircle-半圆
+   * */
+  type LoadingMode = "spinner" | "circle" | "semicircle";
+  /**
+   * @description 动画类型
+   * */
   type TransitionMode =
     | "fade"
     | "fade-up"

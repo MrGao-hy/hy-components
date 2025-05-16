@@ -261,17 +261,19 @@ function debounce(fn: Function, t?: number) {
     }, delay);
   };
 }
+
+let timer;
+let flag: boolean | undefined;
 /**
  * 函数节流: 一段时间执行一次
  * @param {void} fn 回调函数
- * @param {number} t 节流时间
+ * @param {number} wait 节流等待时间
+ * @param {boolean} immediate 是否立马执行
  * @returns {void}
  * @constructor
  */
-let timer;
-let flag: boolean | undefined;
 const throttle = (
-  func: Function,
+  fn: Function,
   wait: number = 500,
   immediate: boolean = true,
 ): void => {
@@ -279,7 +281,7 @@ const throttle = (
     if (!flag) {
       flag = true;
       // 如果是立即执行，则在wait毫秒内开始时执行
-      typeof func === "function" && func();
+      typeof fn === "function" && fn();
       timer = setTimeout(() => {
         flag = false;
       }, wait);
@@ -289,7 +291,7 @@ const throttle = (
     // 如果是非立即执行，则在wait毫秒内的结束处执行
     timer = setTimeout(() => {
       flag = false;
-      typeof func === "function" && func();
+      typeof fn === "function" && fn();
     }, wait);
   }
 };

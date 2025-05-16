@@ -8,12 +8,22 @@
       <slot>
         <HyInput
           v-model="inputLabelValue"
-          :disabled="disabled"
           :readonly="true"
-          :shape="shape"
-          :border="border"
-          :placeholder="placeholder"
-          :customStyle="customStyle"
+          :disabled="input?.disabled"
+          :disabledColor="input?.disabledColor"
+          :shape="input?.shape"
+          :border="input?.border"
+          :prefixIcon="input?.prefixIcon"
+          :suffixIcon="input?.suffixIcon"
+          :color="input?.color"
+          :fontSize="input?.fontSize"
+          :inputAlign="input?.inputAlign"
+          :placeholder="input?.placeholder || '请选择'"
+          :placeholderStyle="input?.placeholderStyle"
+          :placeholderClass="input?.placeholderClass"
+          :customStyle="
+            Object.assign({ 'pointer-events': 'none' }, input?.customStyle)
+          "
         ></HyInput>
         <div class="input-cover"></div>
       </slot>
@@ -112,7 +122,6 @@ import HyPopup from "../hy-popup/hy-popup.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
-  disabled,
   keyName,
   closeOnClickOverlay,
   hasInput,
@@ -120,6 +129,7 @@ const {
   modelValue,
   columns,
   separator,
+  input,
 } = toRefs(props);
 const emit = defineEmits([
   "update:show",
@@ -157,7 +167,7 @@ const setColumns = (columns: any[]) => {
  * */
 watch(
   () => defaultIndex.value,
-  (newValue, oldValue) => {
+  (newValue) => {
     setIndexs(newValue, true);
   },
 );
@@ -232,7 +242,7 @@ const inputValue = computed(() => {
  * @description 显示
  * */
 const onShowByClickInput = () => {
-  if (!disabled.value) {
+  if (!input.value.disabled) {
     showByClickInput.value = !showByClickInput.value;
   }
 };

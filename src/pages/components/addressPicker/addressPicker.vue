@@ -1,6 +1,6 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">完整时间</view>
+    <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-address-picker v-model="value" has-input></hy-address-picker>
     </view>

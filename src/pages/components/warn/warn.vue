@@ -1,7 +1,7 @@
 <template>
   <view>
     <view class="hy-title">基础使用</view>
-    <view class="hy-container hy-grid">
+    <view class="hy-container hy-gap">
       <hy-warn
         title="唧唧复唧唧"
         type="primary"

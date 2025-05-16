@@ -10,12 +10,21 @@
       >
         <slot :record="item">
           <HyIcon
-            :name="item.icon"
-            :size="iconSize"
-            :round="round"
+            :name="item?.icon"
             label-pos="bottom"
-            :space="space"
-            :label="item.name"
+            :label="item?.name"
+            :space="item?.iconConfig?.space || 12"
+            :color="item?.iconConfig?.color"
+            :size="item?.iconConfig?.size || 50"
+            :bold="item?.iconConfig?.bold"
+            :customPrefix="item?.iconConfig?.customPrefix"
+            :imgMode="item?.iconConfig?.imgMode"
+            :width="item?.iconConfig?.width"
+            :height="item?.iconConfig?.height"
+            :top="item?.iconConfig?.top"
+            :stop="item?.iconConfig?.stop"
+            :round="item?.iconConfig?.round || 6"
+            :customStyle="item?.iconConfig?.customStyle"
           ></HyIcon>
           <!--          <view class="hy-grid-item__title">{{ item.name }}</view>-->
         </slot>

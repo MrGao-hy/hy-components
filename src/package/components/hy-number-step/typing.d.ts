@@ -1,6 +1,7 @@
 import type { CSSProperties } from "vue";
+import type HyIconProps from "../hy-icon/typing";
 
-export default interface IProps {
+export default interface HyNumberStepProps {
   /**
    * @description 用于双向绑定的值，初始化时设置设为默认min值(最小值)  （默认 0 ）
    * */
@@ -90,9 +91,13 @@ export default interface IProps {
    * */
   disablePlus?: boolean;
   /**
-   * @description 加减按钮图标的样式
+   * @description 减号按钮图标
    * */
-  iconStyle?: CSSProperties;
+  minusIcon?: Partial<HyIconProps>;
+  /**
+   * @description 加号按钮图标
+   * */
+  plusIcon?: Partial<HyIconProps>;
   /**
    * @description 迷你模式（默认 false ）
    * */

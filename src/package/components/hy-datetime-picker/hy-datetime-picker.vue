@@ -7,14 +7,23 @@
     >
       <slot name="trigger" :value="inputValue">
         <HyInput
-          :placeholder="placeholder"
-          :readonly="true"
           v-model="inputValue"
-          :disabled="disabled"
-          :disabledColor="disabledColor"
-          :shape="shape"
-          :border="border"
-          :customStyle="customStyle"
+          :readonly="true"
+          :disabled="input?.disabled"
+          :disabledColor="input?.disabledColor"
+          :shape="input?.shape"
+          :border="input?.border"
+          :prefixIcon="input?.prefixIcon"
+          :suffixIcon="input?.suffixIcon"
+          :color="input?.color"
+          :fontSize="input?.fontSize"
+          :inputAlign="input?.inputAlign"
+          :placeholder="input?.placeholder || '请选择时间'"
+          :placeholderStyle="input?.placeholderStyle"
+          :placeholderClass="input?.placeholderClass"
+          :customStyle="
+            Object.assign({ 'pointer-events': 'none' }, input?.customStyle)
+          "
         ></HyInput>
         <view class="input-cover"></view>
       </slot>
@@ -68,7 +77,7 @@ const {
   show,
   modelValue,
   hasInput,
-  disabled,
+  input,
   formatter,
   filter,
   format,
@@ -416,11 +425,6 @@ const getOriginColumns = () => {
     if (filter.value) {
       values = filter.value(type, values);
       if (!values || (values && values.length == 0)) {
-        // uni.showToast({
-        // 	title: '日期filter结果不能为空',
-        // 	icon: 'error',
-        // 	mask: true
-        // })
         error("日期filter结果不能为空");
       }
     }
@@ -547,7 +551,7 @@ const getBoundary = (type: string, innerVal: string | number) => {
   };
 };
 const onShowByClickInput = () => {
-  if (!disabled.value) {
+  if (!input.value.disabled) {
     showByClickInput.value = !showByClickInput.value;
   }
 };

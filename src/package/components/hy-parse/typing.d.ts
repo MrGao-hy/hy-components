@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyParseProps {
   /**
    * @description 用于渲染的 html 字符串
    * */

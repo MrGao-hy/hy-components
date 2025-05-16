@@ -9,5 +9,5 @@
     "lib": ["esnext", "dom"],
     "types": ["@dcloudio/types", "hy-app/typing/modules/common", "@types"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "common.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "hy-app/**/*.d.ts", "common.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

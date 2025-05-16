@@ -2,7 +2,7 @@ import type { CSSProperties } from "vue";
 
 export type TextMode = "text" | "price" | "phone" | "name" | "date" | "link";
 
-export default interface IProps {
+export default interface HyTextProps {
   /**
    * @description 显示的值
    * */
@@ -82,7 +82,7 @@ export default interface IProps {
   /**
    * @description 文本对齐方式，可选值left|center|right（默认 'left' ）
    * */
-  align?: HyApp.CenterType;
+  align?: HyApp.RowCenterType;
   /**
    * @description 文字换行，可选值break-word|normal|anywhere（默认 'normal' ）
    * */

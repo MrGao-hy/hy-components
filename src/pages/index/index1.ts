@@ -145,6 +145,10 @@ export const list_3 = [
     title: "FloatButton 悬浮按钮",
     url: "/pages/components/floatButton/floatButton",
   },
+  {
+    title: "Waterfall 瀑布流",
+    url: "/pages/components/waterfall/waterfall",
+  },
 ];
 
 export const list_4 = [
@@ -159,6 +163,10 @@ export const list_4 = [
   {
     title: "Warn 警告提示",
     url: "/pages/components/warn/warn",
+  },
+  {
+    title: "Toast 消息提示",
+    url: "/pages/components/toast/toast",
   },
   {
     title: "NoticeBar 滚动通知",
@@ -260,5 +268,5 @@ export const list_7 = [
   {
     title: "Price 金额",
     url: "/pages/components/price/price",
-  }
+  },
 ];

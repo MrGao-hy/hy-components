@@ -1,6 +1,6 @@
 <template>
   <view class="hy-page">
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <hy-text text="我用十年青春,赴你最后之约"></hy-text>
 
     <view class="hy-title">主题色</view>

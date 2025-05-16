@@ -14,7 +14,7 @@ export interface StepListVo {
    * */
   error?: boolean;
 }
-export default interface IProps {
+export default interface HyStepsProps {
   /**
    * @description 设置当前处于第几步 (默认 0 )
    * */

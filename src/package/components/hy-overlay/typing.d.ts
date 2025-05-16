@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyOverlayProps {
   /**
    * @description 是否显示遮罩（默认 false ）
    * */

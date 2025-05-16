@@ -39,16 +39,14 @@
 
       <view class="hy-title">显示阴影</view>
       <hy-switch v-model="shadow"></hy-switch>
-
-      <view class="hy-title"></view>
-      <hy-slider v-model="opacity" :min="0" :max="1" :step="0.1"></hy-slider>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import HyFloatButton from "@/package/components/hy-float-button/hy-float-button.vue";
-import HySubsection from "../../../package/components/hy-subsection/hy-subsection.vue";
+import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
+import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
 import { reactive, ref } from "vue";
 import { IconConfig } from "hy-app";
 

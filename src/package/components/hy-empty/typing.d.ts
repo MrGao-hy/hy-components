@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyEmptyProps {
   /**
    * @description 是否显示空状态
    * */

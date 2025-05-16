@@ -2,7 +2,7 @@ import type { CSSProperties } from "vue";
 
 export type NoticeBarModeVo = "closable" | "link" | "";
 
-export default interface IProps {
+export default interface HyNoticeBarProps {
   /**
    * @description 显示的内容，数组
    * */

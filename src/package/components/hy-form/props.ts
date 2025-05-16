@@ -8,8 +8,6 @@ const defaultProps: IProps = {
   borderBottom: false,
   right: false,
   itemHeight: 40,
-  shape: "square",
-  border: "surround",
   columns: [],
   formData: {},
 };

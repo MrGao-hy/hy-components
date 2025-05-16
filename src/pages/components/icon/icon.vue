@@ -30,16 +30,18 @@
 
     <view class="hy-title">图标集</view>
     <view class="hy-container">
-      <hy-grid :list="icons"></hy-grid>
+      <hy-grid :list="icons" border bgColor="#FFF"></hy-grid>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import HyIcon from "@/package/components/hy-icon/hy-icon.vue";
 import { IconConfig } from "hy-app";
 import { config } from "@/config/config";
+
+import HyIcon from "@/package/components/hy-icon/hy-icon.vue";
+import HyGrid from "@/package/components/hy-grid/hy-grid.vue";
 
 // 图标集合
 const icons = reactive([

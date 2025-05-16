@@ -27,13 +27,11 @@
     :class="bemClass"
   >
     <template v-if="loading">
-      <HyIcon
+      <HyLoading
         :mode="loadingMode"
-        :is-rotate="true"
-        :name="IconConfig.LOADING"
         :size="loadingSize"
         :color="loadingColor"
-      ></HyIcon>
+      ></HyLoading>
       <text
         class="hy-button__loading-text"
         :style="[{ fontSize: textSize + 'px' }]"
@@ -42,11 +40,19 @@
     </template>
     <template v-else>
       <HyIcon
-        v-if="icon"
-        :name="icon"
+        v-if="icon?.name"
+        :name="icon?.name"
         :color="iconColorCom"
-        :size="textSize * 1.35"
-        :customStyle="{ marginRight: '2px' }"
+        :size="icon?.size || textSize * 1.35"
+        :bold="icon?.bold"
+        :customPrefix="icon?.customPrefix"
+        :imgMode="icon?.imgMode"
+        :width="icon?.width"
+        :height="icon?.height"
+        :top="icon?.top"
+        :stop="icon?.stop"
+        :round="icon?.round"
+        :customStyle="icon?.customStyle || { marginRight: '2px' }"
       ></HyIcon>
       <slot>
         <text
@@ -76,11 +82,11 @@
     :style="[baseColor, customStyle]"
   >
     <template v-if="loading">
-      <up-loading-icon
+      <HyLoading
         :mode="loadingMode"
-        :size="loadingSize * 1.15"
+        :size="loadingSize"
         :color="loadingColor"
-      ></up-loading-icon>
+      ></HyLoading>
       <text
         class="hy-button__loading-text"
         :style="[nvueTextStyle]"
@@ -90,10 +96,19 @@
     </template>
     <template v-else>
       <HyIcon
-        v-if="icon"
-        :name="icon"
+        v-if="icon?.name"
+        :name="icon?.name"
         :color="iconColorCom"
-        :size="textSize * 1.35"
+        :size="icon?.size || textSize * 1.35"
+        :bold="icon?.bold"
+        :customPrefix="icon?.customPrefix"
+        :imgMode="icon?.imgMode"
+        :width="icon?.width"
+        :height="icon?.height"
+        :top="icon?.top"
+        :stop="icon?.stop"
+        :round="icon?.round"
+        :customStyle="icon?.customStyle || { marginRight: '2px' }"
       ></HyIcon>
       <text
         class="hy-button__text"
@@ -115,9 +130,12 @@
 import { computed, type CSSProperties, toRefs } from "vue";
 import { bem, throttle } from "../../utils";
 import defaultProps from "./props";
-import { ColorConfig, IconConfig } from "../../config";
-import HyIcon from "../hy-icon/hy-icon.vue";
+import { ColorConfig } from "../../config";
 import type IProps from "./typing";
+
+// 组件
+import HyIcon from "../hy-icon/hy-icon.vue";
+import HyLoading from "../hy-loading/hy-loading.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
@@ -129,7 +147,7 @@ const {
   type,
   plain,
   color,
-  iconColor,
+  icon,
 } = toRefs(props);
 const emit = defineEmits([
   "click",
@@ -180,7 +198,7 @@ const loadingColor = computed(() => {
 const iconColorCom = computed((): string => {
   // 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
   // u-icon的color能接受一个主题颜色的值
-  if (iconColor.value) return iconColor.value;
+  if (icon.value?.color) return icon.value?.color;
   if (plain.value) {
     return color.value ? color.value : textColor;
   } else {

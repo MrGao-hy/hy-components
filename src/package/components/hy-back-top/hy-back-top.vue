@@ -2,7 +2,20 @@
   <HyTransition mode="fade" :customStyle="backTopStyle" :show="show">
     <slot>
       <view class="hy-back-top" :style="contentStyle" @click="backToTop">
-        <HyIcon :name="icon" :custom-style="iconStyle"></HyIcon>
+        <HyIcon
+          :name="icon?.name || IconConfig.DOWNLOAD"
+          :color="icon?.color"
+          :size="icon?.size"
+          :bold="icon?.bold"
+          :customPrefix="icon?.customPrefix"
+          :imgMode="icon?.imgMode"
+          :width="icon?.width"
+          :height="icon?.height"
+          :top="icon?.top"
+          :stop="icon?.stop"
+          :round="icon?.round"
+          :customStyle="icon?.customStyle"
+        ></HyIcon>
         <text v-if="text" class="hy-back-top__text">{{ text }}</text>
       </view>
     </slot>
@@ -17,6 +30,7 @@ import type IProps from "./typing";
 import HyTransition from "../hy-transition/hy-transition.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
 import { addUnit, getPx } from "../../utils";
+import { IconConfig } from "@/package";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { customStyle, duration, mode, bottom, right, top, scrollTop } =

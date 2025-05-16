@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyLoadingProps {
   /**
    * @description 是否显示组件 (默认 true)
    * */
@@ -20,7 +20,7 @@ export default interface IProps {
   /**
    * @description 模式选择，见官网说明（默认 'circle' ）
    * */
-  mode?: "spinner" | "circle" | "semicircle";
+  mode?: HyApp.LoadingMode;
   /**
    * @description 加载图标的大小，单位px （默认 24 ）
    * */

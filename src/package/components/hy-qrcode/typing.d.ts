@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyQrcodeProps {
   /**
    * @description 实例ID字符串(如果有多个二维码组件必须设置不一样的cid)
    * */

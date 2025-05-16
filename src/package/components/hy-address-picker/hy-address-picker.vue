@@ -3,18 +3,27 @@
     <view
       v-if="hasInput"
       class="u-datetime-picker__has-input"
-      @click="onShowByClickInput"
+      @tap="onShowByClickInput"
     >
       <slot name="trigger" :value="inputValue">
         <HyInput
-          :placeholder="placeholder"
-          :readonly="true"
           v-model="inputValue"
-          :disabled="disabled"
-          :shape="shape"
-          :border="border"
-          :disabledColor="disabledColor"
-          :customStyle="customStyle"
+          :readonly="true"
+          :disabled="input?.disabled"
+          :disabledColor="input?.disabledColor"
+          :shape="input?.shape"
+          :border="input?.border"
+          :prefixIcon="input?.prefixIcon"
+          :suffixIcon="input?.suffixIcon"
+          :color="input?.color"
+          :fontSize="input?.fontSize"
+          :inputAlign="input?.inputAlign"
+          :placeholder="input?.placeholder || '请选择地址'"
+          :placeholderStyle="input?.placeholderStyle"
+          :placeholderClass="input?.placeholderClass"
+          :customStyle="
+            Object.assign({ 'pointer-events': 'none' }, input?.customStyle)
+          "
         ></HyInput>
         <view class="input-cover"></view>
       </slot>
@@ -64,7 +73,7 @@ import HyInput from "../hy-input/hy-input.vue";
 import HyPicker from "../hy-picker/hy-picker.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { show, modelValue, hasInput, disabled, separator, closeOnClickOverlay } =
+const { show, modelValue, hasInput, input, separator, closeOnClickOverlay } =
   toRefs(props);
 const emit = defineEmits([
   "close",
@@ -223,7 +232,8 @@ const change = (e: any) => {
 };
 
 const onShowByClickInput = () => {
-  if (!disabled.value) {
+  console.log(input.value?.disabled);
+  if (!input.value?.disabled) {
     showByClickInput.value = !showByClickInput.value;
   }
 };

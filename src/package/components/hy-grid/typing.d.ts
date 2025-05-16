@@ -1,24 +1,29 @@
 import { CSSProperties } from "vue";
+import type HyIconProps from "../hy-icon/typing";
 
-interface GridItem {
+interface GridItemVo {
   /**
-   * @description 图片或者icon
+   * @description 图标名称或图片地址
    * */
-  icon: string;
+  icon?: string;
   /**
    * @description 名称
    * */
-  name: string;
+  name?: string;
+  /**
+   * @description 图标属性api配置
+   * */
+  iconConfig?: Partial<HyIconProps>;
   /**
    * @description 自定义内容键值对
    * */
   [key: string]: any;
 }
-export default interface IProps {
+export default interface HyGridProps {
   /**
    * @description 数据集
    * */
-  list: GridItem[];
+  list: GridItemVo[];
   /**
    * @description 宫格的列数（默认 3 ）
    * */

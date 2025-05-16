@@ -12,7 +12,6 @@ const defaultProps: IProps = {
   inactiveValue: false,
   activeIcon: "",
   inactiveIcon: "",
-  iconColor: "",
   asyncChange: false,
   space: 0,
 };

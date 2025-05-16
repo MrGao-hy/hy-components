@@ -1,4 +1,4 @@
-export default interface IProps {
+export default interface HyListProps {
   /**
    * @description 数据列表
    * */

@@ -1,7 +1,7 @@
 <template>
   <view class="hy-page">
     <view class="hy-title">基础使用</view>
-    <view class="hy-container hy-grid">
+    <view class="hy-container">
       <hy-notice-bar
         :text="text"
         :direction="direction"

@@ -4,11 +4,21 @@
       <view :class="tagClass" @tap.stop="clickHandler" :style="tagStyle">
         <slot name="icon">
           <HyIcon
-            v-if="icon"
+            v-if="icon?.name"
+            :name="icon?.name"
             :color="hyIconColor"
-            :name="icon"
             :size="hyIconSize"
-            :customStyle="{ marginRight: '3px' }"
+            :bold="icon?.bold"
+            :customPrefix="icon?.customPrefix"
+            :imgMode="icon?.imgMode"
+            :width="icon?.width"
+            :height="icon?.height"
+            :top="icon?.top"
+            :stop="icon?.stop"
+            :round="icon?.round"
+            :customStyle="
+              Object.assign({ marginRight: '3px' }, icon?.customStyle)
+            "
           ></HyIcon>
         </slot>
         <text :class="textClass" :style="textStyle">
@@ -40,7 +50,7 @@ import type IProps from "./typing";
 import HyTransition from "../hy-transition/hy-transition.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
 import { IconConfig } from "../../config";
-import {colorGradient} from "@/package";
+import { colorGradient } from "@/package";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
@@ -55,7 +65,7 @@ const {
   bgColor,
   color,
   borderColor,
-  iconColor,
+  icon,
   disabled,
   customStyle,
 } = toRefs(props);
@@ -86,13 +96,13 @@ const tagStyle = computed<CSSProperties>(() => {
     marginRight: closable.value ? "10px" : 0,
     marginTop: closable.value ? "10px" : 0,
     background: bgColor.value,
-    borderColor: borderColor.value
+    borderColor: borderColor.value,
   };
 
-  if(color.value) {
+  if (color.value) {
     if (plain.value) {
       style.borderColor = color.value;
-      if(plainFill.value) {
+      if (plainFill.value) {
         style.background = colorGradient(color.value, "#FFFFFF", 100)[90];
       }
     } else {
@@ -108,10 +118,10 @@ const tagStyle = computed<CSSProperties>(() => {
  * @description 文本样式
  * */
 const textStyle = computed(() => {
-  const style: CSSProperties = {}
-  if(color.value && plain.value) style.color = color.value;
+  const style: CSSProperties = {};
+  if (color.value && plain.value) style.color = color.value;
   return style;
-})
+});
 /**
  * @description 文本类名
  * */
@@ -134,8 +144,8 @@ const closeSize = computed(() => {
  * @description 图标大小
  * */
 const hyIconSize = computed(() => {
-  if (props.iconSize) {
-    return props.iconSize;
+  if (icon.value.size) {
+    return icon.value.size;
   } else {
     return size.value === "large" ? 18 : size.value === "medium" ? 14 : 10;
   }
@@ -144,8 +154,8 @@ const hyIconSize = computed(() => {
  * @description 图标颜色
  * */
 const hyIconColor = computed(() => {
-  return iconColor.value
-    ? iconColor.value
+  return icon.value.color
+    ? icon.value.color
     : plain.value
       ? type.value
       : "#ffffff";

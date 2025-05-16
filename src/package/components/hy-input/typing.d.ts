@@ -1,6 +1,7 @@
 import type { CSSProperties } from "vue";
+import type HyIconProps from "../hy-icon/typing";
 
-export default interface IProps {
+export default interface HyInputProps {
   /**
    * @description 输入的值
    * */
@@ -108,19 +109,11 @@ export default interface IProps {
   /**
    * @description 输入框前置图标
    * */
-  prefixIcon?: string;
-  /**
-   * @description 前置图标样式，对象或字符串
-   * */
-  prefixIconStyle?: CSSProperties;
+  prefixIcon?: Partial<HyIconProps>;
   /**
    * @description 输入框后置图标
    * */
-  suffixIcon?: string;
-  /**
-   * @description 后置图标样式，对象或字符串
-   * */
-  suffixIconStyle?: CSSProperties;
+  suffixIcon?: Partial<HyIconProps>;
   /**
    * @description 边框类型，surround-四周边框，bottom-底部边框，none-无边框 （ 默认 'surround' ）
    * */

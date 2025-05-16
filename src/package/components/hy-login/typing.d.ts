@@ -1,4 +1,4 @@
-export default interface IProps {
+export default interface HyLoginProps {
   /**
    * @description 登录logo
    * */

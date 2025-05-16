@@ -1,20 +1,20 @@
 <template>
   <view class="hy-page">
     <view class="hy-title">按钮颜色</view>
-    <view class="hy-container">
+    <view class="hy-grid">
       <hy-button type="info" text="默认按钮"></hy-button>
       <hy-button type="success" text="主要按钮"></hy-button>
       <hy-button type="primary" text="信息按钮"></hy-button>
       <hy-button type="error" text="危险按钮"></hy-button>
       <hy-button type="warning" text="警告按钮"></hy-button>
       <hy-button
-        text="渐变色"
-        color="linear-gradient(to right, red, blue)"
+        text="渐变色按钮"
+        color="linear-gradient(to right, #4bfcfc, #FB39F5)"
       ></hy-button>
     </view>
 
     <view class="hy-title">按钮镂空（背景色）</view>
-    <view class="hy-container">
+    <view class="hy-grid">
       <hy-button type="info" text="默认按钮" plain></hy-button>
       <hy-button type="success" text="主要按钮" plain></hy-button>
       <hy-button type="primary" text="信息按钮" plain></hy-button>
@@ -24,7 +24,18 @@
 
     <view class="hy-title">加载按钮</view>
     <view class="hy-container">
-      <hy-button type="error" text="删除" :icon="IconConfig.DELETE"></hy-button>
+      <hy-button
+        type="error"
+        text="删除"
+        :icon="{ name: IconConfig.DELETE }"
+        :custom-style="{ marginBottom: '20px' }"
+      ></hy-button>
+      <hy-button
+        type="error"
+        text="删除"
+        plain
+        :icon="{ name: IconConfig.DELETE }"
+      ></hy-button>
     </view>
 
     <view class="hy-title">加载按钮</view>

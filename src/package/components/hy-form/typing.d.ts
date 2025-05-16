@@ -1,6 +1,12 @@
 import type { FormColumnsType } from "../../typing";
+import type HyInputProps from "../hy-input/typing";
+import type HyTextareaProps from "../hy-textarea/typing";
+import type HySwitchProps from "../hy-switch/typing";
+import type HyPickerProps from "../hy-picker/typing";
+import type HyRadioProps from "../hy-radio/typing";
+import type HyCheckButtonProps from "../hy-check-button/typing";
 
-export default interface IProps {
+export default interface HyFormProps {
   /**
    * @description 表单域提示文字的位置
    * left - 左侧
@@ -23,7 +29,7 @@ export default interface IProps {
    * center - 中间对齐
    * right - 右对齐
    * */
-  labelAlign?: HyApp.CenterType;
+  labelAlign?: HyApp.RowCenterType;
   /**
    * @description 显示冒号符号
    * */
@@ -37,17 +43,29 @@ export default interface IProps {
    * */
   itemHeight?: number | string;
   /**
-   * @description 是否全部禁用
+   * @description 输入框属性api集合
    * */
-  disabled?: boolean;
+  input?: Partial<HyInputProps>;
   /**
-   * @description 输入框形状
+   * @description 文本域属性api集合
    * */
-  shape?: HyApp.ShapeType;
+  textarea?: Partial<HyTextareaProps>;
   /**
-   * @description 输入框边框
+   * @description 选择器属性api集合
    * */
-  border?: HyApp.BorderType;
+  picker?: Partial<HyPickerProps>;
+  /**
+   * @description 开关属性api集合
+   * */
+  switchItem?: Partial<HySwitchProps>;
+  /**
+   * @description 单选属性api集合
+   * */
+  radio?: Partial<HyRadioProps>;
+  /**
+   * @description 选择按钮属性api集合
+   * */
+  checkButton?: Partial<HyCheckButtonProps>;
   /**
    * @description 表单配置
    * */

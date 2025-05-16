@@ -8,7 +8,7 @@ export interface SubSectionItemVo extends HyApp.FieldNamesType {
 
 export type SubSectionVo = string | number | SubSectionItemVo;
 
-export default interface IProps {
+export default interface HySubsectionProps {
   /**
    * @description 接收值
    * */

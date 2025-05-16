@@ -1,4 +1,5 @@
 import type { CSSProperties } from "vue";
+import type HyInputProps from "../hy-input/typing";
 
 interface PickerColumnVo extends AnyObject {
   /**
@@ -11,7 +12,7 @@ interface PickerColumnVo extends AnyObject {
   text?: string;
 }
 
-export default interface IProps {
+export default interface HyPickerProps {
   /**
    * @description 显示到输入框值
    * */
@@ -24,10 +25,6 @@ export default interface IProps {
    * @description 是否显示弹窗（默认 false ）
    * */
   show?: boolean;
-  /**
-   * @description 是否禁用输入框（hasInput为true可以设置）
-   * */
-  disabled?: boolean;
   /**
    * @description 弹窗弹出模式
    * */
@@ -97,21 +94,13 @@ export default interface IProps {
    * */
   hasInput?: boolean;
   /**
-   * @description 输入框默认占位内容（hasInput为true可以设置）
+   * @description 输入框集合属性
    * */
-  placeholder?: string;
+  input?: Partial<HyInputProps>;
   /**
    * @description 是否自定义选择器nav左边内容
    * */
   toolbarRightSlot?: boolean;
-  /**
-   * @description 输入框形状
-   * */
-  shape?: HyApp.ShapeType;
-  /**
-   * @description 输入框边框
-   * */
-  border?: HyApp.BorderType;
   /**
    * @description 自定义输入框外部样式
    * */

@@ -26,13 +26,19 @@ import HyCell from "@/package/components/hy-cell/hy-cell.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import { reactive, ref } from "vue";
 import { IconConfig } from "hy-app";
-const arrange = ref<HyApp.LeftRightType | "center">("right");
+import type { HyApp } from "hy-app/typing/modules/common";
+
+const arrange = ref<HyApp.RowCenterType>("right");
 const size = ref<HyApp.SizeType>("medium");
 const arrowDirection = ref<HyApp.RotateType>("right");
 
 const list = reactive([
-  { title: "我的", icon: IconConfig.MINE, subhead: "我是小二郎" },
-  { title: "设置", icon: IconConfig.SETTING, value: "返回" },
+  { title: "我的", icon: { name: IconConfig.MINE }, subhead: "我是小二郎" },
+  {
+    title: "设置",
+    icon: { name: IconConfig.SETTING, color: "red" },
+    value: "返回",
+  },
 ]);
 
 const list_1 = reactive([

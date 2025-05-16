@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyAvatarProps {
   /**
    * @description 头像路径，如加载失败，将会显示默认头像(不能为相对路径)
    * */

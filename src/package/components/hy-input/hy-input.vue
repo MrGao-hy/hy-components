@@ -6,13 +6,22 @@
     <view class="hy-input__content">
       <view
         class="hy-input__content__prefix-icon"
-        v-if="prefixIcon || $slots.prefix"
+        v-if="prefixIcon?.name || $slots.prefix"
       >
         <slot name="prefix">
           <HyIcon
-            :name="prefixIcon"
-            size="18"
-            :customStyle="prefixIconStyle"
+            :name="prefixIcon?.name"
+            :size="prefixIcon?.size"
+            :color="prefixIcon?.color"
+            :bold="prefixIcon?.bold"
+            :customPrefix="prefixIcon?.customPrefix"
+            :imgMode="prefixIcon?.imgMode"
+            :width="prefixIcon?.width"
+            :height="prefixIcon?.height"
+            :top="prefixIcon?.top"
+            :stop="prefixIcon?.stop"
+            :round="prefixIcon?.round"
+            :customStyle="prefixIcon?.customStyle"
           ></HyIcon>
         </slot>
       </view>
@@ -65,13 +74,22 @@
       </view>
       <view
         class="hy-input__content__subfix-icon"
-        v-if="suffixIcon || $slots.suffix"
+        v-if="suffixIcon?.name || $slots.suffix"
       >
         <slot name="suffix">
           <HyIcon
-            :name="suffixIcon"
-            size="18"
-            :customStyle="suffixIconStyle"
+            :name="suffixIcon?.name"
+            :size="suffixIcon?.size"
+            :color="suffixIcon?.color"
+            :bold="suffixIcon?.bold"
+            :customPrefix="suffixIcon?.customPrefix"
+            :imgMode="suffixIcon?.imgMode"
+            :width="suffixIcon?.width"
+            :height="suffixIcon?.height"
+            :top="suffixIcon?.top"
+            :stop="suffixIcon?.stop"
+            :round="suffixIcon?.round"
+            :customStyle="suffixIcon?.customStyle"
           ></HyIcon>
         </slot>
       </view>
@@ -312,17 +330,10 @@ const onClear = () => {
  * 无法触发u-form-item的点击事件，这里通过手动调用u-form-item的方法进行触发
  */
 const clickHandler = () => {
+  // 隐藏键盘
   if (disabled.value || readonly.value) {
     uni.hideKeyboard();
   }
-  // #ifdef APP-NVUE
-  if (os() === "android") {
-    const formItem = $parent.call(this, "u-form-item");
-    if (formItem) {
-      formItem.clickHandler();
-    }
-  }
-  // #endif
 };
 </script>
 

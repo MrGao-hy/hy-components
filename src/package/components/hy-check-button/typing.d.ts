@@ -35,7 +35,7 @@ export type FieldNamesType = {
   [key in keyof IFieldNames as IFieldNames[key]]?: string | number | boolean;
 };
 
-export default interface IProps {
+export default interface HyCheckButtonProps {
   /**
    * @description 选中得值，radio是字符串，checkbox是数组
    * */

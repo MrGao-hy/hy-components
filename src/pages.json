@@ -423,6 +423,20 @@
             "navigationBarTitleText": "登录页面",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "waterfall/waterfall",
+          "style": {
+            "navigationBarTitleText": "瀑布流",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "toast/toast",
+          "style": {
+            "navigationBarTitleText": "消息提示",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }

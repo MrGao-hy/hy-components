@@ -1,5 +1,3 @@
-import type { CSSProperties } from "vue";
-
 export interface DropdownMenuItem {
   /**
    * @description 展示标题
@@ -11,7 +9,7 @@ export interface DropdownMenuItem {
   value: string | number;
 }
 
-export default interface IProps {
+export default interface HyDropdownItemProps {
   /**
    * @description 获取值
    * */

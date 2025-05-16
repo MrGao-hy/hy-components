@@ -14,8 +14,14 @@ onHide(() => {
 @import "uview-plus/index.scss";
 @import "~@/static/css/common.scss";
 @import "~@/package/index.scss";
+@import "~@/static/font/font_1/iconfont.css";
 view {
   padding: 0;
   margin: 0;
 }
+/* #ifndef APP-NVUE */
+page {
+  background-color: #f8f8f8;
+}
+/* #endif */
 </style>

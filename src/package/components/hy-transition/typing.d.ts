@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyTransitionProps {
   /**
    * @description 是否展示组件
    * */

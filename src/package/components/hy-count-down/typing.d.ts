@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyCountDownProps {
   /**
    * @description 倒计时时长，单位ms （默认 0 ）
    * */

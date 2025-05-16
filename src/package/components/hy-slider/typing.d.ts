@@ -1,6 +1,6 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HySliderProps {
   /**
    * @description 滑块默认值（默认0）
    * */

@@ -1,10 +1,7 @@
 import type { CSSProperties, PropType } from "vue";
-import {
-  HyApp,
-  type SwiperIndicatorModeType,
-} from "@/package/typing/modules/common";
+import { HyApp } from "@/package/typing/modules/common";
 
-export default interface IProps {
+export default interface HySwiperProps {
   /**
    * @description 轮播图数据
    * */

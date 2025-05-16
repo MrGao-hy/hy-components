@@ -1,5 +1,11 @@
 import type { DateModeEnum } from "./enum";
 import type { CheckboxColumnsVo } from "../../components/hy-check-button/typing";
+import type HyInputProps from "../../components/hy-input/typing";
+import type HyTextareaProps from "../../components/hy-textarea/typing";
+import type HySwitchProps from "../../components/hy-switch/typing";
+import type HyPickerProps from "../../components/hy-picker/typing";
+import type HyRadioProps from "../../components/hy-radio/typing";
+import type HyCheckButtonProps from "../../components/hy-check-button/typing";
 
 /**
  * 类型
@@ -29,6 +35,10 @@ export enum FormTypeEnum {
    * 单选
    * */
   RADIO = "radio",
+  /**
+   * 选择按钮（单选/多选）
+   * */
+  CHECK_BUTTON = "checkButton",
   /**
    * 时间选择器
    * */
@@ -88,18 +98,7 @@ export interface FormColumnsType {
    * @description 是否禁用
    * */
   disabled?: boolean;
-  /**
-   * @description 输入框为空时的占位符
-   * */
-  placeholder?: string;
-  /**
-   * @description 清除输入框
-   * */
-  clearable?: boolean;
-  /**
-   * @description 只读
-   * */
-  readonly?: boolean;
+
   /**
    * @description type = select时候必填
    * */
@@ -109,13 +108,29 @@ export interface FormColumnsType {
    * */
   actions?: CheckboxColumnsVo[];
   /**
-   * @description 输入框形状
+   * @description 输入框属性api集合
    * */
-  shape?: HyApp.ShapeType;
+  input?: Partial<HyInputProps>;
   /**
-   * @description 输入框边框
+   * @description 文本域属性api集合
    * */
-  border?: HyApp.BorderType;
+  textarea?: Partial<HyTextareaProps>;
+  /**
+   * @description 开关属性api集合
+   * */
+  switchItem?: Partial<HySwitchProps>;
+  /**
+   * @description 选择器属性api集合
+   * */
+  picker?: Partial<HyPickerProps>;
+  /**
+   * @description 单选属性api集合
+   * */
+  radio?: Partial<HyRadioProps>;
+  /**
+   * @description 选择按钮属性api集合
+   * */
+  checkButton?: Partial<HyCheckButtonProps>;
   /**
    * @description 输入框边框
    * */

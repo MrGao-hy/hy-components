@@ -8,7 +8,7 @@
       class="hy-textarea__field"
       :value="innerValue"
       :style="{ height: addUnit(height) }"
-      :placeholder="placeholder"
+      :placeholder="placeholder || ''"
       :placeholder-style="placeholderStyle"
       :placeholder-class="placeholderClass"
       :disabled="disabled"

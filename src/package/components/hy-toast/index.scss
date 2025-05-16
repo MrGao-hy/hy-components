@@ -1,0 +1,77 @@
+@use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
+
+.hy-toast {
+  &__content {
+    @include flex;
+    padding: 12px 20px;
+    border-radius: 4px;
+    background-color: #585858;
+    color: #ffffff;
+    align-items: center;
+    /* #ifndef APP-NVUE */
+    max-width: 600rpx;
+    /* #endif */
+    position: relative;
+
+    &--loading {
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    &__text {
+      color: #ffffff;
+      font-size: 15px;
+      line-height: 15px;
+
+      &--default {
+        color: #ffffff;
+      }
+
+      &--error {
+        color: $hy-error;
+      }
+
+      &--primary {
+        color: $hy-primary;
+      }
+
+      &--success {
+        color: $hy-success;
+      }
+
+      &--warning {
+        color: $hy-warning;
+      }
+    }
+  }
+}
+
+.hy-type-primary {
+  color: $hy-primary;
+  background-color: $hy-primary-light;
+  border: 1px solid rgb(215, 234, 254);
+}
+
+.hy-type-success {
+  color: $hy-success;
+  background-color: $hy-success-light;
+  border: 1px solid #bef5c8;
+}
+
+.hy-type-error {
+  color: $hy-error;
+  background-color: $hy-error-light;
+  border: 1px solid #fde2e2;
+}
+
+.hy-type-warning {
+  color: $hy-warning;
+  background-color: $hy-warning-light;
+  border: 1px solid #faecd8;
+}
+
+.hy-type-default {
+  color: #ffffff;
+  background-color: #585858;
+}

@@ -20,8 +20,17 @@
         <slot>
           <HyIcon
             :name="modelValue ? activeIcon : inactiveIcon"
-            :size="switchSize * 0.6"
-            :color="iconColor"
+            :size="icon?.size || switchSize * 0.6"
+            :color="icon?.color"
+            :bold="icon?.bold"
+            :customPrefix="icon?.customPrefix"
+            :imgMode="icon?.imgMode"
+            :width="icon?.width"
+            :height="icon?.height"
+            :top="icon?.top"
+            :stop="icon?.stop"
+            :round="icon?.round"
+            :customStyle="icon?.customStyle"
           ></HyIcon>
         </slot>
       </view>

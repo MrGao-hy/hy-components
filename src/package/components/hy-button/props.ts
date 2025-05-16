@@ -26,8 +26,7 @@ const defaultProps: IProps = {
   hoverStartTime: 0,
   hoverStayTime: 200,
   text: "",
-  icon: "",
-  iconColor: "",
+  icon: {},
   color: "",
   stop: true,
 };

@@ -1,6 +1,7 @@
 import type { CSSProperties } from "vue";
+import type HyIconProps from "../hy-icon/typing";
 
-export default interface IProps {
+export default interface HyTagProps {
   /**
    * @description 标签的文字内容
    * */
@@ -60,15 +61,7 @@ export default interface IProps {
   /**
    * @description 组件内置图标，或绝对路径的图片
    * */
-  icon?: string;
-  /**
-   * @description icon颜色
-   * */
-  iconColor?: string;
-  /**
-   * @description icon大小
-   * */
-  iconSize?: string | number;
+  icon?: Partial<HyIconProps>;
   /**
    * @description 定义需要用到的外部样式
    * */

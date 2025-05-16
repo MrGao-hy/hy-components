@@ -7,7 +7,7 @@ interface SwipeActionOptionsVo {
   iconSize?: string | number;
 }
 
-export default interface IProps {
+export default interface SwipeActionProps {
   /**
    * @description 数据列表
    * */

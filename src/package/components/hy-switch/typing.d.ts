@@ -1,7 +1,8 @@
 import type { CSSProperties } from "vue";
 import { HyApp } from "@/package/typing/modules/common";
+import type IconProps from "../hy-icon/typing";
 
-export default interface IProps {
+export default interface HySwitchProps {
   /**
    * @description 通过v-model双向绑定的值 （默认 false ）
    * */
@@ -45,7 +46,7 @@ export default interface IProps {
   /**
    * @description 图标颜色
    * */
-  iconColor?: string;
+  icon?: IconProps;
   /**
    * @description 是否开启异步变更，开启后需要手动控制输入值 （默认 false ）
    * */

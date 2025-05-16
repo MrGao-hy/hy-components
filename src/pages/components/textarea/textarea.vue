@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="hy-title">基本使用</view>
+    <view class="hy-title">基础使用</view>
     <hy-textarea
       v-model="value"
       :disabled="disabled"

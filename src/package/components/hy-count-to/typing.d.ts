@@ -1,6 +1,4 @@
-import type { CSSProperties } from "vue";
-
-export default interface IProps {
+export default interface HyCountToProps {
   /**
    * @description 开始的数值，默认从0增长到某一个数（默认 0 ）
    * */

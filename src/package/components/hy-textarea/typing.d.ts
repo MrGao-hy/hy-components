@@ -1,8 +1,8 @@
 import type { CSSProperties } from "vue";
 
-export default interface IProps {
+export default interface HyTextareaProps {
   modelValue: string;
-  placeholder?: string;
+  placeholder?: string | null;
   placeholderClass?: string;
   placeholderStyle?: CSSProperties;
   height?: number;

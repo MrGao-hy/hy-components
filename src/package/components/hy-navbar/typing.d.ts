@@ -1,7 +1,6 @@
 import type { CSSProperties } from "vue";
-import { IconConfig } from "../../config";
 
-export default interface IProps {
+export default interface HyNavbarProps {
   /**
    * @description 是否开启顶部安全区适配  （默认 true ）
    * */
