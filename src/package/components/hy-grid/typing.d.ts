@@ -49,17 +49,9 @@ export default interface HyGridProps {
    * */
   bgColor?: string;
   /**
-   * @description icon图片大小
+   * @description 图标属性api配置集合
    * */
-  iconSize?: number | string;
-  /**
-   * @description icon图片圆角
-   * */
-  round?: number | string;
-  /**
-   * @description icon图片和文字间距
-   * */
-  space?: number | string;
+  iconConfig?: Partial<HyIconProps>;
   /**
    * @description 定义需要用到的外部样式
    * */

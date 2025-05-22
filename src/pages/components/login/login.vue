@@ -8,6 +8,7 @@
 import HyLogin from "@/package/components/hy-login/hy-login.vue";
 
 const loginFn = () => {
+  // uni.switchTab({ url: "/pages/index/Index" });
   uni.showToast({ title: "登录成功" });
 };
 </script>

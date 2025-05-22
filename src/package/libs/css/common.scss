@@ -13,4 +13,13 @@
 
 .hy-page {
   padding: $hy-border-margin-padding-base;
+  box-sizing: border-box;
+  width: 100%;
+  /* #ifdef H5 */
+  height: calc(100vh - 44px);
+  /* #endif */
+  /* #ifndef H5 */
+  height: 100vh;
+  /* #endif */
+  overflow: auto;
 }

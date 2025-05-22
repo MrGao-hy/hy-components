@@ -1,71 +1,11 @@
 <template>
   <view class="user-login">
-    <HyForm ref="form_1Ref" :columns="userColumns" :formData="userForm">
-      <template #user="{ record, errorStyle }">
-        <HyInput
-          v-model="userForm.name"
-          :placeholder="userPlaceholder"
-          :clearable="true"
-          border="bottom"
-          :customStyle="errorStyle"
-          @change="handleChange($event, record)"
-          @blur="handleBlur($event, record)"
-        >
-          <!-- #ifndef APP-PLUS-NVUE -->
-          <template #prefix>
-            <HyIcon :name="IconConfig.MINE" :color="themeColor"></HyIcon>
-          </template>
-          <template #suffix>
-            <HyIcon
-              :name="
-                !showChoice
-                  ? IconConfig.ARROW_DOWN_FILL
-                  : IconConfig.ARROW_UP_FILL
-              "
-              @tap="showChoice = !showChoice"
-              :color="themeColor"
-            ></HyIcon>
-            <view class="dialog-view" v-if="showChoice && choiceList.length">
-              <view
-                class="dialog-title"
-                v-for="(item, index) in choiceList"
-                :key="index"
-                @click="btnChoiceClick(index)"
-              >
-                {{ item.user }}
-              </view>
-            </view>
-          </template>
-          <!-- #endif -->
-        </HyInput>
-      </template>
-      <template #pwd="{ record }">
-        <HyInput
-          :type="showPwd ? 'text' : 'password'"
-          v-model="userForm.pwd"
-          :placeholder="pwdPlaceholder"
-          :clearable="true"
-          border="bottom"
-          :password-icon="false"
-          @change="handleChange($event, record)"
-          @blur="handleBlur($event, record)"
-        >
-          <!-- #ifndef APP-PLUS-NVUE -->
-          <template #prefix>
-            <HyIcon :name="IconConfig.LOCK" :color="themeColor"></HyIcon>
-          </template>
-          <template v-if="isShowPwd" #suffix>
-            <HyIcon
-              size="16"
-              @click="showPasswordFn"
-              color="#c8c9cc"
-              :name="showPwd ? 'eye-fill' : 'eye-off'"
-            ></HyIcon>
-          </template>
-          <!-- #endif -->
-        </HyInput>
-      </template>
-    </HyForm>
+    <HyForm
+      ref="form_1Ref"
+      :columns="userColumns"
+      :formData="userForm"
+      :input="{ border: 'bottom' }"
+    ></HyForm>
 
     <!-- 记住密码 -->
     <view class="mui-input-row mui-checkbox">
@@ -73,7 +13,7 @@
         :columns="rememberList"
         shape="square"
         :active-color="themeColor"
-        v-model="rememberPassword"
+        v-model="rememberPsw"
         @change="checkboxChange"
       ></HyCheckbox>
     </view>
@@ -81,20 +21,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, computed } from "vue";
 import { onHide } from "@dcloudio/uni-app";
 import { storeToRefs } from "pinia";
 import { useUserInfo } from "../../store";
 import { decryptData, encryptData } from "../../utils";
-import type { FormColumnsType } from "../../typing";
 import { FormTypeEnum } from "../../typing";
 import { IconConfig } from "../../config";
+import type { UserLoginInfoVo } from "./typing";
 
 // 组件
 import HyCheckbox from "../hy-checkbox/hy-checkbox.vue";
 import HyForm from "../hy-form/hy-form.vue";
-import HyInput from "../hy-input/hy-input.vue";
-import HyIcon from "../hy-icon/hy-icon.vue";
 
 interface IProps {
   themeColor: string;
@@ -110,7 +48,7 @@ interface IProps {
 
 const props = withDefaults(defineProps<IProps>(), {
   themeColor: "",
-  prefix: "gxh",
+  prefix: "hy",
   isShowPwd: false,
   userPlaceholder: "",
   pwdPlaceholder: "",
@@ -123,27 +61,60 @@ const emit = defineEmits(["handleHistory", "handleCheckbox"]);
 const userInfoStore = useUserInfo();
 const { userForm, choiceList, rememberPsw } = storeToRefs(userInfoStore);
 
-const userColumns = reactive([
+const showChoice = ref<boolean>(false);
+const showPwd = ref<boolean>(false);
+const userColumns = computed(() => [
   {
-    field: "user",
+    field: "userName",
     label: "",
-    type: FormTypeEnum.CUSTOM,
+    type: FormTypeEnum.TEXT,
+    input: {
+      clearable: true,
+      placeholder: props.userPlaceholder,
+      prefixIcon: {
+        name: IconConfig.MINE,
+        color: props.themeColor,
+      },
+      suffixIcon: {
+        name: showChoice.value
+          ? IconConfig.ARROW_UP_FILL
+          : IconConfig.ARROW_DOWN_FILL,
+        color: props.themeColor,
+      },
+      onSuffix: () => {
+        showChoice.value = !showChoice.value;
+      },
+    },
     rules: [props.customUserValidator, props.userNumValidator],
   },
   {
-    field: "pwd",
+    field: "password",
     label: "",
-    type: FormTypeEnum.CUSTOM,
+    type: showPwd.value ? FormTypeEnum.TEXT : FormTypeEnum.PASSWORD,
+    input: {
+      clearable: true,
+      placeholder: props.pwdPlaceholder,
+      prefixIcon: {
+        name: IconConfig.LOCK,
+        color: props.themeColor,
+      },
+      suffixIcon: {
+        name: showPwd.value ? IconConfig.EYE : IconConfig.EYE_CLOSE,
+        color: props.themeColor,
+      },
+      onSuffix: () => {
+        showPwd.value = !showPwd.value;
+        console.log(showChoice.value);
+      },
+    },
     rules: [props.customUserValidator, props.pwdNumValidator],
   },
 ]);
 const rememberList = reactive([{ label: "记住密码", value: 1 }]);
-const showPwd = ref<boolean>(false);
-const showChoice = ref<boolean>(false);
 const form_1Ref = ref<InstanceType<typeof HyForm>>();
 // 效验用户名和密码
 const userRules = reactive({
-  name: [
+  userName: [
     {
       required: true,
       message: "请先输入账号",
@@ -153,7 +124,7 @@ const userRules = reactive({
     props.customUserValidator,
     props.userNumValidator,
   ],
-  pwd: [
+  password: [
     {
       required: true,
       message: "请输入密码",
@@ -164,30 +135,27 @@ const userRules = reactive({
     props.customPwdValidator,
   ],
 });
-const rememberPassword = ref([0]);
+const rememberPassword = ref(false);
 const account = uni.getStorageSync(`${props.prefix}_account`);
 const accountList = uni.getStorageSync(`${props.prefix}_choiceList`);
 
 onMounted(() => {
   if (!account) return;
   const result = decryptData(account);
+  console.log(result);
   //有缓存就赋值给文本没有就清空
-  rememberPsw.value = result.rememberPsw;
-  if (account) {
-    //获取缓存的账号和密码
-    userForm.value.name = result.userName;
-    userForm.value.pwd = result.password;
-  } else {
-    userForm.value.name = "";
-    userForm.value.pwd = "";
-  }
+  rememberPsw.value = result?.rememberPsw;
+  //获取缓存的账号和密码
+  userForm.value.userName = result?.userName;
+  userForm.value.password = result?.password;
+
   if (accountList) {
-    choiceList.value = decryptData(accountList);
+    choiceList.value = decryptData(accountList) as UserLoginInfoVo[];
   }
 });
 
 onHide(() => {
-  if (!account) return;
+  // if (!account) return;
   //获取缓存的账号和密码
   const { userName, password } = decryptData(account);
   if (choiceList.value.length) {
@@ -222,7 +190,7 @@ onHide(() => {
 const loginFn = () => {
   return new Promise((resolve, reject) => {
     form_1Ref.value
-      .handleSubmit()
+      ?.handleSubmit()
       .then((res) => {
         resolve("success" + res);
       })
@@ -236,7 +204,7 @@ const loginFn = () => {
  * 勾选是否记住密码
  * */
 const checkboxChange = () => {
-  emit("handleCheckbox", rememberPsw.value);
+  emit("handleCheckbox", rememberPassword.value);
 };
 
 /**
@@ -267,17 +235,6 @@ const extensionFun = (index: number, username: string) => {
     default:
       break;
   }
-};
-
-const showPasswordFn = () => {
-  showPwd.value = !showPwd.value;
-};
-
-const handleChange = (event: string, temp: FormColumnsType) => {
-  form_1Ref.value?.validateField(temp.rules, event, temp.field, "change");
-};
-const handleBlur = (event: string, temp: FormColumnsType) => {
-  form_1Ref.value?.validateField(temp.rules, event, temp.field, "blur");
 };
 
 defineExpose({

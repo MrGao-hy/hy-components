@@ -15,14 +15,7 @@
       <view class="hy-form--item__container">
         <view class="hy-form--item__container-content">
           <!--	输入框	-->
-          <view
-            class="flex"
-            v-if="
-              item.type === FormTypeEnum.TEXT ||
-              item.type === FormTypeEnum.NUMBER ||
-              item.type === FormTypeEnum.PASSWORD
-            "
-          >
+          <view class="flex" v-if="isInput(item.type)">
             <HyInput
               v-model="formData[item.field]"
               :type="item.type"
@@ -67,6 +60,8 @@
               :customStyle="errorStyle(!!errors[item.field])"
               @change="handleChange($event, item)"
               @blur="handleBlur($event, item)"
+              @onPrefix="item?.input?.onPrefix"
+              @onSuffix="item?.input?.onSuffix"
             ></HyInput>
           </view>
           <!--	输入框	-->
@@ -350,6 +345,10 @@ const {
 const emit = defineEmits(["click"]);
 
 const labelPos = labelPosition.value === "top" ? "column" : "row";
+const isInput = (type: FormTypeEnum) =>
+  type === FormTypeEnum.TEXT ||
+  type === FormTypeEnum.NUMBER ||
+  type === FormTypeEnum.PASSWORD;
 
 /**
  * @description 错误输入框样式
@@ -494,12 +493,18 @@ const handleSubmit = () => {
  * @description 输入值触发
  * */
 const handleChange = (event: string, temp: FormColumnsType) => {
+  if (isInput(temp.type) && temp?.input?.onChange) {
+    temp.input.onChange(event, temp);
+  }
   validateField(temp.rules, event, temp.field, "change");
 };
 /**
  * @description 输入值触发
  * */
 const handleBlur = (event: string, temp: FormColumnsType) => {
+  if (isInput(temp.type) && temp?.input?.onBlur) {
+    temp.input.onBlur(event, temp);
+  }
   validateField(temp.rules, event, temp.field, "blur");
 };
 

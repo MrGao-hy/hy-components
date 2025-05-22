@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <view :class="['hy-page', themeClass]" :style="themeColor">
     <hy-cell
       title="设置cell"
       :list="list"
@@ -27,7 +27,10 @@ import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import { reactive, ref } from "vue";
 import { IconConfig } from "hy-app";
 import type { HyApp } from "hy-app/typing/modules/common";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, themeClass } = themeStore;
 const arrange = ref<HyApp.RowCenterType>("right");
 const size = ref<HyApp.SizeType>("medium");
 const arrowDirection = ref<HyApp.RotateType>("right");

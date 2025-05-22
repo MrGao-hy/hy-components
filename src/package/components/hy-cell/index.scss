@@ -1,7 +1,17 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
-
-.hy-cell {
+//@include b(cell) {
+//  color: $hy-dark-color;
+//}
+@include b(theme--dark){
+  @include b(cell) {
+    color: $hy-dark-color;
+    &__body--container {
+      background-color: $hy-dark-background2;
+    }
+  }
+}
+@include b(cell) {
   flex: 1;
 
   /*标题*/
@@ -21,7 +31,6 @@
       &--text {
         font-size: $hy-font-size-subtitle;
         line-height: 16px;
-        color: $hy-color-title;
       }
     }
   }
@@ -32,10 +41,7 @@
     box-sizing: border-box;
     /* #endif */
     font-size: $hy-font-size-paragraph;
-    color: $hy-color-paragraph;
-    // line-height: $u-cell-line-height;
     align-items: center;
-    //justify-content: space-between;
 
     &--container {
       @include flex(row);
@@ -73,7 +79,7 @@
         @include flex(row);
         /*左边icon*/
         &-icon {
-          @include flex();
+          @include flex;
           align-items: center;
           margin-right: 10px;
         }
@@ -83,11 +89,6 @@
           flex: $hy-font-size-subtitle;
           display: flex;
           flex-direction: column;
-
-          /*标题*/
-          &--text {
-            color: $hy-color-title;
-          }
 
           /*sub值*/
           &--sub {
@@ -99,7 +100,7 @@
 
       /*cell值*/
       &__center {
-        @include flex();
+        @include flex;
         max-width: 90%;
         flex: 1;
         &__value {

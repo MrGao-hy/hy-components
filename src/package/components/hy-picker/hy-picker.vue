@@ -70,6 +70,7 @@
           :style="{
             height: `${addUnit(visibleItemCount * itemHeight)}`,
           }"
+          maskStyle="backgroundImage: none;"
           @change="changeHandler"
         >
           <picker-view-column
@@ -108,6 +109,15 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: "hy-picker",
+  options: {
+    virtualHost: true,
+    styleIsolation: "shared",
+  },
+};
+</script>
 <script setup lang="ts">
 import { computed, ref, toRefs, watch } from "vue";
 import { deepClone, sleep, addUnit } from "../../utils";

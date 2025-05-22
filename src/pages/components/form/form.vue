@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <view class="hy-page" :class="themeClass" :style="themeColor">
     <HyForm
       ref="formRef"
       :columns="columns"
@@ -29,6 +29,10 @@ import HyForm from "@/package/components/hy-form/hy-form.vue";
 import HyInput from "@/package/components/hy-input/hy-input.vue";
 import HyButton from "hy-app/components/hy-button/hy-button.vue";
 import { reactive, ref } from "vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, themeClass } = themeStore;
 
 const formData: AnyObject = reactive({
   custom: "自定义值",

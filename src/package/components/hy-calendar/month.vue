@@ -1,43 +1,43 @@
 <template>
-  <view class="u-calendar-month-wrapper" ref="u-calendar-month-wrapper">
+  <view class="hy-calendar-month-wrapper" ref="hy-calendar-month-wrapper">
     <view
       v-for="(item, index) in months"
       :key="index"
-      :class="[`u-calendar-month-${index}`]"
-      :ref="`u-calendar-month-${index}`"
+      :class="[`hy-calendar-month-${index}`]"
+      :ref="`hy-calendar-month-${index}`"
       :id="`month-${index}`"
     >
-      <text v-if="index !== 0" class="u-calendar-month__title"
+      <text v-if="index !== 0" class="hy-calendar-month__title"
         >{{ item.year }}年{{ item.month }}月</text
       >
-      <view class="u-calendar-month__days">
+      <view class="hy-calendar-month__days">
         <view
           v-if="showMark"
-          class="u-calendar-month__days__month-mark-wrapper"
+          class="hy-calendar-month__days__month-mark-wrapper"
         >
-          <text class="u-calendar-month__days__month-mark-wrapper__text">{{
+          <text class="hy-calendar-month__days__month-mark-wrapper__text">{{
             item.month
           }}</text>
         </view>
         <view
-          class="u-calendar-month__days__day"
+          class="hy-calendar-month__days__day"
           v-for="(item1, index1) in item.date"
           :key="index1"
           :style="[dayStyle(index, index1, item1)]"
           @tap="clickHandler(index, index1, item1)"
           :class="[
-            item1.selected && 'u-calendar-month__days__day__select--selected',
+            item1.selected && 'hy-calendar-month__days__day__select--selected',
           ]"
         >
           <view
-            class="u-calendar-month__days__day__select"
+            class="hy-calendar-month__days__day__select"
             :style="[daySelectStyle(index, index1, item1)]"
           >
             <text
-              class="u-calendar-month__days__day__select__info"
+              class="hy-calendar-month__days__day__select__info"
               :class="[
                 item1.disabled || isForbid(item1)
-                  ? 'u-calendar-month__days__day__select__info--disabled'
+                  ? 'hy-calendar-month__days__day__select__info--disabled'
                   : '',
               ]"
               :style="[textStyle(item1)]"
@@ -45,10 +45,10 @@
             >
             <text
               v-if="getBottomInfo(index, index1, item1)"
-              class="u-calendar-month__days__day__select__buttom-info"
+              class="hy-calendar-month__days__day__select__buttom-info"
               :class="[
                 item1.disabled || isForbid(item1)
-                  ? 'u-calendar-month__days__day__select__buttom-info--disabled'
+                  ? 'hy-calendar-month__days__day__select__buttom-info--disabled'
                   : '',
               ]"
               :style="[textStyle(item1)]"
@@ -56,7 +56,7 @@
             >
             <text
               v-if="item1.dot"
-              class="u-calendar-month__days__day__select__dot"
+              class="hy-calendar-month__days__day__select__dot"
             ></text>
           </view>
         </view>
@@ -69,7 +69,7 @@
 import { addUnit, colorGradient, deepClone, getRect, sleep } from "../../utils";
 import dayjs from "dayjs/esm/index";
 export default {
-  name: "u-calendar-month",
+  name: "hy-calendar-month",
   props: {
     // 是否显示月份背景色
     showMark: {
@@ -363,7 +363,7 @@ export default {
     // 获取月份数据区域的宽度，因为nvue不支持百分比，所以无法通过css设置每个日期item的宽度
     getWrapperWidth() {
       // #ifndef APP-NVUE
-      getRect(".u-calendar-month-wrapper").then((size) => {
+      getRect(".hy-calendar-month-wrapper").then((size) => {
         this.width = size.width;
       });
       // #endif
@@ -371,7 +371,7 @@ export default {
     getMonthRect() {
       // 获取每个月份数据的尺寸，用于父组件在scroll-view滚动事件中，监听当前滚动到了第几个月份
       const promiseAllArr = this.months.map((item, index) =>
-        this.getMonthRectByPromise(`u-calendar-month-${index}`),
+        this.getMonthRectByPromise(`hy-calendar-month-${index}`),
       );
       // 一次性返回
       Promise.all(promiseAllArr).then((sizes) => {

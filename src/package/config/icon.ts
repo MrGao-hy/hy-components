@@ -328,6 +328,10 @@ export const IconConfig = {
    * */
   EYE: "eye",
   /**
+   * @description 眼睛-关闭
+   * */
+  EYE_CLOSE: "eye-close",
+  /**
    * @description 日历
    * */
   CALENDAR: "calendar",

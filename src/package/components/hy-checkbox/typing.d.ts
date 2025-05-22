@@ -5,7 +5,7 @@ export default interface HyCheckboxProps {
   /**
    * @description 双向绑定值，数组类型
    * */
-  modelValue: (string | number)[];
+  modelValue: (string | number)[] | boolean;
   /**
    * @description 接收数组值
    * */

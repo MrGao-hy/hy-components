@@ -82,7 +82,7 @@ const tagClass = computed((): string[] => {
     const arr = [
       !plain.value && `hy-tag--${type.value}`,
       plain.value && `hy-tag--${type.value}--plain`,
-      plain.value && plainFill.value && `hy-tag--${type.value}--plain--fill`,
+      plain.value && plainFill.value && `hy-tag--${type.value}--plain__fill`,
     ].filter(Boolean);
     classes = classes.concat(arr as string[]);
   }
@@ -126,12 +126,7 @@ const textStyle = computed(() => {
  * @description 文本类名
  * */
 const textClass = computed((): string[] => {
-  return [
-    `hy-tag__text`,
-    `hy-tag__text--${type.value}`,
-    plain.value && `hy-tag__text--${type.value}--plain`,
-    `hy-tag__text--${size.value}`,
-  ].filter(Boolean) as string[];
+  return [`hy-tag__text`, `hy-tag__text--${size.value}`];
 });
 
 /**

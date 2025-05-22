@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <view class="hy-page" :style="themeColor">
     <view class="hy-title">边角形状</view>
     <view class="hy-flex">
       <hy-badge :value="123" shape="circle"></hy-badge>
@@ -52,6 +52,10 @@
 import HyBadge from "@/package/components/hy-badge/hy-badge.vue";
 import HyAvatar from "@/package/components/hy-avatar/hy-avatar.vue";
 import { config } from "@/config/config";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor } = themeStore;
 </script>
 
 <style scoped lang="scss">

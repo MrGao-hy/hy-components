@@ -15,6 +15,7 @@ onHide(() => {
 @import "~@/static/css/common.scss";
 @import "~@/package/index.scss";
 @import "~@/static/font/font_1/iconfont.css";
+//@import "https://at.alicdn.com/t/c/font_4305932_jcbef3d08o8.css";
 view {
   padding: 0;
   margin: 0;
@@ -22,6 +23,9 @@ view {
 /* #ifndef APP-NVUE */
 page {
   background-color: #f8f8f8;
+}
+.hy-theme--dark {
+  background-color: #000000;
 }
 /* #endif */
 </style>

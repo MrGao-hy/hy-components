@@ -1,3 +1,8 @@
+export interface UserLoginInfoVo {
+  userName: string;
+  password: string;
+}
+
 export default interface HyLoginProps {
   /**
    * @description 登录logo

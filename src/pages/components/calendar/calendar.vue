@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <view class="hy-page2" :class="themeClass" :style="themeColor">
     <hy-cell :list="list" @click="onClick"></hy-cell>
     <HyCalendar
       :show="show1"
@@ -73,6 +73,10 @@
 import HyCalendar from "@/package/components/hy-calendar/hy-calendar.vue";
 import HyCell from "@/package/components/hy-cell/hy-cell.vue";
 import { reactive, ref } from "vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, themeClass } = themeStore;
 
 const index = ref(0);
 const show1 = ref(false);

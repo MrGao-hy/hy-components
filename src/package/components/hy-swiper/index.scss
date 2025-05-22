@@ -1,7 +1,16 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-swiper {
+/* 暗色主题 */
+@include b(theme--dark) {
+  @include b(swiper__wrapper) {
+    :deep(.uni-swiper-wrapper) {
+      background-color: $hy-dark-background2;
+    }
+  }
+}
+
+@include b(swiper) {
   @include flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +60,7 @@
 }
 
 
-.hy-swiper-indicator {
+@include b(swiper-indicator) {
   &__wrapper {
     @include flex;
 

@@ -4,7 +4,7 @@ const defaultProps: IProps = {
   logo: "",
   loginType: 0,
   themeColor: "#20D56E",
-  prefix: "gxh",
+  prefix: "hy",
   isShowPwd: false,
   userPlaceholder: "输入您的用户名",
   pwdPlaceholder: "输入您的密码",

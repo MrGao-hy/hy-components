@@ -1,7 +1,8 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-picker {
+
+@include b(picker) {
   position: relative;
   &-input {
     position: relative;
@@ -24,6 +25,10 @@
       font-size: $hy-font-size-subtitle;
       color: $hy-color-subtitle;
     }
+
+    &--right {
+      color: var(--hy-theme-color, $hy-primary);
+    }
   }
 
   &__view {
@@ -41,7 +46,6 @@
         /* #ifndef APP-NVUE */
         display: block;
         /* #endif */
-        color: #303133ff;
 
         &--disabled {
           /* #ifndef APP-NVUE */

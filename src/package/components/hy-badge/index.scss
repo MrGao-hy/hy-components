@@ -4,13 +4,12 @@
 $hy-badge-dot-size: 8px !default;
 $hy-badge-text-font-size: 11px !default;
 
-.hy-badge {
+@include b(badge) {
   border-radius: 100px;
   @include flex;
   line-height: $hy-badge-text-font-size;
   text-align: center;
   font-size: $hy-badge-text-font-size;
-  color: $hy-text-color-inverse;
   z-index: 999;
 
   &--dot {
@@ -30,43 +29,20 @@ $hy-badge-text-font-size: 11px !default;
     border-bottom-left-radius: 0;
   }
 
-  &--primary {
-    background-color: $hy-primary;
-  }
+  /* 主题色 */
+  @include themeColor(primary, var(--hy-theme-color, $hy-primary));
+  @include themeColor(primary--inverted, "", "", var(--hy-theme-color, $hy-primary));
 
-  &--primary--inverted {
-    color: $hy-primary;
-  }
+  @include themeColor(error, $hy-error);
+  @include themeColor(error--inverted, "", "", $hy-error);
 
-  &--error {
-    background-color: $hy-error;
-  }
+  @include themeColor(success, $hy-success);
+  @include themeColor(success--inverted, "", "", $hy-success);
 
-  &--error--inverted {
-    color: $hy-error;
-  }
+  @include themeColor(warning, $hy-warning);
+  @include themeColor(warning--inverted, "", "", $hy-warning);
 
-  &--success {
-    background-color: $hy-success;
-  }
+  @include themeColor(info, $hy-info);
+  @include themeColor(info--inverted, "", "", $hy-info);
 
-  &--success--inverted {
-    color: $hy-success;
-  }
-
-  &--info {
-    background-color: $hy-info;
-  }
-
-  &--info--inverted {
-    color: $hy-info;
-  }
-
-  &--warning {
-    background-color: $hy-warning;
-  }
-
-  &--warning--inverted {
-    color: $hy-warning;
-  }
 }

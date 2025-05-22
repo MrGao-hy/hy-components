@@ -7,7 +7,7 @@
     :round="round"
     :closeOnClickOverlay="closeOnClickOverlay"
   >
-    <view class="u-calendar">
+    <view class="hy-calendar">
       <HyHeader
         :title="title"
         :subtitle="subtitle"
@@ -50,7 +50,7 @@
         ></HyMount>
       </scroll-view>
       <slot name="footer" v-if="showConfirm">
-        <view class="u-calendar__confirm">
+        <view class="hy-calendar__confirm">
           <HyButton
             shape="circle"
             :text="buttonDisabled ? confirmDisabledText : confirmText"
@@ -64,6 +64,15 @@
   </HyPopup>
 </template>
 
+<script lang="ts">
+export default {
+  name: "hy-calendar",
+  options: {
+    virtualHost: true,
+    styleIsolation: "shared",
+  },
+};
+</script>
 <script setup lang="ts">
 import type IProps from "./typing";
 import defaultProps from "./props";

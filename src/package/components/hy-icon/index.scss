@@ -3,7 +3,7 @@
 @use "../../theme.scss" as *;
 
 
-.hy-icon {
+@include b(icon) {
   /* #ifndef APP-NVUE */
   display: flex;
   /* #endif */
@@ -63,7 +63,7 @@
   }
 
   &__label {
-    @include line-feed();
+    @include lineEllipsis;
     overflow: hidden;
     /* #ifndef APP-NVUE */
     line-height: 1;

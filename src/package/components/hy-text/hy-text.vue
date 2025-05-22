@@ -233,6 +233,6 @@ const toLink = () => {
 @import "./index.scss";
 @import "../../libs/css/mixin.scss";
 .hy-text__value--lines {
-  @include line-feed(v-bind(lines));
+  @include multiEllipsis(v-bind(lines));
 }
 </style>

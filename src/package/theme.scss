@@ -24,6 +24,21 @@ $hy-info-dark: #82848a;
 $hy-info-disabled: #c8c9cc;
 $hy-info-light: #f4f4f5;
 
+/* 暗黑模式 */
+$hy-dark-background: #131313 !default;
+$hy-dark-background2: #1b1b1b !default;
+$hy-dark-background3: #141414 !default;
+$hy-dark-background4: #323233 !default;
+$hy-dark-background5: #646566 !default;
+$hy-dark-background6: var(#380e08) !default;
+$hy-dark-background7: var(#707070) !default;
+$hy-dark-color: #ffffff !default;
+$hy-dark-color2: var(#f2270c) !default;
+$hy-dark-color3: var(rgba(232, 230, 227, 0.8)) !default;
+$hy-dark-color-gray: var(#c0c0c0) !default;
+$hy-dark-border-color: var(#3a3a3c) !default;
+
+
 /* 文字基本颜色 */
 $hy-text-color: #333; //基本色
 $hy-text-color-inverse: #fff; //反色

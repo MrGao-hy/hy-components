@@ -24,6 +24,9 @@ export const bem = (
     fixed.map((item: string) => {
       // 这里的类名，会一直存在
       classes[prefix + props[item]] = true;
+      if (item === "type" && props["plain"]) {
+        classes[prefix + props[item] + "__plain"] = true;
+      }
     });
   }
   if (change) {

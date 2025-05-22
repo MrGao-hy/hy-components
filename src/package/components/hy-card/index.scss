@@ -37,7 +37,7 @@
       &__title {
         max-width: 400rpx;
         height: 20px;
-        @include line-feed;
+        @include lineEllipsis;
       }
     }
 

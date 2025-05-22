@@ -2,7 +2,7 @@
 @use "../../libs/css/mixin.scss" as *;
 
 
-.hy-loading-icon {
+@include b(loading-icon) {
   @include flex(row);
   align-items: center;
   justify-content: center;

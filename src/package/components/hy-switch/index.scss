@@ -1,13 +1,12 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-switch {
+@include b(switch) {
   @include flex(row);
   /* #ifndef APP-NVUE */
   box-sizing: border-box;
   /* #endif */
   position: relative;
-  background-color: #fff;
   border-radius: $hy-border-radius-semicircle;
   transition: background-color 0.4s;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -16,6 +15,9 @@
   // 由于weex为阿里逗着玩的KPI项目，导致bug奇多，这必须要写这一行，
   // 否则在iOS上，点击页面任意地方，都会触发switch的点击事件
   overflow: hidden;
+  @include m(active){
+    background: var(--hy-theme-color, $hy-primary);
+  }
 
   &__node {
     @include flex(row);
@@ -40,7 +42,7 @@
     transition-timing-function: ease;
   }
 
-  &--disabled {
+  @include m(disabled) {
     opacity: 0.6;
   }
 }

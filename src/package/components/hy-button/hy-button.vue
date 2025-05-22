@@ -21,10 +21,9 @@
     @launchapp="launchapp"
     @agreeprivacyauthorization="agreeprivacyauthorization"
     :hover-class="!disabled && !loading ? 'hy-button--active' : ''"
-    class="hy-button hy-reset-button"
     :style="[baseColor, customStyle]"
     @tap="clickHandler"
-    :class="bemClass"
+    :class="['hy-button', 'hy-reset-button', bemClass]"
   >
     <template v-if="loading">
       <HyLoading
@@ -202,7 +201,7 @@ const iconColorCom = computed((): string => {
   if (plain.value) {
     return color.value ? color.value : textColor;
   } else {
-    return type.value === "info" ? "#000000" : "#ffffff";
+    return (type.value = "#ffffff");
   }
 });
 const baseColor = computed((): CSSProperties => {
@@ -212,7 +211,7 @@ const baseColor = computed((): CSSProperties => {
     style.color = plain.value ? color.value : "white";
     if (!plain.value) {
       // 非镂空，背景色使用自定义的颜色
-      style["background-color"] = color.value;
+      style["background"] = color.value;
     }
     if (color.value.indexOf("gradient") !== -1) {
       // 如果自定义的颜色为渐变色，不显示边框，以及通过backgroundImage设置渐变色
@@ -233,7 +232,7 @@ const baseColor = computed((): CSSProperties => {
     }
   } else {
     // 针对自定义了color颜色的情况，镂空状态下，就是用自定义的颜色
-    style.color = plain.value ? textColor : "";
+    // style.color = plain.value ? textColor : "";
   }
   return style;
 });

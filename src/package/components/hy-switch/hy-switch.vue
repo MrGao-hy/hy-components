@@ -1,7 +1,10 @@
 <template>
   <view
     class="hy-switch cursor-pointer"
-    :class="[disabled && 'hy-switch--disabled']"
+    :class="[
+      disabled && 'hy-switch--disabled',
+      isActive && 'hy-switch--active',
+    ]"
     :style="[switchStyle, customStyle]"
     @tap="clickHandler"
   >

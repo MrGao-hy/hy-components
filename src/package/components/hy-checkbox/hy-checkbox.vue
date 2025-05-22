@@ -85,8 +85,12 @@ const sizeType: AnyObject = reactive({
 
 watch(
   () => modelValue.value,
-  (newValue) => {
-    if (Array.isArray(newValue)) {
+  (newValue: boolean | (string | number)[]) => {
+    // 判断数组长度为1可以传true/false
+    if (columns.value?.length === 1 && typeof newValue === "boolean") {
+      columns.value[0][fieldNames.value.checked] = newValue;
+      columns_1.value = columns.value;
+    } else if (Array.isArray(newValue)) {
       columns_1.value = columns.value.map((item) => {
         item[fieldNames.value.checked] = newValue.includes(
           item[fieldNames.value.value] as string,
@@ -199,11 +203,14 @@ const setRadioCheckedStatus = (temp: CheckboxColumnsVo) => {
     return item;
   });
   emit("change", temp);
+  console.log(columns_1.value[0].checked, "前");
   emit(
     "update:modelValue",
-    columns_1.value
-      .filter((item: CheckboxColumnsVo) => item[fieldNames.value.checked])
-      .map((item: CheckboxColumnsVo) => item[fieldNames.value.value]),
+    columns_1.value.length === 1
+      ? columns_1.value[0].checked
+      : columns_1.value
+          .filter((item: CheckboxColumnsVo) => item[fieldNames.value.checked])
+          .map((item: CheckboxColumnsVo) => item[fieldNames.value.value]),
   );
   // 双向绑定
   // if (this.usedAlone) {

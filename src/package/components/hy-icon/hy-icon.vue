@@ -30,7 +30,6 @@
 
 <script setup lang="ts">
 import { computed, type CSSProperties, toRefs } from "vue";
-import { ColorConfig, IconConfig } from "../../config";
 import { addUnit } from "../../utils";
 import defaultProps from "./props";
 import type IProps from "./typing";
@@ -78,7 +77,7 @@ const iconStyle = computed<CSSProperties>(() => {
     // 某些特殊情况需要设置一个到顶部的距离，才能更好的垂直居中
     top: addUnit(top.value),
     borderRadius: addUnit(round.value),
-    color: color.value ? color.value : "#606266",
+    color: color.value,
   };
 
   return style;

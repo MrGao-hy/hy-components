@@ -76,6 +76,7 @@ export default {
 import {
   computed,
   type CSSProperties,
+  getCurrentInstance,
   nextTick,
   onMounted,
   reactive,
@@ -84,8 +85,7 @@ import {
   useSlots,
   watch,
 } from "vue";
-import { addUnit, debounce, getPx, getRect } from "../../utils";
-import HyDivider from "../hy-divider/hy-divider.vue";
+import { addUnit, getPx, getRect } from "../../utils";
 import type IProps from "./typing";
 import defaultProps from "./props";
 
@@ -109,7 +109,10 @@ const slots = useSlots();
 const scrollTop = ref(0);
 // 可视区域的高度
 const viewHeight = ref(0);
-const waterfall: { left: AnyObject[]; right: AnyObject[] } = reactive({
+const waterfall: {
+  left: AnyObject[];
+  right: AnyObject[];
+} = reactive({
   left: [],
   right: [],
 });
@@ -117,10 +120,11 @@ const waterfall: { left: AnyObject[]; right: AnyObject[] } = reactive({
 const arrange = computed(() => (line.value === 1 ? "column" : "row"));
 const boxHeight = getPx(itemHeight.value) + getPx(marginBottom.value);
 const listHeight = addUnit(containerHeight.value);
+const instance = getCurrentInstance();
 
 onMounted(() => {
   nextTick(async () => {
-    const res = await getRect(".hy-virtual-container");
+    const res = await getRect(".hy-virtual-container", false, instance);
     viewHeight.value = (res as UniApp.NodeInfo).height ?? 0;
   });
 });
@@ -178,9 +182,9 @@ watch(
     if (line.value === 2 && newVal.every((item) => typeof item !== "string")) {
       newVal.forEach((item, i) => {
         if (i % 2 === 0) {
-          waterfall.left.push(item);
+          waterfall.left.push(item as AnyObject);
         } else {
-          waterfall.right.push(item);
+          waterfall.right.push(item as AnyObject);
         }
       });
     }
@@ -217,4 +221,12 @@ const slotDefault = useSlots().default;
 
 <style lang="scss" scoped>
 @import "./index.scss";
+.hy-virtual-container {
+  height: v-bind(listHeight);
+  &__list {
+    padding: v-bind(paddingAttr);
+    display: flex;
+    flex-direction: v-bind(arrange);
+  }
+}
 </style>

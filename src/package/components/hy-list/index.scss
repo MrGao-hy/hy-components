@@ -2,13 +2,10 @@
 @use "../../libs/css/mixin.scss" as *;
 
 .hy-virtual-container {
-  height: v-bind(listHeight);
   padding: 0 $hy-border-margin-padding-base;
   box-sizing: border-box;
 
   &__list {
-    padding: v-bind(paddingAttr);
-    @include flex(v-bind(arrange));
     overflow-anchor: none;
     &--item {
       box-sizing: border-box;

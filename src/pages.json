@@ -15,6 +15,10 @@
     }
   ],
   "subPackages": [
+//    {
+//      "root": "package",
+//      "pages": []
+//    },
     {
       "root": "pages/components",
       "pages": [

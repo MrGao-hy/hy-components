@@ -1,7 +1,7 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-tag {
+@include b(tag){
   border-style: solid;
   @include flex;
   align-items: center;
@@ -12,19 +12,11 @@
   }
 
   /*禁用*/
-  &--disabled {
-    background-color: $hy-color-disable-bg;
-    color: $hy-text-color-disable;
-    border: 1px solid $hy-color-disable-icon;
-  }
+  @include themeColor(disabled, $hy-color-disable-bg, $hy-color-disable-icon, $hy-text-color-disable);
 
-  &--circle {
-    border-radius: $hy-border-radius-semicircle;
-  }
-
-  &--square {
-    border-radius: $hy-border-radius-sm;
-  }
+  /*圆角*/
+  @include borderRadio(circle);
+  @include borderRadio(square);
 
   &__icon {
     margin-right: $hy-border-margin-padding-sm;
@@ -55,7 +47,7 @@
 
   &--medium {
     height: 26px;
-    line-height: 22px;
+    line-height: 26px;
     padding: 0 $hy-border-margin-padding-base;
   }
 
@@ -65,111 +57,29 @@
     padding: 0 15px;
   }
 
-  &--primary {
-    background-color: $hy-primary;
-    border: 1px solid $hy-primary;
-  }
 
-  &--primary--plain {
-    border: 1px solid $hy-primary;
-  }
+  /* 主题色 */
+  @include themeColor(primary, var(--hy-theme-color, $hy-primary), var(--hy-theme-color, $hy-primary), #FFFFFF);
+  @include themeColor(error, $hy-error, $hy-error, #FFFFFF);
+  @include themeColor(warning, $hy-warning, $hy-warning, #FFFFFF);
+  @include themeColor(success, $hy-success, $hy-success, #FFFFFF);
+  @include themeColor(info, $hy-info, $hy-info, #FFFFFF);
 
-  &--primary--plain--fill {
-    background-color: $hy-primary-light;
-  }
+  /* 主题色镂空 */
+  @include themeColor(primary--plain, transparent, var(--hy-theme-color, $hy-primary), var(--hy-theme-color, $hy-primary));
+  @include themeColor(error--plain, transparent, $hy-error, $hy-error);
+  @include themeColor(warning--plain, transparent, $hy-warning, $hy-warning);
+  @include themeColor(success--plain, transparent, $hy-success, $hy-success);
+  @include themeColor(info--plain, transparent, $hy-info, $hy-info);
 
-  &__text--primary {
-    color: #ffffff;
-  }
+  /* 主题色镂空带背景色 */
+  @include themeColor(primary--plain__fill, var(--hy-tag-plain--fill__bg, $hy-primary-light), var(--hy-theme-color, $hy-primary), var(--hy-theme-color, $hy-primary));
+  @include themeColor(error--plain__fill, $hy-error-light, $hy-error, $hy-error);
+  @include themeColor(warning--plain__fill, $hy-warning-light, $hy-warning, $hy-warning);
+  @include themeColor(success--plain__fill, $hy-success-light, $hy-success, $hy-success);
+  @include themeColor(info--plain__fill, $hy-info-light, $hy-info, $hy-info);
 
-  &__text--primary--plain {
-    color: $hy-primary;
-  }
-
-  &--error {
-    background-color: $hy-error;
-    border: 1px solid $hy-error;
-  }
-
-  &--error--plain {
-    border: 1px solid $hy-error;
-  }
-
-  &--error--plain--fill {
-    background-color: $hy-error-light;
-  }
-
-  &__text--error {
-    color: #ffffff;
-  }
-
-  &__text--error--plain {
-    color: $hy-error;
-  }
-
-  &--warning {
-    background-color: $hy-warning;
-    border: 1px solid $hy-warning;
-  }
-
-  &--warning--plain {
-    border: 1px solid $hy-warning;
-  }
-
-  &--warning--plain--fill {
-    background-color: $hy-warning-light;
-  }
-
-  &__text--warning {
-    color: #ffffff;
-  }
-
-  &__text--warning--plain {
-    color: $hy-warning;
-  }
-
-  &--success {
-    background-color: $hy-success;
-    border: 1px solid $hy-success;
-  }
-
-  &--success--plain {
-    border: 1px solid $hy-success;
-  }
-
-  &--success--plain--fill {
-    background-color: $hy-success-light;
-  }
-
-  &__text--success {
-    color: #ffffff;
-  }
-
-  &__text--success--plain {
-    color: $hy-success;
-  }
-
-  &--info {
-    background-color: $hy-info;
-    border: 1px solid $hy-info;
-  }
-
-  &--info--plain {
-    border: 1px solid $hy-info;
-  }
-
-  &--info--plain--fill {
-    background-color: $hy-info-light;
-  }
-
-  &__text--info {
-    color: #ffffff;
-  }
-
-  &__text--info--plain {
-    color: $hy-info;
-  }
-
+  /* 关闭按钮 */
   &__close {
     position: absolute;
     z-index: 999;

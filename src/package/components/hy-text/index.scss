@@ -1,7 +1,7 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-.hy-text {
+@include b(text) {
   @include flex(row);
   align-items: center;
   flex-wrap: nowrap;
@@ -14,7 +14,6 @@
   &__value {
     font-size: 14px;
     @include flex;
-    color: $hy-text-color;
     flex-wrap: wrap;
     // flex: 1;
     text-overflow: ellipsis;
@@ -23,48 +22,23 @@
     /*链接*/
     &--link {
       text-decoration: underline;
-      color: $hy-primary;
+      color: var(--hy-theme-color, $hy-primary);
     }
 
     /*超出出现省略号*/
     &--lines {
-      @include line-feed(v-bind(lines));
+      @include multiEllipsis(v-bind(lines));
     }
 
-    &--primary {
-      color: $hy-primary;
-    }
+    @include themeColor(primary, "", "", var(--hy-theme-color, $hy-primary));
+    @include themeColor(warning, "", "", $hy-warning);
+    @include themeColor(success, "", "", $hy-success);
+    @include themeColor(info, "", "", $hy-info);
+    @include themeColor(error, "", "", $hy-error);
+    @include themeColor(main, "", "", $hy-text-color);
+    @include themeColor(content, "", "", $hy-text-color-grey);
+    @include themeColor(tips, "", "",$hy-tips-color);
+    @include themeColor(light, "", "", $hy-text-color-light);
 
-    &--warning {
-      color: $hy-warning;
-    }
-
-    &--success {
-      color: $hy-success;
-    }
-
-    &--info {
-      color: $hy-info;
-    }
-
-    &--error {
-      color: $hy-error;
-    }
-
-    &--main {
-      color: $hy-text-color;
-    }
-
-    &--content {
-      color: $hy-text-color-grey;
-    }
-
-    &--tips {
-      color: $hy-tips-color;
-    }
-
-    &--light {
-      color: $hy-text-color-light;
-    }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <view class="hy-page" :style="themeColor">
     <view class="hy-title">基础使用</view>
     <hy-text text="我用十年青春,赴你最后之约"></hy-text>
 
@@ -64,7 +64,10 @@
 <script setup lang="ts">
 import HyText from "@/package/components/hy-text/hy-text.vue";
 import { IconConfig } from "hy-app";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor } = themeStore;
 const clickHandler = () => {
   // #ifndef MP-WEIXIN
   uni.showToast({ title: "请在微信小程序内查看效果" });

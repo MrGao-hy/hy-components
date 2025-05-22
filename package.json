@@ -54,12 +54,13 @@
     "@tuniao/tn-style": "^1.0.20",
     "@tuniao/tnui-vue3-uniapp": "^1.0.23",
     "dayjs": "^1.11.13",
-    "hy-app": "^0.1.4",
+    "hy-app": "^0.1.5",
     "pinia": "^3.0.2",
     "signature_pad": "^5.0.7",
     "uview-plus": "^3.4.28",
     "vue": "^3.5.13",
-    "vue-i18n": "^9.14.4"
+    "vue-i18n": "^9.14.4",
+    "wot-design-uni": "^1.9.1"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.4.15",

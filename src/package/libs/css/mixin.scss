@@ -1,3 +1,54 @@
+@use "../../theme.scss";
+$namespace: hy;
+$modifier-separator: '--';
+
+@mixin b($block) {
+  $B: $namespace + '-' + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      $selector +
+      $modifier-separator +
+      $unit +
+      ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin themeColor($type, $bg-color: transparent, $border-color: transparent, $color: #FFFFFF) {
+  @include m($type) {
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    color: $color;
+  }
+}
+
+@mixin borderRadio($shape) {
+  @include m($shape) {
+    @if $shape == circle {
+      border-radius:  theme.$hy-border-radius-semicircle;
+    }
+    @else {
+      border-radius: theme.$hy-border-radius-sm;
+    }
+  }
+}
+
+
+/* flex布局 */
 @mixin flex($direction: row) {
   /* #ifndef APP-NVUE */
   display: flex;
@@ -5,11 +56,38 @@
   flex-direction: $direction;
 }
 
+/* 状态，生成 is-$state 类名 */
+@mixin when($states...) {
+  @at-root {
+    @each $state in $states {
+      &.#{$state-prefix + $state} {
+        @content;
+      }
+    }
+  }
+}
+
 /* 几行出现省略号 */
 @mixin line-feed($line: 1) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 单行超出隐藏 */
+@mixin lineEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 多行超出隐藏 */
+@mixin multiEllipsis($lineNumber: 3) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lineNumber;
   overflow: hidden;
   text-overflow: ellipsis;
 }

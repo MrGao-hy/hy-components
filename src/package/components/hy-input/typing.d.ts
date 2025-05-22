@@ -97,7 +97,7 @@ export default interface HyInputProps {
   /**
    * @description 输入框内容对齐方式（ 默认 'left' ）
    * */
-  inputAlign?: "center" | HyApp.LeftRightType;
+  inputAlign?: HyApp.RowCenterType;
   /**
    * @description 输入框字体的大小 （ 默认 '15px' ）
    * */
@@ -134,6 +134,14 @@ export default interface HyInputProps {
    * @description 定义需要用到的外部样式
    * */
   customStyle?: CSSProperties;
+  /**
+   * @description 值变化事件
+   * */
+  onChange?: Function;
+  /**
+   * @description 失去焦点事件
+   * */
+  onBlur?: Function;
   /**
    * @description 是否忽略组件内对文本合成系统事件的处理。
    * */

@@ -1,7 +1,7 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-.hy-button {
+@include b(button){
   height: 40px;
   position: relative;
   align-items: center;
@@ -21,7 +21,7 @@
     margin-left: 4px;
   }
 
-  &--large {
+  @include m(large) {
     /* #ifndef APP-NVUE */
     width: 100%;
     /* #endif */
@@ -29,12 +29,12 @@
     padding: 0 15px;
   }
 
-  &--medium {
+  @include m(medium) {
     padding: 0 12px;
     font-size: 14px;
   }
 
-  &--small {
+  @include m(small) {
     /* #ifndef APP-NVUE */
     min-width: 60px;
     /* #endif */
@@ -43,7 +43,7 @@
     font-size: 12px;
   }
 
-  &--mini {
+  @include m(mini) {
     height: 22px;
     font-size: 10px;
     /* #ifndef APP-NVUE */
@@ -52,52 +52,31 @@
     padding: 0 8px;
   }
 
-  &--disabled {
+  @include m(disabled) {
     opacity: 0.5;
   }
 
-  &--info {
-    color: #323233;
-    background-color: #fff;
-    border: 1px solid #909399;
-  }
+  @include themeColor(info,  $hy-info, $hy-info);
+  @include themeColor(success,  $hy-success, $hy-success);
+  @include themeColor(primary,  var(--hy-theme-color, $hy-primary), var(--hy-theme-color, $hy-primary));
+  @include themeColor(error, $hy-error, $hy-error);
+  @include themeColor(warning, $hy-warning, $hy-warning);
 
-  &--success {
-    color: #fff;
-    background-color: $hy-success;
-    border: 1px solid $hy-success;
-  }
+  @include themeColor(info__plain, transparent, $hy-info, $hy-info);
+  @include themeColor(success__plain, transparent, $hy-success, $hy-success);
+  @include themeColor(primary__plain, transparent, var(--hy-theme-color, $hy-primary), var(--hy-theme-color, $hy-primary));
+  @include themeColor(error__plain, transparent, $hy-error, $hy-error);
+  @include themeColor(warning__plain, transparent, $hy-warning, $hy-warning);
 
-  &--primary {
-    color: #fff;
-    background-color: $hy-primary;
-    border: 1px solid $hy-primary;
-  }
 
-  &--error {
-    color: #fff;
-    background-color: $hy-error;
-    border: 1px solid $hy-error;
-  }
-
-  &--warning {
-    color: #fff;
-    background-color: $hy-warning;
-    border: 1px solid $hy-warning;
-  }
 
   &--block {
     @include flex;
     width: 100%;
   }
 
-  &--circle {
-    border-radius: 100px;
-  }
-
-  &--square {
-    border-radius: 3px;
-  }
+  @include borderRadio(circle);
+  @include borderRadio(square);
 
   &__icon {
     min-width: 1em;
@@ -105,10 +84,11 @@
     vertical-align: top;
   }
 
-  &--plain {
-    color: v-bind(textColor);
-    background-color: #fff;
-  }
+  //&--plain {
+  //  //color: v-bind(textColor);
+  //  color: var(--hy-theme-color, $hy-primary);
+  //  background-color: #fff;
+  //}
 
   &--hairline {
     border-width: 0.5px;

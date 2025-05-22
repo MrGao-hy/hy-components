@@ -7,6 +7,7 @@
       <view
         class="hy-input__content__prefix-icon"
         v-if="prefixIcon?.name || $slots.prefix"
+        @tap="onPrefix"
       >
         <slot name="prefix">
           <HyIcon
@@ -75,6 +76,7 @@
       <view
         class="hy-input__content__subfix-icon"
         v-if="suffixIcon?.name || $slots.suffix"
+        @tap="onSuffix"
       >
         <slot name="suffix">
           <HyIcon
@@ -134,6 +136,8 @@ const emit = defineEmits([
   "change",
   "update:modelValue",
   "clear",
+  "onPrefix",
+  "onSuffix",
 ]);
 
 const instance = getCurrentInstance();
@@ -334,6 +338,19 @@ const clickHandler = () => {
   if (disabled.value || readonly.value) {
     uni.hideKeyboard();
   }
+};
+
+/**
+ * @description 点击前缀
+ * */
+const onPrefix = () => {
+  emit("onPrefix");
+};
+/**
+ * @description 点击后缀
+ * */
+const onSuffix = () => {
+  emit("onSuffix");
 };
 </script>
 

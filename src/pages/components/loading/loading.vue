@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <view class="hy-page" :class="themeClass" :style="themeColor">
     <view class="hy-title">基础使用</view>
     <hy-loading></hy-loading>
 
@@ -22,6 +22,10 @@
 
 <script setup lang="ts">
 import HyLoading from "@/package/components/hy-loading/hy-loading.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, themeClass } = themeStore;
 </script>
 
 <style scoped lang="scss"></style>

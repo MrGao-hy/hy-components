@@ -1,6 +1,6 @@
 <template>
-  <view>
-    <view class="hy-container">
+  <view class="hy-page2" :class="themeClass" :style="themeColor">
+    <view class="hy-box">
       <hy-cell title="基础使用" :list="list" @click="onClick"></hy-cell>
     </view>
 
@@ -17,10 +17,14 @@
 </template>
 
 <script setup lang="ts">
-import HyCell from "hy-app/components/hy-cell/hy-cell.vue";
+import HyCell from "@/package/components/hy-cell/hy-cell.vue";
 import HyPopup from "@/package/components/hy-popup/hy-popup.vue";
 import { ref } from "vue";
 import type { CellContentVo } from "hy-app/components/hy-cell/typing";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, themeClass } = themeStore;
 
 const show = ref(false);
 const mode = ref<HyApp.LayoutType>("center");

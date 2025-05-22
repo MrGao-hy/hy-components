@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <view class="hy-page" :style="themeColor">
     <view class="hy-title">图标图片(带圆角)</view>
     <view class="hy-flex">
       <hy-icon :name="config.avatar" size="80" round="5px" />
@@ -42,6 +42,12 @@ import { config } from "@/config/config";
 
 import HyIcon from "@/package/components/hy-icon/hy-icon.vue";
 import HyGrid from "@/package/components/hy-grid/hy-grid.vue";
+// import HyIcon from "hy-app/components/hy-icon/hy-icon.vue";
+// import HyGrid from "hy-app/components/hy-grid/hy-grid.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor } = themeStore;
 
 // 图标集合
 const icons = reactive([
