@@ -62,6 +62,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-rate',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { addUnit, getRect, guid, range, sleep } from "../../utils";
 import { ref, watch, toRefs, onMounted, getCurrentInstance } from "vue";

@@ -1,6 +1,22 @@
 @use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
 
-.hy-dropdown-item {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(dropdown-item) {
+      color: $hy-dark-color;
+      &__header {
+        background-color: $hy-dark-background--container;
+      }
+      &__main--container {
+        background-color: $hy-dark-background--container;
+      }
+    }
+  }
+}
+
+@include b(dropdown-item) {
   &__header {
     width: 100%;
     height: 100%;
@@ -15,6 +31,15 @@
     position: relative;
     z-index: 999;
     background-color: #ffffff;
+
+    &--active {
+      color: $hy-primary;
+      :deep() {
+        @include b(icon) {
+          color: $hy-primary;
+        }
+      }
+    }
   }
 
   &__main {
@@ -47,6 +72,14 @@
         width: 100%;
         padding: 0 35rpx;
         box-sizing: border-box;
+        &--active {
+          color: $hy-primary;
+          :deep() {
+            @include b(icon) {
+              color: $hy-primary;
+            }
+          }
+        }
         &-item {
           width: 100%;
           padding: 30rpx 0;
@@ -55,7 +88,7 @@
           align-items: center;
 
           &:not(:last-of-type) {
-            border-bottom: 1px solid #f2f2f2;
+            border-bottom: $hy-border-line;
           }
 
           &--label {

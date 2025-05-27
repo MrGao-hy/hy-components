@@ -1,6 +1,6 @@
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-waterfall {
+@include b(waterfall) {
   @include flex;
   flex-direction: row;
   align-items: flex-start;

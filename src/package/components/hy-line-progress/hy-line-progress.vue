@@ -14,6 +14,9 @@
         <text
           v-if="showText && percentage >= 10"
           class="hy-line-progress__text"
+          :style="{
+            fontSize: fontSize ? addUnit(fontSize) : addUnit(getPx(height)),
+          }"
           >{{ innserPercentage + "%" }}</text
         >
       </slot>
@@ -21,10 +24,22 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-line-progress',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import {
   computed,
-  type CSSProperties, getCurrentInstance,
+  type CSSProperties,
+  getCurrentInstance,
   onMounted,
   ref,
   toRefs,
@@ -32,7 +47,7 @@ import {
 } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
-import { addUnit, getRect, range, sleep } from "../../utils";
+import { addUnit, getPx, getRect, range, sleep } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { percentage, activeColor, height } = toRefs(props);

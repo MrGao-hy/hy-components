@@ -111,13 +111,15 @@
 
 <script lang="ts">
 export default {
-  name: "hy-picker",
+  name: 'hy-picker',
   options: {
+    addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: "shared",
-  },
-};
+    styleIsolation: 'shared'
+  }
+}
 </script>
+
 <script setup lang="ts">
 import { computed, ref, toRefs, watch } from "vue";
 import { deepClone, sleep, addUnit } from "../../utils";

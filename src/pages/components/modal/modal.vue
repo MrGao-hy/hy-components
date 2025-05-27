@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-container">
       <hy-cell title="基础使用" :list="list" @click="onClick"></hy-cell>
     </view>
@@ -15,15 +15,19 @@
       @confirm="show = false"
       @cancel="show = false"
     ></hy-modal>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyModal from "@/package/components/hy-modal/hy-modal.vue";
-import HyCell from "hy-app/components/hy-cell/hy-cell.vue";
+import HyCell from "@/package/components/hy-cell/hy-cell.vue";
 import type { CellContentVo } from "hy-app/components/hy-cell/typing";
 import { ref } from "vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const show = ref(false);
 const mode = ref("");
 

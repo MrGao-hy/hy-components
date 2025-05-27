@@ -1,16 +1,16 @@
 <template>
   <HyTransition mode="fade" :show="show">
     <view
-      class="hy-alert"
-      :class="[`hy-alert--${type}--${theme}`]"
+      class="hy-warn"
+      :class="[`hy-warn--${type}--${theme}`]"
       @tap.stop="clickHandler"
       :style="[customStyle]"
     >
-      <view class="hy-alert__icon" v-if="showIcon">
+      <view class="hy-warn__icon--left" v-if="showIcon">
         <HyIcon :name="iconName(type)" size="21" :color="iconColor"></HyIcon>
       </view>
       <view
-        class="hy-alert__content"
+        class="hy-warn__content"
         :style="[
           {
             paddingRight: closable ? '20px' : 0,
@@ -18,7 +18,7 @@
         ]"
       >
         <text
-          class="hy-alert__content__title"
+          class="hy-warn__content__title"
           v-if="title"
           :style="[
             {
@@ -28,13 +28,13 @@
           ]"
           :class="[
             theme === 'dark'
-              ? 'hy-alert__text--dark'
-              : `hy-alert__text--${type}--light`,
+              ? 'hy-warn__text--dark'
+              : `hy-warn__text--${type}--light`,
           ]"
           >{{ title }}</text
         >
         <text
-          class="hy-alert__content__desc"
+          class="hy-warn__content__desc"
           v-if="description"
           :style="[
             {
@@ -44,18 +44,29 @@
           ]"
           :class="[
             theme === 'dark'
-              ? 'hy-alert__text--dark'
-              : `hy-alert__text--${type}--light`,
+              ? 'hy-warn__text--dark'
+              : `hy-warn__text--${type}--light`,
           ]"
           >{{ description }}</text
         >
       </view>
-      <view class="hy-alert__close" v-if="closable" @tap.stop="closeHandler">
+      <view class="hy-warn__close" v-if="closable" @tap.stop="closeHandler">
         <HyIcon :name="IconConfig.CLOSE" :color="iconColor" size="15"></HyIcon>
       </view>
     </view>
   </HyTransition>
 </template>
+
+<script lang="ts">
+export default {
+  name: 'hy-warn',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
 
 <script setup lang="ts">
 import { computed, ref, toRefs } from "vue";

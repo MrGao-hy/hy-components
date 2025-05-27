@@ -1,7 +1,16 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-radio {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(radio__label-wrap) {
+      color: $hy-dark-color;
+    }
+  }
+}
+
+@include b(radio) {
   @include flex(row);
   overflow: hidden;
   flex-direction: row;
@@ -64,17 +73,19 @@
     }
 
     &--checked {
-      color: $hy-text-color-inverse;
+      color: #FFFFFF;
       background-color: $hy-primary;
       border-color: $hy-primary;
     }
 
     &--disabled {
-      background-color: $hy-color-disable-bg !important;
+      background-color: $hy-light-background-disabled;
     }
 
     &--disabled--checked {
-      color: $hy-color-disable-icon !important;
+      background-color: $hy-primary;
+      border-color: $hy-primary;
+      opacity: 0.5;
     }
   }
 
@@ -82,7 +93,8 @@
     /* #ifndef APP-NVUE */
     word-wrap: break-word;
     /* #endif */
-    color: $hy-text-color;
+    color:
+$hy-light-color;
     font-size: $hy-font-size-base;
     margin-right: $hy-border-margin-padding-sm;
 

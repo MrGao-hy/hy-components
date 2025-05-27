@@ -1,4 +1,7 @@
-.hy-qrcode {
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+@include b(qrcode) {
   &__loading {
     display: flex;
     justify-content: center;

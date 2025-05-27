@@ -46,6 +46,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-loading',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import defaultProps from "./props";
 import type IProps from "./typing";

@@ -8,7 +8,7 @@ const defaultProps: IProps = {
   decimals: 0,
   useEasing: true,
   decimal: ".",
-  color: "#606266",
+  color: "",
   fontSize: 22,
   bold: false,
   separator: "",

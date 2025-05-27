@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-count-to :startVal="30" :endVal="500"></hy-count-to>
 
@@ -32,14 +32,18 @@
       <hy-button text="暂停" type="error" @click="pause"></hy-button>
       <hy-button text="继续" type="info" @click="resume"></hy-button>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyCountTo from "@/package/components/hy-count-to/hy-count-to.vue";
 import HyButton from "@/package/components/hy-button/hy-button.vue";
 import { ref } from "vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import {useThemeStore} from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const countToRef = ref<InstanceType<typeof HyCountTo>>();
 
 // methods

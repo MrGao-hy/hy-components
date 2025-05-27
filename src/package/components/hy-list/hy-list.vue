@@ -66,10 +66,13 @@
 
 <script lang="ts">
 export default {
+  name: 'hy-list',
   options: {
+    addGlobalClass: true,
     virtualHost: true,
-  },
-};
+    styleIsolation: 'shared'
+  }
+}
 </script>
 
 <script lang="ts" setup>

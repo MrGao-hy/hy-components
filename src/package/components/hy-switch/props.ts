@@ -6,7 +6,7 @@ const defaultProps: IProps = {
   loading: false,
   disabled: false,
   size: "medium",
-  inactiveColor: "#ffffff",
+  inactiveColor: "",
   activeValue: true,
   inactiveValue: false,
   activeIcon: "",

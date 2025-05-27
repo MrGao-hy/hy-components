@@ -1,9 +1,9 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
-    <view class="hy-container">
+    <view>
       <hy-card
-        title="刘德华"
+        title="刘德华（无敌最帅的人，唱歌又好听）"
         sub-title="2020-05-15"
         thumb="https://img0.baidu.com/it/u=3124282249,3904399666&fm=253"
         :showHead="showHead"
@@ -62,7 +62,7 @@
       <view class="hy-title">内边距</view>
       <hy-subsection :list="list" v-model="padding"></hy-subsection>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -71,8 +71,12 @@ import HyCard from "@/package/components/hy-card/hy-card.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
 import HyIcon from "@/package/components/hy-icon/hy-icon.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { reactive, ref } from "vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const showHead = ref(true);
 const showFoot = ref(true);
 const boxShadow = ref(true);
@@ -82,13 +86,11 @@ const list = reactive([10, 20, 30, 40]);
 
 <style scoped lang="scss">
 .u-card-wrap {
-  background-color: #fff;
   padding: 1px;
 }
 
 .u-body-item {
   font-size: 32rpx;
-  color: #333;
   padding: 20rpx 10rpx;
 }
 

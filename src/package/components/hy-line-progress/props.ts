@@ -1,12 +1,12 @@
 import type IProps from "./typing";
-import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
-  activeColor: ColorConfig.primary,
-  inactiveColor: "#ececec",
+  activeColor: "",
+  inactiveColor: "",
   percentage: 0,
   showText: true,
-  height: 12,
+  height: 8,
+  fontSize: "",
 };
 
 export default defaultProps;

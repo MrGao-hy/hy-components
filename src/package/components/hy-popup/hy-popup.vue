@@ -44,13 +44,15 @@
 
 <script lang="ts">
 export default {
-  name: "hy-popup",
+  name: 'hy-popup',
   options: {
+    addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: "shared",
-  },
-};
+    styleIsolation: 'shared'
+  }
+}
 </script>
+
 <script setup lang="ts">
 import { computed, type CSSProperties, ref, toRefs, watch } from "vue";
 import defaultProps from "./props";

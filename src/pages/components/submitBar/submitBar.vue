@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <hy-submit-bar
       :menus="menus"
       :left-loading="true"
@@ -18,13 +18,18 @@
       :fixed="false"
       :show-right-btn="false"
     ></hy-submit-bar>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
-import HySubmitBar from "@/package/components/hy-submitBar/hy-submitBar.vue";
+import HySubmitBar from "@/package/components/hy-submit-bar/hy-submit-bar.vue";
 import { reactive } from "vue";
 import { IconConfig } from "hy-app";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import {useThemeStore} from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 
 const menus = reactive([
   { icon: IconConfig.HOME, text: "首页" },

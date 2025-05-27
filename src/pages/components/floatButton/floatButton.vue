@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
     <hy-float-button
       :shape="shape"
       :size="size"
@@ -40,16 +40,20 @@
       <view class="hy-title">显示阴影</view>
       <hy-switch v-model="shadow"></hy-switch>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyFloatButton from "@/package/components/hy-float-button/hy-float-button.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { reactive, ref } from "vue";
 import { IconConfig } from "hy-app";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const menus = ["菜单1", "菜单2", "菜单3"];
 
 const shape = ref("circle");

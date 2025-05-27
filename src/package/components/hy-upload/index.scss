@@ -4,7 +4,18 @@
 $hy-upload-image-width: 80px !default;
 $hy-upload-text-font-size: 11px !default;
 
-.hy-upload {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(upload) {
+      &__button {
+        background-color: $hy-dark-background--container;
+      }
+    }
+  }
+}
+
+@include b(upload) {
   @include flex(column);
   flex: 1;
 

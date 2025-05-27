@@ -1,7 +1,27 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-alert {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(warn) {
+      &--error--light {
+        background-color: rgba(250, 53, 52, 0.3);
+      }
+      &--success--light {
+        background-color: rgba(25, 190, 107, 0.3);
+      }
+      &--warning--light {
+        background-color: rgba(255, 153, 0, 0.3);
+      }
+      &--info--light {
+        background-color: rgba(144, 147, 153, 0.3);
+      }
+    }
+  }
+}
+
+@include b(warn) {
   position: relative;
   background-color: $hy-primary;
   padding: $hy-border-margin-padding-base;
@@ -15,6 +35,11 @@
 
   &--primary--light {
     background-color: $hy-primary-light;
+    .hy-warn__icon--left {
+      :deep(.hy-icon) {
+        color: $hy-primary;
+      }
+    }
   }
 
   &--error--dark {
@@ -23,6 +48,11 @@
 
   &--error--light {
     background-color: $hy-error-light;
+    .hy-warn__icon--left {
+      :deep(.hy-icon) {
+        color: $hy-error;
+      }
+    }
   }
 
   &--success--dark {
@@ -31,6 +61,11 @@
 
   &--success--light {
     background-color: $hy-success-light;
+    .hy-warn__icon--left {
+      :deep(.hy-icon) {
+        color: $hy-success;
+      }
+    }
   }
 
   &--warning--dark {
@@ -39,6 +74,11 @@
 
   &--warning--light {
     background-color: $hy-warning-light;
+    .hy-warn__icon--left {
+      :deep(.hy-icon) {
+        color: $hy-warning;
+      }
+    }
   }
 
   &--info--dark {
@@ -47,6 +87,11 @@
 
   &--info--light {
     background-color: $hy-info-light;
+    .hy-warn__icon--left {
+      :deep(.hy-icon) {
+        color: $hy-info;
+      }
+    }
   }
 
   &__icon {

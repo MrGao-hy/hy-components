@@ -3,8 +3,8 @@ import type IProps from "./typing";
 const defaultProps: IProps = {
   full: false,
   title: "",
-  titleColor: "#303133",
-  titleSize: "15px",
+  titleColor: "",
+  titleSize: "18px",
   subTitle: "",
   subTitleColor: "#909399",
   subTitleSize: "13",

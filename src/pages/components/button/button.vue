@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page" :class="themeClass" :style="themeColor">
+  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">按钮颜色</view>
     <view class="hy-grid">
       <hy-button type="info" text="默认按钮"></hy-button>
@@ -88,16 +88,17 @@
       <hy-button text="方形按钮" shape="square"></hy-button>
       <hy-button text="圆形按钮" shape="circle"></hy-button>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyButton from "@/package/components/hy-button/hy-button.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { IconConfig } from "@/package/config";
 import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 </script>
 
 <style scoped lang="scss"></style>

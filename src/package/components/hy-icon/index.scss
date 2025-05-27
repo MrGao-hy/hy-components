@@ -2,29 +2,38 @@
 @use "../../public/font/iconfont.css" as *;
 @use "../../theme.scss" as *;
 
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(icon) {
+      color: $hy-dark-color;
+    }
+  }
+}
 
 @include b(icon) {
   /* #ifndef APP-NVUE */
   display: flex;
   /* #endif */
   align-items: center;
+  color: $hy-text-color-grey;
 
-  &--left {
+  @include m(left) {
     flex-direction: row-reverse;
     align-items: center;
   }
 
-  &--right {
+  @include m(right) {
     flex-direction: row;
     align-items: center;
   }
 
-  &--top {
+  @include m(top) {
     flex-direction: column-reverse;
     justify-content: center;
   }
 
-  &--bottom {
+  @include m(bottom) {
     flex-direction: column;
     justify-content: center;
   }
@@ -70,7 +79,7 @@
     /* #endif */
   }
 }
-.hy-rotate {
+@include b(rotate) {
   animation: hy-rotate 1s infinite linear;
   @keyframes hy-rotate {
     0% {

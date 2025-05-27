@@ -1,19 +1,26 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-$u-numberBox-hover-bgColor: #e6e6e6 !default;
-$u-numberBox-disabled-color: #c8c9cc !default;
-$u-numberBox-disabled-bgColor: #f7f8fa !default;
-$u-numberBox-plus-radius: 4px !default;
-$u-numberBox-minus-radius: 4px !default;
-$u-numberBox-input-text-align: center !default;
-$u-numberBox-input-font-size: 15px !default;
-$u-numberBox-input-padding: 0 !default;
-$u-numberBox-input-margin: 0 2px !default;
-$u-numberBox-input-disabled-color: #c8c9cc !default;
-$u-numberBox-input-disabled-bgColor: #f2f3f5 !default;
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(number-box) {
+      color: $hy-dark-color;
+      &__input,
+      &__plus,
+      &__minus {
+        background-color: $hy-dark-background--empty;
+        &--disabled {
+          color: $hy-dark-text-disabled;
+          background-color: $hy-dark-bg-disabled;
+        }
+      }
+    }
+  }
+}
 
-.hy-number-box {
+
+@include b(number-box) {
   @include flex(row);
   align-items: center;
 
@@ -23,8 +30,10 @@ $u-numberBox-input-disabled-bgColor: #f2f3f5 !default;
     /* #endif */
   }
 
+  &__input,
   &__plus,
   &__minus {
+    background-color: #EBECEE;
     width: 35px;
     @include flex;
     justify-content: center;
@@ -34,38 +43,38 @@ $u-numberBox-input-disabled-bgColor: #f2f3f5 !default;
     /* #endif */
 
     &--hover {
-      background-color: $u-numberBox-hover-bgColor !important;
+      background-color: $hy-light-background-hover;
     }
 
     &--disabled {
-      color: $u-numberBox-disabled-color;
-      background-color: $u-numberBox-disabled-bgColor;
+      color: $hy-text-color-disable;
+      background-color: $hy-light-background-disabled;
     }
   }
 
   &__plus {
-    border-top-right-radius: $u-numberBox-plus-radius;
-    border-bottom-right-radius: $u-numberBox-plus-radius;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 
   &__minus {
-    border-top-left-radius: $u-numberBox-minus-radius;
-    border-bottom-left-radius: $u-numberBox-minus-radius;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
   }
 
   &__input {
     position: relative;
-    text-align: $u-numberBox-input-text-align;
-    font-size: $u-numberBox-input-font-size;
-    padding: $u-numberBox-input-padding;
-    margin: $u-numberBox-input-margin;
+    text-align: center;
+    font-size: 15px;
+    padding: 0;
+    margin: 0 2px;
     @include flex;
     align-items: center;
     justify-content: center;
 
     &--disabled {
-      color: $u-numberBox-input-disabled-color;
-      background-color: $u-numberBox-input-disabled-bgColor;
+      color: #c8c9cc;
+      background-color: #f2f3f5;
     }
   }
 }

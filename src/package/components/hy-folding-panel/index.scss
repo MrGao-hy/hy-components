@@ -1,4 +1,7 @@
-.hy-folding-panel {
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+@include b(folding-panel) {
   &__main {
     overflow: auto;
     transition: height 0.5s ease;

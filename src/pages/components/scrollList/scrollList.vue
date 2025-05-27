@@ -1,8 +1,8 @@
 <template>
-  <view>
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
-      <hy-scroll-list indicatorColor="#fff0f0" indicatorActiveColor="#f56c6c">
+      <hy-scroll-list>
         <view class="scroll-list" style="flex-direction: row">
           <view
             class="scroll-list__goods-item"
@@ -26,11 +26,16 @@
         </view>
       </hy-scroll-list>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyScrollList from "@/package/components/hy-scroll-list/hy-scroll-list.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 
 const goodsArr = [
   {

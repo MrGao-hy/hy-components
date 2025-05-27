@@ -4,6 +4,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-dropdown',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { provide, ref, computed, type CSSProperties, toRefs } from "vue";
 import type IProps from "./typing";
@@ -17,7 +28,8 @@ const { height, borderBottom } = toRefs(props);
 const dropdownStyle = computed(() => {
   const style: CSSProperties = props.sticky
     ? {
-        position: "sticky",
+        position: "fixed",
+        left: 0,
         // #ifdef H5
         top: "44px",
         // #endif

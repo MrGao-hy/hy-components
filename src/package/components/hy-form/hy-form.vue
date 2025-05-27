@@ -313,6 +313,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-form',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { computed, type CSSProperties, reactive, toRefs } from "vue";
 import type IProps from "./typing";
@@ -357,7 +368,7 @@ const errorStyle = computed(() => {
   return (err: boolean) => {
     const style: CSSProperties = {};
     if (err) {
-      style.background = "#FFF2F0";
+      style.background = "#dd6161";
     }
 
     return style;

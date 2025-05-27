@@ -1,7 +1,7 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-tooltip {
+@include b(tooltip) {
   position: relative;
   @include flex;
 

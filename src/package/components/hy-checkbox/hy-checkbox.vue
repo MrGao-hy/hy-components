@@ -48,6 +48,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-checkbox',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import defaultProps from "./props";
 import type { CheckboxColumnsVo } from "./typing";
@@ -135,8 +146,11 @@ const iconClasses = computed(() => {
     if (isDisabled(temp?.disabled)) {
       classes.push("hy-checkbox__icon-wrap--disabled");
     }
-    if (temp[fieldNames.value.checked] && isDisabled(temp?.disabled)) {
-      classes.push("hy-checkbox__icon-wrap--disabled--checked");
+    if (temp[fieldNames.value.checked]) {
+      classes.push("hy-checkbox__icon-wrap--checked");
+      if (isDisabled(temp?.disabled)) {
+        classes.push("hy-checkbox__icon-wrap--disabled--checked");
+      }
     }
     return classes;
   };
@@ -152,7 +166,9 @@ const iconWrapStyle = computed(() => {
     style.backgroundColor =
       temp[fieldNames.value.checked] && !isDisabled(temp?.disabled)
         ? activeColor.value
-        : "#ffffff";
+        : !isDisabled(temp?.disabled)
+          ? "#ffffff"
+          : "";
     style.borderColor =
       temp[fieldNames.value.checked] && !isDisabled(temp?.disabled)
         ? activeColor.value

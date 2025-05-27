@@ -22,15 +22,26 @@
   </HyTransition>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-back-top',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { computed, type CSSProperties, toRefs } from "vue";
 import defaultProps from "./props";
+import { addUnit, getPx } from "../../utils";
+import { IconConfig } from "@/package";
 import type IProps from "./typing";
 // 组件
 import HyTransition from "../hy-transition/hy-transition.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
-import { addUnit, getPx } from "../../utils";
-import { IconConfig } from "@/package";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { customStyle, duration, mode, bottom, right, top, scrollTop } =

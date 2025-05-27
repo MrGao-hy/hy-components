@@ -26,7 +26,7 @@ const defaultProps: IProps = {
   adjustPosition: true,
   inputAlign: "left",
   fontSize: "15px",
-  color: "#303133",
+  color: "",
   prefixIcon: {},
   suffixIcon: {},
   border: "surround",

@@ -1,6 +1,6 @@
 <template>
   <text
-    class="hy-count-num"
+    class="hy-count-to"
     :style="{
       fontSize: addUnit(fontSize),
       fontWeight: bold ? 'bold' : 'normal',
@@ -9,6 +9,17 @@
     >{{ displayValue }}</text
   >
 </template>
+
+<script lang="ts">
+export default {
+  name: 'hy-count-to',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
 
 <script setup lang="ts">
 import type IProps from "./typing";

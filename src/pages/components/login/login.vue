@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import HyLogin from "@/package/components/hy-login/hy-login.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 
 const loginFn = () => {
   // uni.switchTab({ url: "/pages/index/Index" });

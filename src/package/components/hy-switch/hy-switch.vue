@@ -3,14 +3,14 @@
     class="hy-switch cursor-pointer"
     :class="[
       disabled && 'hy-switch--disabled',
-      isActive && 'hy-switch--active',
+      isActive ? 'hy-switch--active' : 'hy-switch--container',
     ]"
     :style="[switchStyle, customStyle]"
     @tap="clickHandler"
   >
-    <view class="hy-switch__bg" :style="[bgStyle]"> </view>
+    <view class="hy-switch--bg" :style="[bgStyle]"> </view>
     <view
-      :class="['hy-switch__node', modelValue && 'hy-switch__node--on']"
+      :class="['hy-switch--node', modelValue && 'hy-switch__node--on']"
       :style="[nodeStyle]"
       ref="hy-switch__node"
     >
@@ -40,6 +40,17 @@
     </view>
   </view>
 </template>
+
+<script lang="ts">
+export default {
+  name: "hy-switch",
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: "shared",
+  },
+};
+</script>
 
 <script setup lang="ts">
 import { toRefs, watch, nextTick, computed, type CSSProperties } from "vue";

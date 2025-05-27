@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-line-progress :percentage="value"></hy-line-progress>
@@ -23,14 +23,18 @@
       <button @click="computedWidth('minus')">减少</button>
       <button @click="computedWidth('plus')">增加</button>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyLineProgress from "@/package/components/hy-line-progress/hy-line-progress.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { ref } from "vue";
 import { range } from "hy-app";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const value = ref(20);
 
 const computedWidth = (type: "plus" | "minus") => {

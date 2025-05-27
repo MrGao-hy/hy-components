@@ -5,13 +5,9 @@ const defaultProps: IProps = {
   current: 0,
   keyName: "name",
   duration: 300,
-  lineColor: "#3c9cff",
-  activeStyle: {
-    color: "#303133",
-  },
-  inactiveStyle: {
-    color: "#606266",
-  },
+  lineColor: "",
+  activeStyle: {},
+  inactiveStyle: {},
   lineWidth: 20,
   lineHeight: 3,
   lineBgSize: "cover",

@@ -1,9 +1,20 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-textarea {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(textarea) {
+      color: $hy-dark-color;
+      &--count {
+        background-color: $hy-dark-background--container;
+      }
+    }
+  }
+}
+
+@include b(textarea) {
   border-radius: $hy-border-radius-sm;
-  background-color: #fff;
   position: relative;
   @include flex;
   flex: 1;
@@ -18,17 +29,16 @@
   }
 
   &--disabled {
-    background-color: $hy-color-disable-bg;
+    background-color: $hy-light-background-disabled;
   }
 
   &__field {
     flex: 1;
     font-size: 15px;
-    color: #606266ff;
     width: 100%;
   }
 
-  &__count {
+  &--count {
     position: absolute;
     right: 5px;
     bottom: 2px;
@@ -36,5 +46,6 @@
     color: $hy-tips-color;
     background-color: #ffffff;
     padding: 1px 4px;
+    border-radius: $hy-border-radius-sm;
   }
 }

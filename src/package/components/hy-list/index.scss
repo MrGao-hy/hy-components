@@ -1,7 +1,7 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-virtual-container {
+@include b(virtual-container) {
   padding: 0 $hy-border-margin-padding-base;
   box-sizing: border-box;
 

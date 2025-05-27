@@ -46,21 +46,14 @@ export default interface HyCellProps {
    * */
   title?: string;
   /**
-   * @description 是否显示头部底部边框
+   * @description 是否显示标题前缀竖线
    * */
-  titleBorder?: boolean;
+  showVertical?: boolean;
   /**
    * @description 是否显示cell下边框 (默认 true )
    * */
   border?: boolean;
-  /**
-   * @description 标题前缀竖线颜色
-   * */
-  verticalColor?: string;
-  /**
-   * @description 是否显示标题前缀竖线
-   * */
-  showVertical?: boolean;
+  borderRadius?: string | number;
   /**
    * @description 是否禁用cell（默认false）
    * */

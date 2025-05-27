@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-tooltip text="复制内容"></hy-tooltip>
@@ -19,11 +19,16 @@
     <view class="hy-container">
       <hy-tooltip text="复制内容" bgColor="#e3e4e6"></hy-tooltip>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyTooltip from "@/package/components/hy-tooltip/hy-tooltip.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import {useThemeStore} from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 </script>
 
 <style scoped lang="scss"></style>

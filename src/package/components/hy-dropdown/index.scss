@@ -1,4 +1,7 @@
-.hy-dropdown {
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+@include b(dropdown) {
   width: 100%;
   display: flex;
   align-items: center;

@@ -1,9 +1,9 @@
 <template>
-  <view>
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-steps
       :list="list"
-      :current="current"
+      v-model:current="current"
       :direction="direction"
       :dot="dot"
     ></hy-steps>
@@ -18,7 +18,7 @@
       <view class="hy-title">前进</view>
       <hy-number-step v-model="current" :min="0"></hy-number-step>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -27,8 +27,12 @@ import HyNumberStep from "@/package/components/hy-number-step/hy-number-step.vue
 import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import { ref } from "vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import {useThemeStore} from "@/store";
+const themeStore = useThemeStore();
 
-const direction = ref<HyApp.DirectionType>("column");
+const { themeColor, darkMode } = themeStore;
+const direction = ref<HyApp.DirectionType>("row");
 const dot = ref(false);
 
 const current = ref(0);

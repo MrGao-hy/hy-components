@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-notice-bar
@@ -31,7 +31,7 @@
       >
       <hy-slider v-model="speed" :min="50" :max="300" showValue></hy-slider>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -41,7 +41,11 @@ import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
 import HySlider from "@/package/components/hy-slider/hy-slider.vue";
 import { reactive, ref } from "vue";
 import type { NoticeBarModeVo } from "@/package/components/hy-notice-bar/typing";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const direction = ref<HyApp.DirectionType>("row");
 const mode = ref<NoticeBarModeVo>("");
 const justifyContent = ref<HyApp.JustifyContentType>("flex-start");

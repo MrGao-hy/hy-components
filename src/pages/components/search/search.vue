@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-search
@@ -29,7 +29,7 @@
       <view class="hy-title">输入框内文本位置</view>
       <hy-subsection :list="list_1" v-model="inputAlign"></hy-subsection>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -38,8 +38,12 @@ import HySearch from "@/package/components/hy-search/hy-search.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
 import HyInput from "@/package/components/hy-input/hy-input.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import type { HyApp } from "hy-app/typing/modules/common";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const value = ref("");
 const label = ref("搜索");
 const disabled = ref(false);

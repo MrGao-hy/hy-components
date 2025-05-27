@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import HyParse from "@/package/components/hy-parse/hy-parse.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import parseContent from "./content.js";
 
 const tagStyle = {

@@ -99,6 +99,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-input',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import {
   computed,
@@ -112,7 +123,7 @@ import type { CSSProperties } from "vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
 import { addUnit, formatObject } from "../../utils";
 import defaultProps from "./props";
-import { ColorConfig, IconConfig } from "../../config";
+import { IconConfig } from "../../config";
 import type IProps from "./typing";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -237,10 +248,10 @@ const borderStyle = computed(() => {
     if (isFocus) {
       switch (border.value) {
         case "surround":
-          style = { border: `1px solid ${ColorConfig.primary}` };
+          style = { border: `1px solid var(--hy-theme-color, #3c9cff)` };
           break;
         case "bottom":
-          style = { borderBottom: `1px solid ${ColorConfig.primary}` };
+          style = { borderBottom: `1px solid var(--hy-theme-color, #3c9cff)` };
           break;
         default:
           break;

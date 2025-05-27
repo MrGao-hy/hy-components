@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-line></hy-line>
@@ -24,11 +24,16 @@
     <view class="hy-container">
       <hy-line :hairline="false" color="red"></hy-line>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyLine from "@/package/components/hy-line/hy-line.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 </script>
 
 <style scoped lang="scss"></style>

@@ -1,16 +1,21 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-read-more>
       <template #default>
         {{ text }}
       </template>
     </hy-read-more>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyReadMore from "@/package/components/hy-read-more/hy-read-more.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 
 const text =
   "先帝创业未半而中道崩殂，今天下三分，益州疲弊，此诚危急存亡之秋也。然侍卫之臣不懈于内，忠志之士忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气，不宜妄自菲薄，引喻失义，以塞忠谏之路也。\n" +

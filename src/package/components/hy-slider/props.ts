@@ -7,7 +7,7 @@ const defaultProps: IProps = {
   min: 0,
   max: 100,
   step: 1,
-  activeColor: ColorConfig.primary,
+  activeColor: "",
   inactiveColor: "#c0c4cc",
   blockColor: "#ffffff",
   showValue: false,

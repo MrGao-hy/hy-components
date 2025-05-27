@@ -23,7 +23,8 @@
 }
 .hy-container {
   flex-wrap: wrap;
-  padding: $hy-border-margin-padding-base;
+  padding: 30px $hy-border-margin-padding-base;
+  border-radius: $hy-border-radius-base;
 }
 
 .hy-margin {
@@ -58,4 +59,11 @@
   height: 100vh;
   /* #endif */
   overflow: auto;
+}
+
+/* 暗色主题 */
+@include b(theme--dark){
+  @include b(container) {
+    background-color: $hy-dark-background--container;
+  }
 }

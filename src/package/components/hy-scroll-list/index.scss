@@ -1,7 +1,14 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-scroll-list {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+
+  }
+}
+
+@include b(scroll-list) {
   padding-bottom: $hy-border-margin-padding-base;
 
   &__scroll-view {
@@ -23,11 +30,13 @@
       height: 4px;
       border-radius: $hy-border-radius-semicircle;
       overflow: hidden;
+      background-color: var(--hy-theme-color--light, $hy-border-color);
 
       &__bar {
         width: 20px;
         height: 4px;
         border-radius: $hy-border-radius-semicircle;
+        background-color: $hy-primary;
       }
     }
   }

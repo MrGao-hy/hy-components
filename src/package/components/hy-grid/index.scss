@@ -1,7 +1,7 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-.hy-grid {
+@include b(grid) {
   justify-content: center;
   @include flex;
   flex-wrap: wrap;

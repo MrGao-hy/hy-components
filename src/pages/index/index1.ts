@@ -1,5 +1,9 @@
 export const list_1 = [
   {
+    title: "configProvider 全局配置",
+    url: "/pages/components/configProvider/configProvider",
+  },
+  {
     title: "icon 图标",
     url: "/pages/components/icon/icon",
   },

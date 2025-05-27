@@ -1,5 +1,4 @@
 import type IProps from "./typing";
-import { ColorConfig } from "../../config";
 
 const defaultProps: IProps = {
   modelValue: "",
@@ -12,7 +11,7 @@ const defaultProps: IProps = {
   shape: "circle",
   size: "medium",
   disabled: false,
-  activeColor: ColorConfig.primary,
+  activeColor: "",
   inactiveColor: "#c8c9cc",
   iconSize: "20",
   iconColor: "",

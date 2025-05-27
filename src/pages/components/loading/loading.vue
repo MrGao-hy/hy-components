@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page" :class="themeClass" :style="themeColor">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-loading></hy-loading>
 
@@ -17,15 +17,16 @@
 
     <view class="hy-title">自定义文字</view>
     <hy-loading mode="circle" text="加载中..."></hy-loading>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyLoading from "@/package/components/hy-loading/hy-loading.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 </script>
 
 <style scoped lang="scss"></style>

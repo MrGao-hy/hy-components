@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <hy-folding-panel
       :list="columns"
       title="水果摊"
@@ -33,7 +33,7 @@
       <view class="hy-title">内容高度</view>
       <hy-slider v-model="height" :min="50" :max="300" showValue></hy-slider>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -42,7 +42,11 @@ import HySlider from "../../../package/components/hy-slider/hy-slider.vue";
 import HySubsection from "../../../package/components/hy-subsection/hy-subsection.vue";
 import HySwitch from "../../../package/components/hy-switch/hy-switch.vue";
 import { ref } from "vue";
+import { useThemeStore } from "@/store";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const size = ref<HyApp.SizeType>("medium");
 const titleBorder = ref(false);
 const showVertical = ref(false);

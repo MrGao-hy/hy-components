@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page" :style="themeColor">
+  <view class="hy-page" :class="themeClass" :style="themeColor">
     <view class="hy-title">主题色</view>
     <view class="hy-grid">
       <hy-tag text="标签" type="primary"></hy-tag>
@@ -73,11 +73,12 @@
 import { ref } from "vue";
 import { IconConfig } from "hy-app";
 import HyTag from "@/package/components/hy-tag/hy-tag.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { useThemeStore } from "@/store";
 
 const themeStore = useThemeStore();
 
-const { themeColor } = themeStore;
+const { themeColor, themeClass } = themeStore;
 const close = ref(true);
 </script>
 

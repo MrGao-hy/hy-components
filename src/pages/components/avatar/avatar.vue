@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-avatar :src="config.avatar" :size="size" :shape="shape"></hy-avatar>
 
@@ -17,7 +17,7 @@
       <view class="hy-title">头像大小</view>
       <hy-subsection :list="list_2" v-model="size"></hy-subsection>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -25,7 +25,11 @@ import HyAvatar from "@/package/components/hy-avatar/hy-avatar.vue";
 import HySubsection from "../../../package/components/hy-subsection/hy-subsection.vue";
 import { reactive, ref } from "vue";
 import { config } from "@/config/config";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import {useThemeStore} from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const size = ref<HyApp.SizeType>("medium");
 const shape = ref<HyApp.ShapeType>("circle");
 

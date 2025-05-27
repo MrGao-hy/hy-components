@@ -7,7 +7,7 @@
 export const colorGradient = (
   startColor: string = "rgb(0, 0, 0)",
   endColor: string = "rgb(255, 255, 255)",
-  step: number = 10,
+  step: number = 100,
 ): any[] => {
   const startRGB = hexToRgb(startColor, false); // 转换为rgb数组模式
 

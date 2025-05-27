@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page" :class="themeClass" :style="themeColor">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <HyForm
       ref="formRef"
       :columns="columns"
@@ -18,8 +18,8 @@
         ></HyInput>
       </template>
     </HyForm>
-    <HyButton type="primary" @click="handleSubmit">提交</HyButton>
-  </view>
+    <HyButton @click="handleSubmit">提交</HyButton>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -28,11 +28,12 @@ import type { FormColumnsType } from "hy-app";
 import HyForm from "@/package/components/hy-form/hy-form.vue";
 import HyInput from "@/package/components/hy-input/hy-input.vue";
 import HyButton from "hy-app/components/hy-button/hy-button.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { reactive, ref } from "vue";
 import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 
 const formData: AnyObject = reactive({
   custom: "自定义值",

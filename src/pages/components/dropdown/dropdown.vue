@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <hy-dropdown>
       <hy-dropdown-item
         title="全部"
@@ -20,14 +20,18 @@
         @change="handleChange"
       ></hy-dropdown-item>
     </hy-dropdown>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyDropdownItem from "@/package/components/hy-dropdown-item/hy-dropdown-item.vue";
 import HyDropdown from "@/package/components/hy-dropdown/hy-dropdown.vue";
 import { ref } from "vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const value1 = ref();
 const value_2 = ref();
 const value_3 = ref();

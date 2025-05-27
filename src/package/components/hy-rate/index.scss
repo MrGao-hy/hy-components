@@ -1,6 +1,6 @@
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-rate {
+@include b(rate) {
   @include flex;
   align-items: center;
   margin: 0;
@@ -26,8 +26,8 @@
     }
   }
 }
-.hy-icon {
-  /* #ifndef APP-NVUE */
-  box-sizing: border-box;
-  /* #endif */
-}
+//.hy-icon {
+//  /* #ifndef APP-NVUE */
+//  box-sizing: border-box;
+//  /* #endif */
+//}

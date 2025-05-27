@@ -1,7 +1,16 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-.hy-checkbox {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(checkbox) {
+      color: $hy-dark-color;
+    }
+  }
+}
+
+@include b(checkbox) {
   &-group {
     &--row {
       /* #ifndef APP-NVUE */
@@ -65,17 +74,19 @@
     }
 
     &--checked {
-      color: $hy-text-color-inverse;
+      color: #FFFFFF;
       background-color: $hy-primary;
       border-color: $hy-primary;
     }
 
     &--disabled {
-      background-color: $hy-color-disable-bg !important;
+      background-color: $hy-light-background-disabled;
     }
 
     &--disabled--checked {
-      color: $hy-color-disable-icon !important;
+      background-color: $hy-primary;
+      border-color: $hy-primary;
+      opacity: 0.5;
     }
   }
 
@@ -83,7 +94,6 @@
     /* #ifndef APP-NVUE */
     word-wrap: break-word;
     /* #endif */
-    color: $hy-text-color;
     font-size: $hy-font-size-base;
     margin-right: $hy-border-margin-padding-sm;
 

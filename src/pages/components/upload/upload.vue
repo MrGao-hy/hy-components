@@ -1,21 +1,33 @@
 <template>
-  <view class="hy-title">基础使用</view>
-  <hy-upload
-    :fileList="list"
-    @afterRead="afterRead"
-    name="1"
-    multiple
-    :maxCount="1"
-  ></hy-upload>
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
+    <view class="hy-title">基础使用</view>
+    <hy-upload
+      :fileList="list"
+      @afterRead="afterRead"
+      name="1"
+      multiple
+      :maxCount="1"
+    ></hy-upload>
 
-  <view class="hy-title">多张图片上传</view>
-  <hy-upload :fileList="list_1" @afterRead="afterRead_1" multiple></hy-upload>
+    <view class="hy-title">多张图片上传</view>
+    <hy-upload
+      :fileList="list_1"
+      @afterRead="afterRead_1"
+      multiple
+      upload-text="上传图片"
+    ></hy-upload>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyUpload from "@/package/components/hy-upload/hy-upload.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import type { FileVo } from "@/package/components/hy-upload/typing";
 import { ref } from "vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 
 const list = ref<FileVo[]>([
   {

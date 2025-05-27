@@ -1,11 +1,22 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-.hy-input {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(input) {
+      color: $hy-dark-color;
+    }
+  }
+}
+
+@include b(input) {
   @include flex(row);
   align-items: center;
   justify-content: space-between;
   flex: 1;
+  color:
+$hy-light-color;
 
   &--radius,
   &--square {
@@ -35,7 +46,6 @@
       &__field {
         line-height: 26px;
         text-align: left;
-        color: $hy-text-color;
         height: 24px;
         font-size: 15px;
         flex: 1;

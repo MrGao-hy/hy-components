@@ -1,7 +1,17 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-.hy-card {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(card) {
+      color: $hy-dark-color;
+      background-color: $hy-dark-background--container;
+    }
+  }
+}
+
+@include b(card) {
   position: relative;
   overflow: hidden;
   font-size: 28rpx;
@@ -27,7 +37,6 @@
     }
 
     &--left {
-      color: #303133ff;
       display: flex;
 
       &__thumb {
@@ -36,7 +45,6 @@
 
       &__title {
         max-width: 400rpx;
-        height: 20px;
         @include lineEllipsis;
       }
     }
@@ -45,13 +53,5 @@
       color: $hy-text-color-grey;
       margin-left: 6rpx;
     }
-  }
-
-  &__body {
-    color: $hy-bg-color;
-  }
-
-  &__foot {
-    color: $hy-text-color-grey;
   }
 }

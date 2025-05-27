@@ -27,7 +27,7 @@
     }
 
     &--right {
-      color: var(--hy-theme-color, $hy-primary);
+      color: $hy-primary;
     }
   }
 
@@ -57,7 +57,7 @@
     }
   }
 
-  &--loading {
+  @include m(loading) {
     position: absolute;
     top: 0;
     right: 0;

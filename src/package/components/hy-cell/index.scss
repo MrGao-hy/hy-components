@@ -1,13 +1,21 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
-//@include b(cell) {
-//  color: $hy-dark-color;
-//}
-@include b(theme--dark){
-  @include b(cell) {
-    color: $hy-dark-color;
-    &__body--container {
-      background-color: $hy-dark-background2;
+
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(cell) {
+      color: $hy-dark-color;
+      &__body--container {
+        background-color: $hy-dark-background--container;
+        &__right-icon {
+          :deep() {
+            @include b(icon) {
+              color: $hy-dark-icon;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -15,24 +23,40 @@
   flex: 1;
 
   /*标题*/
-  &__title {
-    padding: $hy-border-margin-padding-lg $hy-border-margin-padding-sm;
-
-    &-nav {
-      display: flex;
-      align-items: center;
-
-      &--ver {
-        border-radius: 4rpx;
+  @include m(title) {
+    padding: $hy-border-margin-padding-lg $hy-border-margin-padding-base;
+    &__vertical {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 51%;
+        transform: translateY(-50%);
         width: 4px;
         height: 20px;
-        margin-right: 16rpx;
-      }
-      &--text {
-        font-size: $hy-font-size-subtitle;
-        line-height: 16px;
+        background: $hy-primary;
+        border-radius: $hy-border-radius-semicircle;
       }
     }
+    &__text {
+      font-size: $hy-font-size-lg;
+    }
+    //&-nav {
+    //  display: flex;
+    //  align-items: center;
+    //
+    //  &--ver {
+    //    border-radius: 4rpx;
+    //    width: 4px;
+    //    height: 20px;
+    //    margin-right: 16rpx;
+    //  }
+    //  &--text {
+    //    font-size: $hy-font-size-subtitle;
+    //    line-height: 16px;
+    //  }
+    //}
   }
 
   /*row内容*/
@@ -42,6 +66,8 @@
     /* #endif */
     font-size: $hy-font-size-paragraph;
     align-items: center;
+    border-radius: $hy-border-margin-padding-sm;
+    overflow: hidden;
 
     &--container {
       @include flex(row);
@@ -72,7 +98,7 @@
 
       /*点击状态*/
       &__clickable {
-        background-color: $hy-bg-color-grey;
+        background-color: $hy-light-background-hover;
       }
 
       &__content {
@@ -129,7 +155,7 @@
     }
   }
 
-  &--disabled {
+  @include m(disabled) {
     color: $hy-text-color-disable;
     /* #ifndef APP-NVUE */
     cursor: not-allowed;

@@ -57,6 +57,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-float-button',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script lang="ts" setup>
 import {
   computed,

@@ -9,12 +9,12 @@ const defaultProps: IProps = {
     label: "name",
     value: "value",
   },
-  activeColor: ColorConfig.success,
-  inactiveColor: "#303133",
+  activeColor: "",
+  inactiveColor: "",
   mode: "button",
   fontSize: 12,
   bold: true,
-  bgColor: "#eeeeef",
+  bgColor: "",
 };
 
 export default defaultProps;

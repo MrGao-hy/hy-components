@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-address-picker v-model="value" has-input></hy-address-picker>
@@ -13,13 +13,17 @@
         separator="/"
       ></hy-address-picker>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import {ref, toRefs} from "vue";
 import HyAddressPicker from "@/package/components/hy-address-picker/hy-address-picker.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import {useThemeStore} from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = toRefs(themeStore);
 const value = ref("");
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page" :class="themeClass" :style="themeColor">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-picker v-model="value" :columns="columns" has-input></hy-picker>
@@ -31,16 +31,17 @@
         </template>
       </hy-picker>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import HyPicker from "@/package/components/hy-picker/hy-picker.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 
 const value = ref("");
 const columns: string[][] = reactive([["西瓜", "香蕉", "苹果"]]);

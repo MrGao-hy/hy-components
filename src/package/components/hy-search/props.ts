@@ -3,7 +3,7 @@ import type IProps from "./typing";
 const defaultProps: IProps = {
   modelValue: "",
   shape: "circle",
-  bgColor: "#f2f2f2",
+  bgColor: "",
   placeholder: "请输入关键字",
   clear: true,
   focus: false,
@@ -12,7 +12,7 @@ const defaultProps: IProps = {
   inputAlign: "left",
   disabled: false,
   borderColor: "transparent",
-  color: "#606266",
+  color: "",
   placeholderColor: "#909399",
   searchIcon: {},
   margin: "0",

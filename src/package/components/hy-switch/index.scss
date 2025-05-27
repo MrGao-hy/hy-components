@@ -1,6 +1,24 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(switch) {
+      color: $hy-dark-color;
+      @include m(container) {
+        background-color: $hy-dark-background--track;
+      }
+      @include m(node) {
+        background-color: $hy-dark-background--container;
+      }
+      @include m(bg) {
+        background-color: $hy-dark-background--track;
+      }
+    }
+  }
+}
+
 @include b(switch) {
   @include flex(row);
   /* #ifndef APP-NVUE */
@@ -16,10 +34,10 @@
   // 否则在iOS上，点击页面任意地方，都会触发switch的点击事件
   overflow: hidden;
   @include m(active){
-    background: var(--hy-theme-color, $hy-primary);
+    background: $hy-primary;
   }
 
-  &__node {
+  @include m(node) {
     @include flex(row);
     align-items: center;
     justify-content: center;
@@ -31,14 +49,12 @@
     transition-timing-function: cubic-bezier(0.3, 1.05, 0.4, 1.05);
   }
 
-  &__bg {
+  @include m(bg) {
     position: absolute;
     border-radius: $hy-border-radius-semicircle;
     background-color: #ffffff;
     transition-property: transform;
     transition-duration: 0.4s;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
     transition-timing-function: ease;
   }
 

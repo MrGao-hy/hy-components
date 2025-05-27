@@ -13,6 +13,17 @@
   >
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-badge',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import type IProps from "./typing";
 import defaultProps from "./props";

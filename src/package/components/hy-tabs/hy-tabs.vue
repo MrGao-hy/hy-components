@@ -24,7 +24,7 @@
                 `hy-tabs__wrapper__nav__item-${index}`,
                 item.disabled && 'hy-tabs__wrapper__nav__item--disabled',
                 innerCurrent == index
-                  ? 'hy-tabs__wrapper__nav__item-active'
+                  ? 'hy-tabs__wrapper__nav__item--active'
                   : '',
               ]"
             >
@@ -54,7 +54,7 @@
                   item.disabled &&
                     'hy-tabs__wrapper__nav__item__text--disabled',
                 ]"
-                class="hy-tabs__wrapper__nav__item__text"
+                class="hy-tabs__wrapper__nav__item--text"
                 :style="[textStyle(index)]"
                 >{{ item[keyName] }}</text
               >
@@ -121,21 +121,32 @@
       </view>
       <slot name="right" />
     </view>
-  </view>
 
-  <!-- 内容轮播图	-->
-  <slot name="main">
-    <swiper
-      :current="innerCurrent"
-      @animationfinish="animationFinish"
-      :style="{ height: swiperHeight }"
-    >
-      <swiper-item class="swiper-item" v-for="(item, i) in list" :key="i">
-        <slot :record="item.content" />
-      </swiper-item>
-    </swiper>
-  </slot>
+    <!-- 内容轮播图	-->
+    <slot name="main">
+      <swiper
+          :current="innerCurrent"
+          @animationfinish="animationFinish"
+          :style="{ height: swiperHeight }"
+      >
+        <swiper-item class="swiper-item" v-for="(item, i) in list" :key="i">
+          <slot :record="item.content" />
+        </swiper-item>
+      </swiper>
+    </slot>
+  </view>
 </template>
+
+<script lang="ts">
+export default {
+  name: 'hy-tabs',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
 
 <script setup lang="ts">
 import {
@@ -155,6 +166,7 @@ import { addUnit, getPx, getRect, sleep } from "../../utils";
 // 组件
 import HyBadge from "../hy-badge/hy-badge.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
+
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { list, current, activeStyle, lineWidth, inactiveStyle } = toRefs(props);

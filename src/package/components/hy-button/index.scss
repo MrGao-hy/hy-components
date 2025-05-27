@@ -58,19 +58,19 @@
 
   @include themeColor(info,  $hy-info, $hy-info);
   @include themeColor(success,  $hy-success, $hy-success);
-  @include themeColor(primary,  var(--hy-theme-color, $hy-primary), var(--hy-theme-color, $hy-primary));
+  @include themeColor(primary,  $hy-primary, $hy-primary);
   @include themeColor(error, $hy-error, $hy-error);
   @include themeColor(warning, $hy-warning, $hy-warning);
 
   @include themeColor(info__plain, transparent, $hy-info, $hy-info);
   @include themeColor(success__plain, transparent, $hy-success, $hy-success);
-  @include themeColor(primary__plain, transparent, var(--hy-theme-color, $hy-primary), var(--hy-theme-color, $hy-primary));
+  @include themeColor(primary__plain, transparent, $hy-primary, $hy-primary);
   @include themeColor(error__plain, transparent, $hy-error, $hy-error);
   @include themeColor(warning__plain, transparent, $hy-warning, $hy-warning);
 
 
 
-  &--block {
+  @include m(block) {
     @include flex;
     width: 100%;
   }
@@ -86,11 +86,11 @@
 
   //&--plain {
   //  //color: v-bind(textColor);
-  //  color: var(--hy-theme-color, $hy-primary);
+  //  color: $hy-primary;
   //  background-color: #fff;
   //}
 
-  &--hairline {
+  @include m(hairline) {
     border-width: 0.5px;
   }
 }

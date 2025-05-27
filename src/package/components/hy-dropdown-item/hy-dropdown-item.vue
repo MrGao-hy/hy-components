@@ -1,6 +1,12 @@
 <template>
   <!-- 标题栏 -->
-  <view class="hy-dropdown-item__header" @click="handleClick">
+  <view
+    :class="[
+      'hy-dropdown-item__header',
+      isOpen && 'hy-dropdown-item__header--active',
+    ]"
+    @click="handleClick"
+  >
     <text
       class="hy-dropdown-item__header--title"
       :style="{ color: currentColor, fontSize: addUnit(titleSize) }"
@@ -31,7 +37,10 @@
         <!-- 选项 -->
         <view class="hy-dropdown-item__main--container__list" v-else>
           <view
-            class="hy-dropdown-item__main--container__list-item"
+            :class="[
+              'hy-dropdown-item__main--container__list-item',
+              isOpen && 'hy-dropdown-item__main--container__list--active',
+            ]"
             v-for="(item, index) in menus"
             :key="item.value || index"
             @click="onSelect(item, index)"
@@ -57,7 +66,16 @@
 </template>
 
 <script setup lang="ts">
-import {computed, inject, ref, onMounted, watch, useSlots, toRefs, getCurrentInstance} from "vue";
+import {
+  computed,
+  inject,
+  ref,
+  onMounted,
+  watch,
+  useSlots,
+  toRefs,
+  getCurrentInstance,
+} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import type FatherIProps from "../hy-dropdown/typing";

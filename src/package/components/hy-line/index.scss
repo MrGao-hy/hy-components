@@ -1,4 +1,7 @@
-.hy-line {
+@use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
+
+@include b(line) {
   /* #ifndef APP-NVUE */
   vertical-align: middle;
   /* #endif */

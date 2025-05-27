@@ -1,29 +1,27 @@
 <template>
   <view :style="customStyle" class="hy-cell">
     <view
-      class="hy-cell__title"
-      :style="{ borderBottom: titleBorder ? '1rpx solid #c8c7cc66' : '' }"
+      :class="['hy-cell--title', showVertical && 'hy-cell--title__vertical']"
       v-if="title || $slots['title']"
     >
       <slot name="title" :title="title">
-        <view class="hy-cell__title-nav">
-          <view
-            class="hy-cell__title-nav--ver"
-            :style="{ background: verticalColor }"
-            v-if="showVertical"
-          ></view>
-          <text class="hy-cell__title-nav--text">{{ title }}</text>
-        </view>
+        <text class="hy-cell--title__text">{{ title }}</text>
       </slot>
     </view>
-    <view class="hy-cell__body">
+    <view
+      class="hy-cell__body"
+      :style="{ 'border-radius': addUnit(borderRadius) }"
+    >
       <slot>
         <template v-for="(item, i) in list" :key="i">
           <view
             :class="ItemClass"
             :hover-class="containerClass(item)"
             :hover-stay-time="250"
-            :style="{ borderBottom: border ? '1rpx solid #c8c7cc66' : '' }"
+            :style="{
+              borderBottom:
+                border && i !== list.length - 1 ? '1rpx solid #c8c7cc66' : '',
+            }"
             @tap="clickHandler($event, item, i)"
           >
             <view class="hy-cell__body--container__content">
@@ -132,7 +130,7 @@
 
 <script lang="ts">
 export default {
-  name: "hy-swiper",
+  name: "hy-cell",
   options: {
     virtualHost: true,
     styleIsolation: "shared",
@@ -148,9 +146,10 @@ import { IconConfig } from "../../config";
 
 import HyIcon from "../hy-icon/hy-icon.vue";
 import { computed, toRefs } from "vue";
+import { addUnit } from "@/package";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { size, disabled, clickable } = toRefs(props);
+const { size, disabled, clickable, borderRadius } = toRefs(props);
 const emit = defineEmits(["click"]);
 
 /**

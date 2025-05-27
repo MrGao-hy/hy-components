@@ -1,11 +1,12 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-input
       v-model="value"
       :shape="shape"
       :border="border"
       :type="type"
+      placeholder="输入值"
     ></hy-input>
 
     <view class="hy-title">icon</view>
@@ -41,17 +42,20 @@
       <view class="hy-title">边框</view>
       <hy-subsection :list="list_3" v-model="border"></hy-subsection>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-
 import HyInput from "@/package/components/hy-input/hy-input.vue";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { IconConfig } from "hy-app";
 import type { HyApp } from "hy-app/typing/modules/common";
+import { useThemeStore } from "@/store";
 
+const themeStore = useThemeStore();
+const { themeColor, darkMode } = themeStore;
 const value = ref("");
 const shape = ref<HyApp.ShapeType>("square");
 const type = ref("text");

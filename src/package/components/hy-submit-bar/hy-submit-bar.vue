@@ -69,6 +69,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-submit-bar',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import type IProps from "./typing";
 import defaultProps from "./props";
@@ -179,38 +190,5 @@ const confirmClickFn = debounce((i: number) => {
 </script>
 
 <style lang="scss" scoped>
-@import "../../theme.scss";
-.hy-submit-bar {
-  display: flex;
-  background-color: #ffffff;
-  padding: $hy-border-margin-padding-base;
-  width: 100%;
-  box-sizing: border-box;
-  /*左边内容*/
-  &__left {
-    display: flex;
-    font-size: 20rpx;
-    flex: 1;
-    &--item {
-      margin: 0 $hy-border-margin-padding-base;
-      position: relative;
-    }
-  }
-
-  /*右边内容*/
-  &__right {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 26rpx;
-    align-items: center;
-    width: 400rpx;
-    &--button {
-      padding: $hy-border-margin-padding-base $hy-border-margin-padding-lg;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-}
+@import "./index.scss";
 </style>

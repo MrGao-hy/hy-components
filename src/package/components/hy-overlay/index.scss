@@ -1,5 +1,7 @@
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
 
-.hy-overlay {
+@include b(overlay) {
   position: fixed;
   top: 0;
   left: 0;

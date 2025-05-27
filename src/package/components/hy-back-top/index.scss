@@ -1,6 +1,16 @@
 @use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
 
-.hy-back-top {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(back-top) {
+      background-color: $hy-dark-background--track;
+    }
+  }
+}
+
+@include b(back-top) {
   @include flex;
   flex-direction: column;
   align-items: center;

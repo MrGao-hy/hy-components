@@ -2,10 +2,12 @@
 @use "../../libs/css/mixin.scss" as *;
 
 /* 暗色主题 */
-@include b(theme--dark) {
-  @include b(swiper__wrapper) {
-    :deep(.uni-swiper-wrapper) {
-      background-color: $hy-dark-background2;
+@include b(theme) {
+  @include m(dark) {
+    @include b(swiper__wrapper) {
+      :deep(.uni-swiper-wrapper) {
+        background-color: $hy-dark-background--container;
+      }
     }
   }
 }

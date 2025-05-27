@@ -1,8 +1,8 @@
 import type IProps from "./typing";
-import { ColorConfig, IconConfig } from "@/package";
+import { IconConfig } from "@/package";
 
 const defaultProps: IProps = {
-  activeColor: ColorConfig.primary,
+  activeColor: "",
   inactiveColor: "#606266",
   closeOnClickMask: true,
   sticky: true,

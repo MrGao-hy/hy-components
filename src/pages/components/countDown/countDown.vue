@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :custom-class="themeClass">
     <view class="hy-title">基础使用</view>
     <hy-count-down :time="30 * 60 * 60 * 1000"></hy-count-down>
 
@@ -52,14 +52,18 @@
       <hy-button text="开始" type="success" @click="start"></hy-button>
       <hy-button text="暂停" type="error" @click="pause"></hy-button>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyCountDown from "@/package/components/hy-count-down/hy-count-down.vue";
 import HyButton from "@/package/components/hy-button/hy-button.vue";
-
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { ref } from "vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, themeClass } = themeStore;
 const countDownRef = ref<InstanceType<typeof HyCountDown>>();
 
 // methods

@@ -1,16 +1,28 @@
 @use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
 
-.hy-line-progress {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(line-progress) {
+      &__background {
+        background-color: $hy-dark-background--track;
+      }
+    }
+  }
+}
+
+@include b(line-progress) {
   align-items: stretch;
   position: relative;
   @include flex(row);
   flex: 1;
   overflow: hidden;
-  border-radius: 100px;
+  border-radius: $hy-border-radius-semicircle;
 
   &__background {
-    background-color: #ececec;
-    border-radius: 100px;
+    background-color: $hy-info-light;
+    border-radius: $hy-border-radius-semicircle;
     flex: 1;
   }
 
@@ -22,17 +34,17 @@
     align-items: center;
     @include flex(row);
     color: #ffffff;
-    border-radius: 100px;
+    border-radius: $hy-border-radius-semicircle;
     transition: width 0.5s ease;
     justify-content: flex-end;
+    background-color: $hy-primary;
   }
 
   &__text {
     font-size: 10px;
-    align-items: center;
-    text-align: right;
     color: #ffffff;
+    margin-bottom: 1px;
     margin-right: 5px;
-    transform: scale(0.9);
+    transform: scale(0.8);
   }
 }

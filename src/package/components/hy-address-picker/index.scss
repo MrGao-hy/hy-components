@@ -1,5 +1,5 @@
 @use "../../libs/css/mixin.scss" as *;
-.hy-datetime-picker {
+@include b(datetime-picker) {
   flex: 1;
   &__has-input {
     position: relative;

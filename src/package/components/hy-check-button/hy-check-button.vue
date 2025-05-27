@@ -15,6 +15,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-check-button',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { toRefs, watch, ref } from "vue";
 import defaultProps from "./props";
@@ -69,8 +80,8 @@ const onCheckbox = ({ name }: { name: number }) => {
 </script>
 
 <style lang="scss" scoped>
-//@import "./index.scss";
-.hy-check-button {
+@import "../../libs/css/mixin.scss";
+@include b(check-button) {
   display: grid;
   grid-template-columns: v-bind(col);
   gap: v-bind(gap);

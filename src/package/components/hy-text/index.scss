@@ -1,6 +1,15 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(text) {
+      color: $hy-dark-color;
+    }
+  }
+}
+
 @include b(text) {
   @include flex(row);
   align-items: center;
@@ -22,7 +31,7 @@
     /*链接*/
     &--link {
       text-decoration: underline;
-      color: var(--hy-theme-color, $hy-primary);
+      color: $hy-primary;
     }
 
     /*超出出现省略号*/
@@ -30,15 +39,15 @@
       @include multiEllipsis(v-bind(lines));
     }
 
-    @include themeColor(primary, "", "", var(--hy-theme-color, $hy-primary));
+    @include themeColor(primary, "", "", $hy-primary);
     @include themeColor(warning, "", "", $hy-warning);
     @include themeColor(success, "", "", $hy-success);
     @include themeColor(info, "", "", $hy-info);
     @include themeColor(error, "", "", $hy-error);
-    @include themeColor(main, "", "", $hy-text-color);
+    @include themeColor(main, "", "", $hy-light-color);
     @include themeColor(content, "", "", $hy-text-color-grey);
     @include themeColor(tips, "", "",$hy-tips-color);
-    @include themeColor(light, "", "", $hy-text-color-light);
+    @include themeColor(light, "", "", $hy-border-color-light);
 
   }
 }

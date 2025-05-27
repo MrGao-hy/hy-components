@@ -1,8 +1,21 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(steps) {
+      //color: $hy-dark-color;
+      &__wrapper__nav__item--active {
+        .hy-tabs__wrapper__nav__item--text {
+          color: $hy-dark-color;
+        }
+      }
+    }
+  }
+}
 
-.hy-steps {
+@include b(steps) {
   @include flex;
 
   &--column {
@@ -40,26 +53,46 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      background-color: #fff;
+      background-color: transparent;
       border-radius: $hy-border-radius-semicircle;
+
+      /* 选择 */
+      &.process {
+        background-color: $hy-primary;
+      }
+
+      /* 已完成 */
+      &.finish {
+       border: 1px solid $hy-primary;
+        :deep(.hy-icon) {
+          color: $hy-primary;
+        }
+      }
 
       &--column {
         width: 20px;
         height: 20px;
-
-        &--dot {
-          height: 20px;
-          width: 20px;
-        }
       }
 
       &--row {
         width: 20px;
         height: 20px;
+      }
 
-        &--dot {
-          width: 20px;
-          height: 20px;
+      /* 点形状 */
+      &--dot {
+        &__item {
+          width: 10px;
+          height: 10px;
+          border-radius: $hy-border-radius-circle;
+          background-color: $hy-info;
+          border: none;
+        }
+        &__finish {
+          background-color: $hy-primary;
+        }
+        &__process {
+          background-color: $hy-primary;
         }
       }
 
@@ -87,13 +120,6 @@
           line-height: 11px;
         }
       }
-
-      &__dot {
-        width: 10px;
-        height: 10px;
-        border-radius: $hy-border-radius-semicircle;
-        background-color: $hy-color-subtitle;
-      }
     }
 
     &__content {
@@ -113,9 +139,23 @@
       }
     }
 
+    /* 线条样式 */
     &__line {
       position: absolute;
       background: $hy-tips-color;
+
+      &.finish {
+        background-color: $hy-primary;
+      }
+      &.process {
+        background-color: $hy-primary;
+      }
+      &.error {
+        background-color: $hy-error;
+      }
+      &.wait {
+        background-color: $hy-info;
+      }
 
       &--row {
         top: $hy-border-margin-padding-base;

@@ -1,7 +1,17 @@
 @use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
 
-.hy-form {
-  &--item {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(form) {
+      color: $hy-dark-color;
+    }
+  }
+}
+
+@include b(form) {
+  @include m(item) {
     display: flex;
     //align-items: center;
     margin-bottom: $hy-border-margin-padding-lg;

@@ -1,7 +1,21 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-tabs {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(tabs) {
+      color: $hy-dark-color;
+      &__wrapper__nav__item--active {
+        .hy-tabs__wrapper__nav__item--text {
+          color: $hy-dark-color;
+        }
+      }
+    }
+  }
+}
+
+@include b(tabs) {
   &__wrapper {
     @include flex;
     align-items: center;
@@ -37,13 +51,19 @@
           /* #endif */
         }
 
-        &__text {
+        &--active {
+          .hy-tabs__wrapper__nav__item--text {
+            color: #303133;
+          }
+        }
+
+        &--text {
           font-size: 15px;
-          color: $hy-text-color-grey;
+          color: #606266;
           white-space: nowrap !important;
 
           &--disabled {
-            color: $hy-color-disable-bg !important;
+            color: $hy-light-background-disabled !important;
           }
         }
       }

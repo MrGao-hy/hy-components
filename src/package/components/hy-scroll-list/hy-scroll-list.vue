@@ -19,11 +19,7 @@
       <slot></slot>
     </scroll-view>
     <!--	#endif		-->
-    <view
-      class="hy-scroll-list__indicator"
-      v-if="indicator"
-      :style="indicatorStyle"
-    >
+    <view class="hy-scroll-list__indicator" v-if="indicator">
       <view class="hy-scroll-list__indicator__line" :style="lineStyle">
         <view
           class="hy-scroll-list__indicator__line__bar"
@@ -36,11 +32,29 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-scroll-list',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
-import {computed, type CSSProperties, toRefs, ref, onMounted, getCurrentInstance} from "vue";
+import {
+  computed,
+  type CSSProperties,
+  toRefs,
+  ref,
+  onMounted,
+  getCurrentInstance,
+} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
-import { addUnit, getRect, sleep } from "../../utils";
+import { addUnit, colorGradient, getRect, sleep } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
@@ -59,6 +73,9 @@ const scrollInfo = ref({
 const scrollWidth = ref(0);
 const barLeft = ref(0);
 
+/**
+ * @description 线条样式
+ * */
 const barStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {};
   style.transform = `translateX(${barLeft.value}px)`;
@@ -67,12 +84,17 @@ const barStyle = computed<CSSProperties>(() => {
   style.backgroundColor = indicatorActiveColor.value;
   return style;
 });
-
+/**
+ * @description 轨道样式
+ * */
 const lineStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {};
   // 指示器整体的样式，需要设置其宽度和背景色
   style.width = addUnit(indicatorWidth.value);
-  style.backgroundColor = indicatorColor.value;
+  style.backgroundColor =
+    indicatorColor.value ||
+    (indicatorActiveColor.value &&
+      colorGradient(indicatorActiveColor.value)[90]);
   return style;
 });
 

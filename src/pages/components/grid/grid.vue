@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-grid :list="list" :col="col" :border="border"></hy-grid>
@@ -12,7 +12,7 @@
       <view class="hy-title">显示边框</view>
       <hy-switch :list="list_1" v-model="border"></hy-switch>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -21,6 +21,11 @@ import { config } from "@/config/config";
 import HySubsection from "@/package/components/hy-subsection/hy-subsection.vue";
 import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
 import HyGrid from "@/package/components/hy-grid/hy-grid.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 
 const list = [
   {

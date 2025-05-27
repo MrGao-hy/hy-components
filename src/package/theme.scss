@@ -1,69 +1,68 @@
 /* 主题是相关颜色 */
-$hy-primary: #2979ff !default;
-$hy-primary-dark: #2b85e4;
-$hy-primary-disabled: #a0cfff;
-$hy-primary-light: #ecf5ff;
+$hy-primary: var(--hy-theme-color, #2979ff) !default;
+$hy-primary-dark: var(--hy-theme-dark, #2b85e4) !default;
+$hy-primary-disabled: var(--hy-theme-disabled, #a0cfff) !default;
+$hy-primary-light: var(--hy-theme-color--light, #ecf5ff) !default;
 
-$hy-warning: #ff9900;
-$hy-warning-dark: #f29100;
-$hy-warning-disabled: #fcbd71;
-$hy-warning-light: #fdf6ec;
+$hy-warning: var(--hy-warning, #ff9900) !default;
+$hy-warning-dark: var(--hy-warning-dark, #f29100) !default;
+$hy-warning-disabled: var(--hy-warning-disabled, #fcbd71) !default;
+$hy-warning-light: var(--hy-warning-light, #fdf6ec) !default;
 
-$hy-success: #19be6b;
-$hy-success-dark: #18b566;
-$hy-success-disabled: #71d5a1;
-$hy-success-light: #dbf1e1;
+$hy-success: var(--hy-success, #19be6b) !default;
+$hy-success-dark: var(--hy-success-dark, #18b566) !default;
+$hy-success-disabled: var(--hy-success-disabled, #71d5a1) !default;
+$hy-success-light: var(--hy-success-light, #dbf1e1) !default;
 
-$hy-error: #fa3534;
-$hy-error-dark: #dd6161;
-$hy-error-disabled: #fab6b6;
-$hy-error-light: #fef0f0;
+$hy-error: var(--hy-error, #fa3534) !default;
+$hy-error-dark: var(--hy-error-dark, #dd6161) !default;
+$hy-error-disabled: var(--hy-error-disabled, #fab6b6) !default;
+$hy-error-light: var(--hy-error-light, #fef0f0) !default;
 
-$hy-info: #909399;
-$hy-info-dark: #82848a;
-$hy-info-disabled: #c8c9cc;
-$hy-info-light: #f4f4f5;
+$hy-info: var(--hy-info, #909399) !default;
+$hy-info-dark: var(--hy-info-dark, #82848a) !default;
+$hy-info-disabled: var(--hy-info-disabled, #c8c9cc) !default;
+$hy-info-light: var(--hy-info-light, #f4f4f5) !default;
 
 /* 暗黑模式 */
-$hy-dark-background: #131313 !default;
-$hy-dark-background2: #1b1b1b !default;
+$hy-dark-background: var(--hy-dark-background, #131313) !default; // 背景色
+$hy-dark-background--2: var(--hy-dark-background--2, #161616) !default; // 弹窗背景色
+$hy-dark-background--container: var(--hy-dark-background--container, #242424) !default;
+$hy-dark-background--track: var(--hy-dark-background--track, #646566) !default;
+$hy-dark-background--empty: var(--hy-dark-background--empty, #3A3A44) !default; // 搜索背景色
+$hy-dark-background--hover: var(--hy-dark-background--hover, #707070) !default; // 点击状态
 $hy-dark-background3: #141414 !default;
-$hy-dark-background4: #323233 !default;
-$hy-dark-background5: #646566 !default;
-$hy-dark-background6: var(#380e08) !default;
-$hy-dark-background7: var(#707070) !default;
+$hy-dark-background6: #380e08 !default;
+
+$hy-dark-bg-disabled: rgba(48, 48, 56, 0.51) !default;
 $hy-dark-color: #ffffff !default;
+$hy-dark-icon: #7C7C7C !default;
 $hy-dark-color2: var(#f2270c) !default;
 $hy-dark-color3: var(rgba(232, 230, 227, 0.8)) !default;
 $hy-dark-color-gray: var(#c0c0c0) !default;
+$hy-dark-text-disabled: #c0c0c0 !default;
 $hy-dark-border-color: var(#3a3a3c) !default;
 
+/* 亮色背景颜色 */
+$hy-light-background: var(--hy-light-background, #F8F8F8) !default;
+$hy-light-background-disabled: var(--hy-light-background-disabled, #F5F5F5) !default;
+$hy-light-background-hover: var(--hy-light-background-hover, #f1f1f1) !default; //点击状态颜色
+$hy-light-background-mask: var(--hy-light-background-mask, rgba(0, 0, 0, 0.5)); //遮罩颜色
+$hy-light-background-image: var(--hy-light-background-image, #F3F3F3) !default; // 图片背景色
 
 /* 文字基本颜色 */
-$hy-text-color: #333; //基本色
-$hy-text-color-inverse: #fff; //反色
-$hy-text-color-grey: #999; //辅助灰色，如加载更多的提示信息
-$hy-text-color-placeholder: #808080;
-$hy-text-color-disable: #c0c0c0;
-$hy-text-color-light: rgba(192, 192, 192, 0.38);
+$hy-light-color: var(--hy-light-color, #333) !default; //基本色
+$hy-text-color-grey: var(--hy-text-color-grey, #999) !default; //辅助灰色，如加载更多的提示信息
+$hy-text-color-placeholder: var(--hy-text-color-placeholder, #808080) !default; // 输入框提示颜色
+$hy-text-color-disable: var(--hy-text-color-disable, #c0c0c0) !default; // 禁用文字颜色
 
 $hy-tips-color: #909193FF;
-$hy-color-disable-bg: #F5F5F5;
 $hy-color-disable-icon:  #c8c9cc;
 
 /* 文字尺寸 */
 $hy-font-size-sm: 12px;
 $hy-font-size-base: 16px;
 $hy-font-size-lg: 20px;
-
-/* 背景颜色 */
-$hy-bg-color: #F8F8F8;
-$hy-bg-color-disabled: #87BAF3;
-$hy-bg-color-light: #a7cff9a5;
-$hy-bg-color-grey: #f8f8f8;
-$hy-bg-color-hover: #f1f1f1; //点击状态颜色
-$hy-bg-color-mask: rgba(0, 0, 0, 0.5); //遮罩颜色
-$hy-image-bg-color: #F3F3F3;
 
 /* 文章场景相关 */
 $hy-color-title: #2c405a; // 文章标题颜色
@@ -78,34 +77,34 @@ $hy-font-size-hint: 26rpx;
 
 
 /* 边框颜色 */
-$k-border-color-light: #c8c7cc;
-$hy-border-color: #c8c7cc66;
+$hy-border-color-light: var(--hy-border-color-light, #c8c7cc) !default;
+$hy-border-color: var(--hy-border-color, #c8c7cc66) !default;
 
 /* 图片尺寸 */
-$hy-img-size-sm: 45rpx;
-$hy-img-size-base: 80rpx;
-$hy-img-size-lg: 120rpx;
+$hy-img-size-sm: var(--hy-img-size-sm, 45rpx) !default;
+$hy-img-size-base: var(--hy-img-size-base, 80rpx) !default;
+$hy-img-size-lg: var(--hy-img-size-lg, 120rpx) !default;
 
 /* 头像大小 */
-$hy-avatar-size-sm: 80rpx;
-$hy-avatar-size-base: 100rpx;
-$hy-avatar-size-lg: 120rpx;
+$hy-avatar-size-sm: var(--hy-avatar-size-sm, 80rpx) !default;
+$hy-avatar-size-base: 100rpx var(--hy-avatar-size-base, 100rpx) !default;
+$hy-avatar-size-lg: var(--hy-avatar-size-lg, 120rpx) !default;
 
 /* 透明度 */
-$hy-opacity-disabled: 0.3; // 组件禁用态的透明度
+$hy-opacity-disabled: var(--hy-opacity-disabled, 0.3) !default; // 组件禁用态的透明度
 
 /* 盒子的圆角 */
-$hy-border-radius-no: 0;
-$hy-border-radius-sm: 8rpx;
-$hy-border-radius-base: 20rpx;
-$hy-border-radius-lg: 32rpx;
-$hy-border-radius-circle: 50%;
-$hy-border-radius-semicircle: 100px;
+$hy-border-radius-no: var(--hy-border-radius-no, 0) !default;
+$hy-border-radius-sm: var(--hy-border-radius-sm, 8rpx) !default;
+$hy-border-radius-base: var(--hy-border-radius-base, 20rpx) !default;
+$hy-border-radius-lg: var(--hy-border-radius-lg, 32rpx) !default;
+$hy-border-radius-circle: var(--hy-border-radius-circle, 50%) !default;
+$hy-border-radius-semicircle: var(--hy-border-radius-semicircle, 100px) !default;
 /* 盒子阴影 */
-$hy-box-shadow: 0 0 10rpx 4rpx rgba(0, 0, 0, 0.16);
+$hy-box-shadow: var(--hy-box-shadow, 0 0 10rpx 4rpx rgba(0, 0, 0, 0.16)) !default;
 /* 盒内盒外间距 */
-$hy-border-margin-padding-sm: 10rpx;
-$hy-border-margin-padding-base: 20rpx;
-$hy-border-margin-padding-lg: 30rpx;
+$hy-border-margin-padding-sm: var(--hy-border-margin-padding-sm, 10rpx) !default;
+$hy-border-margin-padding-base: var(--hy-border-margin-padding-base, 20rpx) !default;
+$hy-border-margin-padding-lg: var(--hy-border-margin-padding-lg, 30rpx) !default;
 /* 底部线条 */
-$hy-border-line: 1px solid #dadbde;
+$hy-border-line: var(--hy-border-line, 1rpx solid #dadbde) !default;

@@ -1,6 +1,7 @@
 @use "../../libs/css/mixin.scss" as *;
+@use "../../theme.scss" as *;
 
-.hy-image {
+@include b(image) {
   position: relative;
   transition: opacity 0.5s ease-in-out;
 
@@ -19,8 +20,8 @@
     @include flex;
     align-items: center;
     justify-content: center;
-    background-color: #f8f8f8ff;
-    color: #909193ff;
+    background-color: $hy-light-background-image;
+    color: $hy-text-color-grey;
     font-size: 46px;
   }
 }

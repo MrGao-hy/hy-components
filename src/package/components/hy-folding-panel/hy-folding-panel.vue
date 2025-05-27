@@ -38,6 +38,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-folding-panel',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { toRefs, ref, watch } from "vue";
 import defaultProps from "./props";

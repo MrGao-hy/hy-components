@@ -6,7 +6,7 @@ export default interface HySwitchProps {
   /**
    * @description 通过v-model双向绑定的值 （默认 false ）
    * */
-  modelValue: boolean;
+  modelValue: boolean | string | number;
   /**
    * @description 是否处于加载中（默认 false ）
    * */
@@ -30,11 +30,11 @@ export default interface HySwitchProps {
   /**
    * @description 打开选择器时通过change事件发出的值 （默认 true ）
    * */
-  activeValue?: boolean;
+  activeValue?: boolean | string | number;
   /**
    * @description 关闭选择器时通过change事件发出的值 （默认 false ）
    * */
-  inactiveValue?: boolean;
+  inactiveValue?: boolean | string | number;
   /**
    * @description 打开选择器时图标
    * */

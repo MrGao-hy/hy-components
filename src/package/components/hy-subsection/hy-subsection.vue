@@ -20,6 +20,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-subsection',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import {computed, toRefs, ref, onMounted, watch, getCurrentInstance} from "vue";
 import type { CSSProperties } from "vue";
@@ -72,6 +83,7 @@ const wrapperClass = computed(() => {
       "hy-subsection__item",
       "cursor-pointer",
       `hy-subsection__item--${innerCurrent.value}__${guidClass}`,
+        `hy-subsection__item--${mode.value}`,
       index < list.value.length - 1 && "hy-subsection__item--no-border-right",
       index === 0 && "hy-subsection__item--first",
       index === list.value.length - 1 && "hy-subsection__item--last",

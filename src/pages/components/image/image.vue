@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-image :src="config.avatar"></hy-image>
 
@@ -16,12 +16,17 @@
       height="100px"
       shape="circle"
     ></hy-image>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyImage from "@/package/components/hy-image/hy-image.vue";
 import { config } from "@/config/config";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import {useThemeStore} from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 </script>
 
 <style scoped lang="scss"></style>

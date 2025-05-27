@@ -1,9 +1,10 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-@include b(theme-dark) {
-  @include b(calendar) {
-
+@include b(theme) {
+  @include m(dark) {
+    background-color: $hy-dark-background;
+    color: $hy-dark-color;
   }
 }
 

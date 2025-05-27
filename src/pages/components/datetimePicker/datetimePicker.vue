@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page" :class="themeClass" :style="themeColor">
+  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">完整时间</view>
     <view class="hy-container">
       <hy-datetime-picker v-model="value_1" has-input></hy-datetime-picker>
@@ -49,17 +49,18 @@
         :mode="DateModeEnum.HOUR_MINUTE"
       ></hy-datetime-picker>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { DateModeEnum } from "hy-app";
 import HyDatetimePicker from "@/package/components/hy-datetime-picker/hy-datetime-picker.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 const value_1 = ref("");
 const value_2 = ref("");
 const value_3 = ref("");

@@ -10,7 +10,25 @@ $hy-search-close-size: 20px !default;
 }
 /* #endif */
 
-.hy-search {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(search) {
+      color: $hy-dark-color;
+      &__content {
+        background-color: $hy-dark-background--empty;
+        &__input {
+          color: $hy-dark-color;
+        }
+      }
+      &__action {
+        color: $hy-dark-color;
+      }
+    }
+  }
+}
+
+@include b(search) {
   @include flex(row);
   align-items: center;
   flex: 1;
@@ -32,7 +50,8 @@ $hy-search-close-size: 20px !default;
     }
 
     &__label {
-      color: $hy-text-color;
+      color:
+$hy-light-color;
       font-size: $hy-font-size-base;
       margin: 0 4px;
     }
@@ -55,7 +74,8 @@ $hy-search-close-size: 20px !default;
       font-size: $hy-font-size-base;
       line-height: 1;
       margin: 0 $hy-border-margin-padding-sm;
-      color: $hy-text-color;
+      color:
+$hy-light-color;
 
       &--placeholder {
         color: $hy-text-color-grey;
@@ -65,7 +85,8 @@ $hy-search-close-size: 20px !default;
 
   &__action {
     font-size: $hy-font-size-base;
-    color: $hy-text-color;
+    color:
+$hy-light-color;
     width: 0;
     overflow: hidden;
     transition-property: width;

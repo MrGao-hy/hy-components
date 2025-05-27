@@ -48,7 +48,7 @@
   line-height: 1px;
 }
 
-.hy-loading-icon {
+@include b(loading-icon) {
   &__spinner--spinner {
     animation-timing-function: steps(12);
   }

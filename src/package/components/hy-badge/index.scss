@@ -4,6 +4,8 @@
 $hy-badge-dot-size: 8px !default;
 $hy-badge-text-font-size: 11px !default;
 
+
+
 @include b(badge) {
   border-radius: 100px;
   @include flex;
@@ -12,26 +14,26 @@ $hy-badge-text-font-size: 11px !default;
   font-size: $hy-badge-text-font-size;
   z-index: 999;
 
-  &--dot {
+  @include m(dot) {
     height: $hy-badge-dot-size;
     width: $hy-badge-dot-size;
   }
 
-  &--inverted {
+  @include m(inverted) {
     font-size: 13px;
   }
 
-  &--not-dot {
+  @include m(not-dot) {
     padding: 2px 5px;
   }
 
-  &--horn {
+  @include m(horn) {
     border-bottom-left-radius: 0;
   }
 
   /* 主题色 */
-  @include themeColor(primary, var(--hy-theme-color, $hy-primary));
-  @include themeColor(primary--inverted, "", "", var(--hy-theme-color, $hy-primary));
+  @include themeColor(primary, $hy-primary);
+  @include themeColor(primary--inverted, "", "", $hy-primary);
 
   @include themeColor(error, $hy-error);
   @include themeColor(error--inverted, "", "", $hy-error);

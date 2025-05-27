@@ -34,9 +34,9 @@
     ></textarea>
     <!-- #ifndef MP-ALIPAY -->
     <text
-      class="hy-textarea__count"
+      class="hy-textarea--count"
       :style="{
-        'background-color': disabled ? 'transparent' : '#fff',
+        'background-color': disabled ? 'transparent' : '',
       }"
       v-if="count"
       >{{ innerValue.length }}/{{ maxlength }}</text
@@ -44,6 +44,17 @@
     <!-- #endif -->
   </view>
 </template>
+
+<script lang="ts">
+export default {
+  name: 'hy-textarea',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
 
 <script setup lang="ts">
 import {
@@ -56,8 +67,8 @@ import {
 } from "vue";
 import type IProps from "./typing";
 import defaultProps from "./props";
-import { ColorConfig } from "../../config";
 import { addUnit } from "../../utils";
+import { ColorConfig } from "@/package";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { modelValue, customStyle, border, disabled, formatter } = toRefs(props);
@@ -126,10 +137,10 @@ const borderStyle = computed(() => {
     if (isFocus) {
       switch (border.value) {
         case "surround":
-          style = { border: `1px solid ${ColorConfig.primary}` };
+          style = { border: `1px solid var(--hy-theme-color, #3c9cff)` };
           break;
         case "bottom":
-          style = { borderBottom: `1px solid ${ColorConfig.primary}` };
+          style = { borderBottom: `1px solid var(--hy-theme-color, #3c9cff)` };
           break;
         default:
           break;

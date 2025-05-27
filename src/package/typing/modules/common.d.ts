@@ -2,6 +2,10 @@ import type { IFieldNames } from "@/package/components/hy-check-button/typing";
 
 declare namespace HyApp {
   /**
+   * @description dark:暗色、light:亮色
+   * */
+  type DarkModeType = "dark" | "light";
+  /**
    * @description 主题类型 primary-默认，success-错误，warning-警告，error-错误，info-信息
    * */
   type ThemeType = "primary" | "success" | "warning" | "error" | "info";

@@ -49,6 +49,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-text',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { computed, type CSSProperties, nextTick, toRefs } from "vue";
 import type IProps from "./typing";

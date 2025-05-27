@@ -15,10 +15,6 @@
     }
   ],
   "subPackages": [
-//    {
-//      "root": "package",
-//      "pages": []
-//    },
     {
       "root": "pages/components",
       "pages": [
@@ -439,6 +435,13 @@
           "path": "toast/toast",
           "style": {
             "navigationBarTitleText": "消息提示",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "configProvider/configProvider",
+          "style": {
+            "navigationBarTitleText": "页面全局配置",
             "enablePullDownRefresh": false
           }
         }

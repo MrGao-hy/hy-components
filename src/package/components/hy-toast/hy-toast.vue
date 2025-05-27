@@ -8,7 +8,7 @@
       :style="[contentStyle]"
       :class="[
         'hy-toast__content',
-        'hy-type-' + tmpConfig.type,
+        'hy-toast--' + tmpConfig.type,
         tmpConfig.type === 'loading' || tmpConfig.loading
           ? 'hy-toast__content--loading'
           : '',
@@ -40,6 +40,17 @@
     </view>
   </HyOverlay>
 </template>
+
+<script lang="ts">
+export default {
+  name: 'hy-toast',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
 
 <script setup lang="ts">
 import { computed, type CSSProperties, reactive, ref, toRefs } from "vue";

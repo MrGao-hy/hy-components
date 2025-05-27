@@ -24,7 +24,7 @@
       ]"
       :style="buttonStyle('minus')"
     >
-      <HyICon
+      <HyIcon
         :name="minusIcon?.name || IconConfig.MINUS"
         :color="isDisabled('minus') ? '#c8c9cc' : minusIcon?.color"
         :size="minusIcon?.size"
@@ -37,7 +37,7 @@
         :stop="minusIcon?.stop"
         :round="minusIcon?.round"
         :customStyle="minusIcon?.customStyle"
-      ></HyICon>
+      ></HyIcon>
     </view>
     <!-- 减号 -->
 
@@ -106,7 +106,7 @@
       ]"
       :style="[buttonStyle('plus')]"
     >
-      <HyICon
+      <HyIcon
         :name="plusIcon?.name || IconConfig.PLUS"
         :color="isDisabled('plus') ? '#c8c9cc' : plusIcon?.color"
         :size="plusIcon?.size"
@@ -119,11 +119,22 @@
         :stop="plusIcon?.stop"
         :round="plusIcon?.round"
         :customStyle="plusIcon?.customStyle"
-      ></HyICon>
+      ></HyIcon>
     </view>
     <!-- 加号 -->
   </view>
 </template>
+
+<script lang="ts">
+export default {
+  name: 'hy-number-step',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
 
 <script setup lang="ts">
 import {
@@ -139,7 +150,6 @@ import defaultProps from "./props";
 import type IProps from "./typing";
 import { addUnit } from "../../utils";
 import { IconConfig } from "../../config";
-import HyICon from "../hy-icon/hy-icon.vue";
 import HyIcon from "../hy-icon/hy-icon.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
@@ -236,9 +246,6 @@ const buttonStyle = computed(() => {
       color: color.value,
       borderRadius: buttonRadius.value,
     };
-    if (isDisabled.value(type)) {
-      style.backgroundColor = "#f7f8fa";
-    }
     return style;
   };
 });

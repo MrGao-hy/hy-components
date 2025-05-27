@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-divider text="月落"></hy-divider>
@@ -34,11 +34,16 @@
     <view class="hy-container">
       <hy-divider text="月落" lineColor="red"></hy-divider>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyDivider from "@/package/components/hy-divider/hy-divider.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 </script>
 
 <style scoped lang="scss"></style>

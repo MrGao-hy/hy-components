@@ -7,8 +7,8 @@
       >
         <!--	线条	-->
         <view
-          v-if="i + 1 < list.length"
-          :class="[`hy-steps-item__line--${direction}`, 'hy-steps-item__line']"
+          v-if="i > 0"
+          :class="[`hy-steps-item__line--${direction}`, 'hy-steps-item__line', statusClass(i, item.error)]"
           :style="lineStyle(item, i)"
         ></view>
         <!--	线条	-->
@@ -17,14 +17,14 @@
         <view
           :class="[
             `hy-steps-item__wrapper--${direction}`,
-            dot && `hy-steps-item__wrapper--${direction}--dot`,
-            'hy-steps-item__wrapper',
+            dot ? `hy-steps-item__wrapper--dot` : statusClass(i, item.error),
+            'hy-steps-item__wrapper'
           ]"
           :style="itemStyleInner"
         >
           <slot name="icon" :error="item?.error" :index="i">
             <view
-              class="hy-steps-item__wrapper__dot"
+              :class="['hy-steps-item__wrapper--dot__item', `hy-steps-item__wrapper--dot__${statusClass(i, item.error)}`]"
               v-if="dot"
               :style="{
                 backgroundColor: statusColor(i, item?.error),
@@ -111,19 +111,30 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-steps',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
-import {computed, type CSSProperties, toRefs, ref, onMounted, getCurrentInstance} from "vue";
+import {computed, type CSSProperties, toRefs, ref, onMounted, getCurrentInstance, watch} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import type { StepListVo } from "./typing";
-import { addUnit, getRect } from "../../utils";
+import {addUnit, getRect} from "../../utils";
 import { ColorConfig, IconConfig } from "../../config";
 
 // 组件
 import HyIcon from "../hy-icon/hy-icon.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { current, direction, dot, inactiveColor, activeColor } = toRefs(props);
+const { current, list, direction, dot, inactiveColor, activeColor } = toRefs(props);
 const emit = defineEmits(["click", "update:current"]);
 
 const size = ref<UniApp.NodeInfo>({
@@ -132,29 +143,38 @@ const size = ref<UniApp.NodeInfo>({
 });
 const instance = getCurrentInstance();
 
+watch(
+    () => current.value,
+    (newVal: number) => {
+      if(list.value[newVal - 1]?.error) {
+        const index = list.value.findIndex(item => item.error);
+        emit("update:current", index);
+      }
+    }
+)
+
+/**
+ * @description 线条样式
+ * */
 const lineStyle = computed(() => {
   return (temp: StepListVo, index: number): CSSProperties => {
     const style: CSSProperties = {};
     if (direction.value === "row") {
-      style.width = addUnit(size.value.width);
-      style.left = addUnit(size.value.width! / 2);
+      style.width = addUnit(size.value.width! - 25);
+      style.left = addUnit(-size.value.width! / 2 + 12);
     } else {
-      style.height = addUnit(size.value.height);
-      // style.top = addUnit(size.width / 2)
+      style.height = addUnit(size.value.height! - 30);
+      style.top = addUnit(25)
     }
     style.backgroundColor = temp.error
-      ? ColorConfig.error
+      ? ''
       : index < current.value
         ? activeColor.value
         : inactiveColor.value;
     return style;
   };
 });
-// const itemStyleInner = () => {
-// 	return {
-// 		...itemStyle.value
-// 	}
-// }
+
 const itemStyleInner = computed(() => {
   return {};
 });
@@ -165,8 +185,6 @@ const statusClass = computed(() => {
   return (index: number, error: boolean = false) => {
     if (current.value == index) {
       return error ? "error" : "process";
-    } else if (error) {
-      return "error";
     } else if (current.value > index) {
       return "finish";
     } else {

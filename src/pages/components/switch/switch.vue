@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page" :style="{ '--hy-color-theme': 'red' }">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-switch v-model="value"></hy-switch>
 
@@ -35,14 +35,18 @@
     <hy-switch v-model="value">
       <view style="font-size: 16rpx">禁用</view>
     </hy-switch>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HySwitch from "@/package/components/hy-switch/hy-switch.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { ref } from "vue";
 import { IconConfig } from "hy-app";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const value = ref(true);
 </script>
 

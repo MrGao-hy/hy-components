@@ -1,7 +1,19 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-navbar {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(navbar) {
+      &__content {
+        color: $hy-dark-color;
+        background-color: $hy-dark-background;
+      }
+    }
+  }
+}
+
+@include b(navbar) {
   &--fixed {
     position: fixed;
     left: 0;
@@ -14,7 +26,7 @@
     @include flex(row);
     align-items: center;
     height: 44px;
-    background-color: #9acafc;
+    background-color: #F8F8F8;
     position: relative;
     justify-content: center;
 
@@ -47,7 +59,6 @@
       text-align: center;
       &--title {
         font-size: $hy-font-size-subtitle;
-        color: $hy-color-title;
       }
       &--sub {
         font-size: $hy-font-size-hint;

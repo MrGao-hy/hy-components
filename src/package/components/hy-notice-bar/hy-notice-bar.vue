@@ -43,6 +43,17 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-notice-bar',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { ref, toRefs } from "vue";
 import defaultProps from "./props";

@@ -1,7 +1,19 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-.hy-modal {
+/* 暗色主题 */
+@include b(theme){
+  @include m(dark) {
+    @include b(modal) {
+      color: $hy-dark-color;
+      &__button-group__wrapper--hover {
+        background-color: $hy-dark-background--hover;
+      }
+    }
+  }
+}
+
+@include b(modal) {
   width: 650rpx;
   border-radius: $hy-border-radius-base;
   overflow: hidden;
@@ -48,7 +60,7 @@
       height: 48px;
 
       &--line {
-        background: $hy-text-color-light;
+        background: $hy-border-color-light;
         width: 1px;
         height: 48px;
       }
@@ -64,7 +76,7 @@
       }
 
       &--hover {
-        background-color: $hy-bg-color-grey;
+        background-color: $hy-light-background-hover;
       }
 
       &__text {

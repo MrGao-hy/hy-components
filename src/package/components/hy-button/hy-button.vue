@@ -125,6 +125,17 @@
   <!-- #endif -->
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-button',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { computed, type CSSProperties, toRefs } from "vue";
 import { bem, throttle } from "../../utils";

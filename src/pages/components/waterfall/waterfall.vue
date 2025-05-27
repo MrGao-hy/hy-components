@@ -1,5 +1,5 @@
 <template>
-  <view class="waterfall">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <hy-waterfall v-model="flowList" ref="waterfallRef">
       <template v-slot:left="{ leftList }">
         <view class="demo-water" v-for="(item, index) in leftList" :key="index">
@@ -67,7 +67,7 @@
       </template>
     </hy-waterfall>
     <hy-divider :text="loadStatus"></hy-divider>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -81,7 +81,12 @@ import HyWaterfall from "@/package/components/hy-waterfall/hy-waterfall.vue";
 import HyImage from "@/package/components/hy-image/hy-image.vue";
 import HyIcon from "@/package/components/hy-icon/hy-icon.vue";
 import HyDivider from "@/package/components/hy-divider/hy-divider.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
 
+const themeStore = useThemeStore();
+
+const { themeColor, darkMode } = themeStore;
 const flowList = ref<Record<string, any>[]>([]);
 const waterfallRef = ref();
 const loadStatus = ref("loadmore");
@@ -117,6 +122,19 @@ const clear = () => {
 </script>
 
 <style scoped lang="scss">
+@import "@/package/libs/css/mixin.scss";
+@import "@/package/theme.scss";
+
+/* 暗色主题 */
+@include b(theme--dark) {
+  .demo-water {
+    color: $hy-dark-color;
+    background-color: $hy-dark-background--container;
+  }
+  .demo-shop {
+    color: $hy-dark-color;
+  }
+}
 .demo-water {
   border-radius: 8px;
   margin: 5px;
@@ -152,7 +170,6 @@ const clear = () => {
 .demo-title {
   font-size: 30rpx;
   margin-top: 5px;
-  color: $u-main-color;
   /* #ifndef APP-NVUE */
   word-break: break-all;
   /* #endif */

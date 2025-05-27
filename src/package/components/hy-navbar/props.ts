@@ -13,7 +13,7 @@ const defaultProps: IProps = {
   title: "",
   sub: "",
   titleColor: "",
-  bgColor: "#ffffff",
+  bgColor: "",
   titleWidth: "400rpx",
   height: "44px",
   leftIconSize: 20,

@@ -89,6 +89,7 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from "vue";
 import HyList from "@/package/components/hy-list/hy-list.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 
 const list = ref<AnyObject[]>([]);
 const page = reactive({

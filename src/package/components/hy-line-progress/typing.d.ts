@@ -22,6 +22,10 @@ export default interface HyLineProgressProps {
    * */
   height?: string | number;
   /**
+   * @description 字体大小，单位px ( 默认 10 )
+   * */
+  fontSize?: string | number;
+  /**
    * @description 自定义样式
    * */
   customStyle?: CSSProperties;

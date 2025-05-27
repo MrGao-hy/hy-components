@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page2" :class="themeClass" :style="themeColor">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-box">
       <hy-cell title="基础使用" :list="list" @click="onClick"></hy-cell>
     </view>
@@ -13,18 +13,19 @@
     >
       <view style="padding: 20px">我是弹窗</view>
     </hy-popup>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
 import HyCell from "@/package/components/hy-cell/hy-cell.vue";
 import HyPopup from "@/package/components/hy-popup/hy-popup.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
 import { ref } from "vue";
 import type { CellContentVo } from "hy-app/components/hy-cell/typing";
 import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 
 const show = ref(false);
 const mode = ref<HyApp.LayoutType>("center");

@@ -4,10 +4,9 @@ import { ColorConfig } from "../../config";
 const defaultProps: IProps = {
   list: [],
   title: "",
-  titleBorder: false,
-  border: true,
-  verticalColor: ColorConfig.primary,
   showVertical: true,
+  border: true,
+  borderRadius: "5px",
   disabled: false,
   clickable: false,
   size: "medium",

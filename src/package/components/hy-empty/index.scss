@@ -1,4 +1,7 @@
-.hy-empty {
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+@include b(empty) {
   top: 0;
   left: 0;
   width: 100%;

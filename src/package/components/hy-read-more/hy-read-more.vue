@@ -19,7 +19,10 @@
       </view>
     </view>
     <view
-      class="hy-read-more__toggle"
+      :class="[
+        'hy-read-more__toggle',
+        status !== 'open' && 'hy-read-more__toggle--mask',
+      ]"
       :style="[innerShadowStyle]"
       v-if="isLongContent"
     >
@@ -47,8 +50,26 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-read-more',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared'
+  }
+}
+</script>
+
 <script setup lang="ts">
-import {computed, type CSSProperties, toRefs, ref, onMounted, getCurrentInstance} from "vue";
+import {
+  computed,
+  type CSSProperties,
+  toRefs,
+  ref,
+  onMounted,
+  getCurrentInstance,
+} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import { addUnit, getRect, guid, sleep } from "../../utils";

@@ -1,7 +1,7 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-.hy-divider {
+@include b(divider) {
   @include flex;
   flex-direction: row;
   justify-content: center;
