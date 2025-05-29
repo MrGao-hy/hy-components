@@ -1,4 +1,5 @@
 import type { CSSProperties } from "vue";
+import type HyButtonProps from "../hy-button/typing";
 
 export default interface HyEmptyProps {
   /**
@@ -38,25 +39,9 @@ export default interface HyEmptyProps {
    * */
   imgMargin?: string;
   /**
-   * @description 按钮文字
+   * @description 按钮属性只
    * */
-  btnText?: string;
-  /**
-   * @description 按钮尺寸，large，normal，mini （默认 normal）
-   * */
-  btnSize?: "normal" | "large" | "small" | "mini";
-  /**
-   * @description 按钮的预置样式，info，primary，error，warning，success (默认 'info' )
-   * */
-  btnType?: HyApp.ThemeType;
-  /**
-   * @description 按钮形状，circle（两边为半圆），square（带圆角） （默认 'square' ）
-   * */
-  btnShape?: HyApp.ShapeType;
-  /**
-   * @description 按钮是否镂空，背景色透明 （默认 false）
-   * */
-  btnPlain?: boolean;
+  button?: HyButtonProps;
   /**
    * @description 跳转地址
    * */

@@ -10,7 +10,7 @@
 
   &__text {
     margin-left: 4px;
-    color: $hy-text-color-grey;
+    color: $hy-text-color--grey;
     font-size: 14px;
     line-height: 20px;
   }
@@ -59,7 +59,7 @@
 
   &--vertical &__text {
     margin: 6px 0 0;
-    color: $hy-text-color-grey;
+    color: $hy-text-color--grey;
   }
 
   &__dot {

@@ -101,13 +101,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-input',
+  name: "hy-input",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">
@@ -204,6 +204,7 @@ const inputClass = computed((): string => {
   classes.push(`hy-input--${shape}`);
   border === "bottom" &&
     (classes = classes.concat(["hy-border__bottom", "hy-input--no-radius"]));
+  disabled.value && classes.push("hy-input--disabled");
   return classes.join(" ");
 });
 
@@ -212,17 +213,11 @@ const inputClass = computed((): string => {
  * */
 const wrapperStyle = computed((): CSSProperties => {
   const style: CSSProperties = {};
+  style.paddingTop = "6px";
+  style.paddingBottom = "6px";
+  style.paddingLeft = "9px";
+  style.paddingRight = "9px";
   // 禁用状态下，被背景色加上对应的样式
-  // 无边框时，去除内边距
-  if (border.value === "none") {
-    style.padding = "0";
-  } else {
-    // 由于uni-app的iOS开发者能力有限，导致需要分开写才有效
-    style.paddingTop = "6px";
-    style.paddingBottom = "6px";
-    style.paddingLeft = "9px";
-    style.paddingRight = "9px";
-  }
   if (disabled.value) {
     style.backgroundColor = disabledColor.value;
   }

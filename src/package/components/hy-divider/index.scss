@@ -15,12 +15,13 @@
   }
 
   &__text {
+    color: $hy-text-color--3;
     margin: 0 $hy-border-margin-padding-sm;
   }
 
   &__dot {
     font-size: $hy-font-size-sm;
     margin: 0 $hy-border-margin-padding-sm;
-    color: #c0c4cc;
+    color: $hy-text-color--3;
   }
 }

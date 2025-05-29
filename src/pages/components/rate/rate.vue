@@ -36,7 +36,7 @@ import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-
 import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 
 const value = ref(3);
 </script>

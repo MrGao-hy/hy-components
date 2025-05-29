@@ -1,20 +1,8 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(modal) {
-      color: $hy-dark-color;
-      &__button-group__wrapper--hover {
-        background-color: $hy-dark-background--hover;
-      }
-    }
-  }
-}
-
 @include b(modal) {
-  width: 650rpx;
+  max-width: 650rpx;
   border-radius: $hy-border-radius-base;
   overflow: hidden;
 
@@ -25,21 +13,21 @@
     align-items: center;
     font-size: 16px;
     font-weight: bold;
-    color: $hy-color-title;
+    color: $hy-text-color;
     text-align: center;
     padding-top: 25px;
   }
 
   &__content {
-    padding: 30px 40px;
+    padding: 20px;
     @include flex;
     justify-content: center;
 
     &__text {
-      text-align: v-bind(contentTextAlign);
       font-size: 15px;
-      color: $hy-text-color-grey;
+      color: $hy-text-color--grey;
       flex: 1;
+      text-align: center;
     }
   }
 
@@ -60,7 +48,7 @@
       height: 48px;
 
       &--line {
-        background: $hy-border-color-light;
+        background: $hy-border-color;
         width: 1px;
         height: 48px;
       }
@@ -76,13 +64,17 @@
       }
 
       &--hover {
-        background-color: $hy-light-background-hover;
+        background-color: $hy-background--hover;
       }
 
       &__text {
-        color: $hy-color-subtitle;
+        color: $hy-text-color--2;
         font-size: 16px;
         text-align: center;
+      }
+
+      &--confirm-text {
+        color: $hy-primary;
       }
     }
   }

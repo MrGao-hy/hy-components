@@ -1,5 +1,6 @@
 ## 使用文档地址
-[华玥组件库](https://hy-component-docs.vercel.app/)
+[华玥组件库(需要翻墙)](https://hy-component-docs.vercel.app/)
+[华玥组件库(国内地址)](https://www.gxh151.top)
 
 ## 安装教程
 

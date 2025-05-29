@@ -46,7 +46,7 @@ import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
 const { themeColor, darkMode } = themeStore;
-const direction = ref<HyApp.DirectionType>("row");
+const direction = ref<HyApp.DirectionType>("column");
 const mode = ref<NoticeBarModeVo>("");
 const justifyContent = ref<HyApp.JustifyContentType>("flex-start");
 const step = ref(false);

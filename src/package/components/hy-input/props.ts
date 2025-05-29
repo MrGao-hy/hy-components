@@ -5,7 +5,7 @@ const defaultProps: IProps = {
   type: "text",
   fixed: false,
   disabled: false,
-  disabledColor: "#F5F5F5",
+  disabledColor: "",
   clearable: false,
   password: false,
   maxlength: 140,

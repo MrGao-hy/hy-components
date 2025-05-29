@@ -20,8 +20,8 @@
     @include flex;
     align-items: center;
     justify-content: center;
-    background-color: $hy-light-background-image;
-    color: $hy-text-color-grey;
+    background-color: $hy-background--empty;
+    color: $hy-text-color--grey;
     font-size: 46px;
   }
 }

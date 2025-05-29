@@ -1,6 +1,7 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
+
 @include b(empty) {
   top: 0;
   left: 0;
@@ -10,13 +11,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: rgb(255, 255, 255);
+  background: $hy-background;
   &__description {
     width: 70%;
     text-align: center;
+    margin-top: $hy-border-margin-padding-base;
   }
 
   &__button {
-    margin-top: 80rpx;
+    margin-top: 100rpx;
   }
 }

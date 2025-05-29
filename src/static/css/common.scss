@@ -25,6 +25,7 @@
   flex-wrap: wrap;
   padding: 30px $hy-border-margin-padding-base;
   border-radius: $hy-border-radius-base;
+  background-color: $hy-background--container;
 }
 
 .hy-margin {
@@ -32,7 +33,7 @@
 }
 
 .hy-setting__box {
-  background: #1b1b1b;
+  background-color: $hy-background--container;
   border: $hy-border-line;
   box-shadow: $hy-box-shadow;
   margin: 120px $hy-border-margin-padding-base 0;
@@ -64,6 +65,6 @@
 /* 暗色主题 */
 @include b(theme--dark){
   @include b(container) {
-    background-color: $hy-dark-background--container;
+    background-color: $hy-background--container;
   }
 }

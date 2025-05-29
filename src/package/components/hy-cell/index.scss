@@ -1,24 +1,7 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(cell) {
-      color: $hy-dark-color;
-      &__body--container {
-        background-color: $hy-dark-background--container;
-        &__right-icon {
-          :deep() {
-            @include b(icon) {
-              color: $hy-dark-icon;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+
 @include b(cell) {
   flex: 1;
 
@@ -74,6 +57,7 @@
       align-items: center;
       justify-content: space-between;
       flex: 1;
+      background-color: $hy-background--container;
 
       /* 大 */
       &__large {
@@ -98,7 +82,7 @@
 
       /*点击状态*/
       &__clickable {
-        background-color: $hy-light-background-hover;
+        background-color: $hy-background--hover;
       }
 
       &__content {
@@ -119,7 +103,7 @@
           /*sub值*/
           &--sub {
             margin-top: $hy-border-margin-padding-sm;
-            color: $hy-text-color-grey;
+            color: $hy-text-color--grey;
           }
         }
       }
@@ -131,7 +115,7 @@
         flex: 1;
         &__value {
           line-height: 24px;
-          color: $hy-text-color-grey;
+          color: $hy-text-color--grey;
           margin-right: $hy-border-margin-padding-sm;
         }
       }
@@ -139,6 +123,9 @@
       /*右边icon*/
       &__right-icon {
         transition: transform 0.3s;
+        :deep(.hy-icon) {
+          color: $hy-text-color--3;
+        }
 
         &--up {
           transform: rotate(-90deg);
@@ -156,7 +143,7 @@
   }
 
   @include m(disabled) {
-    color: $hy-text-color-disable;
+    color: $hy-text-color--disabled;
     /* #ifndef APP-NVUE */
     cursor: not-allowed;
     /* #endif */

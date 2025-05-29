@@ -20,6 +20,7 @@ import { computed, toRefs } from "vue";
 import type IProps from "./typing";
 import defaultProps from "./props";
 import { addUnit } from "@/package";
+import { colorGradient } from "@/package/utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {
@@ -32,16 +33,15 @@ const {
 } = toRefs(props);
 
 const themeClass = computed(() => {
-  console.log(theme.value, customClass.value);
   return [customClass.value, "hy-config-provider", `hy-theme--${theme.value}`];
 });
 
 const themeStyle = computed(() => {
-  console.log(theme.value, customClass.value);
+  console.log(colorGradient(themeColor.value)[90], themeColor.value);
   return [
     {
       "--hy-theme-color": themeColor.value,
-      "--hy-theme-color--light": themeLightColor.value,
+      "--hy-theme--light": colorGradient(themeColor.value)[90],
       padding: addUnit(padding.value),
     },
     customStyle.value,

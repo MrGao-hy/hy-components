@@ -129,7 +129,7 @@ const clear = () => {
 @include b(theme--dark) {
   .demo-water {
     color: $hy-dark-color;
-    background-color: $hy-dark-background--container;
+    background-color: $hy-background--container;
   }
   .demo-shop {
     color: $hy-dark-color;
@@ -182,7 +182,7 @@ const clear = () => {
 }
 
 .demo-tag-owner {
-  background-color: $u-error;
+  background-color: $hy-error;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -196,30 +196,28 @@ const clear = () => {
 }
 
 .demo-tag-text {
-  border: 1px solid $u-primary;
+  border: 1px solid $hy-primary;
   margin-left: 10px;
-  border-radius: 50rpx;
+  border-radius: 20rpx;
   line-height: 1;
   padding: 2px 7px;
-  border-radius: 20px;
   display: flex;
   align-items: center;
-  border-radius: 20px;
   .text {
     font-size: 12px;
-    color: $u-primary;
+    color: $hy-primary;
   }
 }
 
 .demo-price {
   font-size: 30rpx;
-  color: $u-error;
+  color: $hy-error;
   margin-top: 5px;
 }
 
 .demo-shop {
   font-size: 22rpx;
-  color: $u-tips-color;
+  color: $hy-tips-color;
   margin-top: 5px;
 }
 </style>

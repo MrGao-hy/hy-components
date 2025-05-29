@@ -1,9 +1,10 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
+
 @include b(submit-bar) {
   display: flex;
-  background-color: #ffffff;
+  background-color: $hy-background--container;
   padding: $hy-border-margin-padding-base;
   width: 100%;
   box-sizing: border-box;

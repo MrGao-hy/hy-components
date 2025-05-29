@@ -17,7 +17,7 @@ const defaultProps: IProps = {
   fade: true,
   webp: false,
   duration: 500,
-  bgColor: "#f3f4f6",
+  bgColor: "",
   previewImage: false,
 };
 

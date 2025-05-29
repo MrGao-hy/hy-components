@@ -1,20 +1,6 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(tabs) {
-      color: $hy-dark-color;
-      &__wrapper__nav__item--active {
-        .hy-tabs__wrapper__nav__item--text {
-          color: $hy-dark-color;
-        }
-      }
-    }
-  }
-}
-
 @include b(tabs) {
   &__wrapper {
     @include flex;
@@ -37,6 +23,7 @@
       position: relative;
 
       &__item {
+        height: 44px;
         padding: 0 11px;
         @include flex;
         align-items: center;
@@ -53,13 +40,13 @@
 
         &--active {
           .hy-tabs__wrapper__nav__item--text {
-            color: #303133;
+            color: $hy-text-color;
           }
         }
 
         &--text {
           font-size: 15px;
-          color: #606266;
+          color: $hy-text-color;
           white-space: nowrap !important;
 
           &--disabled {

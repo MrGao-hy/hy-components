@@ -1,15 +1,6 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(back-top) {
-      background-color: $hy-dark-background--track;
-    }
-  }
-}
-
 @include b(back-top) {
   @include flex;
   flex-direction: column;
@@ -17,7 +8,7 @@
   flex: 1;
   height: 100%;
   justify-content: center;
-  background-color: #e1e1e1;
+  background-color: $hy-background--3;
 
   &__tips {
     font-size: 12px;

@@ -10,11 +10,7 @@ const defaultProps: IProps = {
   desSize: 15,
   desColor: "#5e6d82",
   imgMargin: "",
-  btnText: "",
-  btnSize: "normal",
-  btnType: "primary",
-  btnShape: "square",
-  btnPlain: false,
+  button: {},
   navigateUrl: "",
 };
 

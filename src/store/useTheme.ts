@@ -1,21 +1,30 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { colorGradient } from "@/package";
 
 export const useThemeStore = defineStore(
   "hy_theme",
   () => {
-    const themeColor = ref({
-      "--hy-theme-color": "#892FE8",
-      "--hy-theme-color--light": "rgba(137, 47, 232, 0.3)",
+    const color = ref("#892FE8");
+    const lightColor = computed(() => {
+      return colorGradient(
+        color.value,
+        darkMode.value === "dark" ? "#000000" : "#ffffff",
+      )[90];
     });
-    const themeClass = ref(["hy-theme--dark"]);
+    const themeColor = ref({
+      "--hy-theme-color": color.value,
+      "--hy-theme--light": lightColor,
+    });
 
     const darkMode = ref("dark");
+    console.log(darkMode.value);
 
     return {
+      color,
       themeColor,
-      themeClass,
       darkMode,
+      lightColor,
     };
   },
   { unistorage: true },

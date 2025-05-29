@@ -1,19 +1,11 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(count-to) {
-      color: $hy-dark-color;
-    }
-  }
-}
 
 @include b(count-to) {
   /* #ifndef APP-NVUE */
   display: inline-flex;
   /* #endif */
   text-align: center;
-  color: $hy-tips-color;
+  color: $hy-text-color;
 }

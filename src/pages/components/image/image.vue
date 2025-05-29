@@ -1,7 +1,9 @@
 <template>
-  <hy-config-provider  :custom-style="themeColor" :theme="darkMode">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
-    <hy-image :src="config.avatar"></hy-image>
+    <view class="hy-container">
+      <hy-image :src="config.avatar"></hy-image>
+    </view>
 
     <view class="hy-title">大小</view>
     <hy-image :src="config.avatar" width="50px" height="50px"></hy-image>
@@ -23,7 +25,7 @@
 import HyImage from "@/package/components/hy-image/hy-image.vue";
 import { config } from "@/config/config";
 import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
-import {useThemeStore} from "@/store";
+import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
 const { themeColor, darkMode } = themeStore;

@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page" :class="themeClass" :style="themeColor">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">主题色</view>
     <view class="hy-grid">
       <hy-tag text="标签" type="primary"></hy-tag>
@@ -66,7 +66,7 @@
         @close="close = false"
       ></hy-tag>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -78,7 +78,7 @@ import { useThemeStore } from "@/store";
 
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 const close = ref(true);
 </script>
 

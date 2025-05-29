@@ -13,8 +13,8 @@
   }
 
   /*禁用*/
-  @include themeColor(disabled, $hy-light-background-disabled, $hy-color-disable-icon,
-$hy-light-background-disabled);
+  @include themeColor(disabled, $hy-background--disabled, $hy-color-disable-icon,
+$hy-background--disabled);
 
   /*圆角*/
   @include borderRadio(circle);
@@ -75,7 +75,7 @@ $hy-light-background-disabled);
   @include themeColor(info--plain, transparent, $hy-info, $hy-info);
 
   /* 主题色镂空带背景色 */
-  @include themeColor(primary--plain__fill, var(--hy-tag-plain--fill__bg, $hy-primary-light), $hy-primary, $hy-primary);
+  @include themeColor(primary--plain__fill, $hy-primary-light, $hy-primary, $hy-primary);
   @include themeColor(error--plain__fill, $hy-error-light, $hy-error, $hy-error);
   @include themeColor(warning--plain__fill, $hy-warning-light, $hy-warning, $hy-warning);
   @include themeColor(success--plain__fill, $hy-success-light, $hy-success, $hy-success);

@@ -70,7 +70,7 @@
             v-if="showConfirmButton && showCancelButton"
           ></view>
           <view
-            class="hy-modal__button-group__wrapper u-modal__button-group__wrapper--confirm"
+            class="hy-modal__button-group__wrapper hy-modal__button-group__wrapper--confirm"
             :hover-stay-time="150"
             hover-class="hy-modal__button-group__wrapper--hover"
             :class="[
@@ -81,14 +81,10 @@
             v-if="showConfirmButton"
             @tap="confirmHandler"
           >
-            <HyIcon
-              v-if="loading"
-              :name="IconConfig.LOADING"
-              :isRotate="loading"
-            ></HyIcon>
+            <HyLoading v-if="loading"></HyLoading>
             <text
               v-else
-              class="hy-modal__button-group__wrapper__text"
+              class="hy-modal__button-group__wrapper__text hy-modal__button-group__wrapper--confirm-text"
               :style="{
                 color: confirmColor,
               }"
@@ -103,13 +99,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-modal',
+  name: "hy-modal",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">
@@ -122,6 +118,7 @@ import { IconConfig } from "../../config";
 // 组件
 import HyIcon from "../hy-icon/hy-icon.vue";
 import HyPopup from "../hy-popup/hy-popup.vue";
+import HyLoading from "../hy-loading/hy-loading.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const { show, asyncClose, closeOnClickOverlay } = toRefs(props);
@@ -170,4 +167,7 @@ const clickHandler = () => {
 
 <style lang="scss" scoped>
 @import "./index.scss";
+.modal__content__text {
+  text-align: v-bind(contentTextAlign);
+}
 </style>

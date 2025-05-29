@@ -30,7 +30,11 @@
           </slot>
         </view>
         <view
-          class="hy-checkbox__label-wrap cursor-pointer"
+          :class="[
+            'hy-checkbox__label-wrap',
+            'cursor-pointer',
+            disabled && 'hy-checkbox__label-wrap--disabled',
+          ]"
           @tap.stop="labelClickHandler($event, item)"
         >
           <slot name="label" :record="item">
@@ -50,13 +54,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-checkbox',
+  name: "hy-checkbox",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">
@@ -219,7 +223,6 @@ const setRadioCheckedStatus = (temp: CheckboxColumnsVo) => {
     return item;
   });
   emit("change", temp);
-  console.log(columns_1.value[0].checked, "前");
   emit(
     "update:modelValue",
     columns_1.value.length === 1

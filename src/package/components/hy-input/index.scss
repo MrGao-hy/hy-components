@@ -1,26 +1,24 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(input) {
-      color: $hy-dark-color;
-    }
-  }
-}
-
 @include b(input) {
   @include flex(row);
   align-items: center;
   justify-content: space-between;
   flex: 1;
-  color:
-$hy-light-color;
+  color: $hy-text-color;
 
   &--radius,
   &--square {
     border-radius: 4px;
+  }
+
+  @include m(disabled) {
+    background-color: $hy-background--disabled;
+    color: $hy-text-color--disabled;
+    :deep(.hy-icon) {
+      color: $hy-text-color--disabled;
+    }
   }
 
   &--no-radius {
@@ -56,7 +54,7 @@ $hy-light-color;
       width: 20px;
       height: 20px;
       border-radius: 100px;
-      background-color: #c6c7cb;
+      background-color: $hy-background--track;
       @include flex(row);
       align-items: center;
       justify-content: center;

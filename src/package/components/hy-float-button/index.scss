@@ -1,19 +1,11 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(float-button) {
-      //color: $hy-dark-color;
-    }
-  }
-}
 
 @include b(float-button) {
   position: relative;
   background-color: $hy-primary;
-  color: $hy-dark-color;
+  color: #FFFFFF;
   &__circle {
     border-radius: $hy-border-radius-semicircle;
   }
@@ -48,6 +40,9 @@
     align-items: center;
     transition: 0.4s ease;
     background-color: $hy-primary;
+    :deep(.hy-icon) {
+      color: #FFFFFF;
+    }
   }
 
   &__menus {

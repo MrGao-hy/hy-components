@@ -1,18 +1,6 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(textarea) {
-      color: $hy-dark-color;
-      &--count {
-        background-color: $hy-dark-background--container;
-      }
-    }
-  }
-}
-
 @include b(textarea) {
   border-radius: $hy-border-radius-sm;
   position: relative;
@@ -29,7 +17,8 @@
   }
 
   &--disabled {
-    background-color: $hy-light-background-disabled;
+    background-color: $hy-background--disabled;
+    color: $hy-text-color--disabled;
   }
 
   &__field {
@@ -43,8 +32,8 @@
     right: 5px;
     bottom: 2px;
     font-size: 12px;
-    color: $hy-tips-color;
-    background-color: #ffffff;
+    color: $hy-text-color--2;
+    background-color: $hy-background--3;
     padding: 1px 4px;
     border-radius: $hy-border-radius-sm;
   }

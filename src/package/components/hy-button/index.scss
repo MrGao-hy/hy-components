@@ -78,17 +78,6 @@
   @include borderRadio(circle);
   @include borderRadio(square);
 
-  &__icon {
-    min-width: 1em;
-    line-height: inherit !important;
-    vertical-align: top;
-  }
-
-  //&--plain {
-  //  //color: v-bind(textColor);
-  //  color: $hy-primary;
-  //  background-color: #fff;
-  //}
 
   @include m(hairline) {
     border-width: 0.5px;

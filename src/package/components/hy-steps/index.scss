@@ -1,20 +1,6 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(steps) {
-      //color: $hy-dark-color;
-      &__wrapper__nav__item--active {
-        .hy-tabs__wrapper__nav__item--text {
-          color: $hy-dark-color;
-        }
-      }
-    }
-  }
-}
-
 @include b(steps) {
   @include flex;
 
@@ -104,14 +90,14 @@
         flex-shrink: 0;
         /* #endif */
         border-radius: $hy-border-radius-semicircle;
-        border: 1px solid $hy-tips-color;
+        border: $hy-border-line;
         @include flex(row);
         align-items: center;
         justify-content: center;
         transition: background-color 0.3s;
 
         &__text {
-          color: $hy-tips-color;
+          color: $hy-text-color--grey;
           font-size: 11px;
           @include flex(row);
           align-items: center;
@@ -125,6 +111,9 @@
     &__content {
       @include flex;
       flex: 1;
+      &__title--active {
+        color: $hy-primary;
+      }
 
       &--row {
         flex-direction: column;
@@ -142,7 +131,7 @@
     /* 线条样式 */
     &__line {
       position: absolute;
-      background: $hy-tips-color;
+      background: $hy-border-color;
 
       &.finish {
         background-color: $hy-primary;

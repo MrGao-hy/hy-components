@@ -1,38 +1,29 @@
 /* 主题是相关颜色 */
 $hy-primary: var(--hy-theme-color, #2979ff) !default;
-$hy-primary-dark: var(--hy-theme-dark, #2b85e4) !default;
-$hy-primary-disabled: var(--hy-theme-disabled, #a0cfff) !default;
-$hy-primary-light: var(--hy-theme-color--light, #ecf5ff) !default;
+$hy-primary-dark: var(--hy-theme--dark, #2b85e4) !default;
+$hy-primary-disabled: var(--hy-theme--disabled, #a0cfff) !default;
+$hy-primary-light: var(--hy-theme--light, #ecf5ff) !default;
 
 $hy-warning: var(--hy-warning, #ff9900) !default;
-$hy-warning-dark: var(--hy-warning-dark, #f29100) !default;
-$hy-warning-disabled: var(--hy-warning-disabled, #fcbd71) !default;
-$hy-warning-light: var(--hy-warning-light, #fdf6ec) !default;
+$hy-warning-dark: var(--hy-warning--dark, #f29100) !default;
+$hy-warning-disabled: var(--hy-warning--disabled, #fcbd71) !default;
+$hy-warning-light: var(--hy-warning--light, #fdf6ec) !default;
 
 $hy-success: var(--hy-success, #19be6b) !default;
-$hy-success-dark: var(--hy-success-dark, #18b566) !default;
-$hy-success-disabled: var(--hy-success-disabled, #71d5a1) !default;
-$hy-success-light: var(--hy-success-light, #dbf1e1) !default;
+$hy-success-dark: var(--hy-success--dark, #18b566) !default;
+$hy-success-disabled: var(--hy-success--disabled, #71d5a1) !default;
+$hy-success-light: var(--hy-success--light, #dbf1e1) !default;
 
 $hy-error: var(--hy-error, #fa3534) !default;
-$hy-error-dark: var(--hy-error-dark, #dd6161) !default;
-$hy-error-disabled: var(--hy-error-disabled, #fab6b6) !default;
-$hy-error-light: var(--hy-error-light, #fef0f0) !default;
+$hy-error-dark: var(--hy-error--dark, #dd6161) !default;
+$hy-error-disabled: var(--hy-error--disabled, #fab6b6) !default;
+$hy-error-light: var(--hy-error--light, #fef0f0) !default;
 
 $hy-info: var(--hy-info, #909399) !default;
-$hy-info-dark: var(--hy-info-dark, #82848a) !default;
-$hy-info-disabled: var(--hy-info-disabled, #c8c9cc) !default;
-$hy-info-light: var(--hy-info-light, #f4f4f5) !default;
+$hy-info-dark: var(--hy-info--dark, #82848a) !default;
+$hy-info-disabled: var(--hy-info--disabled, #c8c9cc) !default;
+$hy-info-light: var(--hy-info--light, #f4f4f5) !default;
 
-/* 暗黑模式 */
-$hy-dark-background: var(--hy-dark-background, #131313) !default; // 背景色
-$hy-dark-background--2: var(--hy-dark-background--2, #161616) !default; // 弹窗背景色
-$hy-dark-background--container: var(--hy-dark-background--container, #242424) !default;
-$hy-dark-background--track: var(--hy-dark-background--track, #646566) !default;
-$hy-dark-background--empty: var(--hy-dark-background--empty, #3A3A44) !default; // 搜索背景色
-$hy-dark-background--hover: var(--hy-dark-background--hover, #707070) !default; // 点击状态
-$hy-dark-background3: #141414 !default;
-$hy-dark-background6: #380e08 !default;
 
 $hy-dark-bg-disabled: rgba(48, 48, 56, 0.51) !default;
 $hy-dark-color: #ffffff !default;
@@ -45,6 +36,7 @@ $hy-dark-border-color: var(#3a3a3c) !default;
 
 /* 亮色背景颜色 */
 $hy-light-background: var(--hy-light-background, #F8F8F8) !default;
+$hy-light-background-color: var(--hy-light-background-color, #FFFFFF) !default;
 $hy-light-background-disabled: var(--hy-light-background-disabled, #F5F5F5) !default;
 $hy-light-background-hover: var(--hy-light-background-hover, #f1f1f1) !default; //点击状态颜色
 $hy-light-background-mask: var(--hy-light-background-mask, rgba(0, 0, 0, 0.5)); //遮罩颜色
@@ -52,9 +44,7 @@ $hy-light-background-image: var(--hy-light-background-image, #F3F3F3) !default; 
 
 /* 文字基本颜色 */
 $hy-light-color: var(--hy-light-color, #333) !default; //基本色
-$hy-text-color-grey: var(--hy-text-color-grey, #999) !default; //辅助灰色，如加载更多的提示信息
-$hy-text-color-placeholder: var(--hy-text-color-placeholder, #808080) !default; // 输入框提示颜色
-$hy-text-color-disable: var(--hy-text-color-disable, #c0c0c0) !default; // 禁用文字颜色
+$hy-text-color-hover: var(--hy-text-color-hover, #58595b)!default;
 
 $hy-tips-color: #909193FF;
 $hy-color-disable-icon:  #c8c9cc;
@@ -87,7 +77,7 @@ $hy-img-size-lg: var(--hy-img-size-lg, 120rpx) !default;
 
 /* 头像大小 */
 $hy-avatar-size-sm: var(--hy-avatar-size-sm, 80rpx) !default;
-$hy-avatar-size-base: 100rpx var(--hy-avatar-size-base, 100rpx) !default;
+$hy-avatar-size-base: var(--hy-avatar-size-base, 100rpx) !default;
 $hy-avatar-size-lg: var(--hy-avatar-size-lg, 120rpx) !default;
 
 /* 透明度 */
@@ -108,3 +98,26 @@ $hy-border-margin-padding-base: var(--hy-border-margin-padding-base, 20rpx) !def
 $hy-border-margin-padding-lg: var(--hy-border-margin-padding-lg, 30rpx) !default;
 /* 底部线条 */
 $hy-border-line: var(--hy-border-line, 1rpx solid #dadbde) !default;
+
+
+/* 字体 */
+$hy-text-color: var(--hy-text-color, #3c3c43) !default; // 一般用于文字
+$hy-text-color--2: var(--hy-text-color--2, #67676c) !default; // 一般用于icon
+$hy-text-color--3: var(--hy-text-color--3, #929295) !default; // 一般用于icon
+$hy-text-color--4: var(--hy-text-color--4, #929295) !default; // 一般用于icon
+$hy-icon-color: var(--hy-icon-color, #606266) !default; // 一般用于icon
+$hy-text-color--grey: var(--hy-text-color-3, #999) !default; // 辅助灰色，如加载更多的提示信息
+$hy-text-color--placeholder: var(--hy-text-color--placeholder, #808080) !default; // 输入框提示颜色
+$hy-text-color--disabled: var(--hy-text-color--disabled, #c0c0c0) !default; // 禁用文字颜色
+$hy-border-color: var(--hy-border-color, #c0c0c0) !default;
+
+
+/* 背景色 */
+$hy-background: var(--hy-background, #f8f8f8) !default; // 背景色
+$hy-background--2: var(--hy-background--2, #ffffff) !default; // 弹窗背景色
+$hy-background--3: var(--hy-background--3, #646566) !default; // 弹窗背景色
+$hy-background--container: var(--hy-background--container, #ffffff) !default; // 容器背景色
+$hy-background--disabled: var(--hy-background--disabled, #F5F5F5); // 禁用背景色
+$hy-background--track: var(--hy-background--track, #c6c7cb) !default;
+$hy-background--empty: var(--hy-background--empty, #f6f6f7) !default; // 搜索背景色
+$hy-background--hover: var(--hy-background--hover, #707070) !default; // 点击状态

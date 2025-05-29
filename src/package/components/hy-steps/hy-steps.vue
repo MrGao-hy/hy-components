@@ -8,7 +8,11 @@
         <!--	线条	-->
         <view
           v-if="i > 0"
-          :class="[`hy-steps-item__line--${direction}`, 'hy-steps-item__line', statusClass(i, item.error)]"
+          :class="[
+            `hy-steps-item__line--${direction}`,
+            'hy-steps-item__line',
+            statusClass(i, item.error),
+          ]"
           :style="lineStyle(item, i)"
         ></view>
         <!--	线条	-->
@@ -18,13 +22,16 @@
           :class="[
             `hy-steps-item__wrapper--${direction}`,
             dot ? `hy-steps-item__wrapper--dot` : statusClass(i, item.error),
-            'hy-steps-item__wrapper'
+            'hy-steps-item__wrapper',
           ]"
           :style="itemStyleInner"
         >
           <slot name="icon" :error="item?.error" :index="i">
             <view
-              :class="['hy-steps-item__wrapper--dot__item', `hy-steps-item__wrapper--dot__${statusClass(i, item.error)}`]"
+              :class="[
+                'hy-steps-item__wrapper--dot__item',
+                `hy-steps-item__wrapper--dot__${statusClass(i, item.error)}`,
+              ]"
               v-if="dot"
               :style="{
                 backgroundColor: statusColor(i, item?.error),
@@ -90,10 +97,12 @@
           <slot name="content" :record="item" :index="i">
             <slot name="title" :title="item.title" :index="i">
               <text
+                :class="[
+                  current == i && 'hy-steps-item__content__title--active',
+                ]"
                 :style="{
                   lineHeight: '20px',
                   fontSize: current == i ? '14px' : '13px',
-                  color: i == current ? '#2c405a' : '#555555',
                 }"
                 >{{ item.title }}</text
               >
@@ -113,28 +122,37 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-steps',
+  name: "hy-steps",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">
-import {computed, type CSSProperties, toRefs, ref, onMounted, getCurrentInstance, watch} from "vue";
+import {
+  computed,
+  type CSSProperties,
+  toRefs,
+  ref,
+  onMounted,
+  getCurrentInstance,
+  watch,
+} from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import type { StepListVo } from "./typing";
-import {addUnit, getRect} from "../../utils";
+import { addUnit, getRect } from "../../utils";
 import { ColorConfig, IconConfig } from "../../config";
 
 // 组件
 import HyIcon from "../hy-icon/hy-icon.vue";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { current, list, direction, dot, inactiveColor, activeColor } = toRefs(props);
+const { current, list, direction, dot, inactiveColor, activeColor } =
+  toRefs(props);
 const emit = defineEmits(["click", "update:current"]);
 
 const size = ref<UniApp.NodeInfo>({
@@ -144,14 +162,14 @@ const size = ref<UniApp.NodeInfo>({
 const instance = getCurrentInstance();
 
 watch(
-    () => current.value,
-    (newVal: number) => {
-      if(list.value[newVal - 1]?.error) {
-        const index = list.value.findIndex(item => item.error);
-        emit("update:current", index);
-      }
+  () => current.value,
+  (newVal: number) => {
+    if (list.value[newVal - 1]?.error) {
+      const index = list.value.findIndex((item) => item.error);
+      emit("update:current", index);
     }
-)
+  },
+);
 
 /**
  * @description 线条样式
@@ -164,10 +182,10 @@ const lineStyle = computed(() => {
       style.left = addUnit(-size.value.width! / 2 + 12);
     } else {
       style.height = addUnit(size.value.height! - 30);
-      style.top = addUnit(25)
+      style.top = addUnit(25);
     }
     style.backgroundColor = temp.error
-      ? ''
+      ? ""
       : index < current.value
         ? activeColor.value
         : inactiveColor.value;

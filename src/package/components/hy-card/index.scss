@@ -1,21 +1,12 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(card) {
-      color: $hy-dark-color;
-      background-color: $hy-dark-background--container;
-    }
-  }
-}
 
 @include b(card) {
   position: relative;
   overflow: hidden;
   font-size: 28rpx;
-  background-color: #ffffff;
+  background-color: $hy-background--container;
   box-sizing: border-box;
 
   &-full {
@@ -50,7 +41,7 @@
     }
 
     &--right {
-      color: $hy-text-color-grey;
+      color: $hy-text-color--grey;
       margin-left: 6rpx;
     }
   }

@@ -1,12 +1,6 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-@include b(theme) {
-  @include m(dark) {
-    background-color: $hy-dark-background;
-    color: $hy-dark-color;
-  }
-}
 
 /* 主样式 */
 @include b(calendar){
@@ -23,7 +17,6 @@
 
     &__title {
       font-size: 16px;
-      color: $hy-color-title;
       text-align: center;
       height: 42px;
       line-height: 42px;
@@ -32,7 +25,7 @@
 
     &__subtitle {
       font-size: 14px;
-      color: $hy-color-hint;
+      color: $hy-text-color--2;
       height: 40px;
       text-align: center;
       line-height: 40px;
@@ -45,7 +38,7 @@
 
       &__weekday {
         font-size: 13px;
-        color: $hy-tips-color;
+        color: $hy-text-color--grey;
         line-height: 30px;
         flex: 1;
         text-align: center;
@@ -61,7 +54,7 @@
       font-size: 14px;
       line-height: 42px;
       height: 42px;
-      color: $hy-color-hint;
+      color: $hy-text-color--2;
       text-align: center;
       font-weight: bold;
     }
@@ -88,7 +81,7 @@
 
         &__text {
           font-size: 155px;
-          color: $hy-info-dark;
+          color: $hy-text-color--4;
         }
       }
 
@@ -107,6 +100,19 @@
           align-items: center;
           justify-content: center;
           position: relative;
+          &--selected {
+            background-color: $hy-primary;
+            @include flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            border-radius: 3px;
+            @include m(center) {
+              border-radius: 0;
+              //color: #000000;
+              background-color: $hy-primary-light;
+            }
+          }
 
           &__dot {
             width: 7px;
@@ -119,12 +125,11 @@
           }
 
           &__buttom-info {
-            color: $hy-color-hint;
+            color: $hy-text-color--2;
             text-align: center;
             position: absolute;
             bottom: 5px;
             font-size: 10px;
-            text-align: center;
             left: 0;
             right: 0;
 
@@ -133,7 +138,7 @@
             }
 
             &--disabled {
-              color: #cacbcd;
+              background-color: $hy-primary-disabled;
             }
           }
 
@@ -143,20 +148,12 @@
 
             &--selected {
               color: #ffffff;
+              background-color: $hy-primary;
             }
 
             &--disabled {
-              color: $hy-info-dark;
+              color: $hy-text-color--disabled;
             }
-          }
-
-          &--selected {
-            background-color: var(--hy-theme-dark, $hy-primary);
-            @include flex;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
-            border-radius: 3px;
           }
 
           &--range-selected {

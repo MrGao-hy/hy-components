@@ -1,20 +1,6 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(subsection) {
-      color: $hy-dark-color;
-      @include m(button) {
-        background-color: $hy-dark-background--track;
-        &__bar {
-          background-color: $hy-dark-background--container;
-        }
-      }
-    }
-  }
-}
 
 @include b(subsection) {
   @include flex;
@@ -27,13 +13,13 @@
 
   @include m(button) {
     height: 35px;
-    background-color: rgb(238, 238, 239);
+    background-color: $hy-background--3;
     padding: 3px;
     border-radius: $hy-border-radius-sm;
     align-items: stretch;
 
     &__bar {
-      background-color: #ffffff;
+      background-color: $hy-background--container !important;
       border-radius: $hy-border-radius-sm;
     }
   }

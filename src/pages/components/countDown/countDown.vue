@@ -1,5 +1,5 @@
 <template>
-  <hy-config-provider :custom-style="themeColor" :custom-class="themeClass">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <hy-count-down :time="30 * 60 * 60 * 1000"></hy-count-down>
 
@@ -63,7 +63,7 @@ import { ref } from "vue";
 import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
-const { themeColor, themeClass } = themeStore;
+const { themeColor, darkMode } = themeStore;
 const countDownRef = ref<InstanceType<typeof HyCountDown>>();
 
 // methods

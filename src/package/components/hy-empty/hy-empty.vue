@@ -14,29 +14,30 @@
     <view class="hy-empty__description" v-else>
       <slot v-if="$slots.description" name="description"></slot>
       <text v-else :style="descriptionStyle">{{ emptyDescription }}</text>
-      <HyButton
-        class="hy-empty__button"
-        v-if="btnText"
-        :text="btnText"
-        :size="btnSize"
-        :type="btnType"
-        :shape="btnShape"
-        :plain="btnPlain"
-        @click="handleClick"
-      ></HyButton>
+      <view class="hy-empty__button" v-if="button?.text">
+        <HyButton
+          :text="button?.text"
+          :size="button?.size"
+          :type="button?.type"
+          :shape="button?.shape"
+          :plain="button?.plain"
+          :custom-style="button?.customStyle"
+          @click="handleClick"
+        ></HyButton>
+      </view>
     </view>
   </view>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'hy-empty',
+  name: "hy-empty",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">

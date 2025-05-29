@@ -2,28 +2,29 @@
 @use "../../libs/css/mixin.scss" as *;
 
 /* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(switch) {
-      color: $hy-dark-color;
-      @include m(container) {
-        background-color: $hy-dark-background--track;
-      }
-      @include m(node) {
-        background-color: $hy-dark-background--container;
-      }
-      @include m(bg) {
-        background-color: $hy-dark-background--track;
-      }
-    }
-  }
-}
+//@include b(theme){
+//  @include m(dark) {
+//    @include b(switch) {
+//      color: $hy-dark-color;
+//      @include m(container) {
+//        background-color: $hy-dark-background--track;
+//      }
+//      @include m(node) {
+//        background-color: $hy-dark-background--container;
+//      }
+//      @include m(bg) {
+//        background-color: $hy-dark-background--track;
+//      }
+//    }
+//  }
+//}
 
 @include b(switch) {
   @include flex(row);
   /* #ifndef APP-NVUE */
   box-sizing: border-box;
   /* #endif */
+  background-color: $hy-background--3;
   position: relative;
   border-radius: $hy-border-radius-semicircle;
   transition: background-color 0.4s;
@@ -41,7 +42,7 @@
     @include flex(row);
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: $hy-background--container;
     border-radius: $hy-border-radius-semicircle;
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.25);
     transition-property: transform;
@@ -52,7 +53,7 @@
   @include m(bg) {
     position: absolute;
     border-radius: $hy-border-radius-semicircle;
-    background-color: #ffffff;
+    background-color: $hy-background--3;
     transition-property: transform;
     transition-duration: 0.4s;
     transition-timing-function: ease;

@@ -1,12 +1,6 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-@include b(theme) {
-  @include m(dark) {
-    background-color: $hy-dark-background;
-    color: $hy-dark-color;
-  }
-}
 
 @include b(config-provider) {
   box-sizing: border-box;
@@ -18,4 +12,6 @@
   height: 100vh;
   /* #endif */
   overflow: auto;
+  background-color: $hy-background;
+  color: $hy-text-color;
 }

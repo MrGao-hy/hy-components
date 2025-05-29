@@ -1,24 +1,6 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(number-box) {
-      color: $hy-dark-color;
-      &__input,
-      &__plus,
-      &__minus {
-        background-color: $hy-dark-background--empty;
-        &--disabled {
-          color: $hy-dark-text-disabled;
-          background-color: $hy-dark-bg-disabled;
-        }
-      }
-    }
-  }
-}
-
 
 @include b(number-box) {
   @include flex(row);
@@ -33,7 +15,7 @@
   &__input,
   &__plus,
   &__minus {
-    background-color: #EBECEE;
+    background-color: $hy-background--empty;
     width: 35px;
     @include flex;
     justify-content: center;
@@ -43,12 +25,12 @@
     /* #endif */
 
     &--hover {
-      background-color: $hy-light-background-hover;
+      background-color: $hy-background--hover;
     }
 
     &--disabled {
-      color: $hy-text-color-disable;
-      background-color: $hy-light-background-disabled;
+      color: $hy-text-color--disabled;
+      background-color: $hy-background--disabled;
     }
   }
 
@@ -73,8 +55,8 @@
     justify-content: center;
 
     &--disabled {
-      color: #c8c9cc;
-      background-color: #f2f3f5;
+      color: $hy-text-color--disabled;
+      background-color: $hy-background--disabled;
     }
   }
 }

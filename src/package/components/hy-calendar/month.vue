@@ -25,12 +25,9 @@
           :key="index1"
           :style="[dayStyle(index, index1, item1)]"
           @tap="clickHandler(index, index1, item1)"
-          :class="[
-            item1.selected && 'hy-calendar-month__days__day__select--selected',
-          ]"
         >
           <view
-            class="hy-calendar-month__days__day__select"
+            :class="daySelectClass(index, index1, item1)"
             :style="[daySelectStyle(index, index1, item1)]"
           >
             <text
@@ -67,7 +64,8 @@
 
 <script>
 import { addUnit, colorGradient, deepClone, getRect, sleep } from "../../utils";
-import dayjs from "dayjs/esm/index";
+import dayjs from "dayjs/esm";
+import { formatTime } from "../../utils";
 export default {
   name: "hy-calendar-month",
   props: {
@@ -187,7 +185,7 @@ export default {
     selectedChange() {
       return [this.minDate, this.maxDate, this.defaultDate];
     },
-    dayStyle(index1, index2, item) {
+    dayStyle() {
       return (index1, index2, item) => {
         const style = {};
         let week = item.week;
@@ -215,6 +213,29 @@ export default {
           style.paddingTop = 0;
         }
         return style;
+      };
+    },
+    daySelectClass() {
+      return (index1, index2, item) => {
+        const date = dayjs(item.date).format("YYYY-MM-DD");
+        const len = this.selected.length - 1;
+        const classes = ["hy-calendar-month__days__day__select"];
+        // 判断选中的
+        if (this.selected.some((item) => this.dateSame(item, date))) {
+          classes.push("hy-calendar-month__days__day__select--selected");
+          if (this.selected.length >= 2) {
+            // 判断非两边选中内容
+            if (
+              !this.dateSame(date, this.selected[0]) &&
+              !this.dateSame(date, this.selected[len])
+            ) {
+              classes.push(
+                "hy-calendar-month__days__day__select--selected--center",
+              );
+            }
+          }
+        }
+        return classes;
       };
     },
     daySelectStyle() {
@@ -337,6 +358,7 @@ export default {
     this.init();
   },
   methods: {
+    dayjs,
     init() {
       // 初始化默认选中
       this.$emit("monthSelected", this.selected);

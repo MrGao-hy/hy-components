@@ -71,13 +71,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-submit-bar',
+  name: "hy-submit-bar",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">
@@ -113,6 +113,7 @@ const emit = defineEmits(["click", "menuClick"]);
 const submitBarStyle = computed(() => {
   const style: CSSProperties = {
     bottom: 0,
+    left: 0,
   };
   if (fixed.value) style.position = "fixed";
   return Object.assign(style, customStyle.value);

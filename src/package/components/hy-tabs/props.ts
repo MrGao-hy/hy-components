@@ -11,9 +11,7 @@ const defaultProps: IProps = {
   lineWidth: 20,
   lineHeight: 3,
   lineBgSize: "cover",
-  itemStyle: {
-    height: "44px",
-  },
+  itemStyle: {},
   swiperHeight: "calc(100vh - 44px)",
   scrollable: true,
   iconStyle: {},

@@ -33,6 +33,12 @@ $modifier-separator: '--';
     background-color: $bg-color;
     border: 1px solid $border-color;
     color: $color;
+
+    :deep() {
+      @include b(icon) {
+        color: $color;
+      }
+    }
   }
 }
 

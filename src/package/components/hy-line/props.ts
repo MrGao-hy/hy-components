@@ -1,7 +1,7 @@
 import type IProps from "./typing";
 
 const defaultProps: IProps = {
-  color: "#dcdfe6",
+  color: "",
   length: "100%",
   direction: "row",
   hairline: true,

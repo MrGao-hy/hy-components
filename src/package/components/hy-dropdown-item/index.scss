@@ -1,21 +1,6 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(dropdown-item) {
-      color: $hy-dark-color;
-      &__header {
-        background-color: $hy-dark-background--container;
-      }
-      &__main--container {
-        background-color: $hy-dark-background--container;
-      }
-    }
-  }
-}
-
 @include b(dropdown-item) {
   &__header {
     width: 100%;
@@ -30,9 +15,9 @@
     text-align: center;
     position: relative;
     z-index: 999;
-    background-color: #ffffff;
+    background-color: $hy-background--container;
 
-    &--active {
+    @include m(active) {
       color: $hy-primary;
       :deep() {
         @include b(icon) {
@@ -53,7 +38,7 @@
     background-color: rgba(0, 0, 0, 0);
 
     &--container {
-      background-color: #fff;
+      background-color: $hy-background--container;
       min-height: 200rpx;
       position: absolute;
       top: -100%;

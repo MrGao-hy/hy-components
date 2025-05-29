@@ -7,9 +7,21 @@
   align-items: center;
   justify-content: space-between;
 
+  &-bar {
+    overflow: hidden;
+    padding: 9px 12px;
+    flex: 1;
+    background-color: $hy-warning-light;
+    color: $hy-warning;
+    border-radius: $hy-border-radius-sm;
+  }
+
   &__left-icon {
     align-items: center;
     margin-right: 5px;
+    :deep(.hy-icon) {
+      color: $hy-warning;
+    }
   }
 
   &__right-icon {
@@ -38,6 +50,24 @@
       line-height: 100%;
     }
   }
+
+  &__swiper {
+    height: 16px;
+    @include flex;
+    align-items: center;
+    flex: 1;
+
+    &__item {
+      @include flex;
+      align-items: center;
+      overflow: hidden;
+
+      &__text {
+        font-size: 14px;
+        color: $u-warning;
+      }
+    }
+  }
 }
 
 /* #ifndef APP-NVUE */
@@ -51,43 +81,3 @@
   }
 }
 /* #endif */
-
-@include b(notice-bar) {
-  overflow: hidden;
-  padding: 9px 12px;
-  flex: 1;
-}
-
-//.hy-notice {
-//  @include flex;
-//  align-items: center;
-//  justify-content: space-between;
-//
-//  &__left-icon {
-//    align-items: center;
-//    margin-right: 5px;
-//  }
-//
-//  &__right-icon {
-//    margin-left: 5px;
-//    align-items: center;
-//  }
-//
-//  &__swiper {
-//    height: 16px;
-//    @include flex;
-//    align-items: center;
-//    flex: 1;
-//
-//    &__item {
-//      @include flex;
-//      align-items: center;
-//      overflow: hidden;
-//
-//      &__text {
-//        font-size: 14px;
-//        color: $hy-warning;
-//      }
-//    }
-//  }
-//}

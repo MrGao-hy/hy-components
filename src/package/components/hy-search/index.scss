@@ -10,24 +10,6 @@ $hy-search-close-size: 20px !default;
 }
 /* #endif */
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(search) {
-      color: $hy-dark-color;
-      &__content {
-        background-color: $hy-dark-background--empty;
-        &__input {
-          color: $hy-dark-color;
-        }
-      }
-      &__action {
-        color: $hy-dark-color;
-      }
-    }
-  }
-}
-
 @include b(search) {
   @include flex(row);
   align-items: center;
@@ -43,6 +25,7 @@ $hy-search-close-size: 20px !default;
     border-color: transparent;
     border-style: solid;
     overflow: hidden;
+    background-color: $hy-background--empty;
 
     &__icon {
       @include flex;
@@ -61,7 +44,7 @@ $hy-light-color;
       width: $hy-search-close-size;
       height: $hy-search-close-size;
       border-radius: $hy-border-radius-circle;
-      background-color: #c6c7cb;
+      background-color: $hy-background--track;
       @include flex(row);
       align-items: center;
       justify-content: center;
@@ -74,19 +57,17 @@ $hy-light-color;
       font-size: $hy-font-size-base;
       line-height: 1;
       margin: 0 $hy-border-margin-padding-sm;
-      color:
-$hy-light-color;
+      color: $hy-text-color;
 
       &--placeholder {
-        color: $hy-text-color-grey;
+        color: $hy-text-color--placeholder;
       }
     }
   }
 
   &__action {
     font-size: $hy-font-size-base;
-    color:
-$hy-light-color;
+    color: $hy-text-color;
     width: 0;
     overflow: hidden;
     transition-property: width;

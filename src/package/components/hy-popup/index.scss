@@ -1,21 +1,12 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme) {
-  @include m(dark) {
-    @include b(popup__content) {
-      background-color: $hy-dark-background--2;
-      color: $hy-dark-color;
-    }
-  }
-}
 
 @include b(popup) {
   flex: 1;
 
   &__content {
-    background-color: #fff;
+    background-color: $hy-background--2;
     position: relative;
 
     &--round-top {

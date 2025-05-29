@@ -35,7 +35,10 @@
         >
           <slot name="label" :record="item">
             <text
-              class="hy-radio__text"
+              :class="[
+                'hy-radio__text',
+                disabled && 'hy-radio__label-wrap--disabled',
+              ]"
               :style="{
                 color: labelColor,
                 fontSize: addUnit(sizeType[size] ?? labelSize),
@@ -51,13 +54,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-radio',
+  name: "hy-radio",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">

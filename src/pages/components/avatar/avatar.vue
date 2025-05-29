@@ -1,7 +1,9 @@
 <template>
   <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
-    <hy-avatar :src="config.avatar" :size="size" :shape="shape"></hy-avatar>
+    <view class="hy-container">
+      <hy-avatar :src="config.avatar" :size="size" :shape="shape"></hy-avatar>
+    </view>
 
     <view class="hy-title">文字头像</view>
     <view class="hy-flex">
@@ -26,7 +28,7 @@ import HySubsection from "../../../package/components/hy-subsection/hy-subsectio
 import { reactive, ref } from "vue";
 import { config } from "@/config/config";
 import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
-import {useThemeStore} from "@/store";
+import { useThemeStore } from "@/store";
 const themeStore = useThemeStore();
 
 const { themeColor, darkMode } = themeStore;

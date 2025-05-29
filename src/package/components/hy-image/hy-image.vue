@@ -56,13 +56,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-image',
+  name: "hy-image",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">
@@ -217,7 +217,7 @@ const onLoadHandler = (e: Event) => {
 const removeBgColor = () => {
   // 淡入动画过渡完成后，将背景设置为透明色，否则png图片会看到灰色的背景
   backgroundStyle.value = {
-    backgroundColor: bgColor.value || "#ffffff",
+    backgroundColor: bgColor.value || "",
   };
 };
 </script>

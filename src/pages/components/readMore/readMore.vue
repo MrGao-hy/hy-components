@@ -1,11 +1,13 @@
 <template>
   <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
-    <hy-read-more>
-      <template #default>
-        {{ text }}
-      </template>
-    </hy-read-more>
+    <view class="hy-container">
+      <hy-read-more>
+        <template #default>
+          {{ text }}
+        </template>
+      </hy-read-more>
+    </view>
   </hy-config-provider>
 </template>
 

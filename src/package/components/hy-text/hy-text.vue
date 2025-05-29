@@ -51,13 +51,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-text',
+  name: "hy-text",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">
@@ -243,6 +243,7 @@ const toLink = () => {
 <style scoped lang="scss">
 @import "./index.scss";
 @import "../../libs/css/mixin.scss";
+/*超出出现省略号*/
 .hy-text__value--lines {
   @include multiEllipsis(v-bind(lines));
 }

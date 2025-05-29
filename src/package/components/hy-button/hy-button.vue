@@ -127,13 +127,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-button',
+  name: "hy-button",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">
@@ -197,7 +197,7 @@ const bemClass = computed(() => {
 const loadingColor = computed(() => {
   if (plain.value) {
     // 如果有设置color值，则用color值，否则使用type主题颜色
-    return color.value ? color.value : textColor;
+    return color.value ? color.value : "";
   }
   if (type.value === "info") {
     return "#c9c9c9";
@@ -207,10 +207,9 @@ const loadingColor = computed(() => {
 
 const iconColorCom = computed((): string => {
   // 如果是镂空状态，设置了color就用color值，否则使用主题颜色，
-  // u-icon的color能接受一个主题颜色的值
   if (icon.value?.color) return icon.value?.color;
   if (plain.value) {
-    return color.value ? color.value : textColor;
+    return color.value ? color.value : "";
   } else {
     return (type.value = "#ffffff");
   }

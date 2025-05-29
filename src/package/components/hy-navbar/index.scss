@@ -1,20 +1,9 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(navbar) {
-      &__content {
-        color: $hy-dark-color;
-        background-color: $hy-dark-background;
-      }
-    }
-  }
-}
 
 @include b(navbar) {
-  &--fixed {
+  @include m(fixed) {
     position: fixed;
     left: 0;
     right: 0;
@@ -26,7 +15,7 @@
     @include flex(row);
     align-items: center;
     height: 44px;
-    background-color: #F8F8F8;
+    background-color: $hy-background;
     position: relative;
     justify-content: center;
 
@@ -62,7 +51,7 @@
       }
       &--sub {
         font-size: $hy-font-size-hint;
-        color: $hy-color-hint;
+        color: $hy-text-color--grey;
       }
     }
 

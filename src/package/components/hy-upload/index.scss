@@ -4,16 +4,6 @@
 $hy-upload-image-width: 80px !default;
 $hy-upload-text-font-size: 11px !default;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(upload) {
-      &__button {
-        background-color: $hy-dark-background--container;
-      }
-    }
-  }
-}
 
 @include b(upload) {
   @include flex(column);
@@ -110,7 +100,7 @@ $hy-upload-text-font-size: 11px !default;
     justify-content: center;
     width: $hy-upload-image-width;
     height: $hy-upload-image-width;
-    background-color: rgb(244, 245, 247);
+    background-color: $hy-background--empty;
     border-radius: 2px;
     margin: 0 8px 8px 0;
     /* #ifndef APP-NVUE */
@@ -119,12 +109,12 @@ $hy-upload-text-font-size: 11px !default;
 
     &__text {
       font-size: $hy-upload-text-font-size;
-      color: $hy-tips-color;
+      color: $hy-text-color--grey;
       margin-top: 2px;
     }
 
     &--hover {
-      background-color: rgb(230, 231, 233);
+      background-color: $hy-background--hover;
     }
 
     &--disabled {
@@ -153,6 +143,6 @@ $hy-upload-text-font-size: 11px !default;
 
   .tips-text {
     font-size: 12px;
-    color: #b99c65;
+    color: $hy-primary;
   }
 }

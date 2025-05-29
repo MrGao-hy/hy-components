@@ -4,7 +4,7 @@ const defaultProps: IProps = {
   text: "",
   copyText: "",
   size: 14,
-  color: "#606266",
+  color: "",
   bgColor: "transparent",
   direction: "top",
   zIndex: 10071,

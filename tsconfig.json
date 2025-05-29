@@ -7,7 +7,7 @@
       "@/*": ["./src/*"]
     },
     "lib": ["esnext", "dom"],
-    "types": ["@dcloudio/types", "hy-app/typing/modules/common", "@types"]
+    "types": ["@dcloudio/types", "hy-app", "@types"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "hy-app/**/*.d.ts", "common.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

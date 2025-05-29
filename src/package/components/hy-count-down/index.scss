@@ -1,15 +1,6 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(count-down) {
-      color: $hy-dark-color;
-    }
-  }
-}
-
 @include b(count-down) {
   &__text {
     font-size: 15px;

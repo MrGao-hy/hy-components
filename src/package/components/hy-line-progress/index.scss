@@ -1,17 +1,6 @@
 @use "../../libs/css/mixin.scss" as *;
 @use "../../theme.scss" as *;
 
-/* 暗色主题 */
-@include b(theme){
-  @include m(dark) {
-    @include b(line-progress) {
-      &__background {
-        background-color: $hy-dark-background--track;
-      }
-    }
-  }
-}
-
 @include b(line-progress) {
   align-items: stretch;
   position: relative;
@@ -21,7 +10,7 @@
   border-radius: $hy-border-radius-semicircle;
 
   &__background {
-    background-color: $hy-info-light;
+    background-color: $hy-background--empty;
     border-radius: $hy-border-radius-semicircle;
     flex: 1;
   }

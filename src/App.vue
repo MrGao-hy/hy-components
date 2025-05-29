@@ -21,11 +21,9 @@ view {
   margin: 0;
 }
 /* #ifndef APP-NVUE */
-page {
-  background-color: #f8f8f8;
-}
-.hy-theme--dark {
-  background-color: #000000;
-}
+//page {
+//  background-color: #f8f8f8;
+//}
+
 /* #endif */
 </style>

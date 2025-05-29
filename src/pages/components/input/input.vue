@@ -6,6 +6,7 @@
       :shape="shape"
       :border="border"
       :type="type"
+      :disabled="disabled"
       placeholder="输入值"
     ></hy-input>
 
@@ -18,6 +19,7 @@
       :suffix-icon="{
         name: IconConfig.DOWN,
       }"
+      :disabled="disabled"
       border="bottom"
     ></hy-input>
 
@@ -29,10 +31,14 @@
         customPrefix: 'icon',
         color: 'red',
       }"
+      :disabled="disabled"
       border="bottom"
     ></hy-input>
 
     <view class="hy-setting__box">
+      <view class="hy-title">禁用</view>
+      <hy-switch v-model="disabled"></hy-switch>
+
       <view class="hy-title">输入框形状</view>
       <hy-subsection :list="list_1" v-model="shape"></hy-subsection>
 
@@ -53,10 +59,12 @@ import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-
 import { IconConfig } from "hy-app";
 import type { HyApp } from "hy-app/typing/modules/common";
 import { useThemeStore } from "@/store";
+import HySwitch from "../../../package/components/hy-switch/hy-switch.vue";
 
 const themeStore = useThemeStore();
 const { themeColor, darkMode } = themeStore;
 const value = ref("");
+const disabled = ref(false);
 const shape = ref<HyApp.ShapeType>("square");
 const type = ref("text");
 const border = ref<HyApp.BorderType>("surround");
