@@ -17,7 +17,6 @@ const defaultProps: IProps = {
     },
   ],
   duration: 300,
-  closeOnClick: true,
 };
 
 export default defaultProps;

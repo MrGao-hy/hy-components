@@ -2,7 +2,7 @@
   <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础示例</view>
     <view class="hy-container">
-      <hy-swipe-action borderBottom>
+      <hy-swipe-action borderBottom :beforeClose="beforeClose">
         <view class="cell">
           <view class="cell-title">我是标题</view>
           <view class="cell-value">我是内容</view>
@@ -56,6 +56,10 @@ const options = [
     },
   },
 ];
+
+const beforeClose = () => {
+  uni.showToast({ title: "关闭", icon: "none" });
+};
 </script>
 
 <style scoped lang="scss">

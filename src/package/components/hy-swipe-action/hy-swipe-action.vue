@@ -1,7 +1,7 @@
 <template>
   <!--注意阻止横向滑动的穿透：横向移动时阻止冒泡-->
   <view
-    :class="`hy-swipe-action ${customClass}`"
+    class="hy-swipe-action"
     :style="customStyle"
     @click.stop="onClick()"
     @touchstart="startDrag"
@@ -27,9 +27,7 @@
           borderBottom && 'hy-border__bottom',
         ]"
       >
-        <slot>
-          {{ title }}
-        </slot>
+        <slot></slot>
       </view>
       <!--内容-->
 
@@ -43,7 +41,8 @@
             <view
               class="hy-swipe-action--right__action-btn"
               :style="item.style"
-              v-for="item in options"
+              v-for="(item, i) in options"
+              @tap.stop="onActiveClick(item, i)"
               >{{ item.text }}</view
             >
           </view>
@@ -53,6 +52,7 @@
     </view>
   </view>
 </template>
+
 <script lang="ts">
 export default {
   name: "hy-swipe-action",
@@ -75,6 +75,11 @@ import {
   useSlots,
 } from "vue";
 import type IProps from "./typing";
+import type {
+  SwipeActionStatus,
+  SwipeActionPosition,
+  SwipeActionReason,
+} from "./typing";
 import defaultProps from "./props";
 import { useTouch } from "../../composables";
 import { closeOther, pushToQueue, removeFromQueue } from "./index";
@@ -82,7 +87,7 @@ import { getRect, guid } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
 const {} = toRefs(props);
-const emit = defineEmits(["click", "update:modelValue"]);
+const emit = defineEmits(["click", "clickAction", "update:modelValue"]);
 const leftClass = `hy-swipe-action--left--${guid()}`;
 const rightClass = `hy-swipe-action--right--${guid()}`;
 
@@ -127,11 +132,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  if (queue && queue.removeFromQueue) {
-    queue.removeFromQueue(proxy);
-  } else {
-    removeFromQueue(proxy);
-  }
+  removeFromQueue(proxy);
 });
 
 function changeState(value: SwipeActionStatus, old?: SwipeActionStatus) {
@@ -159,18 +160,16 @@ function changeState(value: SwipeActionStatus, old?: SwipeActionStatus) {
  * @description 获取左/右操作按钮的宽度
  * @return {Promise<[Number, Number]>} 左宽度、右宽度
  */
-function getWidths() {
+const getWidths = (): Promise<number[]> => {
   return Promise.all([
     getRect("." + leftClass, false, proxy).then((rect) => {
-      console.log(rect.width);
       return rect.width ? rect.width : 0;
     }),
     getRect("." + rightClass, false, proxy).then((rect) => {
-      console.log(rect.width);
       return rect.width ? rect.width : 0;
     }),
   ]);
-}
+};
 /**
  * @description wrapper滑动函数
  * @param {Number} offset 滑动漂移量
@@ -322,6 +321,11 @@ function close(reason: SwipeActionReason, position?: SwipeActionPosition) {
     emit("update:modelValue", "close");
   }
 }
+
+const onActiveClick = (item: any, index: number) => {
+  close("click", "right");
+  emit("clickAction", index, item);
+};
 
 defineExpose({ close });
 </script>
