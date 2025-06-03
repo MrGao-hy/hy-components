@@ -46,7 +46,7 @@
 
 <script lang="ts">
 export default {
-  name: "hy-count-down",
+  name: "hy-code-input",
   options: {
     addGlobalClass: true,
     virtualHost: true,
