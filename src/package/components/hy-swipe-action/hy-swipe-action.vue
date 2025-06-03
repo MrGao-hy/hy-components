@@ -1,294 +1,330 @@
 <template>
-  <view class="hy-swipe-action" :style="customStyle">
-    <template
-      v-for="(fatherItem, fatherI) in swipeActionList"
-      :key="fatherItem?.[key] || fatherI"
-    >
-      <view class="u-swipe-action-item" ref="u-swipe-action-item">
-        <!--	右侧操作按钮	-->
-        <view class="u-swipe-action-item__right">
-          <slot name="button">
-            <view
-              v-for="(item, index) in options"
-              :key="index"
-              class="u-swipe-action-item__right__button"
-              :ref="`u-swipe-action-item__right__button-${index}`"
-              :style="{
-                alignItems: item?.style?.borderRadius ? 'center' : 'stretch',
-              }"
-              @tap="buttonClickHandler(item, index, fatherI)"
-            >
-              <view
-                class="u-swipe-action-item__right__button__wrapper"
-                :style="operateItemStyle(item?.style)"
-              >
-                <u-icon
-                  v-if="item.icon"
-                  :name="item.icon"
-                  :color="item?.style?.color || '#ffffff'"
-                  :size="
-                    item.iconSize
-                      ? addUnit(item.iconSize)
-                      : item.style && item.style.fontSize
-                        ? getPx(item.style.fontSize) * 1.2
-                        : 17
-                  "
-                  :customStyle="{
-                    marginRight: item.text ? '2px' : 0,
-                  }"
-                ></u-icon>
-                <text
-                  v-if="item.text"
-                  class="u-swipe-action-item__right__button__wrapper__text u-line-1"
-                  :style="operateTextStyle(item?.style)"
-                  >{{ item.text }}</text
-                >
-              </view>
-            </view>
-          </slot>
-        </view>
-        <!--	右侧操作按钮	-->
-
-        <!--  左侧内容  -->
-        <!-- #ifdef APP-VUE || MP-WEIXIN || MP-QQ || H5  -->
-        <view
-          class="u-swipe-action-item__content"
-          @touchstart="wxs.touchstart"
-          @touchmove="wxs.touchmove"
-          @touchend="wxs.touchend"
-          :status="fatherItem.status"
-          :change:status="wxs.statusChange"
-          :size="size"
-          :change:size="wxs.sizeChange"
-        >
-          <slot :record="fatherItem"> </slot>
-        </view>
-        <!-- #endif -->
-        <!--  左侧内容  -->
+  <!--注意阻止横向滑动的穿透：横向移动时阻止冒泡-->
+  <view
+    :class="`hy-swipe-action ${customClass}`"
+    :style="customStyle"
+    @click.stop="onClick()"
+    @touchstart="startDrag"
+    @touchmove="onDrag"
+    @touchend="endDrag"
+    @touchcancel="endDrag"
+  >
+    <!--容器-->
+    <view class="hy-swipe-action--wrapper" :style="wrapperStyle">
+      <!--左侧操作-->
+      <view
+        :class="['hy-swipe-action--left', leftClass]"
+        @click="onClick('left')"
+      >
+        <slot name="left" />
       </view>
-    </template>
+      <!--左侧操作-->
+
+      <!--内容-->
+      <view
+        :class="[
+          'hy-swipe-action--center',
+          borderBottom && 'hy-border__bottom',
+        ]"
+      >
+        <slot>
+          {{ title }}
+        </slot>
+      </view>
+      <!--内容-->
+
+      <!--右侧操作-->
+      <view
+        :class="['hy-swipe-action--right', rightClass]"
+        @click="onClick('right')"
+      >
+        <slot name="right">
+          <view v-if="!slots.left" class="hy-swipe-action--right__action">
+            <view
+              class="hy-swipe-action--right__action-btn"
+              :style="item.style"
+              v-for="item in options"
+              >{{ item.text }}</view
+            >
+          </view>
+        </slot>
+      </view>
+      <!--右侧操作-->
+    </view>
   </view>
 </template>
-<!-- #ifdef APP-VUE || MP-WEIXIN || MP-QQ || H5 -->
-<script src="./index.wxs" module="wxs" lang="wxs"></script>
-<!-- #endif -->
-
-<script setup lang="ts">
-import type IProps from "./typing";
-import defaultProps from "./props";
+<script lang="ts">
+export default {
+  name: "hy-swipe-action",
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: "shared",
+  },
+};
+</script>
+<script lang="ts" setup>
 import {
-  computed,
-  type CSSProperties,
+  getCurrentInstance,
+  onBeforeMount,
+  onBeforeUnmount,
   onMounted,
   ref,
   toRefs,
   watch,
+  useSlots,
 } from "vue";
-// #ifdef APP-VUE || MP-WEIXIN || MP-QQ || H5
-import { getRect, sleep, addUnit, getPx } from "@/package";
-// #endif
+import type IProps from "./typing";
+import defaultProps from "./props";
+import { useTouch } from "../../composables";
+import { closeOther, pushToQueue, removeFromQueue } from "./index";
+import { getRect, guid } from "../../utils";
 
 const props = withDefaults(defineProps<IProps>(), defaultProps);
-const {
-  list,
-  show,
-  disabled,
-  autoClose,
-  threshold,
-  options,
-  duration,
-  closeOnClick,
-} = toRefs(props);
-const emit = defineEmits(["update:show", "click"]);
+const {} = toRefs(props);
+const emit = defineEmits(["click", "update:modelValue"]);
+const leftClass = `hy-swipe-action--left--${guid()}`;
+const rightClass = `hy-swipe-action--right--${guid()}`;
 
-type OpenStatus = "open" | "close" | "";
+const slots = useSlots();
+const wrapperStyle = ref<string>("");
 
-// 按钮的尺寸信息
-const size = ref({});
-const sliderStyle = ref({});
-const swipeActionList = ref<AnyObject[]>([]);
+// 滑动开始时，wrapper的偏移量
+const originOffset = ref<number>(0);
+// wrapper现在的偏移量
+const wrapperOffset = ref<number>(0);
+// 是否处于滑动状态
+const touching = ref<boolean>(false);
+
+const touch = useTouch();
+
+const { proxy } = getCurrentInstance() as any;
 
 watch(
-  () => list.value,
-  (newValue) => {
-    swipeActionList.value = newValue.map((item) => ({
-      ...item,
-      status: "close",
-    }));
+  () => props.modelValue,
+  (value, old) => {
+    changeState(value, old);
   },
-  { immediate: true },
+  {
+    deep: true,
+  },
 );
 
-const operateTextStyle = computed(() => {
-  return (temp?: CSSProperties): CSSProperties => {
-    return {
-      color: temp?.color || "#ffffff",
-      fontSize: temp?.fontSize || "16px",
-      lineHeight: temp?.fontSize || "16px",
-    };
-  };
+onBeforeMount(() => {
+  pushToQueue(proxy);
+  // 滑动开始时，wrapper的偏移量
+  originOffset.value = 0;
+  // wrapper现在的偏移量
+  wrapperOffset.value = 0;
+  // 是否处于滑动状态
+  touching.value = false;
 });
-
-const operateItemStyle = computed(() => {
-  return (temp?: CSSProperties): CSSProperties => {
-    return {
-      backgroundColor: temp?.backgroundColor || "#C7C6CD",
-      borderRadius: temp?.borderRadius || "0",
-      padding: temp?.borderRadius ? 0 : "0 15px",
-      ...temp,
-    };
-  };
-});
-
-const wxsInit = computed(() => {
-  return [
-    disabled.value,
-    autoClose.value,
-    threshold.value,
-    options.value,
-    duration.value,
-  ];
-});
-
-/**
- * @description 查询节点
- * */
-const queryRect = () => {
-  getRect(".u-swipe-action-item__right__button", true).then((buttons) => {
-    size.value = {
-      buttons,
-      show: show.value,
-      disabled: disabled.value,
-      threshold: threshold.value,
-      duration: duration.value,
-    };
-  });
-};
-
-watch(
-  () => wxsInit.value,
-  () => queryRect(),
-);
-
-// watch(
-//   () => status.value,
-//   (newValue: OpenStatus) => {
-//     if (newValue === "open") {
-//       emit("update:show", true);
-//     } else {
-//       emit("update:show", false);
-//     }
-//   },
-// );
-//
-// watch(
-//   () => show.value,
-//   (newValue: boolean) => {
-//     if (newValue) {
-//       status.value = "open";
-//     } else {
-//       status.value = "close";
-//     }
-//   },
-// );
 
 onMounted(() => {
-  init();
+  touching.value = true;
+  changeState(props.modelValue);
+  touching.value = false;
 });
 
-const init = () => {
-  // 初始化父组件数据
-  updateParentData();
-  // #ifndef APP-NVUE
-  sleep().then(() => {
-    queryRect();
-  });
-  // #endif
-};
-
-const updateParentData = () => {
-  // 此方法在mixin中
-  // getParentData("u-swipe-action");
-};
-
-/**
- * @description 按钮被点击
- */
-const buttonClickHandler = (
-  item: AnyObject,
-  index: number,
-  fatherI: number,
-) => {
-  emit(
-    "click",
-    {
-      item,
-      index,
-    },
-    () => {},
-  );
-  if (closeOnClick.value) {
-    closeHandler(fatherI);
+onBeforeUnmount(() => {
+  if (queue && queue.removeFromQueue) {
+    queue.removeFromQueue(proxy);
+  } else {
+    removeFromQueue(proxy);
   }
-};
+});
 
-/**
- * @description 关闭时执行
- * */
-const closeHandler = (index: number) => {
-  swipeActionList.value = swipeActionList.value.map((item, i) => ({
-    ...item,
-    status: i === index ? "close" : "open",
-  }));
-  console.log(swipeActionList.value);
-};
-</script>
-
-<style lang="scss" scoped>
-@import "../../libs/css/mixin.scss";
-
-.u-swipe-action-item {
-  position: relative;
-  overflow: hidden;
-  /* #ifndef APP-NVUE || MP-WEIXIN */
-  touch-action: pan-y;
-  /* #endif */
-
-  &__content {
-    transform: translateX(0px); // 修复某些情况下默认右侧按钮是展开的问题
-    background-color: #ffffff;
-    z-index: 10;
+function changeState(value: SwipeActionStatus, old?: SwipeActionStatus) {
+  if (props.disabled) {
+    return;
   }
-
-  &__right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    @include flex;
-
-    &__button {
-      @include flex;
-      justify-content: center;
-      overflow: hidden;
-      align-items: center;
-
-      &__wrapper {
-        @include flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 15px;
-
-        &__text {
-          @include flex;
-          align-items: center;
-          color: #ffffff;
-          font-size: 15px;
-          text-align: center;
-          justify-content: center;
-        }
-      }
+  getWidths().then(([leftWidth, rightWidth]) => {
+    switch (value) {
+      case "close":
+        // 调用此函数时，偏移量本就是0
+        if (wrapperOffset.value === 0) return;
+        close("value", old);
+        break;
+      case "left":
+        swipeMove(leftWidth);
+        break;
+      case "right":
+        swipeMove(-rightWidth);
+        break;
     }
+  });
+}
+
+/**
+ * @description 获取左/右操作按钮的宽度
+ * @return {Promise<[Number, Number]>} 左宽度、右宽度
+ */
+function getWidths() {
+  return Promise.all([
+    getRect("." + leftClass, false, proxy).then((rect) => {
+      console.log(rect.width);
+      return rect.width ? rect.width : 0;
+    }),
+    getRect("." + rightClass, false, proxy).then((rect) => {
+      console.log(rect.width);
+      return rect.width ? rect.width : 0;
+    }),
+  ]);
+}
+/**
+ * @description wrapper滑动函数
+ * @param {Number} offset 滑动漂移量
+ */
+function swipeMove(offset = 0) {
+  // this.offset = offset
+  const transform = `translate3d(${offset}px, 0, 0)`;
+  // 跟随手指滑动，不需要动画
+  const transition = touching.value
+    ? "none"
+    : ".6s cubic-bezier(0.18, 0.89, 0.32, 1)";
+  wrapperStyle.value = `
+        -webkit-transform: ${transform};
+        -webkit-transition: ${transition};
+        transform: ${transform};
+        transition: ${transition};
+      `;
+  // 记录容器当前偏移的量
+  wrapperOffset.value = offset;
+}
+/**
+ * @description click的handler
+ * @param event
+ */
+function onClick(position?: SwipeActionPosition) {
+  if (props.disabled || wrapperOffset.value === 0) {
+    return;
+  }
+
+  position = position || "inside";
+  close("click", position);
+  emit("click", {
+    value: position,
+  });
+}
+/**
+ * @description 开始滑动
+ */
+function startDrag(event: TouchEvent) {
+  if (props.disabled) return;
+
+  originOffset.value = wrapperOffset.value;
+  touch.touchStart(event);
+  closeOther(proxy);
+}
+/**
+ * @description 滑动时，逐渐展示按钮
+ * @param event
+ */
+function onDrag(event: TouchEvent) {
+  if (props.disabled) return;
+
+  touch.touchMove(event);
+  if (touch.direction.value === "vertical") {
+    return;
+  } else {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  touching.value = true;
+
+  // 本次滑动，wrapper应该设置的偏移量
+  const offset = originOffset.value + touch.deltaX.value;
+  getWidths().then(([leftWidth, rightWidth]) => {
+    // 如果需要想滑出来的按钮不存在，对应的按钮肯定滑不出来，容器处于初始状态。此时需要模拟一下位于此处的start事件。
+    if ((leftWidth === 0 && offset > 0) || (rightWidth === 0 && offset < 0)) {
+      swipeMove(0);
+      return startDrag(event);
+    }
+    // 按钮已经展示完了，再滑动没有任何意义，相当于滑动结束。此时需要模拟一下位于此处的start事件。
+    if (leftWidth !== 0 && offset >= leftWidth) {
+      swipeMove(leftWidth);
+      return startDrag(event);
+    } else if (rightWidth !== 0 && -offset >= rightWidth) {
+      swipeMove(-rightWidth);
+      return startDrag(event);
+    }
+    swipeMove(offset);
+  });
+}
+/**
+ * @description 滑动结束，自动修正位置
+ */
+function endDrag() {
+  if (props.disabled) return;
+  // 滑出"操作按钮"的阈值
+  const THRESHOLD = 0.3;
+  touching.value = false;
+
+  getWidths().then(([leftWidth, rightWidth]) => {
+    if (
+      originOffset.value < 0 && // 之前展示的是右按钮
+      wrapperOffset.value < 0 && // 目前仍然是右按钮
+      wrapperOffset.value - originOffset.value < rightWidth * THRESHOLD // 并且滑动的范围不超过右边框阀值
+    ) {
+      swipeMove(-rightWidth); // 回归右按钮
+      emit("update:modelValue", "right");
+    } else if (
+      originOffset.value > 0 && // 之前展示的是左按钮
+      wrapperOffset.value > 0 && // 现在仍然是左按钮
+      originOffset.value - wrapperOffset.value < leftWidth * THRESHOLD // 并且滑动的范围不超过左按钮阀值
+    ) {
+      swipeMove(leftWidth); // 回归左按钮
+      emit("update:modelValue", "left");
+    } else if (
+      rightWidth > 0 &&
+      originOffset.value >= 0 && // 之前是初始状态或者展示左按钮显
+      wrapperOffset.value < 0 && // 现在展示右按钮
+      Math.abs(wrapperOffset.value) > rightWidth * THRESHOLD // 视图中已经展示的右按钮长度超过阀值
+    ) {
+      swipeMove(-rightWidth);
+      emit("update:modelValue", "right");
+    } else if (
+      leftWidth > 0 &&
+      originOffset.value <= 0 && // 之前初始状态或者右按钮显示
+      wrapperOffset.value > 0 && // 现在左按钮
+      Math.abs(wrapperOffset.value) > leftWidth * THRESHOLD // 视图中已经展示的左按钮长度超过阀值
+    ) {
+      swipeMove(leftWidth);
+      emit("update:modelValue", "left");
+    } else {
+      // 回归初始状态
+      close("swipe");
+    }
+  });
+}
+/**
+ * @description 关闭操过按钮，并在合适的时候调用 beforeClose
+ */
+function close(reason: SwipeActionReason, position?: SwipeActionPosition) {
+  if (reason === "swipe" && originOffset.value === 0) {
+    // offset：0 ——> offset：0
+    return swipeMove(0);
+  } else if (reason === "swipe" && originOffset.value > 0) {
+    // offset > 0 ——> offset：0
+    position = "left";
+  } else if (reason === "swipe" && originOffset.value < 0) {
+    // offset < 0 ——> offset：0
+    position = "right";
+  }
+
+  if (reason && position) {
+    props.beforeClose && props.beforeClose(reason, position);
+  }
+
+  swipeMove(0);
+  if (props.modelValue !== "close") {
+    emit("update:modelValue", "close");
   }
 }
+
+defineExpose({ close });
+</script>
+<style lang="scss" scoped>
+@import "./index.scss";
 </style>
