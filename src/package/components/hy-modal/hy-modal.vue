@@ -65,10 +65,11 @@
               >{{ cancelText }}</text
             >
           </view>
-          <view
-            class="hy-modal__button-group__wrapper--line"
+          <hy-line
             v-if="showConfirmButton && showCancelButton"
-          ></view>
+            length="48px"
+            direction="column"
+          ></hy-line>
           <view
             class="hy-modal__button-group__wrapper hy-modal__button-group__wrapper--confirm"
             :hover-stay-time="150"
@@ -113,10 +114,9 @@ import { ref, toRefs, watch } from "vue";
 import defaultProps from "./props";
 import type IProps from "./typing";
 import { addUnit } from "../../utils";
-import { IconConfig } from "../../config";
 
 // 组件
-import HyIcon from "../hy-icon/hy-icon.vue";
+import HyLine from "../hy-line/hy-line.vue";
 import HyPopup from "../hy-popup/hy-popup.vue";
 import HyLoading from "../hy-loading/hy-loading.vue";
 

@@ -128,11 +128,9 @@ const clear = () => {
 /* 暗色主题 */
 @include b(theme--dark) {
   .demo-water {
-    color: $hy-dark-color;
     background-color: $hy-background--container;
   }
   .demo-shop {
-    color: $hy-dark-color;
   }
 }
 .demo-water {
@@ -217,7 +215,7 @@ const clear = () => {
 
 .demo-shop {
   font-size: 22rpx;
-  color: $hy-tips-color;
+  color: $hy-text-color--grey;
   margin-top: 5px;
 }
 </style>

@@ -47,12 +47,6 @@
       align-items: center;
       height: 48px;
 
-      &--line {
-        background: $hy-border-color;
-        width: 1px;
-        height: 48px;
-      }
-
       &--confirm,
       &--only-cancel {
         border-bottom-right-radius: $hy-border-radius-base;

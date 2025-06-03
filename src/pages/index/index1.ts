@@ -231,6 +231,10 @@ export const list_5 = [
 
 export const list_6 = [
   {
+    title: "CodeInput 验证码输入",
+    url: "/pages/components/codeInput/codeInput",
+  },
+  {
     title: "CountTo 数字滚动",
     url: "/pages/components/countTo/countTo",
   },

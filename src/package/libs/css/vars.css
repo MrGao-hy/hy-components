@@ -5,7 +5,8 @@
   --hy-text-color--2: #67676c;
   --hy-text-color--3: #929295;
   --hy-text-color--4: rgba(0, 0, 0, 0.1);
-  --hy-icon-color: #606266;
+  --hy-icon-color: #999;
+  --hy-text-color--grey: #67676c;
   --hy-text-color--placeholder: rgba(0, 0, 0, 0.25);
   --hy-text-color--disabled: rgba(0, 0, 0, 0.25);
 
@@ -18,6 +19,8 @@
   --hy-background--hover: rgba(0,0,0,0.2);
 
   --hy-border-line: 1rpx solid #c2c2c4;
+  --hy-border-color: #c2c2c4;
+  --hy-border-color--2: #c9cacc;
 }
 
 .hy-theme--dark {
@@ -32,6 +35,7 @@
   --hy-text-color-3: #6a6a71;
   --hy-text-color--4: rgba(255, 255, 255, 0.1);
   --hy-icon-color: #FFFFFF;
+  --hy-text-color--grey: #98989f;
   --hy-text-color--placeholder: rgba(255, 255, 255, 0.25);
   --hy-text-color--disabled: rgba(255, 255, 255, 0.25);
 
@@ -44,4 +48,6 @@
   --hy-background--hover: rgba(255,255,255,0.2);
 
   --hy-border-line: 1rpx solid #3c3f44;
+  --hy-border-color: #3c3f44;
+  --hy-border-color--2: #FFFFFF;
 }

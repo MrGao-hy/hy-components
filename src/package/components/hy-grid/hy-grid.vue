@@ -13,7 +13,7 @@
             :name="item?.icon"
             label-pos="bottom"
             :label="item?.name"
-            :space="item?.iconConfig?.space || iconConfig?.space || 12"
+            :space="item?.iconConfig?.space || iconConfig?.space || 8"
             :color="item?.iconConfig?.color || iconConfig?.color"
             :size="item?.iconConfig?.size || iconConfig?.size || 30"
             :bold="item?.iconConfig?.bold || iconConfig?.bold"
@@ -37,13 +37,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-grid',
+  name: "hy-grid",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">

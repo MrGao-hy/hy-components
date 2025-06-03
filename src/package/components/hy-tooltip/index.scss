@@ -21,7 +21,7 @@
       justify-content: center;
 
       &__list {
-        background-color: #060607;
+        background-color: rgb(50, 50, 51);
         position: relative;
         flex: 1;
         border-radius: $hy-border-radius-sm;
@@ -49,7 +49,7 @@
 
       &__indicator {
         position: absolute;
-        background-color: #060607;
+        background-color: rgb(50, 50, 51);
         width: 14px;
         height: 14px;
         bottom: -4px;

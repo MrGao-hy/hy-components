@@ -47,10 +47,10 @@
         &--text {
           font-size: 15px;
           color: $hy-text-color;
-          white-space: nowrap !important;
+          white-space: nowrap;
 
           &--disabled {
-            color: $hy-light-background-disabled !important;
+            color: $hy-background--disabled !important;
           }
         }
       }

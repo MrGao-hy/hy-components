@@ -8,31 +8,30 @@
   flex: 1;
   padding: $hy-border-margin-padding-base;
 
-  &--radius {
+  @include m(radius) {
     border-radius: $hy-border-radius-sm;
   }
 
-  &--no-radius {
+  @include m(no-radius) {
     border-radius: $hy-border-radius-no;
   }
 
-  &--disabled {
+  @include m(disabled) {
     background-color: $hy-background--disabled;
     color: $hy-text-color--disabled;
   }
 
-  &__field {
+  @include m(field) {
     flex: 1;
     font-size: 15px;
     width: 100%;
   }
 
-  &--count {
+  @include m(count) {
     position: absolute;
     right: 5px;
     bottom: 2px;
     font-size: 12px;
-    color: $hy-text-color--2;
     background-color: $hy-background--3;
     padding: 1px 4px;
     border-radius: $hy-border-radius-sm;

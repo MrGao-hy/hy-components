@@ -33,7 +33,8 @@
   }
 
   &__base {
-    background-color: #ebedf0;
+    background-color: $hy-background--empty;
+    border-radius: $hy-border-radius-semicircle;
   }
 
   /* #ifndef APP-NVUE */
@@ -53,6 +54,9 @@
     border-radius: $hy-border-radius-semicircle;
     transition: width 0.2s;
     background-color: $hy-primary;
+    &-0 {
+      background-color: $hy-background--empty;
+    }
   }
 
   &__button {

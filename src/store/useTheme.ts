@@ -6,25 +6,24 @@ export const useThemeStore = defineStore(
   "hy_theme",
   () => {
     const color = ref("#892FE8");
-    const lightColor = computed(() => {
-      return colorGradient(
-        color.value,
-        darkMode.value === "dark" ? "#000000" : "#ffffff",
-      )[90];
-    });
+    const darkMode = ref("light");
+
+    // const lightColor = computed(() => {
+    //   return colorGradient(
+    //     color.value,
+    //     darkMode.value === "dark" ? "#000000" : "#ffffff",
+    //   )[90];
+    // });
     const themeColor = ref({
       "--hy-theme-color": color.value,
-      "--hy-theme--light": lightColor,
+      // "--hy-theme--light": lightColor,
     });
-
-    const darkMode = ref("dark");
-    console.log(darkMode.value);
 
     return {
       color,
       themeColor,
       darkMode,
-      lightColor,
+      // lightColor,
     };
   },
   { unistorage: true },

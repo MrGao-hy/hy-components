@@ -444,6 +444,20 @@
             "navigationBarTitleText": "页面全局配置",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "codeInput/codeInput",
+          "style": {
+            "navigationBarTitleText": "验证码输入",
+            "enablePullDownRefresh": false
+          }
+        },
+        {
+          "path": "notify/notify",
+          "style": {
+            "navigationBarTitleText": "消息提示",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }

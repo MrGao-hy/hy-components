@@ -42,7 +42,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // additionalData: '@import "hy-app/theme.scss";',
+        // additionalData: '@import "hy-app/theme.scss"',
       },
     },
   },

@@ -3,7 +3,6 @@ import App from "./App.vue";
 import { createPinia } from "pinia";
 import { useShare } from "@/package";
 
-import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import { createUnistorage } from "pinia-plugin-unistorage";
 
 export function createApp() {

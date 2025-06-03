@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import {computed, type CSSProperties, reactive, ref} from "vue";
+import { computed, type CSSProperties, reactive, ref } from "vue";
 import type { CellContentVo } from "hy-app/components/hy-cell/typing";
 import { getWindowInfo } from "@/package";
-import {useThemeStore} from "@/store";
+import { useThemeStore } from "@/store";
 
 // 组件
 import HyCell from "@/package/components/hy-cell/hy-cell.vue";
@@ -30,7 +30,7 @@ const style = computed((): CSSProperties => {
     left: `${getWindowInfo().windowWidth / 2 - 60}px`,
     width: "120px",
     height: "120px",
-    backgroundColor: "#1989fa",
+    backgroundColor: "var(--hy-theme-color)",
   };
 });
 

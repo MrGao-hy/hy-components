@@ -13,7 +13,7 @@
   }
 
   /*禁用*/
-  @include themeColor(disabled, $hy-background--disabled, $hy-color-disable-icon,
+  @include themeColor(disabled, $hy-background--disabled, $hy-text-color--disabled,
 $hy-background--disabled);
 
   /*圆角*/

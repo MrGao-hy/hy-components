@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-page">
+  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
     <view class="hy-title">基础使用</view>
     <view class="hy-container">
       <hy-button type="primary" @click="show = !show">打开遮罩框</hy-button>
@@ -16,7 +16,7 @@
         </view>
       </hy-overlay>
     </view>
-  </view>
+  </hy-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -24,7 +24,11 @@ import { ref } from "vue";
 import HyOverlay from "@/package/components/hy-overlay/hy-overlay.vue";
 import HyButton from "@/package/components/hy-button/hy-button.vue";
 import HySlider from "@/package/components/hy-slider/hy-slider.vue";
+import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
+import { useThemeStore } from "@/store";
+const themeStore = useThemeStore();
 
+const { themeColor, darkMode } = themeStore;
 const show = ref(false);
 const opacity = ref(0.5);
 

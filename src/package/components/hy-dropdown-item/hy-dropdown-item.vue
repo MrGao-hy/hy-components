@@ -1,10 +1,7 @@
 <template>
   <!-- 标题栏 -->
   <view
-    :class="[
-      'hy-dropdown-item__header',
-      isOpen && 'hy-dropdown-item__header--active',
-    ]"
+    :class="['hy-dropdown-item__header', isOpen && 'is-active']"
     @click="handleClick"
   >
     <text
@@ -39,7 +36,7 @@
           <view
             :class="[
               'hy-dropdown-item__main--container__list-item',
-              isOpen && 'hy-dropdown-item__main--container__list--active',
+              currentIndex === index && 'is-active',
             ]"
             v-for="(item, index) in menus"
             :key="item.value || index"

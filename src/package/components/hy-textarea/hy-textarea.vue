@@ -5,7 +5,7 @@
     :style="[textareaStyle, borderStyle(isFocus)]"
   >
     <textarea
-      class="hy-textarea__field"
+      class="hy-textarea--field"
       :value="innerValue"
       :style="{ height: addUnit(height) }"
       :placeholder="placeholder || ''"
@@ -47,13 +47,13 @@
 
 <script lang="ts">
 export default {
-  name: 'hy-textarea',
+  name: "hy-textarea",
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
-}
+    styleIsolation: "shared",
+  },
+};
 </script>
 
 <script setup lang="ts">

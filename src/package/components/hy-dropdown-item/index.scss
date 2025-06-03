@@ -16,13 +16,12 @@
     position: relative;
     z-index: 999;
     background-color: $hy-background--container;
+    color: $hy-icon-color;
 
-    @include m(active) {
+    @include is(active) {
       color: $hy-primary;
-      :deep() {
-        @include b(icon) {
-          color: $hy-primary;
-        }
+      :deep(.hy-icon) {
+        color: $hy-primary;
       }
     }
   }
@@ -57,20 +56,19 @@
         width: 100%;
         padding: 0 35rpx;
         box-sizing: border-box;
-        &--active {
-          color: $hy-primary;
-          :deep() {
-            @include b(icon) {
-              color: $hy-primary;
-            }
-          }
-        }
         &-item {
           width: 100%;
           padding: 30rpx 0;
           box-sizing: border-box;
           display: flex;
           align-items: center;
+
+          @include is(active) {
+            color: $hy-primary;
+            :deep(.hy-icon) {
+              color: $hy-primary;
+            }
+          }
 
           &:not(:last-of-type) {
             border-bottom: $hy-border-line;

@@ -3,7 +3,7 @@ import { IconConfig } from "@/package";
 
 const defaultProps: IProps = {
   activeColor: "",
-  inactiveColor: "#606266",
+  inactiveColor: "",
   closeOnClickMask: true,
   sticky: true,
   height: 40,

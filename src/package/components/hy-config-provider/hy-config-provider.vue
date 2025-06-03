@@ -37,7 +37,6 @@ const themeClass = computed(() => {
 });
 
 const themeStyle = computed(() => {
-  console.log(colorGradient(themeColor.value)[90], themeColor.value);
   return [
     {
       "--hy-theme-color": themeColor.value,

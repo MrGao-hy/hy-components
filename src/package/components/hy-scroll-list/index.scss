@@ -30,7 +30,7 @@
       height: 4px;
       border-radius: $hy-border-radius-semicircle;
       overflow: hidden;
-      background-color: var(--hy-theme-color--light, $hy-border-color);
+      background-color: $hy-background--empty;
 
       &__bar {
         width: 20px;
