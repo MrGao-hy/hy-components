@@ -173,6 +173,10 @@ export const list_4 = [
     url: "/pages/components/toast/toast",
   },
   {
+    title: "Notify 消息提示",
+    url: "/pages/components/notify/notify",
+  },
+  {
     title: "NoticeBar 滚动通知",
     url: "/pages/components/noticeBar/noticeBar",
   },
