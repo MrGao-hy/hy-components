@@ -1,11 +1,31 @@
 @use "../../theme.scss" as *;
 @use "../../libs/css/mixin.scss" as *;
 
-@include b(overlay) {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+@include b(signature) {
+  @include e(content) {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    //background: $-signature-bg;
+    //border-radius: $-signature-radius;
+    //border: $-signature-border;
+  }
+
+  @include e(content-canvas) {
+    width: 100%;
+  }
+
+
+  @include e(footer) {
+    margin-top: $hy-border-margin-padding-base;
+    justify-content: flex-end;
+    display: flex;
+
+    :deep(){
+      @include b(button) {
+        margin-left: $hy-border-margin-padding-base;
+      }
+    }
+  }
 }
