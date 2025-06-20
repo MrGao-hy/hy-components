@@ -1,0 +1,75 @@
+@use "../../theme.scss" as *;
+@use "../../libs/css/mixin.scss" as *;
+
+@include b(modal) {
+  max-width: 650rpx;
+  border-radius: $hy-border-radius-base;
+  overflow: hidden;
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: $hy-text-color;
+    text-align: center;
+    padding-top: 25px;
+  }
+
+  &__content {
+    padding: 20px;
+    @include flex;
+    justify-content: center;
+
+    &__text {
+      font-size: 15px;
+      color: $hy-text-color--grey;
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  &__button-group {
+    border-top: $hy-border-line;
+    @include flex;
+
+    &--confirm-button {
+      flex-direction: column;
+      padding: 0 25px 15px;
+    }
+
+    &__wrapper {
+      flex: 1;
+      @include flex;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+
+      &--confirm,
+      &--only-cancel {
+        border-bottom-right-radius: $hy-border-radius-base;
+      }
+
+      &--cancel,
+      &--only-confirm {
+        border-bottom-left-radius: $hy-border-radius-base;
+      }
+
+      &--hover {
+        background-color: $hy-background--hover;
+      }
+
+      &__text {
+        color: $hy-text-color--2;
+        font-size: 16px;
+        text-align: center;
+      }
+
+      &--confirm-text {
+        color: $hy-primary;
+      }
+    }
+  }
+}

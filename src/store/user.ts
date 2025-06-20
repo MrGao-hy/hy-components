@@ -30,6 +30,6 @@ export const useUserStore = defineStore(
     }
   },
   {
-    persist: true,
+    unistorage: true,
   },
 )

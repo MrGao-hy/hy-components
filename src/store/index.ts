@@ -1,17 +1,11 @@
 import { createPinia } from 'pinia'
-import { createPersistedState } from 'pinia-plugin-persistedstate' // 数据持久化
+import { createUnistorage } from "pinia-plugin-unistorage"; // 数据持久化
 
 const store = createPinia()
-store.use(
-  createPersistedState({
-    storage: {
-      getItem: uni.getStorageSync,
-      setItem: uni.setStorageSync,
-    },
-  }),
-)
+store.use(createUnistorage())
 
 export default store
 
 // 模块统一导出
 export * from './user'
+export * from './useTheme'

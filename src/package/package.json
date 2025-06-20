@@ -1,0 +1,43 @@
+{
+  "name": "hy-app",
+  "version": "0.2.4",
+  "description": "新增组件：分页、签名面板、水印、验证码输入、侧边菜单栏",
+  "main": "./index.ts",
+  "private": false,
+  "scripts": {},
+  "files": [
+    "common/",
+    "components/",
+    "composables/",
+    "global/",
+    "public/",
+    "store/",
+    "typing/",
+    "utils/",
+    "api/",
+    "config/",
+    "libs/",
+    "index.ts",
+    "index.scss",
+    "theme.scss",
+    "README.md"
+  ],
+  "dependencies": {
+    "@dcloudio/uni-app": "3.0.0-alpha-3081220230802001",
+    "pinia": "^2.3.1",
+    "pinia-plugin-unistorage": "^0.0.8",
+    "vue": "^3.5.13",
+    "vue-i18n": "^9.14.3"
+  },
+  "devDependencies": {
+    "@dcloudio/types": "^3.4.14",
+    "@vue/tsconfig": "^0.1.3",
+    "uni-app-types": "^0.1.7"
+  },
+  "keywords": [
+    "华玥组件库",
+    "ui组件库"
+  ],
+  "author": "gaoxianhua",
+  "license": "ISC"
+}
