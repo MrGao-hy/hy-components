@@ -119,6 +119,11 @@ export default ({ command, mode }) => {
           // }),
         ],
       },
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "hy-app/index.scss";',
+        },
+      },
     },
 
     resolve: {

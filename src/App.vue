@@ -15,8 +15,8 @@ onHide(() => {
 
 <style lang="scss">
 /* stylelint-disable selector-type-no-unknown */
-@import "~@/style/common.scss";
-@import "~@/package/index.scss";
+@import '~@/style/common.scss';
+@import '~@/package/index.scss';
 button::after {
   border: none;
 }
