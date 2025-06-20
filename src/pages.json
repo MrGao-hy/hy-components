@@ -1,8 +1,8 @@
 {
   "pages": [
     {
-      "path": "pages/index/Index",
-      "type": "page",
+      "path": "pages/index/index",
+      "type": "home",
       "style": {
         "navigationBarTitleText": "华玥组件库"
       }
@@ -525,7 +525,7 @@
       {
         "iconPath": "static/tabbar/home.png",
         "selectedIconPath": "static/tabbar/homeHL.png",
-        "pagePath": "pages/index/Index",
+        "pagePath": "pages/index/index",
         "text": "首页"
       },
       {

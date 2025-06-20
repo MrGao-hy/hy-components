@@ -4,7 +4,7 @@ export default defineUniPages({
   pages: [
     //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
-      path: 'pages/index/Index',
+      path: 'pages/index/index',
       style: {
         navigationBarTitleText: '华玥组件库',
       },
@@ -528,7 +528,7 @@ export default defineUniPages({
       {
         iconPath: 'static/tabbar/home.png',
         selectedIconPath: 'static/tabbar/homeHL.png',
-        pagePath: 'pages/index/Index',
+        pagePath: 'pages/index/index',
         text: '首页',
       },
       {
