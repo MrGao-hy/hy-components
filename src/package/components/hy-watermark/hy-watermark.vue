@@ -16,96 +16,84 @@
 
 <script lang="ts">
 export default {
-  name: "hy-watermark",
+  name: 'hy-watermark',
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: "shared",
+    styleIsolation: 'shared',
   },
-};
+}
 </script>
 
 <script lang="ts" setup>
-import {
-  computed,
-  onMounted,
-  ref,
-  watch,
-  nextTick,
-  type CSSProperties,
-  toRefs,
-} from "vue";
-import { addUnit, guid } from "../../utils";
-import type IProps from "./typing";
-import defaultProps from "./props";
+import { computed, onMounted, ref, watch, nextTick, type CSSProperties, toRefs } from 'vue'
+import { addUnit, guid } from '../../utils'
+import type IProps from './typing'
+import defaultProps from './props'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { customStyle } = toRefs(props);
+const props = withDefaults(defineProps<IProps>(), defaultProps)
+const { customStyle } = toRefs(props)
 
 watch(
   () => props,
   () => {
-    doReset();
+    doReset()
   },
   { deep: true },
-);
+)
 
-const canvasId = ref<string>(`watermark--${guid()}`); // canvas 组件的唯一标识符
-const waterMarkUrl = ref<string>(""); // canvas生成base64水印
+const canvasId = ref<string>(`watermark--${guid()}`) // canvas 组件的唯一标识符
+const waterMarkUrl = ref<string>('') // canvas生成base64水印
 const canvasOffScreenable = ref<boolean>(
-  uni.canIUse("createOffscreenCanvas") && Boolean(uni.createOffscreenCanvas),
-); // 是否可以使用离屏canvas
-const pixelRatio = ref<number>(uni.getSystemInfoSync().pixelRatio); // 像素比
-const canvasHeight = ref<number>(
-  (props.height + props.gutterY) * pixelRatio.value,
-); // canvas画布高度
-const canvasWidth = ref<number>(
-  (props.width + props.gutterX) * pixelRatio.value,
-); // canvas画布宽度
-const showCanvas = ref<boolean>(true); // 是否展示canvas
+  uni.canIUse('createOffscreenCanvas') && Boolean(uni.createOffscreenCanvas),
+) // 是否可以使用离屏canvas
+const pixelRatio = ref<number>(uni.getSystemInfoSync().pixelRatio) // 像素比
+const canvasHeight = ref<number>((props.height + props.gutterY) * pixelRatio.value) // canvas画布高度
+const canvasWidth = ref<number>((props.width + props.gutterX) * pixelRatio.value) // canvas画布宽度
+const showCanvas = ref<boolean>(true) // 是否展示canvas
 
 /**
- * 水印css类
+ * @description 水印css类
  */
 const rootClass = computed(() => {
-  let classes: string = "hy-watermark";
+  const classes: string[] = ['hy-watermark']
   if (props.fullScreen) {
-    classes = `${classes} is-fullscreen`;
+    classes.push('is-fullscreen')
   }
-  return `${classes}`;
-});
+  return classes
+})
 
 /**
- * 水印样式
+ * @description 水印样式
  */
 const rootStyle = computed(() => {
   const style: CSSProperties = {
     opacity: props.opacity,
     backgroundSize: addUnit(props.width + props.gutterX),
-  };
-  if (waterMarkUrl.value) {
-    style["backgroundImage"] = `url('${waterMarkUrl.value}')`;
   }
-  return Object.assign(style, customStyle.value);
-});
+  if (waterMarkUrl.value) {
+    style['backgroundImage'] = `url('${waterMarkUrl.value}')`
+  }
+  return Object.assign(style, customStyle.value)
+})
 
 onMounted(() => {
-  doInit();
-});
+  doInit()
+})
 
 function doReset() {
-  showCanvas.value = true;
-  canvasHeight.value = (props.height + props.gutterY) * pixelRatio.value;
-  canvasWidth.value = (props.width + props.gutterX) * pixelRatio.value;
+  showCanvas.value = true
+  canvasHeight.value = (props.height + props.gutterY) * pixelRatio.value
+  canvasWidth.value = (props.width + props.gutterX) * pixelRatio.value
   nextTick(() => {
-    doInit();
-  });
+    doInit()
+  })
 }
 
 function doInit() {
   // #ifdef H5
   // h5使用document.createElement创建canvas，不用展示canvas标签
-  showCanvas.value = false;
+  showCanvas.value = false
   // #endif
   const {
     width,
@@ -122,7 +110,7 @@ function doInit() {
     image,
     imageHeight,
     imageWidth,
-  } = props;
+  } = props
 
   // 创建水印
   createWaterMark(
@@ -140,7 +128,7 @@ function doInit() {
     image,
     imageHeight,
     imageWidth,
-  );
+  )
 }
 
 /**
@@ -176,11 +164,11 @@ function createWaterMark(
   imageHeight: number,
   imageWidth: number,
 ) {
-  const canvasHeight = (height + gutterY) * pixelRatio.value;
-  const canvasWidth = (width + gutterX) * pixelRatio.value;
-  const contentWidth = width * pixelRatio.value;
-  const contentHeight = height * pixelRatio.value;
-  const fontSize = size * pixelRatio.value;
+  const canvasHeight = (height + gutterY) * pixelRatio.value
+  const canvasWidth = (width + gutterX) * pixelRatio.value
+  const contentWidth = width * pixelRatio.value
+  const contentHeight = height * pixelRatio.value
+  const fontSize = size * pixelRatio.value
   // #ifndef H5
   if (canvasOffScreenable.value) {
     createOffscreenCanvas(
@@ -198,7 +186,7 @@ function createWaterMark(
       image,
       imageHeight,
       imageWidth,
-    );
+    )
   } else {
     createCanvas(
       canvasHeight,
@@ -210,7 +198,7 @@ function createWaterMark(
       image,
       imageHeight,
       imageWidth,
-    );
+    )
   }
   // #endif
   // #ifdef H5
@@ -229,7 +217,7 @@ function createWaterMark(
     image,
     imageHeight,
     imageWidth,
-  );
+  )
   // #endif
 }
 
@@ -270,12 +258,12 @@ function createOffscreenCanvas(
   const canvas: any = uni.createOffscreenCanvas({
     height: canvasHeight,
     width: canvasWidth,
-    type: "2d",
-  });
-  const ctx: any = canvas.getContext("2d");
+    type: '2d',
+  })
+  const ctx: any = canvas.getContext('2d')
   if (ctx) {
     if (image) {
-      const img = canvas.createImage() as HTMLImageElement;
+      const img = canvas.createImage() as HTMLImageElement
       drawImageOffScreen(
         ctx,
         img,
@@ -286,7 +274,7 @@ function createOffscreenCanvas(
         contentWidth,
         contentHeight,
         canvas,
-      );
+      )
     } else {
       drawTextOffScreen(
         ctx,
@@ -300,10 +288,10 @@ function createOffscreenCanvas(
         fontWeight,
         color,
         canvas,
-      );
+      )
     }
   } else {
-    console.error("无法获取canvas上下文，请确认当前环境是否支持canvas");
+    console.error('无法获取canvas上下文，请确认当前环境是否支持canvas')
   }
 }
 
@@ -331,23 +319,15 @@ function createCanvas(
   imageHeight: number,
   imageWidth: number,
 ) {
-  const ctx = uni.createCanvasContext(canvasId.value);
+  const ctx = uni.createCanvasContext(canvasId.value)
   if (ctx) {
     if (image) {
-      drawImageOnScreen(
-        ctx,
-        image,
-        imageHeight,
-        imageWidth,
-        rotate,
-        contentWidth,
-        contentHeight,
-      );
+      drawImageOnScreen(ctx, image, imageHeight, imageWidth, rotate, contentWidth, contentHeight)
     } else {
-      drawTextOnScreen(ctx, content, contentWidth, rotate, fontSize, color);
+      drawTextOnScreen(ctx, content, contentWidth, rotate, fontSize, color)
     }
   } else {
-    console.error("无法获取canvas上下文，请确认当前环境是否支持canvas");
+    console.error('无法获取canvas上下文，请确认当前环境是否支持canvas')
   }
 }
 
@@ -381,13 +361,13 @@ function createH5Canvas(
   imageHeight: number,
   imageWidth: number,
 ) {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-  canvas.setAttribute("width", `${canvasWidth}px`);
-  canvas.setAttribute("height", `${canvasHeight}px`);
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+  canvas.setAttribute('width', `${canvasWidth}px`)
+  canvas.setAttribute('height', `${canvasHeight}px`)
   if (ctx) {
     if (image) {
-      const img = new Image();
+      const img = new Image()
       drawImageOffScreen(
         ctx,
         img,
@@ -398,7 +378,7 @@ function createH5Canvas(
         contentWidth,
         contentHeight,
         canvas,
-      );
+      )
     } else {
       drawTextOffScreen(
         ctx,
@@ -412,10 +392,10 @@ function createH5Canvas(
         fontWeight,
         color,
         canvas,
-      );
+      )
     }
   } else {
-    console.error("无法获取canvas上下文，请确认当前环境是否支持canvas");
+    console.error('无法获取canvas上下文，请确认当前环境是否支持canvas')
   }
 }
 
@@ -446,15 +426,15 @@ function drawTextOffScreen(
   color: string,
   canvas: HTMLCanvasElement,
 ) {
-  ctx.textBaseline = "middle";
-  ctx.textAlign = "center";
-  ctx.translate(contentWidth / 2, contentWidth / 2);
-  ctx.rotate((Math.PI / 180) * rotate);
-  ctx.font = `${fontStyle} normal ${fontWeight} ${fontSize}px/${contentHeight}px ${fontFamily}`;
-  ctx.fillStyle = color;
-  ctx.fillText(content, 0, 0);
-  ctx.restore();
-  waterMarkUrl.value = canvas.toDataURL();
+  ctx.textBaseline = 'middle'
+  ctx.textAlign = 'center'
+  ctx.translate(contentWidth / 2, contentWidth / 2)
+  ctx.rotate((Math.PI / 180) * rotate)
+  ctx.font = `${fontStyle} normal ${fontWeight} ${fontSize}px/${contentHeight}px ${fontFamily}`
+  ctx.fillStyle = color
+  ctx.fillText(content, 0, 0)
+  ctx.restore()
+  waterMarkUrl.value = canvas.toDataURL()
 }
 
 /**
@@ -474,32 +454,32 @@ function drawTextOnScreen(
   fontSize: number,
   color: string,
 ) {
-  ctx.setTextBaseline("middle");
-  ctx.setTextAlign("center");
-  ctx.translate(contentWidth / 2, contentWidth / 2);
-  ctx.rotate((Math.PI / 180) * rotate);
-  ctx.setFillStyle(color);
-  ctx.setFontSize(fontSize);
-  ctx.fillText(content, 0, 0);
-  ctx.restore();
-  ctx.draw();
+  ctx.setTextBaseline('middle')
+  ctx.setTextAlign('center')
+  ctx.translate(contentWidth / 2, contentWidth / 2)
+  ctx.rotate((Math.PI / 180) * rotate)
+  ctx.setFillStyle(color)
+  ctx.setFontSize(fontSize)
+  ctx.fillText(content, 0, 0)
+  ctx.restore()
+  ctx.draw()
   // #ifdef MP-DINGTALK
   // 钉钉小程序的canvasToTempFilePath接口与其他平台不一样
-  (ctx as any).toTempFilePath({
+  ;(ctx as any).toTempFilePath({
     success(res: any) {
-      showCanvas.value = false;
-      waterMarkUrl.value = res.filePath;
+      showCanvas.value = false
+      waterMarkUrl.value = res.filePath
     },
-  });
+  })
   // #endif
   // #ifndef MP-DINGTALK
   uni.canvasToTempFilePath({
     canvasId: canvasId.value,
     success: (res) => {
-      showCanvas.value = false;
-      waterMarkUrl.value = res.tempFilePath;
+      showCanvas.value = false
+      waterMarkUrl.value = res.tempFilePath
     },
-  });
+  })
   // #endif
 }
 
@@ -526,12 +506,12 @@ async function drawImageOffScreen(
   contentHeight: number,
   canvas: HTMLCanvasElement,
 ) {
-  ctx.translate(contentWidth / 2, contentHeight / 2);
-  ctx.rotate((Math.PI / 180) * Number(rotate));
-  img.crossOrigin = "anonymous";
-  img.referrerPolicy = "no-referrer";
+  ctx.translate(contentWidth / 2, contentHeight / 2)
+  ctx.rotate((Math.PI / 180) * Number(rotate))
+  img.crossOrigin = 'anonymous'
+  img.referrerPolicy = 'no-referrer'
 
-  img.src = image;
+  img.src = image
   img.onload = () => {
     ctx.drawImage(
       img,
@@ -539,10 +519,10 @@ async function drawImageOffScreen(
       (-imageHeight * pixelRatio.value) / 2,
       imageWidth * pixelRatio.value,
       imageHeight * pixelRatio.value,
-    );
-    ctx.restore();
-    waterMarkUrl.value = canvas.toDataURL();
-  };
+    )
+    ctx.restore()
+    waterMarkUrl.value = canvas.toDataURL()
+  }
 }
 
 /**
@@ -564,8 +544,8 @@ function drawImageOnScreen(
   contentWidth: number,
   contentHeight: number,
 ) {
-  ctx.translate(contentWidth / 2, contentHeight / 2);
-  ctx.rotate((Math.PI / 180) * Number(rotate));
+  ctx.translate(contentWidth / 2, contentHeight / 2)
+  ctx.rotate((Math.PI / 180) * Number(rotate))
 
   ctx.drawImage(
     image,
@@ -573,31 +553,31 @@ function drawImageOnScreen(
     (-imageHeight * pixelRatio.value) / 2,
     imageWidth * pixelRatio.value,
     imageHeight * pixelRatio.value,
-  );
-  ctx.restore();
+  )
+  ctx.restore()
   ctx.draw(false, () => {
     // #ifdef MP-DINGTALK
     // 钉钉小程序的canvasToTempFilePath接口与其他平台不一样
-    (ctx as any).toTempFilePath({
+    ;(ctx as any).toTempFilePath({
       success(res: any) {
-        showCanvas.value = false;
-        waterMarkUrl.value = res.filePath;
+        showCanvas.value = false
+        waterMarkUrl.value = res.filePath
       },
-    });
+    })
     // #endif
     // #ifndef MP-DINGTALK
     uni.canvasToTempFilePath({
       canvasId: canvasId.value,
       success: (res) => {
-        showCanvas.value = false;
-        waterMarkUrl.value = res.tempFilePath;
+        showCanvas.value = false
+        waterMarkUrl.value = res.tempFilePath
       },
-    });
+    })
     // #endif
-  });
+  })
 }
 </script>
 
 <style lang="scss" scoped>
-@import "./index.scss";
+@import './index.scss';
 </style>

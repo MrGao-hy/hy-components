@@ -1,17 +1,18 @@
-import type IProps from "./typing";
+import type IProps from './typing'
 
 const defaultProps: IProps = {
   show: true,
-  imageUrl: "https://pic.imgdb.cn/item/6737057ad29ded1a8c6f843b.webp",
+  mode: 'car',
+  imageUrl: '',
   zIndex: 889,
   width: 350,
-  height: "auto",
-  description: "暂无数据",
+  height: 'auto',
+  description: '',
   desSize: 15,
-  desColor: "#5e6d82",
-  imgMargin: "",
+  desColor: '',
+  imgMargin: '',
   button: {},
-  navigateUrl: "",
-};
+  navigateUrl: '',
+}
 
-export default defaultProps;
+export default defaultProps

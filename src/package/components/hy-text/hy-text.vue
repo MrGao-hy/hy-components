@@ -4,8 +4,9 @@
       :class="['hy-text__price', type && `hy-text__value--${type}`]"
       v-if="mode === 'price'"
       :style="[valueStyle]"
-      >￥</text
     >
+      ￥
+    </text>
     <view class="hy-text__prefix-icon" v-if="prefixIcon">
       <HyIcon :name="prefixIcon" :customStyle="iconStyle"></HyIcon>
     </view>
@@ -41,8 +42,9 @@
         lines && `hy-text__value--lines`,
         mode === 'link' && `hy-text__value--link`,
       ]"
-      >{{ value }}</text
     >
+      {{ value }}
+    </text>
     <view class="hy-text__suffix-icon" v-if="suffixIcon">
       <HyIcon :name="suffixIcon" :customStyle="iconStyle"></HyIcon>
     </view>
@@ -51,32 +53,25 @@
 
 <script lang="ts">
 export default {
-  name: "hy-text",
+  name: 'hy-text',
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: "shared",
+    styleIsolation: 'shared',
   },
-};
+}
 </script>
 
 <script setup lang="ts">
-import { computed, type CSSProperties, nextTick, toRefs } from "vue";
-import type IProps from "./typing";
-import defaultProps from "./props";
-import {
-  addUnit,
-  error,
-  formatName,
-  formatTime,
-  isDate,
-  priceFormat,
-} from "../../utils";
+import { computed, type CSSProperties, nextTick, toRefs } from 'vue'
+import type IProps from './typing'
+import defaultProps from './props'
+import { addUnit, error, formatName, formatTime, isDate, priceFormat } from '../../utils'
 
 // 组件
-import HyIcon from "../hy-icon/hy-icon.vue";
+import HyIcon from '../hy-icon/hy-icon.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps);
+const props = withDefaults(defineProps<IProps>(), defaultProps)
 const {
   type,
   show,
@@ -96,153 +91,147 @@ const {
   href,
   format,
   customStyle,
-} = toRefs(props);
-const emit = defineEmits(["click"]);
+} = toRefs(props)
+const emit = defineEmits(['click'])
 
 const wrapStyle = computed(() => {
   const style: CSSProperties = {
     margin: margin.value,
     justifyContent:
-      align.value === "left"
-        ? "flex-start"
-        : align.value === "center"
-          ? "center"
-          : "flex-end",
-  };
+      align.value === 'left' ? 'flex-start' : align.value === 'center' ? 'center' : 'flex-end',
+  }
   // 占满剩余空间
   if (flex.value) {
-    style.flex = 1;
+    style.flex = 1
     // #ifndef APP-NVUE
-    style.width = "100%";
+    style.width = '100%'
     // #endif
   }
-  return style;
-});
+  return style
+})
 const valueStyle = computed(() => {
   const style: CSSProperties = {
     textDecoration: decoration.value,
-    fontWeight: bold.value ? "bold" : "normal",
+    fontWeight: bold.value ? 'bold' : 'normal',
     fontSize: addUnit(size.value),
-  };
-  !type.value && (style.color = color.value);
-  lineHeight.value && (style.lineHeight = addUnit(lineHeight.value));
-  block.value && (style.display = "block");
-  return Object.assign(style, customStyle.value);
-});
+  }
+  !type.value && (style.color = color.value)
+  lineHeight.value && (style.lineHeight = addUnit(lineHeight.value))
+  block.value && (style.display = 'block')
+  return Object.assign(style, customStyle.value)
+})
 
 /**
  * @description 格式化值
  * */
 const value = computed(() => {
   switch (mode.value) {
-    case "price":
+    case 'price':
       // 如果text不为金额进行提示
       if (!/^\d+(\.\d+)?$/.test(text.value.toString())) {
-        error("金额模式下，text参数需要为金额格式");
+        error('金额模式下，text参数需要为金额格式')
       }
       // 进行格式化，判断用户传入的format参数为正则，或者函数，如果没有传入format，则使用默认的金额格式化处理
-      if (typeof format.value === "function") {
+      if (typeof format.value === 'function') {
         // 如果用户传入的是函数，使用函数格式化
-        return format.value(text.value);
+        return format.value(text.value)
       }
       // 如果format非正则，非函数，则使用默认的金额格式化方法进行操作
-      return priceFormat(text.value, 2);
-    case "date":
+      return priceFormat(text.value, 2)
+    case 'date':
       // 判断是否合法的日期或者时间戳
-      !isDate(text.value) &&
-        error("日期模式下，text参数需要为日期或时间戳格式");
+      !isDate(text.value) && error('日期模式下，text参数需要为日期或时间戳格式')
       // 进行格式化，判断用户传入的format参数为正则，或者函数，如果没有传入format，则使用默认的格式化处理
-      if (typeof format.value === "function") {
+      if (typeof format.value === 'function') {
         // 如果用户传入的是函数，使用函数格式化
-        return format.value(text);
+        return format.value(text)
       }
       if (format.value) {
         // 如果format非正则，非函数，则使用默认的时间格式化方法进行操作
-        return formatTime(text.value, format.value);
+        return formatTime(text.value, format.value)
       }
-      console.log(formatTime(text.value, "yyyy-MM-dd"), text.value);
       // 如果没有设置format，则设置为默认的时间格式化形式
-      return formatTime(text.value, "yyyy-MM-dd");
-    case "phone":
+      return formatTime(text.value, 'yyyy-MM-dd')
+    case 'phone':
       // 判断是否合法的手机号
       // !test.mobile(text) && error('手机号模式下，text参数需要为手机号码格式')
-      if (typeof format.value === "function") {
+      if (typeof format.value === 'function') {
         // 如果用户传入的是函数，使用函数格式化
-        return format.value(text);
+        return format.value(text)
       }
-      if (format.value === "encrypt") {
+      if (format.value === 'encrypt') {
         // 如果format为encrypt，则将手机号进行星号加密处理
-        return `${text.value.toString().substring(0, 3)}****${text.value.toString().substring(7)}`;
+        return `${text.value.toString().substring(0, 3)}****${text.value.toString().substring(7)}`
       }
-      return text.value;
-    case "name":
+      return text.value
+    case 'name':
       // 判断是否合法的字符粗
-      if (typeof text.value !== "string") {
-        error("姓名模式下，text参数需要为字符串格式");
+      if (typeof text.value !== 'string') {
+        error('姓名模式下，text参数需要为字符串格式')
       } else {
-        if (typeof format.value === "function") {
+        if (typeof format.value === 'function') {
           // 如果用户传入的是函数，使用函数格式化
-          return format.value(text);
+          return format.value(text)
         }
-        if (format.value === "encrypt") {
+        if (format.value === 'encrypt') {
           // 如果format为encrypt，则将姓名进行星号加密处理
-          return formatName(text.value);
+          return formatName(text.value)
         }
       }
-      return text.value;
-    case "link":
-      return text.value;
+      return text.value
+    case 'link':
+      return text.value
     default:
-      return text.value;
+      return text.value
   }
-});
+})
 
 const isMp = computed(() => {
-  let mp = false;
+  let mp = false
   // #ifdef MP
-  mp = true;
+  mp = true
   // #endif
-  return mp;
-});
+  return mp
+})
 
 const clickHandler = (e) => {
   // 如果为手机号模式，拨打电话
-  if (call.value && mode.value === "phone") {
+  if (call.value && mode.value === 'phone') {
     uni.makePhoneCall({
       phoneNumber: text.value,
-    });
+    })
   }
   // 如果是有链接跳转
-  if (href.value && mode.value === "link") {
-    toLink();
+  if (href.value && mode.value === 'link') {
+    toLink()
   }
-  emit("click", e);
-};
+  emit('click', e)
+}
 
 const toLink = () => {
   // #ifdef APP-PLUS
-  plus.runtime.openURL(href.value);
+  plus.runtime.openURL(href.value)
   // #endif
   // #ifdef H5
-  window.open(href.value);
+  window.open(href.value)
   // #endif
   // #ifdef MP
   uni.setClipboardData({
     data: href.value,
     success: () => {
-      uni.hideToast();
+      uni.hideToast()
       nextTick(() => {
-        uni.showToast({ title: "链接已复制，请在浏览器打开" });
-      });
+        uni.showToast({ title: '链接已复制，请在浏览器打开' })
+      })
     },
-  });
+  })
   // #endif
-};
+}
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
-@import "../../libs/css/mixin.scss";
+@import './index.scss';
+@import '../../libs/css/mixin.scss';
 /*超出出现省略号*/
 .hy-text__value--lines {
   @include multiEllipsis(v-bind(lines));

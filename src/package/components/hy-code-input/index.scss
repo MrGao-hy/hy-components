@@ -24,6 +24,22 @@
       background-color: $hy-icon-color;
     }
 
+    /* 无边框 */
+    &__not {
+      background-color: $hy-background--track;
+      border-radius: $hy-border-radius-sm;
+      &__active {
+        &:before {
+          content: "";
+          background-color: $hy-text-color;
+          width: 1.5px;
+          border-radius: 2px;
+          height: 50%;
+          animation: 1s hy-cursor-flicker--2 infinite;
+        }
+      }
+    }
+
     /* 方块模式 */
     &__box {
       border-color: $hy-border-color--2;
@@ -92,6 +108,20 @@
     text-align: left;
   }
 }
+
+/* #ifndef APP-NVUE */
+@keyframes hy-cursor-flicker--2 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* #endif */
 
 /* #ifndef APP-NVUE */
 @keyframes hy-cursor-flicker {

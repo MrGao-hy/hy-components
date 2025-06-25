@@ -1,7 +1,7 @@
 {
   "name": "hy-app",
-  "version": "0.2.4",
-  "description": "新增组件：分页、签名面板、水印、验证码输入、侧边菜单栏",
+  "version": "0.2.5",
+  "description": "修复在微信小程序线上bug",
   "main": "./index.ts",
   "private": false,
   "scripts": {},

@@ -41,6 +41,11 @@
       ></hy-code-input>
     </view>
 
+    <view class="hy-title">无边框</view>
+    <view class="hy-container">
+      <hy-code-input v-model="value_1" :border="false" size="50"></hy-code-input>
+    </view>
+
     <view class="hy-setting__box">
       <view class="hy-title">字符距离</view>
       <hy-slider v-model="space" :min="0" :max="20" />

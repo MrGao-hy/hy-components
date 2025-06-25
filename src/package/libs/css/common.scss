@@ -23,3 +23,11 @@
   /* #endif */
   overflow: auto;
 }
+
+/* 解决滚动时候出现滚动条 */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+  display:none;
+}

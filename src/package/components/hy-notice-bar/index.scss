@@ -11,7 +11,7 @@
     overflow: hidden;
     padding: 9px 12px;
     flex: 1;
-    background-color: $hy-warning-light;
+    background-color: #FFF6C8;
     color: $hy-warning;
     border-radius: $hy-border-radius-sm;
   }
@@ -64,7 +64,7 @@
 
       &__text {
         font-size: 14px;
-        color: $hy-info;
+        color: $hy-warning;
       }
     }
   }

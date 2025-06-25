@@ -27,11 +27,11 @@
       color: $hy-primary;
     }
 
-    @include themeColor(primary, "", "", $hy-primary);
-    @include themeColor(warning, "", "", $hy-warning);
-    @include themeColor(success, "", "", $hy-success);
-    @include themeColor(info, "", "", $hy-info);
-    @include themeColor(error, "", "", $hy-error);
+    @include themeColor(primary, "", transparent, $hy-primary);
+    @include themeColor(warning, "", transparent, $hy-warning);
+    @include themeColor(success, "", transparent, $hy-success);
+    @include themeColor(info, "", transparent, $hy-info);
+    @include themeColor(error, "", transparent, $hy-error);
     @include themeColor(main, "", "", $hy-text-color);
     @include themeColor(content, "", "", $hy-text-color--grey);
     @include themeColor(tips, "", "",$hy-text-color--grey);

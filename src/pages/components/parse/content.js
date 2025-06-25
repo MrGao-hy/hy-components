@@ -21,9 +21,9 @@ export default `<title>富文本示例</title>
           <td align="center">内容 1</td>
           <td align="center">内容 2</td>
         </tr>
-        <tr style="background-color: #f6f8fa;">
+        <tr style="background-color: var(--hy-background--hover);">
           <td align="center">内容 3</td>
-          <td align="center"><a>链接</a></td>    
+          <td align="center"><a>链接</a></td>
         </tr>
         <tr>
           <td align="center">内容 5</td>
@@ -52,7 +52,7 @@ export default `<title>富文本示例</title>
           <td align="center">内容 4</td>
           <td align="center">内容 5</td>
         </tr>
-        <tr style="background-color: #f6f8fa;">
+        <tr style="background-color: var(--hy-background--hover);">
           <td align="center"><a>链接</a></td>
           <td align="center">内容 7</td>
           <td align="center">内容 8</td>
@@ -134,7 +134,7 @@ export default `<title>富文本示例</title>
           </li>
         </ul>
       </li>
-    </ul>    
+    </ul>
   </section>
   <section style="text-align: center; margin: 0px auto; margin-top: 2em">
     <section style="border-radius: 4px; border: 1px solid #757576; display: inline-block; padding: 5px 20px;">
@@ -198,6 +198,6 @@ export default `<title>富文本示例</title>
         <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
       </path>
     </svg>
-    <div style="font-size: 12px; color: gray; margin-top: 5px;">svg 动画</div>
+    <div style="font-size: 12px; color: var(--hy-text-color); margin-top: 5px;">svg 动画</div>
   </section>
 </div>`

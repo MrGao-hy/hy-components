@@ -494,6 +494,13 @@
             "navigationBarTitleText": "",
             "enablePullDownRefresh": false
           }
+        },
+        {
+          "path": "actionSheet/actionSheet",
+          "style": {
+            "navigationBarTitleText": "操作菜单",
+            "enablePullDownRefresh": false
+          }
         }
       ]
     }

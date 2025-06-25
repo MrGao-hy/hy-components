@@ -19,8 +19,8 @@
     }
 
     &--column {
-      @include flex(column);
       margin: $hy-border-margin-padding-lg 0;
+      @include flex(column);
     }
   }
 

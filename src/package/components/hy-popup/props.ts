@@ -1,9 +1,9 @@
-import type IProps from "./typing";
+import type IProps from './typing'
 
 const defaultProps: IProps = {
   show: false,
   overlay: true,
-  mode: "bottom",
+  mode: 'bottom',
   duration: 300,
   closeable: false,
   overlayStyle: {},
@@ -12,10 +12,10 @@ const defaultProps: IProps = {
   zIndex: 10075,
   safeAreaInsetBottom: true,
   safeAreaInsetTop: false,
-  closeIconPos: "top-right",
-  round: 0,
+  closeIconPos: 'top-right',
+  round: '',
   zoom: true,
-  bgColor: "",
-};
+  bgColor: '',
+}
 
-export default defaultProps;
+export default defaultProps

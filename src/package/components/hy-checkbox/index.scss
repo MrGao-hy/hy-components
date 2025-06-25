@@ -2,6 +2,15 @@
 @use "../../theme.scss" as *;
 
 @include b(checkbox) {
+  /* #ifndef APP-NVUE */
+  @include flex(row);
+  /* #endif */
+  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
   &-group {
     &--row {
       /* #ifndef APP-NVUE */
@@ -14,15 +23,6 @@
       @include flex(column);
     }
   }
-
-  /* #ifndef APP-NVUE */
-  @include flex(row);
-  /* #endif */
-  overflow: hidden;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 5px;
-  margin-top: 5px;
 
   &-label--left {
     flex-direction: row;
