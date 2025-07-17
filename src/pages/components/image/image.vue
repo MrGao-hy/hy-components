@@ -15,26 +15,31 @@
       <hy-image :src="config.avatar" preview-image></hy-image>
     </view>
 
+    <view class="hy-title">模糊图片</view>
+    <view class="hy-container">
+      <hy-image :src="config.avatar" :indistinct="true"></hy-image>
+    </view>
+
+    <view class="hy-title">加载错误</view>
+    <view class="hy-container">
+      <hy-image src="http://127.0.0.1:8080/685b54c8cb8da5c86d0d4c.png"></hy-image>
+    </view>
+
     <view class="hy-title">圆形</view>
     <view class="hy-container">
-      <hy-image
-        :src="config.avatar"
-        width="100px"
-        height="100px"
-        shape="circle"
-      ></hy-image>
+      <hy-image :src="config.avatar" width="100px" height="100px" shape="circle"></hy-image>
     </view>
   </hy-config-provider>
 </template>
 
 <script setup lang="ts">
-import HyImage from "@/package/components/hy-image/hy-image.vue";
-import { config } from "@/config/config";
-import HyConfigProvider from "@/package/components/hy-config-provider/hy-config-provider.vue";
-import { useThemeStore } from "@/store";
-const themeStore = useThemeStore();
+import HyImage from '@/package/components/hy-image/hy-image.vue'
+import { config } from '@/config/config'
+import HyConfigProvider from '@/package/components/hy-config-provider/hy-config-provider.vue'
+import { useThemeStore } from '@/store'
+const themeStore = useThemeStore()
 
-const { themeColor, darkMode } = themeStore;
+const { themeColor, darkMode } = themeStore
 </script>
 
 <style scoped lang="scss"></style>

@@ -47,7 +47,7 @@ const list = reactive([
   { title: '带标题', value: false },
   { title: '带取消', value: false },
   { title: '加载', value: false },
-  { title: '自定义面板', value: true },
+  { title: '自定义面板', value: false },
 ])
 const actions = ref<IActionSheetAction[]>([
   {
@@ -142,7 +142,6 @@ const onChange = (temp, index) => {
 }
 
 const onClick = (temp) => {
-  console.log(temp)
   uni.showToast({ title: `点击了${temp.item.name}`, icon: 'none' })
 }
 </script>

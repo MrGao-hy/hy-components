@@ -73,7 +73,9 @@ interface NavigateToOptions {
        "/pages/components/pagination/pagination" |
        "/pages/components/menu/menu" |
        "/pages/components/watermark/watermark" |
-       "/pages/components/tabBar/tabBar";
+       "/pages/components/tabBar/tabBar" |
+       "/pages/components/actionSheet/actionSheet" |
+       "/pages/components/popover/popover";
 }
 interface RedirectToOptions extends NavigateToOptions {}
 

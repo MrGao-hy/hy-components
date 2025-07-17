@@ -492,7 +492,21 @@ export default defineUniPages({
         {
           path: 'tabBar/tabBar',
           style: {
-            navigationBarTitleText: '',
+            navigationBarTitleText: '底部导航栏',
+            enablePullDownRefresh: false,
+          },
+        },
+        {
+          path: 'actionSheet/actionSheet',
+          style: {
+            navigationBarTitleText: '操作菜单',
+            enablePullDownRefresh: false,
+          },
+        },
+        {
+          path: 'popover/popover',
+          style: {
+            navigationBarTitleText: '气泡',
             enablePullDownRefresh: false,
           },
         },

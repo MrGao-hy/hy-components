@@ -22,8 +22,8 @@
     @agreeprivacyauthorization="agreeprivacyauthorization"
     :hover-class="!disabled && !loading ? 'hy-button--active' : ''"
     :style="[baseColor, customStyle]"
-    @tap="clickHandler"
-    :class="['hy-button', 'hy-reset-button', bemClass]"
+    @click="clickHandler"
+    :class="['hy-button', 'hy-reset-button', bemClass, customClass]"
   >
     <template v-if="loading">
       <HyLoading :mode="loadingMode" :size="loadingSize" :color="loadingColor"></HyLoading>
@@ -66,7 +66,7 @@
           ? 'hy-button--active'
           : ''
     "
-    @tap="clickHandler"
+    @click="clickHandler"
     :class="bemClass"
     :style="[baseColor, customStyle]"
   >

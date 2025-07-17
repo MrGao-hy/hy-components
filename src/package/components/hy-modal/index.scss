@@ -6,69 +6,93 @@
   border-radius: $hy-border-radius-base;
   overflow: hidden;
 
+  /* 标题 */
   &__title {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: $hy-font-size-base;
     font-weight: bold;
     color: $hy-text-color;
     text-align: center;
     padding-top: 25px;
   }
 
+  /* 内容 */
   &__content {
     padding: 20px;
     @include flex;
     justify-content: center;
 
     &__text {
-      font-size: 15px;
+      font-size: $hy-font-size-sm;
       color: $hy-text-color--grey;
       flex: 1;
       text-align: center;
     }
   }
 
-  &__button-group {
-    border-top: $hy-border-line;
-    @include flex;
-
-    &--confirm-button {
-      flex-direction: column;
-      padding: 0 25px 15px;
+  /* 底部按钮 */
+  &__button {
+    /* 两个按钮的样式 */
+    &-exact {
+      view:first-child {
+        margin-right: $hy-border-margin-padding-lg;
+      }
+      &--reverse {
+        view:last-child {
+          margin-right: $hy-border-margin-padding-lg;
+        }
+      }
     }
 
-    &__wrapper {
-      flex: 1;
+
+    &-group {
       @include flex;
-      justify-content: center;
-      align-items: center;
-      height: 48px;
+      padding: 20px;
 
-      &--confirm,
-      &--only-cancel {
-        border-bottom-right-radius: $hy-border-radius-base;
+      /* 自定义底部按钮 */
+      &--confirm-button {
+        flex-direction: column;
+        padding: 0 25px 15px;
       }
 
-      &--cancel,
-      &--only-confirm {
-        border-bottom-left-radius: $hy-border-radius-base;
-      }
 
-      &--hover {
-        background-color: $hy-background--hover;
-      }
+      &__wrapper {
+        flex: 1;
+        @include flex;
+        justify-content: center;
+        align-items: center;
+        height: 43px;
+        border-radius: $hy-border-radius-semicircle;
 
-      &__text {
-        color: $hy-text-color--2;
-        font-size: 16px;
-        text-align: center;
-      }
+        /* 确认 */
+        &--confirm {
+          background-color: $hy-primary;
+          &-text {
+            color: #FFFFFF;
+          }
+        }
 
-      &--confirm-text {
-        color: $hy-primary;
+        /* 取消 */
+        &--cancel {
+          //background-color: $hy-background--empty;
+          background-color: #323233;
+
+          &-text {
+            color: $hy-text-color;
+          }
+        }
+
+        &--hover {
+          opacity: 0.7;
+        }
+
+        &__text {
+          font-size: 16px;
+          text-align: center;
+        }
       }
     }
   }

@@ -29,14 +29,6 @@
     outline: none;
     padding: 0;
 
-    &:after {
-      display: none;
-    }
-
-    &:not(&--disabled):not(&--loading):active {
-      background: $hy-background--disabled;
-    }
-
     @include m(disabled) {
       color: $hy-text-color--disabled;
       cursor: not-allowed;
@@ -61,7 +53,8 @@
     color: $hy-text-color--grey;
   }
 
-  @include e(cancel) {
+  /* 取消按钮 */
+  @include edeep(cancel) {
     color: $hy-text-color;
     width: calc(100% - 48px);
     background: $hy-background--track;
@@ -69,6 +62,7 @@
     border: none;
   }
 
+  /* 头部 */
   @include e(header) {
     position: relative;
     line-height: 44px;
@@ -76,9 +70,9 @@
     padding: $hy-border-margin-padding-base $hy-border-margin-padding-base 0;
   }
 
-  @include e(close) {
+  @include edeep(close) {
     position: absolute;
-    top: 25px;
+    top: 20px;
     right: 15px;
     background-color: rgba(128, 128, 128, 0.25);
     border-radius: $hy-border-radius-circle;
@@ -87,7 +81,7 @@
 
   /* 面板样式 */
   @include e(panels) {
-    height: 84px;
+    height: 160rpx;
     width: 100%;
     overflow-y: hidden;
 
@@ -107,7 +101,7 @@
   }
 
   @include e(panel) {
-    width: 88px;
+    width: 140rpx;
     flex: 0 0 auto;
     display: inline-block;
     padding: $hy-border-margin-padding-sm $hy-border-margin-padding-base;

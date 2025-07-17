@@ -19,6 +19,7 @@
   --hy-background--empty: #F3F3F3;
   --hy-background--hover: rgba(0,0,0,0.05);
   --hy-background--active: #FFFFFF;
+  --hy-background--close:  #f0f0f0;
 
   --hy-border-line: 1rpx solid #c2c2c4;
   --hy-border-color: #c2c2c4;
@@ -50,6 +51,7 @@
   --hy-background--empty: #3A3A44;
   --hy-background--hover: rgba(255,255,255,0.2);
   --hy-background--active: #000000;
+  --hy-background--close:  #323233;
 
   --hy-border-line: 1rpx solid #3c3f44;
   --hy-border-color: #3c3f44;

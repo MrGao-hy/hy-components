@@ -48,6 +48,7 @@ export default ({ command, mode }) => {
 
   return defineConfig({
     envDir: './env', // 自定义env目录
+    base: '/hy-ui',
 
     plugins: [
       UniPages({

@@ -2,9 +2,9 @@
   <HyPopup
     mode="center"
     :zoom="zoom"
-    :show="show"
+    :show="modelValue"
+    :round="round"
     :customStyle="{
-      borderRadius: '6px',
       overflow: 'hidden',
       marginTop: `-${addUnit(negativeTop)}`,
     }"
@@ -32,53 +32,41 @@
           </text>
         </slot>
       </view>
-      <view
-        class="hy-modal__button-group--confirm-button"
-        v-if="$slots.confirmButton"
-      >
+      <view class="hy-modal__button-group--confirm-button" v-if="$slots.confirmButton">
         <slot name="confirmButton"></slot>
       </view>
       <template v-else>
         <view
-          class="hy-modal__button-group"
+          :class="[
+            'hy-modal__button-group',
+            showCancelButton &&
+              showConfirmButton &&
+              (!buttonReverse ? 'hy-modal__button-exact' : 'hy-modal__button-exact--reverse'),
+          ]"
           :style="{
             flexDirection: buttonReverse ? 'row-reverse' : 'row',
           }"
         >
           <view
-            class="hy-modal__button-group__wrapper u-modal__button-group__wrapper--cancel"
+            class="hy-modal__button-group__wrapper hy-modal__button-group__wrapper--cancel"
             :hover-stay-time="150"
             hover-class="hy-modal__button-group__wrapper--hover"
-            :class="[
-              showCancelButton &&
-                !showConfirmButton &&
-                'hy-modal__button-group__wrapper--only-cancel',
-            ]"
             v-if="showCancelButton"
             @tap.stop="cancelHandler"
           >
             <text
-              class="hy-modal__button-group__wrapper__text"
+              class="hy-modal__button-group__wrapper__text hy-modal__button-group__wrapper--cancel-text"
               :style="{
                 color: cancelColor,
               }"
-              >{{ cancelText }}</text
             >
+              {{ cancelText }}
+            </text>
           </view>
-          <hy-line
-            v-if="showConfirmButton && showCancelButton"
-            length="48px"
-            direction="column"
-          ></hy-line>
           <view
             class="hy-modal__button-group__wrapper hy-modal__button-group__wrapper--confirm"
             :hover-stay-time="150"
             hover-class="hy-modal__button-group__wrapper--hover"
-            :class="[
-              !showCancelButton &&
-                showConfirmButton &&
-                'hy-modal__button-group__wrapper--only-confirm',
-            ]"
             v-if="showConfirmButton"
             @tap="confirmHandler"
           >
@@ -89,8 +77,9 @@
               :style="{
                 color: confirmColor,
               }"
-              >{{ confirmText }}</text
             >
+              {{ confirmText }}
+            </text>
           </view>
         </view>
       </template>
@@ -100,38 +89,37 @@
 
 <script lang="ts">
 export default {
-  name: "hy-modal",
+  name: 'hy-modal',
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: "shared",
+    styleIsolation: 'shared',
   },
-};
+}
 </script>
 
 <script setup lang="ts">
-import { ref, toRefs, watch } from "vue";
-import defaultProps from "./props";
-import type IProps from "./typing";
-import { addUnit } from "../../utils";
+import { ref, toRefs, watch } from 'vue'
+import defaultProps from './props'
+import type IProps from './typing'
+import { addUnit } from '../../utils'
 
 // 组件
-import HyLine from "../hy-line/hy-line.vue";
-import HyPopup from "../hy-popup/hy-popup.vue";
-import HyLoading from "../hy-loading/hy-loading.vue";
+import HyPopup from '../hy-popup/hy-popup.vue'
+import HyLoading from '../hy-loading/hy-loading.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { show, asyncClose, closeOnClickOverlay } = toRefs(props);
-const emit = defineEmits(["confirm", "cancel", "close", "update:show"]);
+const props = withDefaults(defineProps<IProps>(), defaultProps)
+const { modelValue, asyncClose, closeOnClickOverlay } = toRefs(props)
+const emit = defineEmits(['confirm', 'cancel', 'close', 'update:modelValue'])
 
-const loading = ref<boolean>(false);
+const loading = ref<boolean>(false)
 
 watch(
-  () => show.value,
+  () => modelValue.value,
   (newValue) => {
-    if (newValue && loading.value) loading.value = false;
+    if (newValue && loading.value) loading.value = false
   },
-);
+)
 
 /**
  * @description 点击确定按钮
@@ -139,34 +127,34 @@ watch(
 const confirmHandler = () => {
   // 如果配置了异步关闭，将按钮值为loading状态
   if (asyncClose.value) {
-    loading.value = true;
+    loading.value = true
   } else {
-    emit("update:show", false);
+    emit('update:modelValue', false)
   }
-  emit("confirm");
-};
+  emit('confirm')
+}
 
 /**
  * @description 点击取消按钮
  * */
 const cancelHandler = () => {
-  emit("update:show", false);
-  emit("cancel");
-};
+  emit('update:modelValue', false)
+  emit('cancel')
+}
 
 /**
  * @description 点击遮罩
  * */
 const clickHandler = () => {
   if (closeOnClickOverlay.value) {
-    emit("update:show", false);
-    emit("close");
+    emit('update:modelValue', false)
+    emit('close')
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "./index.scss";
+@import './index.scss';
 .modal__content__text {
   text-align: v-bind(contentTextAlign);
 }

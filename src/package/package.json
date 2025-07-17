@@ -1,7 +1,7 @@
 {
   "name": "hy-app",
-  "version": "0.2.5",
-  "description": "修复在微信小程序线上bug",
+  "version": "0.2.10",
+  "description": "fix: 微信小程序气泡组件在小程序列表不默认关闭",
   "main": "./index.ts",
   "private": false,
   "scripts": {},

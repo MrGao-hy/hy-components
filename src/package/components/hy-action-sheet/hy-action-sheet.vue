@@ -22,7 +22,12 @@
         <!-- 标题 -->
         <view v-if="title" :class="`hy-action-sheet__header ${customHeaderClass}`">
           {{ title }}
-          <HyIcon class="hy-action-sheet__close" name="close" @click="onClose" />
+          <HyIcon
+            customClass="hy-action-sheet__close"
+            class="hy-action-sheet__close"
+            name="close"
+            @click="onClose"
+          />
         </view>
         <!-- 标题 -->
 
@@ -77,7 +82,7 @@
           v-if="cancelText"
           :text="cancelText"
           shape="circle"
-          class="hy-action-sheet__cancel"
+          custom-class="hy-action-sheet__cancel"
           @click="handleCancel"
         ></HyButton>
         <!-- 取消按钮 -->
@@ -112,7 +117,6 @@ const props = withDefaults(defineProps<IProps>(), defaultProps)
 const emit = defineEmits(['select', 'cancel', 'close', 'open', 'update:modelValue'])
 
 const formatPanels = ref<Array<IActionSheetPanel> | Array<IActionSheetPanel[]>>([])
-
 const showPopup = ref<boolean>(false)
 
 watch(() => props.panels, computedValue, { deep: true, immediate: true })
