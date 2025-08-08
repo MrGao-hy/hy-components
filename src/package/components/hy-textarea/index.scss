@@ -6,7 +6,12 @@
   position: relative;
   @include flex;
   flex: 1;
-  padding: $hy-border-margin-padding-base;
+  padding: $hy-border-margin-padding-sm;
+
+  @include m(field) {
+    min-height: 50rpx;
+    max-height: 200rpx;
+  }
 
   @include m(radius) {
     border-radius: $hy-border-radius-sm;

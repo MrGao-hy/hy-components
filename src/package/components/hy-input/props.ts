@@ -1,19 +1,19 @@
-import type IProps from "./typing";
+import type IProps from './typing'
 
 const defaultProps: IProps = {
-  modelValue: "",
-  type: "text",
+  modelValue: '',
+  type: 'text',
   fixed: false,
   disabled: false,
-  disabledColor: "",
+  disabledColor: '',
   clearable: false,
   password: false,
   maxlength: 140,
   placeholder: null,
-  placeholderClass: "input-placeholder",
+  placeholderClass: 'input-placeholder',
   placeholderStyle: {},
   showWordLimit: false,
-  confirmType: "done",
+  confirmType: 'done',
   confirmHold: false,
   holdKeyboard: false,
   focus: false,
@@ -24,16 +24,15 @@ const defaultProps: IProps = {
   selectionStart: -1,
   selectionEnd: -1,
   adjustPosition: true,
-  inputAlign: "left",
-  fontSize: "15px",
-  color: "",
+  inputAlign: 'left',
+  fontSize: '15px',
+  color: '',
   prefixIcon: {},
   suffixIcon: {},
-  border: "surround",
+  border: 'surround',
   readonly: false,
-  shape: "square",
+  shape: 'square',
   formatter: null,
-  customStyle: {},
-};
+}
 
-export default defaultProps;
+export default defaultProps

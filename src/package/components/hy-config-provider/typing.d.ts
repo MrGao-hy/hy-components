@@ -10,10 +10,6 @@ export default interface HyConfigProviderProps {
    * */
   themeColor?: string
   /**
-   * @description 主题色（默认 #ecf5ff ）
-   * */
-  themeLightColor?: string
-  /**
    * @description 内边距（默认 10px ）
    * */
   padding?: string

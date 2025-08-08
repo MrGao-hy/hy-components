@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'vue'
-import { HyApp } from '@/package/typing/modules/common'
+import { HyApp } from '../../typing'
 import type HyIconProps from '../hy-icon/typing'
 
 export interface CellContentVo extends AnyObject {
@@ -89,4 +89,9 @@ export default interface HyCellProps {
    * @description 定义需要用到的外部样式
    * */
   customStyle?: CSSProperties
+}
+
+export interface ICellEmits {
+  /** 点击行触发 */
+  (e: 'click', temp: CellContentVo, index: number): void
 }

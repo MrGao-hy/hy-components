@@ -32,7 +32,7 @@
         &:before {
           content: "";
           background-color: $hy-text-color;
-          width: 1.5px;
+          width: 2rpx;
           border-radius: 2px;
           height: 50%;
           animation: 1s hy-cursor-flicker--2 infinite;

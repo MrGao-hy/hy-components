@@ -1,5 +1,5 @@
 <template>
-  <view class="hy-text" v-if="show" :style="wrapStyle" @tap="clickHandler">
+  <view :class="['hy-text', customClass]" v-if="show" :style="wrapStyle" @tap="clickHandler">
     <text
       :class="['hy-text__price', type && `hy-text__value--${type}`]"
       v-if="mode === 'price'"
@@ -63,15 +63,113 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, type CSSProperties, nextTick, toRefs } from 'vue'
-import type IProps from './typing'
-import defaultProps from './props'
+import { computed, nextTick, toRefs } from 'vue'
+import type { CSSProperties, PropType } from 'vue'
+import type { ITextEmits } from './typing'
 import { addUnit, error, formatName, formatTime, isDate, priceFormat } from '../../utils'
 
 // 组件
 import HyIcon from '../hy-icon/hy-icon.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps)
+/**
+ * 此组件集成了文本类在项目中的常用功能，包括状态，拨打电话，格式化日期，*替换，超链接...等功能。 您大可不必在使用特殊文本时自己定义，text组件几乎涵盖您能使用的大部分场景。
+ * @displayName hy-text
+ */
+defineOptions({})
+
+// const props = withDefaults(defineProps<IProps>(), defaultProps)
+const props = defineProps({
+  /** 显示的值 */
+  text: [String, Number],
+  /** 主题颜色 */
+  type: String,
+  /** 是否显示 */
+  show: {
+    type: Boolean,
+    default: true,
+  },
+  /** 前置图标 */
+  prefixIcon: String,
+  /** 后置图标 */
+  suffixIcon: String,
+  /**
+   * 文本处理的匹配模式
+   * @values text,price,phone,name,date,link
+   * */
+  mode: {
+    type: String,
+    default: 'text',
+  },
+  /** mode=link下，配置的链接 */
+  href: String,
+  /** 格式化规则 */
+  format: String,
+  /** mode=phone时，点击文本是否拨打电话 */
+  call: {
+    type: Boolean,
+    default: false,
+  },
+  /** 小程序的打开方式 */
+  openType: String,
+  /** 是否粗体，默认normal */
+  bold: {
+    type: Boolean,
+    default: false,
+  },
+  /** 是否块状 */
+  block: {
+    type: Boolean,
+    default: false,
+  },
+  /** 文本显示的行数，如果设置，超出此行数，将会显示省略号 */
+  lines: [String, Number],
+  /** 文本颜色 */
+  color: String,
+  /** 字体大小 */
+  size: {
+    type: [String, Number],
+    default: 15,
+  },
+  /** 图标的样式 */
+  iconStyle: {
+    type: Object as unknown as PropType<CSSProperties>,
+    default: () => ({ fontSize: '15px' }),
+  },
+  /**
+   * 文字装饰，下划线，中划线等，可选值
+   * @values none,underline,line-through
+   * */
+  decoration: String,
+  /** 外边距，对象、字符串，数值形式均可 */
+  margin: String,
+  /** 文本行高 */
+  lineHeight: String,
+  /**
+   * 文本对齐方式
+   * @values left,center,right
+   * */
+  align: {
+    type: String,
+    default: 'left',
+  },
+  /**
+   * 文字换行
+   * @values normal,break-word,anywhere
+   * */
+  wordWrap: {
+    type: String,
+    default: 'normal',
+  },
+  /** 是否占满剩余空间 */
+  flex: {
+    type: Boolean,
+    default: true,
+  },
+  /** 定义需要用到的外部样式 */
+  customStyle: Object as PropType<CSSProperties>,
+  /** 自定义外部类名 */
+  customClass: String,
+})
 const {
   type,
   show,
@@ -92,7 +190,7 @@ const {
   format,
   customStyle,
 } = toRefs(props)
-const emit = defineEmits(['click'])
+const emit = defineEmits<ITextEmits>()
 
 const wrapStyle = computed(() => {
   const style: CSSProperties = {

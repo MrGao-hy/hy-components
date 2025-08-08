@@ -1,226 +1,245 @@
 <template>
-  <hy-config-provider :custom-style="themeColor" :theme="darkMode">
-    <HyForm
-      ref="formRef"
-      :columns="columns"
-      :form-data="formData"
-      labelWidth="90"
-      :input="{
-        border: 'none',
-      }"
-      border-bottom
-      label-position="top"
-    >
-      <template #custom="{ record, errorStyle }">
-        <HyInput v-model="formData[record.field]" :custom-style="errorStyle"></HyInput>
-      </template>
-    </HyForm>
-    <HyButton @click="handleSubmit">提交</HyButton>
+  <hy-config-provider :custom-style="[themeColor, { padding: '10px' }]" :theme="darkMode">
+    <view class="demo-header">
+      <text class="demo-title">表单组件示例</text>
+    </view>
+
+    <view class="demo-content">
+      <hy-form
+        ref="formRef"
+        :model="formData"
+        :rules="rules"
+        label-width="80px"
+        label-position="top"
+      >
+        <hy-form-item label="用户名" prop="username" required>
+          <hy-input v-model="formData.username" placeholder="请输入用户名" />
+        </hy-form-item>
+
+        <hy-form-item label="手机号" prop="phone" required>
+          <hy-input
+            v-model="formData.phone"
+            type="number"
+            placeholder="请输入手机号"
+            :maxlength="11"
+          />
+        </hy-form-item>
+
+        <hy-form-item label="邮箱" prop="email">
+          <hy-input v-model="formData.email" placeholder="请输入邮箱" />
+        </hy-form-item>
+
+        <hy-form-item label="密码" prop="password" required>
+          <hy-input v-model="formData.password" type="password" placeholder="请输入密码" />
+        </hy-form-item>
+
+        <hy-form-item label="确认密码" prop="confirmPassword" required>
+          <hy-input
+            v-model="formData.confirmPassword"
+            type="password"
+            placeholder="请再次输入密码"
+          />
+        </hy-form-item>
+
+        <hy-form-item label="年龄" prop="age">
+          <hy-input v-model="formData.age" type="number" placeholder="请输入年龄" />
+        </hy-form-item>
+
+        <hy-form-item label="性别" prop="gender">
+          <hy-radio v-model="formData.gender" :columns="genderOptions" />
+        </hy-form-item>
+
+        <hy-form-item label="爱好" prop="hobbies">
+          <hy-check-button
+            v-model="formData.hobbies"
+            :columns="hobbyOptions"
+            select-type="multiple"
+          />
+        </hy-form-item>
+
+        <hy-form-item label="开关" prop="switch">
+          <hy-switch v-model="formData.switch" />
+        </hy-form-item>
+
+        <hy-form-item label="备注" prop="remark">
+          <hy-textarea v-model="formData.remark" placeholder="请输入备注信息" :height="80" />
+        </hy-form-item>
+      </hy-form>
+    </view>
+
+    <view class="demo-actions">
+      <hy-button type="primary" @click="handleSubmit">提交表单</hy-button>
+      <hy-button type="info" plain @click="handleReset">重置表单</hy-button>
+      <hy-button type="error" @click="handleValidate">验证表单</hy-button>
+    </view>
+
+    <view class="demo-result">
+      <text class="result-title">表单数据：</text>
+      <text class="result-content">{{ JSON.stringify(formData, null, 2) }}</text>
+    </view>
   </hy-config-provider>
 </template>
 
 <script setup lang="ts">
-import { FormTypeEnum } from 'hy-app'
-import type { FormColumnsType } from 'hy-app'
-import HyForm from '@/package/components/hy-form/hy-form.vue'
-import HyInput from '@/package/components/hy-input/hy-input.vue'
-import HyButton from '@/package/components/hy-button/hy-button.vue'
-import HyConfigProvider from '@/package/components/hy-config-provider/hy-config-provider.vue'
 import { reactive, ref } from 'vue'
 import { useThemeStore } from '@/store'
-const themeStore = useThemeStore()
+// 组件
+import HyForm from '@/package/components/hy-form/hy-form.vue'
+import HyFormItem from '@/package/components/hy-form-item/hy-form-item.vue'
+import HyInput from '@/package/components/hy-input/hy-input.vue'
+import HyRadio from '@/package/components/hy-radio/hy-radio.vue'
+import HyCheckButton from '@/package/components/hy-check-button/hy-check-button.vue'
+import HySwitch from '@/package/components/hy-switch/hy-switch.vue'
+import HyTextarea from '@/package/components/hy-textarea/hy-textarea.vue'
+import HyButton from '@/package/components/hy-button/hy-button.vue'
+import HyConfigProvider from '@/package/components/hy-config-provider/hy-config-provider.vue'
 
+const themeStore = useThemeStore()
 const { themeColor, darkMode } = themeStore
 
-const formData: AnyObject = reactive({
-  custom: '自定义值',
-  isShow: true,
-  sex: '1',
+// 表单数据
+const formData = reactive({
+  username: '',
+  phone: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  age: '',
+  gender: '',
+  hobbies: [],
+  switch: false,
+  remark: '',
 })
-const formRef = ref<InstanceType<typeof HyForm>>(null)
 
-const columns: FormColumnsType[] = reactive([
-  {
-    field: 'name',
-    label: '名字（测试）',
-    type: FormTypeEnum.TEXT,
-    rules: {
-      required: true,
-      message: '没有填内容',
-      trigger: ['blur'],
-    },
-  },
-  {
-    field: 'sex',
-    label: '性别（测试）',
-    type: FormTypeEnum.RADIO,
-    actions: [
-      { label: '女', value: '0' },
-      { label: '男', value: '1' },
-    ],
-    rules: {
-      required: true,
-      message: '没有填内容',
-      trigger: ['blur', 'change'],
-    },
-  },
-  {
-    field: 'label',
-    label: '标签',
-    type: 'checkButton',
-    actions: [
-      { label: 'i人', value: 0 },
-      { label: 'e人', value: 1 },
-      { label: '天才', value: 2 },
-      { label: '疯子', value: 3 },
-    ],
-    checkButton: {
-      selectType: 'checkbox',
-      type: 'error',
-    },
-    rules: {
-      required: true,
-      message: '选择你的标签',
-      trigger: ['blur', 'change'],
-    },
-  },
-  {
-    field: 'interest',
-    label: '爱好',
-    type: 'checkButton',
-    actions: [
-      { label: '苹果', value: '0' },
-      { label: '西瓜', value: '1' },
-      { label: '香蕉', value: '2' },
-    ],
-    checkButton: {
-      selectType: 'radio',
-    },
-    rules: {
-      required: true,
-      message: '选择你最喜欢的水果',
-      trigger: ['blur', 'change'],
-    },
-  },
-  {
-    field: 'phone',
-    label: '手机号（测试）',
-    type: FormTypeEnum.TEXT,
-    rules: [
-      {
-        required: true,
-        message: '请输入您的手机号',
-        trigger: ['blur', 'change'],
+// 表单验证规则
+const rules = {
+  username: [
+    { required: true, message: '请输入用户名' },
+    { min: 2, max: 4, message: '用户名长度在 2 到 4 个字符', trigger: ['change'] },
+  ],
+  phone: [
+    { required: true, message: '请输入手机号' },
+    { type: 'phone', message: '请输入正确的手机号', trigger: ['change', 'blur'] },
+  ],
+  email: [{ type: 'email', message: '请输入正确的邮箱格式', trigger: ['change'] }],
+  password: [
+    { required: true, message: '请输入密码' },
+    { min: 6, message: '密码长度不能少于 6 个字符', trigger: ['change'] },
+  ],
+  confirmPassword: [
+    { required: true, message: '请确认密码' },
+    {
+      validator: (value: string) => {
+        if (value !== formData.password) {
+          return '两次输入的密码不一致'
+        }
+        return true
       },
-      {
-        type: 'phone',
-        trigger: ['blur', 'change'],
+      trigger: ['change'],
+    },
+  ],
+  age: [
+    {
+      validator: (value: string) => {
+        if (value && (Number(value) < 1 || Number(value) > 120)) {
+          return '年龄必须在 1-120 之间'
+        }
+        return true
       },
-    ],
-  },
-  {
-    field: 'password',
-    label: '密码（测试）',
-    type: FormTypeEnum.PASSWORD,
-    rules: {
-      type: 'password',
-      trigger: ['blur', 'change'],
+      trigger: ['change'],
     },
-  },
-  {
-    field: 'isShow',
-    label: '是否禁用',
-    type: FormTypeEnum.SWITCH,
-  },
-  {
-    field: 'time',
-    label: '日期',
-    type: FormTypeEnum.DATE,
-    border: 'bottom',
-    rules: {
-      required: true,
-      message: '请输入您的日期',
-      trigger: ['blur', 'change'],
-    },
-  },
-  {
-    field: 'address',
-    label: '地址（测试）',
-    type: FormTypeEnum.ADDRESS,
-    rules: {
-      required: true,
-      message: '请输入您的地址',
-      trigger: ['blur', 'change'],
-    },
-  },
-  {
-    field: 'select',
-    label: '学历（测试）',
-    type: FormTypeEnum.SELECT,
-    select: [
-      [
-        { text: '小学', id: '1' },
-        { text: '初中', id: '2' },
-        { text: '高中', id: '3' },
-        { text: '大学', id: '4' },
-      ],
-    ],
-    rules: {
-      required: true,
-      message: '请输入您的学历',
-      trigger: ['blur', 'change'],
-    },
-  },
-  {
-    field: 'age',
-    label: '年龄（测试）',
-    type: FormTypeEnum.NUMBER,
-    rules: [
-      {
-        required: true,
-        message: '请输入您的年龄',
-        trigger: ['blur', 'change'],
-      },
-      {
-        required: true,
-        message: '不能小于最小值',
-        min: 10,
-        trigger: ['blur', 'change'],
-      },
-      {
-        message: '不能大于最大值',
-        max: 20,
-        trigger: ['change'],
-      },
-    ],
-  },
-  {
-    field: 'custom',
-    label: '自定义',
-    type: FormTypeEnum.CUSTOM,
-    rules: {
-      required: true,
-      message: '请输入您的自定义内容',
-      trigger: ['blur', 'change'],
-    },
-  },
-  {
-    field: 'remark',
-    label: '备注',
-    type: FormTypeEnum.TEXTAREA,
-    rules: {
-      required: true,
-      message: '请输入您的地址',
-      trigger: ['blur', 'change'],
-    },
-  },
-])
+  ],
+}
 
-const handleSubmit = () => {
-  formRef.value.handleSubmit().then((res) => {
-    uni.showToast({ title: '提交成功' })
+// 选项数据
+const genderOptions = [
+  { label: '男', value: 'male' },
+  { label: '女', value: 'female' },
+]
+
+const hobbyOptions = [
+  { label: '阅读', value: 'reading' },
+  { label: '音乐', value: 'music' },
+  { label: '运动', value: 'sports' },
+  { label: '旅行', value: 'travel' },
+]
+
+// 表单引用
+const formRef = ref()
+
+// 提交表单
+const handleSubmit = async (data: any) => {
+  const isSuccess = await formRef.value?.submit()
+  if (isSuccess) {
+    await uni.showToast({
+      title: '提交成功',
+      icon: 'success',
+    })
+  }
+}
+
+// 验证表单
+const handleValidate = async () => {
+  const isValid = await formRef.value?.validate()
+  await uni.showToast({ title: '表单校验成功', icon: 'none' })
+}
+
+// 重置表单
+const handleReset = () => {
+  formRef.value?.resetFields()
+  uni.showToast({
+    title: '重置成功',
+    icon: 'success',
   })
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped>
+.demo-header {
+  margin-bottom: 20px;
+
+  .demo-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: $hy-text-color;
+  }
+}
+
+.demo-content {
+  background: $hy-background--container;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.demo-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  .hy-button {
+    flex: 1;
+  }
+}
+
+.demo-result {
+  background: $hy-background--3;
+  border-radius: 8px;
+  padding: 15px;
+
+  .result-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: $hy-text-color;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .result-content {
+    font-size: 12px;
+    color: $hy-text-color;
+    line-height: 1.5;
+    word-break: break-all;
+  }
+}
+</style>

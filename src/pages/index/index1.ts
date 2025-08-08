@@ -47,6 +47,10 @@ export const list_2 = [
     url: '/pages/components/form/form',
   },
   {
+    title: 'FormGroup 表单组',
+    url: '/pages/components/formGroup/formGroup',
+  },
+  {
     title: 'Calendar 日历',
     url: '/pages/components/calendar/calendar',
   },

@@ -11,23 +11,60 @@
   </view>
 </template>
 
-<script setup lang="ts">
-import { computed, type CSSProperties, ref, watch, nextTick, toRefs } from 'vue'
-import { sleep } from '../../utils'
-import defaultProps from './props'
-import type IProps from './typing'
+<script lang="ts">
+export default {
+  name: 'hy-transition',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared',
+  },
+}
+</script>
 
-const props = withDefaults(defineProps<IProps>(), defaultProps)
+<script setup lang="ts">
+import { computed, ref, watch, nextTick, toRefs } from 'vue'
+import type { CSSProperties, PropType } from 'vue'
+import { sleep } from '../../utils'
+import type { ITransitionEmits } from './typing'
+
+/**
+ * 该组件用于组件的动画过渡效果。
+ * @displayName hy-transition
+ */
+defineOptions({})
+
+// const props = withDefaults(defineProps<IProps>(), defaultProps)
+const props = defineProps({
+  /** 是否展示组件 */
+  show: {
+    type: Boolean,
+    default: false,
+  },
+  /** 使用的动画模式 */
+  mode: {
+    type: String,
+    default: 'fade',
+  },
+  /** 动画的执行时间，单位ms */
+  duration: {
+    type: Number,
+    default: 300,
+  },
+  /** 使用的动画过渡函数 */
+  timingFunction: {
+    type: String,
+    default: 'ease-out',
+  },
+  /** 定义需要用到的外部样式 */
+  customStyle: {
+    type: Object as PropType<CSSProperties>,
+  },
+  /** 自定义外部类名 */
+  customClass: String,
+})
 const { show, mode, duration, customStyle, timingFunction } = toRefs(props)
-const emit = defineEmits([
-  'click',
-  'beforeEnter',
-  'enter',
-  'afterEnter',
-  'beforeLeave',
-  'leave',
-  'afterLeave',
-])
+const emit = defineEmits<ITransitionEmits>()
 
 const hasInit = ref<boolean>(false) // 是否显示/隐藏组件
 const viewStyle = ref<CSSProperties>({}) // 组件内部的样式

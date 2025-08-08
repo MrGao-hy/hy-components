@@ -67,20 +67,51 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, inject, ref, onMounted, watch, useSlots, toRefs, getCurrentInstance } from 'vue'
-import defaultProps from './props'
-import type IProps from './typing'
+import {
+  computed,
+  inject,
+  ref,
+  onMounted,
+  watch,
+  useSlots,
+  toRefs,
+  getCurrentInstance,
+  type PropType,
+} from 'vue'
+import type { IDropdownItemEmits } from './typing'
 import type FatherIProps from '../hy-dropdown/typing'
 import type { DropdownMenuItem } from './typing'
 import { addUnit, getRect, throttle } from '../../utils'
 import { IconConfig } from '../../config'
-
+// 组件
 import HyOverlay from '../hy-overlay/hy-overlay.vue'
 import HyIcon from '../hy-icon/hy-icon.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps)
+/**
+ * 主要提供筛选下拉筛选框，内置基础筛选功能，可以根据自己的需求自定义筛选项。和hy-dropdown组合用法
+ * @displayName hy-dropdown-item
+ */
+defineOptions({})
+
+// const props = withDefaults(defineProps<IProps>(), defaultProps)
+const props = defineProps({
+  /** 获取值 */
+  modelValue: String,
+  /** 标题 */
+  title: String,
+  /** 下拉选择值 */
+  menus: {
+    type: Array as unknown as PropType<DropdownMenuItem[]>,
+    default: [],
+  },
+  /** 禁用组件点击 */
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+})
 const { modelValue, menus } = toRefs(props)
-const emits = defineEmits(['update:modelValue', 'change'])
+const emits = defineEmits<IDropdownItemEmits>()
 
 const slots = useSlots()
 //是否有插槽

@@ -1,5 +1,5 @@
 @use "../../libs/css/mixin.scss" as *;
-@include b(datetime-picker) {
+@include b(address-picker) {
   flex: 1;
   &__has-input {
     position: relative;

@@ -1,43 +1,16 @@
 {
   "name": "hy-app",
-  "version": "0.2.10",
-  "description": "fix: 微信小程序气泡组件在小程序列表不默认关闭",
+  "version": "0.3.0",
+  "description": "添加分离式表单组件",
   "main": "./index.ts",
   "private": false,
   "scripts": {},
-  "files": [
-    "common/",
-    "components/",
-    "composables/",
-    "global/",
-    "public/",
-    "store/",
-    "typing/",
-    "utils/",
-    "api/",
-    "config/",
-    "libs/",
-    "index.ts",
-    "index.scss",
-    "theme.scss",
-    "README.md"
-  ],
-  "dependencies": {
-    "@dcloudio/uni-app": "3.0.0-alpha-3081220230802001",
-    "pinia": "^2.3.1",
-    "pinia-plugin-unistorage": "^0.0.8",
-    "vue": "^3.5.13",
-    "vue-i18n": "^9.14.3"
-  },
-  "devDependencies": {
-    "@dcloudio/types": "^3.4.14",
-    "@vue/tsconfig": "^0.1.3",
-    "uni-app-types": "^0.1.7"
-  },
   "keywords": [
     "华玥组件库",
-    "ui组件库"
+    "ui组件库",
+    "暗黑模式"
   ],
+  "web-types": "./web-types.json",
   "author": "gaoxianhua",
-  "license": "ISC"
+  "license": "MIT"
 }

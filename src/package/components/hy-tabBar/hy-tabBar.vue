@@ -4,11 +4,7 @@
     <view class="hy-tabBar--box" :style="{ backgroundColor: barBgColor }">
       <view class="hy-tabBar--container">
         <view
-          :class="[
-            'hy-tabBar--container__item',
-            'list',
-            current === i ? 'is-active' : '',
-          ]"
+          :class="['hy-tabBar--container__item', 'list', current === i ? 'is-active' : '']"
           v-for="(item, i) in list"
           :key="i"
           @click="checkItem(i)"
@@ -31,9 +27,7 @@
               ></HyBadge>
               <HyIcon :name="item.icon" :color="color" size="25"></HyIcon>
             </view>
-            <text class="text" :style="[{ color: color }]">{{
-              item.name
-            }}</text>
+            <text class="text" :style="[{ color: color }]">{{ item.name }}</text>
             <text class="circle"></text>
           </view>
         </view>
@@ -49,38 +43,53 @@
   </view>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hy-switch',
+  options: {
+    addGlobalClass: true,
+    virtualHost: true,
+    styleIsolation: 'shared',
+  },
+}
+</script>
+
 <script setup lang="ts">
-import { ref, toRefs, watch } from "vue";
-import defaultProps from "./props";
-import type IProps from "./typing";
+import { ref, toRefs, watch } from 'vue'
+import defaultProps from './props'
+import type IProps from './typing'
 
 // 组件
-import HyIcon from "../hy-icon/hy-icon.vue";
-import HyBadge from "../hy-badge/hy-badge.vue";
+import HyIcon from '../hy-icon/hy-icon.vue'
+import HyBadge from '../hy-badge/hy-badge.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps);
-const { modelValue, baseBgColor } = toRefs(props);
-const emit = defineEmits(["clickTab"]);
+/**
+ * 一般用于导航轮播，广告展示等场景,可开箱即用
+ * @displayName hy-swiper
+ */
+defineOptions({})
 
-const baseBackgroundColor = baseBgColor.value
-  ? baseBgColor.value
-  : "var(--hy-background)";
-const current = ref(0);
+const props = withDefaults(defineProps<IProps>(), defaultProps)
+const { modelValue, baseBgColor } = toRefs(props)
+const emit = defineEmits(['clickTab'])
+
+const baseBackgroundColor = baseBgColor.value ? baseBgColor.value : 'var(--hy-background)'
+const current = ref(0)
 watch(
   () => modelValue.value,
   (newVal) => {
-    current.value = newVal;
+    current.value = newVal
   },
-);
+)
 
 const checkItem = (index: number) => {
-  current.value = index;
-  emit("clickTab", index);
-};
+  current.value = index
+  emit('clickTab', index)
+}
 </script>
 
 <style lang="scss" scoped>
-@import "./index.scss";
+@import './index.scss';
 .hy-tabBar {
   background: v-bind(baseBackgroundColor);
   &--indicator {

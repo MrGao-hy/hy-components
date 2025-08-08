@@ -82,3 +82,8 @@ export default interface HyIconProps {
    * */
   customClass?: string
 }
+
+export interface IIconEmits {
+  /** 点击图标触发 */
+  (e: 'click', index: string, e: Event): void
+}

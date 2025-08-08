@@ -115,3 +115,10 @@ export default interface HyFloatButtonProps {
    * */
   customStyle?: CSSProperties
 }
+
+export interface IFloatButtonEmits {
+  /** 点击悬浮按钮触发 */
+  (e: 'click'): void
+  /** 点击菜单按钮触发 */
+  (e: 'clickItem', item: MenusType, index: number): void
+}

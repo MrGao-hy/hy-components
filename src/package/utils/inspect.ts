@@ -1,7 +1,7 @@
 /**
  * @description 判断字符串是否是数字
- * @param {string | number} text 值
- * @return {boolean}
+ * @param {String | Number} text 值
+ * @return {Boolean}
  * */
 export const isNumericString = (text: string | number): boolean => {
   return typeof text === 'string' && !isNaN(Number(text))
@@ -9,8 +9,8 @@ export const isNumericString = (text: string | number): boolean => {
 
 /**
  * @description 判断是否是数字
- * @param {string | number} text 值
- * @return {boolean}
+ * @param {String | Number} text 值
+ * @return {Boolean}
  * */
 export const isNumber = (text: string | number): boolean => {
   return typeof text === 'number' || isNumericString(text)
@@ -18,23 +18,45 @@ export const isNumber = (text: string | number): boolean => {
 
 /**
  * @description 判断是否数组
- * @param arr 传入数组值
- * @return {boolean}
+ * @param {any} arr 传入数组值
+ * @return {Boolean}
  */
-export const isArray = (arr: any): boolean => {
+export const isArray = (arr: any): arr is Array<any> => {
+  // 如果 Array.isArray 函数可用，直接使用该函数检查
   if (typeof Array.isArray === 'function') {
     return Array.isArray(arr)
   }
+  // 否则，使用对象原型的 toString 方法进行检查
   return Object.prototype.toString.call(arr) === '[object Array]'
 }
 
 /**
  * @description 判断是否对象
  * @param obj 传入对象值
- * @return {boolean}
+ * @return {Boolean}
  */
-export const isObject = (obj: any): boolean => {
+export const isObject = (obj: any): obj is Object => {
   return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
+/**
+ * @description 是否为base64图片
+ * @param {String} url
+ * @return
+ */
+export function isBase64Image(url: string) {
+  // 使用正则表达式检查URL是否以"data:image"开头，这是Base64图片的常见前缀
+  return /^data:image\/(png|jpg|jpeg|gif|bmp);base64,/.test(url)
+}
+
+/**
+ * @description 是否图片
+ * @param {String} url
+ * @return
+ */
+export function isImage(url: string) {
+  // 使用正则表达式检查URL是否以"data:image"开头，这是Base64图片的常见前缀
+  return /(\.jpg|\.jpeg|\.png|\.gif|\.bmp|\.webp)$/i.test(url)
 }
 
 /**
@@ -48,7 +70,7 @@ export function isVideo(value: string): boolean {
 
 /**
  * 判断是否是日期格式
- * @param {number | string} value yyyy-mm-dd hh:mm:ss 或 时间戳
+ * @param {Number | String} value yyyy-mm-dd hh:mm:ss 或 时间戳
  */
 export const isDate = (value: string | number) => {
   if (!value) return false
@@ -86,7 +108,7 @@ export const isDate = (value: string | number) => {
 
 /**
  * @description 验证是否是手机号格式
- * @param phone {string} 手机号
+ * @param {String} phone 手机号
  */
 export const isPhone = (phone: string): boolean => {
   return /^1[23456789]\d{9}$/.test(phone)
@@ -94,8 +116,8 @@ export const isPhone = (phone: string): boolean => {
 
 /**
  * @description 验证身份证号码
- * @param idCard {string} 身份证号
- * @return {boolean}
+ * @param {String} idCard 身份证号
+ * @return {Boolean}
  */
 export const isIdCard = (idCard: string): boolean => {
   return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(idCard)
@@ -103,32 +125,12 @@ export const isIdCard = (idCard: string): boolean => {
 
 /**
  * @description 验证是否是中文
- * @param {string} zh 校验值
- * @return {boolean}
+ * @param {String} zh 校验值
+ * @return {Boolean}
  */
 export const isChinese = (zh: string): boolean => {
   const reg = /^[\u4e00-\u9fa5]+$/gi
   return reg.test(zh)
-}
-
-/**
- * @description 是否为base64图片
- * @param {string} url
- * @return
- */
-export function isBase64Image(url: string) {
-  // 使用正则表达式检查URL是否以"data:image"开头，这是Base64图片的常见前缀
-  return /^data:image\/(png|jpg|jpeg|gif|bmp);base64,/.test(url)
-}
-
-/**
- * @description 是否图片
- * @param {string} url
- * @return
- */
-export function isImage(url: string) {
-  // 使用正则表达式检查URL是否以"data:image"开头，这是Base64图片的常见前缀
-  return /(\.jpg|\.jpeg|\.png|\.gif|\.bmp|\.webp)$/i.test(url)
 }
 
 /**

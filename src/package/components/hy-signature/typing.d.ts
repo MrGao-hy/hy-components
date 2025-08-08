@@ -1,102 +1,102 @@
-import type { CSSProperties } from "vue";
+import type { CSSProperties } from 'vue'
 
 export default interface HySignatureProps {
   /**
    * @description 签名笔颜色
    * */
-  penColor?: string;
+  penColor?: string
   /**
    * @description 签名笔宽度（默认 2 ）
    * */
-  lineWidth?: number;
+  lineWidth?: number
   /**
    * @description 清空按钮的文本
    * */
-  clearText?: string;
+  clearText?: string
   /**
    * @description 撤回按钮的文本
    * */
-  revokeText?: string;
+  revokeText?: string
   /**
    * @description 恢复按钮的文本
    * */
-  restoreText?: string;
+  restoreText?: string
   /**
    * @description 确认按钮的文本
    * */
-  confirmText?: string;
+  confirmText?: string
   /**
    * @description 目标文件的类型（默认 png ）
    * */
-  fileType?: string;
+  fileType?: string
   /**
    * @description 签名笔颜色
    * */
-  quality?: number;
+  quality?: number
   /**
    * @description 目标文件的质量（默认 1 ）
    * */
-  exportScale?: number;
+  exportScale?: number
   /**
    * @description 是否禁用签名板（默认 false ）
    * */
-  disabled?: boolean;
+  disabled?: boolean
   /**
    * @description 画布的高度
    * */
-  height?: number;
+  height?: number
   /**
    * @description 画布的宽度
    * */
-  width?: number;
+  width?: number
   /**
    * @description 边框圆角
    * */
-  round?: string | number;
+  round?: string | number
   /**
    * @description 画板的背景色
    * */
-  backgroundColor?: string;
+  backgroundColor?: string
   /**
    * @description 是否禁用画布滚动（默认 true ）
    * */
-  disableScroll?: boolean;
+  disableScroll?: boolean
   /**
    * @description 是否开启历史记录（默认 false ）
    * */
-  enableHistory?: boolean;
+  enableHistory?: boolean
   /**
    * @description 撤回和恢复的步长（默认 1 ）
    * */
-  step?: number;
+  step?: number
   /**
    * @description 撤回按钮的文本（默认 撤销 ）
    * */
-  undoText?: string;
+  undoText?: string
   /**
    * @description 恢复按钮的文本（默认 恢复 ）
    * */
-  redoText?: string;
+  redoText?: string
   /**
    * @description 是否启用压感模式（默认 false ）
    * */
-  pressure?: boolean;
+  pressure?: boolean
   /**
    * @description 压感模式下笔画最小宽度（默认 2 ）
    * */
-  minWidth?: number;
+  minWidth?: number
   /**
    * @description 压感模式下笔画最大宽度（默认 6 ）
    * */
-  maxWidth?: number;
+  maxWidth?: number
   /**
    * @description 最小速度阈值，影响压感模式下的笔画宽度变化（默认 1.5 ）
    * */
-  minSpeed?: number;
+  minSpeed?: number
   /**
    * @description 定义需要用到的外部样式
    * */
-  customStyle?: CSSProperties;
+  customStyle?: CSSProperties
 }
 
 /**
@@ -107,11 +107,11 @@ export default interface HySignatureProps {
  * @property height - 生成图片的高度
  */
 export type SignatureResult = {
-  tempFilePath: string;
-  success: boolean;
-  width: number;
-  height: number;
-};
+  tempFilePath: string
+  success: boolean
+  width: number
+  height: number
+}
 
 /**
  * 签名线条类型
@@ -122,11 +122,11 @@ export type SignatureResult = {
  * @property isPressure - 是否为笔锋模式的线条 (可选)
  */
 export interface Line {
-  points: Point[];
-  color: string;
-  width: number;
-  backgroundColor?: string;
-  isPressure?: boolean;
+  points: Point[]
+  color: string
+  width: number
+  backgroundColor?: string
+  isPressure?: boolean
 }
 
 /**
@@ -144,17 +144,17 @@ export interface Line {
  * @property isFirstPoint - 是否为线条的第一个点 (可选)
  */
 export interface Point {
-  x: number;
-  y: number;
-  t: number;
-  speed?: number;
-  distance?: number;
-  lineWidth?: number;
-  lastX1?: number;
-  lastY1?: number;
-  lastX2?: number;
-  lastY2?: number;
-  isFirstPoint?: boolean;
+  x: number
+  y: number
+  t: number
+  speed?: number
+  distance?: number
+  lineWidth?: number
+  lastX1?: number
+  lastY1?: number
+  lastX2?: number
+  lastY2?: number
+  isFirstPoint?: boolean
 }
 
 /**
@@ -169,13 +169,26 @@ export type SignatureExpose = {
   /** 初始化签名板
    * @param forceUpdate - 是否强制更新
    */
-  init: (forceUpdate?: boolean) => void;
+  init: (forceUpdate?: boolean) => void
   /** 点击清除按钮清除签名 */
-  clear: () => void;
+  clear: () => void
   /** 点击确定按钮 */
-  confirm: () => void;
+  confirm: () => void
   /* 点击恢复 */
-  restore: () => void;
+  restore: () => void
   /* 点击撤回 */
-  revoke: () => void;
-};
+  revoke: () => void
+}
+
+export interface ISignatureEmits {
+  /** 开始签名时触发 */
+  (e: 'start', event: TouchEvent): void
+  /** 结束签名时触发 */
+  (e: 'end', event: TouchEvent): void
+  /** 签名过程中触发 */
+  (e: 'signing', event: TouchEvent): void
+  /** 确认签名时触发 */
+  (e: 'confirm', result: SignatureResult): void
+  /** 清空签名时触发 */
+  (e: 'clear'): void
+}

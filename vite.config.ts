@@ -122,7 +122,7 @@ export default ({ command, mode }) => {
       },
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "hy-app/index.scss";',
+          additionalData: '@use "hy-app/theme.scss" as *;\n' + '@use "hy-app/index.scss" as *;',
         },
       },
     },

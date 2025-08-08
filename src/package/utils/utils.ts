@@ -364,7 +364,7 @@ export type RectResultType<T extends boolean> = T extends true ? UniApp.NodeInfo
  * @param ins 在微信小程序里，因为utils文件里面获取不到instance值所以必须通过ins这个传过来
  * @param useFields 是否使用 fields 方法获取节点信息
  */
-const getRect = (
+const getRect = <T extends boolean>(
   selector: string,
   all?: T,
   ins?: any,
@@ -395,24 +395,6 @@ const getRect = (
     } else {
       query[method](selector).boundingClientRect(callback).exec()
     }
-    // // #ifdef MP-WEIXIN
-    // instance = ins;
-    // // #endif
-    // // #ifndef APP-NVUE
-    // uni
-    //   .createSelectorQuery()
-    //   .in(instance)
-    //   [all ? "selectAll" : "select"](selector)
-    //   .boundingClientRect((rect) => {
-    //     if (all && Array.isArray(rect) && rect.length) {
-    //       resolve(rect as UniApp.NodeInfo[]);
-    //     }
-    //     if (!all && rect) {
-    //       resolve(rect as UniApp.NodeInfo);
-    //     }
-    //   })
-    //   .exec();
-    // // #endif
   })
 }
 

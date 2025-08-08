@@ -1,76 +1,76 @@
-import type { CSSProperties } from "vue";
+import type { CSSProperties } from 'vue'
 
 export default interface HyOverlayProps {
   /**
    * @description 显示内容
    * */
-  content?: string;
+  content?: string
   /**
    * @description 显示图片的地址，支持网络图片和base64（钉钉小程序仅支持网络图片）
    * */
-  image?: string;
+  image?: string
   /**
    * @description 图片高度
    * */
-  imageHeight?: number;
+  imageHeight?: number
   /**
-   * @description 图片高度
+   * @description 图片宽度
    * */
-  imageWidth?: number;
+  imageWidth?: number
   /**
    * @description X轴间距，单位px
    * */
-  gutterX?: number;
+  gutterX?: number
   /**
    * @description Y轴间距，单位px
    * */
-  gutterY?: number;
+  gutterY?: number
   /**
    * @description canvas画布宽度，单位px
    * */
-  width?: number;
+  width?: number
   /**
    * @description canvas画布高度，单位px
    * */
-  height?: number;
+  height?: number
   /**
    * @description 是否为全屏水印
    * */
-  fullScreen?: boolean;
+  fullScreen?: boolean
   /**
    * @description 水印字体颜色
    * */
-  color?: string;
+  color?: string
   /**
    * @description 水印字体大小，单位px
    * */
-  size?: number;
+  size?: number
   /**
    * @description 水印字体样式（仅微信和h5支持），可能的值：normal、italic、oblique
    * */
-  fontStyle?: string;
+  fontStyle?: string
   /**
    * @description 水印字体的粗细（仅微信和h5支持）
    * */
-  fontWeight?: string;
+  fontWeight?: string
   /**
    * @description 水印字体系列（仅微信和h5支持）
    * */
-  fontFamily?: string;
+  fontFamily?: string
   /**
    * @description 水印旋转角度
    * */
-  rotate?: number;
+  rotate?: number
   /**
    * @description 自定义层级
    * */
-  zIndex?: number;
+  zIndex?: number
   /**
    * @description 自定义透明度，取值 0~1
    * */
-  opacity?: number;
+  opacity?: number
   /**
    * @description 定义需要用到的外部样式
    * */
-  customStyle?: CSSProperties;
+  customStyle?: CSSProperties
 }

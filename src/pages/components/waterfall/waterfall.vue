@@ -28,13 +28,7 @@
       </template>
       <template v-slot:right="{ rightList }">
         <view class="demo-water" v-for="(item, index) in rightList" :key="index">
-          <up-lazy-load
-            threshold="-450"
-            height="120"
-            border-radius="10"
-            :image="item.image"
-            :index="index"
-          ></up-lazy-load>
+          <hy-image width="100%" mode="widthFix" radius="5" :src="item.image"></hy-image>
           <view class="demo-title">{{ item.title }}</view>
           <view class="demo-price">{{ item.price }}元</view>
           <view class="demo-tag">

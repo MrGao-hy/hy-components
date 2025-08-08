@@ -25,12 +25,8 @@ import { ref } from 'vue'
 const themeStore = useThemeStore()
 const { startShakeListener, stopShakeListener } = useShakeService()
 
-const { themeColor, darkMode, color } = storeToRefs(themeStore)
-const showHint = ref(false)
+const { themeColor, darkMode, showHint } = storeToRefs(themeStore)
 
-onMounted(() => {
-  showHint.value = true
-})
 onShow(() => {
   startShakeListener(handleShake)
 })

@@ -105,19 +105,19 @@ const content = ref(
 const count = ref(0)
 const menus = reactive([
   {
-    iconClass: IconConfig.REMIND,
+    icon: IconConfig.REMIND,
     content: '全部标记已读',
   },
   {
-    iconClass: IconConfig.DELETE,
+    icon: IconConfig.DELETE,
     content: '清空最近会话',
   },
   {
-    iconClass: IconConfig.SETTING,
+    icon: IconConfig.SETTING,
     content: '消息订阅设置',
   },
   {
-    iconClass: IconConfig.NOTICE,
+    icon: IconConfig.NOTICE,
     content: '消息异常检测',
   },
 ])

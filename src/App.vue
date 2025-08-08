@@ -16,7 +16,6 @@ import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 <style lang="scss">
 /* stylelint-disable selector-type-no-unknown */
 @import '~@/style/common.scss';
-@import '~@/package/index.scss';
 button::after {
   border: none;
 }

@@ -78,3 +78,12 @@ export default interface HyImageProps {
    * */
   customStyle?: CSSProperties
 }
+
+export interface IImageEmits {
+  /** 点击触发 */
+  (e: 'click'): void
+  /** 图片加载错误触发 */
+  (e: 'error', err: Event): void
+  /** 图片加载中触发 */
+  (e: 'load', event: Event): void
+}

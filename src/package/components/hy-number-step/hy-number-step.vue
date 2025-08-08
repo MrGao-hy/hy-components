@@ -131,28 +131,133 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
-  }
+    styleIsolation: 'shared',
+  },
 }
 </script>
 
 <script setup lang="ts">
-import {
-  computed,
-  type CSSProperties,
-  toRefs,
-  ref,
-  watch,
-  onMounted,
-  nextTick,
-} from "vue";
-import defaultProps from "./props";
-import type IProps from "./typing";
-import { addUnit } from "../../utils";
-import { IconConfig } from "../../config";
-import HyIcon from "../hy-icon/hy-icon.vue";
+import { computed, toRefs, ref, watch, onMounted, nextTick } from 'vue'
+import type { CSSProperties, PropType } from 'vue'
+import { addUnit } from '../../utils'
+import { IconConfig } from '../../config'
+import type HyIconProps from '../hy-icon/typing'
+import type { INumberStepEmits } from './typing'
+// 组件
+import HyIcon from '../hy-icon/hy-icon.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps);
+/**
+ * 一般用于商城购物选择物品数量的场景
+ * @displayName hy-number-step
+ */
+defineOptions({})
+
+// const props = withDefaults(defineProps<IProps>(), defaultProps)
+const props = defineProps({
+  /** 用于双向绑定的值，初始化时设置设为默认min值(最小值) */
+  modelValue: {
+    type: Number,
+  },
+  /** 最小值 */
+  min: {
+    type: Number,
+    default: 1,
+  },
+  /** 最大值 */
+  max: {
+    type: Number,
+    default: Number.MAX_SAFE_INTEGER,
+  },
+  /** 加减的步长，可为小数 */
+  step: {
+    type: Number,
+    default: 1,
+  },
+  /** 是否只允许输入整数 */
+  integer: {
+    type: Boolean,
+    default: false,
+  },
+  /** 是否禁用，包括输入框，加减按钮 */
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  /** 是否禁用输入框 */
+  disabledInput: {
+    type: Boolean,
+    default: false,
+  },
+  /** 是否开启异步变更，开启后需要手动控制输入值 */
+  asyncChange: {
+    type: Boolean,
+    default: false,
+  },
+  /** 输入框宽度，单位为px */
+  inputWidth: {
+    type: [String, Number],
+    default: 35,
+  },
+  /** 是否显示减少按钮 */
+  showMinus: {
+    type: Boolean,
+    default: true,
+  },
+  /** 是否显示增加按钮 */
+  showPlus: {
+    type: Boolean,
+    default: true,
+  },
+  /** 显示的小数位数 */
+  decimalLength: Number,
+  /** 是否开启长按加减手势 */
+  longPress: {
+    type: Boolean,
+    default: true,
+  },
+  /** 输入框文字和加减按钮图标的颜色 */
+  color: String,
+  /** 按钮宽度 */
+  buttonWidth: {
+    type: [String, Number],
+    default: 30,
+  },
+  /** 按钮大小，宽高等于此值，单位px，输入框高度和此值保持一致 */
+  buttonSize: {
+    type: [String, Number],
+    default: 30,
+  },
+  /** 按钮圆角 */
+  buttonRadius: [String, Number],
+  /** 输入框和按钮的背景颜色 */
+  bgColor: String,
+  /** 输入框背景颜色 */
+  inputBgColor: String,
+  /** 指定光标于键盘的距离，避免键盘遮挡输入框，单位px */
+  cursorSpacing: {
+    type: Number,
+    default: 100,
+  },
+  /** 是否禁用减少按钮 */
+  disableMinus: {
+    type: Boolean,
+    default: false,
+  },
+  /** 是否禁用增加按钮 */
+  disablePlus: {
+    type: Boolean,
+    default: false,
+  },
+  /** 减号按钮图标 */
+  minusIcon: Object as PropType<HyIconProps>,
+  /** 加号按钮图标 */
+  plusIcon: Object as PropType<HyIconProps>,
+  /** 迷你模式 */
+  miniMode: {
+    type: Boolean,
+    default: false,
+  },
+})
 const {
   modelValue,
   miniMode,
@@ -175,24 +280,16 @@ const {
   longPress,
   asyncChange,
   step,
-} = toRefs(props);
-const emit = defineEmits([
-  "update:modelValue",
-  "focus",
-  "blur",
-  "overLimit",
-  "change",
-  "plus",
-  "minus",
-]);
-type StepType = "plus" | "minus";
+} = toRefs(props)
+const emit = defineEmits<INumberStepEmits>()
+type StepType = 'plus' | 'minus'
 
 // 输入框实际操作的值
-const currentValue = ref<number>(0);
+const currentValue = ref<number>(0)
 // 定时器
-const longPressTimer = ref<null | number | NodeJS.Timeout>(null);
+const longPressTimer = ref<null | number | NodeJS.Timeout>(null)
 
-const stepType = ref<StepType>("plus");
+const stepType = ref<StepType>('plus')
 
 /**
  * @description 格式化整理数据，限制范围
@@ -200,42 +297,42 @@ const stepType = ref<StepType>("plus");
  * */
 const format = (value: number): number => {
   // 如果为空字符串，那么设置为0，同时将值转为Number类型
-  value = !value ? 0 : +value;
+  value = !value ? 0 : +value
   // 对比最大最小值，取在min和max之间的值
-  value = Math.max(Math.min(max.value, value), min.value);
+  value = Math.max(Math.min(max.value, value), min.value)
   // 如果设定了最大的小数位数，使用toFixed去进行格式化
   if (decimalLength.value !== null) {
-    value = parseFloat(value.toFixed(decimalLength.value));
+    value = parseFloat(value.toFixed(decimalLength.value))
   }
-  return value;
-};
+  return value
+}
 
 // 用于监听多个值发生变化
 const watchChange = computed(() => {
-  return [integer.value, decimalLength.value, min.value, max.value];
-});
+  return [integer.value, decimalLength.value, min.value, max.value]
+})
 
 watch(
   () => watchChange.value,
   () => check(),
-);
+)
 watch(
   () => modelValue.value,
   (newValue: number) => {
     if (newValue !== currentValue.value) {
-      currentValue.value = format(modelValue.value);
+      currentValue.value = format(modelValue.value)
     }
   },
   { immediate: true },
-);
+)
 
 const hideMinus = computed(() => {
-  return currentValue.value == 0 && miniMode.value;
-});
+  return currentValue.value == 0 && miniMode.value
+})
 const getCursorSpacing = computed(() => {
   // 判断传入的单位，如果为px单位，需要转成px
-  return cursorSpacing.value;
-});
+  return cursorSpacing.value
+})
 // 按钮的样式
 const buttonStyle = computed(() => {
   return (type: string) => {
@@ -245,10 +342,10 @@ const buttonStyle = computed(() => {
       height: addUnit(buttonSize.value),
       color: color.value,
       borderRadius: buttonRadius.value,
-    };
-    return style;
-  };
-});
+    }
+    return style
+  }
+})
 // 输入框的样式
 const inputStyle = computed<CSSProperties>(() => {
   // const disabled_1 = disabled.value || disabledInput.value;
@@ -257,76 +354,72 @@ const inputStyle = computed<CSSProperties>(() => {
     backgroundColor: inputBgColor.value || bgColor.value,
     height: addUnit(buttonSize.value),
     width: addUnit(inputWidth.value),
-  };
-});
+  }
+})
 
 const isDisabled = computed(() => {
   return (type: string) => {
-    if (type === "plus") {
+    if (type === 'plus') {
       // 在点击增加按钮情况下，判断整体的disabled，是否单独禁用增加按钮，以及当前值是否大于最大的允许值
-      return (
-        disabled.value || disablePlus.value || currentValue.value >= max.value
-      );
+      return disabled.value || disablePlus.value || currentValue.value >= max.value
     }
     // 点击减少按钮同理
-    return (
-      disabled.value || disableMinus.value || currentValue.value <= min.value
-    );
-  };
-});
+    return disabled.value || disableMinus.value || currentValue.value <= min.value
+  }
+})
 
 onMounted(() => {
-  init();
-});
+  init()
+})
 
 const init = () => {
-  currentValue.value = format(modelValue.value);
-};
+  currentValue.value = format(modelValue.value)
+}
 const check = () => {
   // 格式化了之后，如果前后的值不相等，那么设置为格式化后的值
-  const val = format(currentValue.value);
+  const val = format(currentValue.value)
   if (val !== currentValue.value) {
-    currentValue.value = val;
-    emitChange(val);
+    currentValue.value = val
+    emitChange(val)
   }
-};
+}
 
 /**
  * @description 输入框活动焦点
  */
 const onFocus = (event: Event) => {
-  emit("focus", event.detail);
-};
+  emit('focus', event.detail.value)
+}
 /**
  * @description 输入框失去焦点
  */
 const onBlur = (event: Event) => {
   // 对输入值进行格式化
-  format(event.detail.value);
+  format(event.detail.value)
   // 发出blur事件
-  emit("blur", event.detail);
-};
+  emit('blur', event.detail.value)
+}
 /**
  * @description 输入框值发生变化
  */
 const onInput = (e: Event) => {
-  const { value = "" } = e.detail || {};
+  const { value = '' } = e.detail || {}
   // 为空返回
-  if (value === "") return;
-  let formatted = value;
+  if (value === '') return
+  let formatted = value
   // https://github.com/ijry/uview-plus/issues/613
-  emitChange(value);
+  emitChange(value)
   // 最大允许的小数长度
-  if (decimalLength.value !== null && formatted.indexOf(".") !== -1) {
-    const pair = formatted.split(".");
-    formatted = `${pair[0]}.${pair[1].slice(0, decimalLength.value)}`;
+  if (decimalLength.value !== null && formatted.indexOf('.') !== -1) {
+    const pair = formatted.split('.')
+    formatted = `${pair[0]}.${pair[1].slice(0, decimalLength.value)}`
   }
-  formatted = format(formatted);
-  emitChange(formatted);
+  formatted = format(formatted)
+  emitChange(formatted)
   // #ifdef MP-WEIXIN
-  return formatted;
+  return formatted
   // #endif
-};
+}
 /**
  * @description 发出change事件
  * @param value 值
@@ -335,66 +428,66 @@ const emitChange = (value: number) => {
   // 如果开启了异步变更值，则不修改内部的值，需要用户手动在外部通过v-model变更
   if (!asyncChange.value) {
     nextTick(() => {
-      emit("update:modelValue", value);
-      currentValue.value = value;
+      emit('update:modelValue', value)
+      currentValue.value = value
       // this.$forceUpdate()
-    });
+    })
   }
-  emit("change", value);
-};
+  emit('change', value)
+}
 const onChange = () => {
   if (isDisabled.value(stepType.value)) {
-    return emit("overLimit", stepType.value);
+    return emit('overLimit', stepType.value)
   }
-  const diff = stepType.value === "minus" ? -step.value : +step.value;
-  const value = format(add(+currentValue.value, diff));
-  emitChange(value);
-  emit(stepType.value, value);
-};
+  const diff = stepType.value === 'minus' ? -step.value : +step.value
+  const value = format(add(+currentValue.value, diff))
+  emitChange(value)
+  emit(stepType.value, value)
+}
 /**
  * @description 对值扩大后进行四舍五入，再除以扩大因子，避免出现浮点数操作的精度问题
  * @param num1
  * @param num2
  * */
 const add = (num1: number, num2: number) => {
-  const cardinal = Math.pow(10, 10);
-  return Math.round((num1 + num2) * cardinal) / cardinal;
-};
+  const cardinal = Math.pow(10, 10)
+  return Math.round((num1 + num2) * cardinal) / cardinal
+}
 // 点击加减按钮
 const clickHandler = (type: StepType) => {
-  stepType.value = type;
-  onChange();
-};
+  stepType.value = type
+  onChange()
+}
 const longPressStep = () => {
   // 每隔一段时间，重新调用longPressStep方法，实现长按加减
-  onClearTimeout();
+  onClearTimeout()
   longPressTimer.value = setTimeout(() => {
-    onChange();
-    longPressStep();
-  }, 250) as NodeJS.Timeout;
-};
+    onChange()
+    longPressStep()
+  }, 250) as NodeJS.Timeout
+}
 const onTouchStart = (type: StepType) => {
-  if (!longPress.value) return;
-  onClearTimeout();
-  stepType.value = type;
+  if (!longPress.value) return
+  onClearTimeout()
+  stepType.value = type
   // 一定时间后，默认达到长按状态
   longPressTimer.value = setTimeout(() => {
-    onChange();
-    longPressStep();
-  }, 600);
-};
+    onChange()
+    longPressStep()
+  }, 600)
+}
 // 触摸结束，清除定时器，停止长按加减
 const onTouchEnd = () => {
-  if (!longPress.value) return;
-  onClearTimeout();
-};
+  if (!longPress.value) return
+  onClearTimeout()
+}
 // 清除定时器
 const onClearTimeout = () => {
-  clearTimeout(longPressTimer.value as number);
-  longPressTimer.value = null;
-};
+  clearTimeout(longPressTimer.value as number)
+  longPressTimer.value = null
+}
 </script>
 
 <style lang="scss" scoped>
-@import "./index.scss";
+@import './index.scss';
 </style>

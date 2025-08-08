@@ -10,6 +10,7 @@ interface NavigateToOptions {
        "/pages/components/list/list" |
        "/pages/components/upload/upload" |
        "/pages/components/form/form" |
+       "/pages/components/formGroup/formGroup" |
        "/pages/components/button/button" |
        "/pages/components/cell/cell" |
        "/pages/components/badge/badge" |

@@ -1,6 +1,7 @@
 <template>
-  <view class="u-datetime-picker">
-    <view v-if="hasInput" class="u-datetime-picker__has-input" @tap="onShowByClickInput">
+  <view class="hy-address-picker">
+    <view v-if="hasInput" class="hy-address-picker__has-input" @tap="onShowByClickInput">
+      <!-- @slot 自定义输入框 -->
       <slot name="trigger" :value="inputValue">
         <HyInput
           v-model="inputValue"
@@ -45,11 +46,13 @@
       @change="change"
     >
       <template #toolbar-right>
+        <!-- @slot 工具栏右侧内容，自定义右侧内容，因为微信小程序限制，需要同时设置:toolbarRightSlot="true"生效。 -->
         <slot name="toolbar-right">
           {{ confirmText }}
         </slot>
       </template>
       <template #toolbar-bottom>
+        <!-- @slot 工具栏下面内容，自定义底部内容 -->
         <slot name="toolbar-bottom"></slot>
       </template>
     </HyPicker>
@@ -68,18 +71,116 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { onMounted, ref, toRefs } from 'vue'
-import defaultProps from './props'
-import type IProps from './typing'
+/**
+ * 此选择器用于选择地址
+ * @displayName hy-address-picker
+ */
+defineOptions({})
+import { type CSSProperties, onMounted, PropType, ref, toRefs } from 'vue'
+import type { IAddressPickerEmits } from './typing'
 import address from '../../utils/address.json'
-
+import type HyInputProps from '../hy-input/typing'
 // 组件
 import HyInput from '../hy-input/hy-input.vue'
 import HyPicker from '../hy-picker/hy-picker.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps)
+// const props = withDefaults(defineProps<IProps>(), defaultProps)
+const props = defineProps({
+  /** 用于控制选择器的弹出和收起 */
+  show: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * 弹出层弹出方向
+   * @values top,bottom
+   * */
+  popupMode: {
+    type: String,
+    default: 'bottom',
+  },
+  /** 是否显示顶部的操作栏 */
+  showToolbar: {
+    type: Boolean,
+    default: true,
+  },
+  /** 绑定值 */
+  modelValue: {
+    type: String,
+    required: true,
+  },
+  /** 顶部标题 */
+  title: String,
+  /** 字符串截取数组条件 */
+  separator: {
+    type: String,
+    default: ' ',
+  },
+  /** 是否显示加载中状态 */
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  /** 各列中，单个选项的高度 */
+  itemHeight: {
+    type: Number,
+    default: 44,
+  },
+  /** 取消按钮的文字 */
+  cancelText: {
+    type: String,
+    default: '取消',
+  },
+  /** 确认按钮的文字 */
+  confirmText: {
+    type: String,
+    default: '确认',
+  },
+  /** 取消按钮的颜色 */
+  cancelColor: {
+    type: String,
+    default: '#909193',
+  },
+  /** 确认按钮的颜色 */
+  confirmColor: {
+    type: String,
+    default: '#3c9cff',
+  },
+  /** 每列中可见选项的数量 */
+  visibleItemCount: {
+    type: Number,
+    default: 5,
+  },
+  /** 是否允许点击遮罩关闭选择器 */
+  closeOnClickOverlay: {
+    type: Boolean,
+    default: false,
+  },
+  /** 各列的默认索引 */
+  defaultIndex: {
+    type: Array as PropType<Array<any>>,
+  },
+  /** 是否显示输入框 */
+  hasInput: {
+    type: Boolean,
+    default: false,
+  },
+  /** 输入框集合属性 */
+  input: {
+    type: Object as PropType<HyInputProps>,
+  },
+  /** 右边插槽 */
+  toolbarRightSlot: {
+    type: Boolean,
+    default: false,
+  },
+  /** 自定义输入框外部样式 */
+  customStyle: {
+    type: Object as PropType<CSSProperties>,
+  },
+})
 const { show, modelValue, hasInput, input, separator, closeOnClickOverlay } = toRefs(props)
-const emit = defineEmits(['close', 'cancel', 'confirm', 'change', 'update:modelValue'])
+const emit = defineEmits<IAddressPickerEmits>()
 
 // 原来的日期选择器不方便，这里增加一个hasInput选项支持类似element的自带输入框的功能。
 const inputValue = ref<string>('') // 表单显示值

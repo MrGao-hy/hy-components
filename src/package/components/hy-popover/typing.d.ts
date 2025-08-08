@@ -19,6 +19,11 @@ export type PopoverExpose = {
   open: () => void
   close: () => void
 }
+export interface PopoverContentVo {
+  iconClass: string
+  content: string
+  icon: string
+}
 
 export default interface HyOverlayProps {
   /**
@@ -28,7 +33,7 @@ export default interface HyOverlayProps {
   /**
    * @description 显示的内容，也可以通过 slot#content 传入
    */
-  content?: string | Record<string, any>[]
+  content?: string | (string | PopoverContentVo)[]
   /**
    * @description 指定 popover 的放置位置：top / top-start / top-end / bottom / bottom-start / bottom-end / left / left-start / left-end / right / right-start / right-end
    */
@@ -57,4 +62,19 @@ export default interface HyOverlayProps {
    * @description 定义需要用到的类名
    * */
   customClass?: string
+}
+
+export type PopoverParamsVo = {
+  show: boolean
+}
+export type PopoverItemParamsVo = {
+  item: Record<string, any>
+  index: number
+}
+export interface IPopoverEmits {
+  (e: 'menuClick', params: PopoverItemParamsVo): void
+  (e: 'change', params: PopoverParamsVo): void
+  (e: 'open'): void
+  (e: 'close'): void
+  (e: 'update:modelValue', value: boolean): void
 }

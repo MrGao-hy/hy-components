@@ -52,7 +52,10 @@
         <!-- 普通模式 -->
 
         <!-- 列表模式 -->
-        <view v-if="!slots.content && mode === 'menu'" class="hy-popover__menu">
+        <view
+          v-if="!slots.content && mode === 'menu' && Array.isArray(content)"
+          class="hy-popover__menu"
+        >
           <view
             v-for="(item, index) in content"
             :key="index"
@@ -61,8 +64,8 @@
             :style="index === 0 ? 'border-top: none' : ''"
           >
             <hy-icon
-              v-if="typeof item === 'object' && item.iconClass"
-              :name="item.iconClass"
+              v-if="typeof item === 'object' && item.icon"
+              :name="item.icon"
               custom-class="hy-popover__icon"
             />
             <view style="display: inline-block">
@@ -112,19 +115,68 @@ import {
   watch,
   inject,
 } from 'vue'
-import defaultProps from './props'
-import IProps, { type PopoverExpose } from './typing'
+import type { PropType, CSSProperties } from 'vue'
+import type { IOffset, IPopoverEmits, PopoverContentVo, PopoverExpose } from './typing'
 import { isArray } from '../../utils'
 import { type Queue, queueKey, usePopover } from '../../composables'
 import { closeOther, pushToQueue, removeFromQueue } from '../../common'
-
 // 组件
 import HyIcon from '../hy-icon/hy-icon.vue'
 import HyTransition from '../hy-transition/hy-transition.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps)
+/**
+ * 常用于展示提示信息。
+ * @displayName hy-popover
+ */
+defineOptions({})
+
+// const props = withDefaults(defineProps<IProps>(), defaultProps)
+const props = defineProps({
+  /** 控制 popover 的显示状态 */
+  modelValue: {
+    type: Boolean,
+    default: false,
+  },
+  /** 显示的内容，也可以通过 slot#content 传入 */
+  content: [String, Array],
+  /**
+   * 指定 popover 的放置位置
+   * @values top,top-start,top-end,bottom,bottom-start,bottom-end,left,left-start,left-end,right,right-start,right-end
+   * */
+  placement: {
+    type: String,
+    default: 'bottom',
+  },
+  /** 控制 popover 的显示状态 */
+  offset: {
+    type: [Number, Array, Object] as PropType<IOffset>,
+    default: 0,
+  },
+  /** 是否显示关闭按钮 */
+  showClose: {
+    type: Boolean,
+    default: false,
+  },
+  /** 是否禁用 popover */
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * 当前显示的模式，决定内容的展现形式
+   * @values normal,menu
+   * */
+  mode: {
+    type: String,
+    default: 'normal',
+  },
+  /** 定义需要用到的外部样式 */
+  customStyle: Object as PropType<CSSProperties>,
+  /** 自定义外部类名 */
+  customClass: String,
+})
 const { modelValue, content, mode, placement } = toRefs(props)
-const emit = defineEmits(['update:modelValue', 'menuClick', 'change', 'open', 'close'])
+const emit = defineEmits<IPopoverEmits>()
 
 const slots = useSlots()
 const queue = inject<Queue | null>(queueKey, null)

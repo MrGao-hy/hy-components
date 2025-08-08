@@ -49,6 +49,13 @@ export default defineUniPages({
           },
         },
         {
+          path: 'formGroup/formGroup',
+          style: {
+            navigationBarTitleText: '表单组件',
+            enablePullDownRefresh: false,
+          },
+        },
+        {
           path: 'button/button',
           style: {
             navigationBarTitleText: '按钮',

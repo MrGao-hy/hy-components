@@ -33,19 +33,87 @@ export default {
 
 <script setup lang="ts">
 import { getCurrentInstance, toRefs, ref, onMounted } from 'vue'
-import defaultProps from './props'
-import type IProps from './typing'
+import type { IQrcodeEmits } from './typing'
 import QRCode from './qrcode.js'
 import { addUnit, error } from '../../utils'
-import { IconConfig } from '../../config'
-
 // 组件
-import HyIcon from '../hy-icon/hy-icon.vue'
 import HyLoading from '../hy-loading/hy-loading.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps)
+/**
+ * 根据提供的字符串前端JS生成二维码展示
+ * @displayName hy-qrcode
+ */
+defineOptions({})
+
+// const props = withDefaults(defineProps<IProps>(), defaultProps)
+const props = defineProps({
+  /** 实例ID字符串(如果有多个二维码组件必须设置不一样的cid) */
+  cid: {
+    type: String,
+    default: 'hy-qrcode-canvas' + Math.random().toString(),
+  },
+  /** 二维码大小 */
+  size: {
+    type: Number,
+    default: 200,
+  },
+  /** 二维码内容 */
+  text: String,
+  /** 是否显示二维码 */
+  show: {
+    type: Boolean,
+    default: true,
+  },
+  /** 二维码背景色 */
+  background: {
+    type: String,
+    default: '#ffffff',
+  },
+  /** 二维码颜色 */
+  foreground: {
+    type: String,
+    default: '#000000',
+  },
+  /** 定位角点颜色 */
+  pdGround: {
+    type: String,
+    default: '#000000',
+  },
+  /** 是否是自定义组件 */
+  usingComponents: {
+    type: Boolean,
+    default: true,
+  },
+  /** 容错级别 */
+  lv: {
+    type: Number,
+    default: 3,
+  },
+  /** 二维码中间图标 */
+  icon: String,
+  /** 二维码中间图标大小 */
+  iconSize: {
+    type: Number,
+    default: 40,
+  },
+  /** 显示加载状态 */
+  showLoading: {
+    type: Boolean,
+    default: true,
+  },
+  /** 加载中提示语 */
+  loadingText: {
+    type: String,
+    default: '二维码生成中',
+  },
+  /** 是否预览 */
+  allowPreview: {
+    type: Boolean,
+    default: false,
+  },
+})
 const { text, allowPreview } = toRefs(props)
-const emit = defineEmits(['result', 'preview', 'longPress'])
+const emit = defineEmits<IQrcodeEmits>()
 
 const instance = getCurrentInstance()
 const loading = ref(false)
@@ -106,7 +174,7 @@ const _saveCode = () => {
 /**
  * @description 预览
  * */
-const preview = (e) => {
+const preview = (e: Event) => {
   // 预览图片
   // console.log(this.result)
   if (allowPreview.value) {

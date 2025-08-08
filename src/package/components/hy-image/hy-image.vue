@@ -1,6 +1,10 @@
 <template>
   <HyTransition mode="fade" :show="show" :style="transStyle" :duration="fade ? 1000 : 0">
-    <view class="hy-image box-border" @tap="clickHandler" :style="[wrapStyle, backgroundStyle]">
+    <view
+      :class="['hy-image', 'box-border', customClass]"
+      @tap="clickHandler"
+      :style="[wrapStyle, backgroundStyle]"
+    >
       <image
         v-if="!isError"
         :src="src"
@@ -57,17 +61,118 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, type CSSProperties, onMounted, ref, toRefs, watch } from 'vue'
-import defaultProps from './props'
-import type IProps from './typing'
+import { computed, onMounted, ref, toRefs, watch } from 'vue'
+import type { PropType, CSSProperties } from 'vue'
+import type { IImageEmits } from './typing'
 import { addUnit, getPx } from '../../utils'
-
+import { IconConfig } from '../../config'
 // 组件
 import HyIcon from '../hy-icon/hy-icon.vue'
 import HyTransition from '../hy-transition/hy-transition.vue'
 import HyLoading from '../hy-loading/hy-loading.vue'
 
-const props = withDefaults(defineProps<IProps>(), defaultProps)
+/**
+ * uni-app的image组件的加强版，在继承了原有功能外，还支持淡入动画、加载中、加载失败提示、圆角值和形状等。
+ * @displayName hy-image
+ */
+defineOptions({})
+
+// const props = withDefaults(defineProps<IProps>(), defaultProps)
+const props = defineProps({
+  /** 图片地址 */
+  src: String,
+  /** 裁剪模式，见官网说明 */
+  mode: {
+    type: String,
+    default: 'aspectFill',
+  },
+  /** 宽度，单位任意，如果为数值，则为px单位 */
+  width: {
+    type: [String, Number],
+    default: '',
+  },
+  /** 高度，单位任意，如果为数值，则为px单位 */
+  height: {
+    type: [String, Number],
+    default: '',
+  },
+  /**
+   * 图片形状
+   * @values circle,square
+   * */
+  shape: {
+    type: String,
+    default: 'square',
+  },
+  /** 圆角值，单位任意，如果为数值，则为px单位 */
+  radius: {
+    type: [Number, String],
+    default: 0,
+  },
+  /** 是否懒加载，仅微信小程序、App、百度小程序、字节跳动小程序有效 */
+  lazyLoad: {
+    type: Boolean,
+    default: true,
+  },
+  /** 是否开启长按图片显示识别小程序码菜单，仅微信小程序有效 */
+  showMenuByLongPress: {
+    type: Boolean,
+    default: true,
+  },
+  /** 加载中的图标，或者小图片 */
+  loadingIcon: {
+    type: String,
+    default: IconConfig.LOADING,
+  },
+  /** 加载失败的图标，或者小图片 */
+  errorIcon: {
+    type: String,
+    default: IconConfig.NOTICE,
+  },
+  /** 是否显示加载中的图标或者自定义的slot */
+  showLoading: {
+    type: Boolean,
+    default: true,
+  },
+  /** 是否显示加载错误的图标或者自定义的slot */
+  showError: {
+    type: Boolean,
+    default: true,
+  },
+  /** 是否需要淡入效果 */
+  fade: {
+    type: Boolean,
+    default: true,
+  },
+  /** 只支持网络资源，只对微信小程序有效 */
+  webp: {
+    type: Boolean,
+    default: false,
+  },
+  /** 搭配fade参数的过渡时间，单位ms */
+  duration: {
+    type: Number,
+    default: 500,
+  },
+  /** 背景颜色，用于深色页面加载图片时，为了和背景色融合 */
+  bgColor: String,
+  /** 是否模糊图片 */
+  indistinct: {
+    type: Boolean,
+    default: false,
+  },
+  /** 是否预览图片 */
+  previewImage: {
+    type: Boolean,
+    default: false,
+  },
+  /** 定义需要用到的外部样式 */
+  customStyle: {
+    type: Object as PropType<CSSProperties>,
+  },
+  /** 自定义外部类名 */
+  customClass: String,
+})
 const {
   customStyle,
   duration,
@@ -81,7 +186,7 @@ const {
   previewImage,
   indistinct,
 } = toRefs(props)
-const emit = defineEmits(['click', 'error', 'load'])
+const emit = defineEmits<IImageEmits>()
 
 // 图片是否加载错误，如果是，则显示错误占位图
 const isError = ref(false)

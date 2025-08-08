@@ -1,6 +1,6 @@
-import type IProps from './typing'
+import type { HyActionSheetProps } from './typing'
 
-const defaultProps: IProps = {
+const defaultProps: HyActionSheetProps = {
   modelValue: false,
   actions: [],
   panels: [],
